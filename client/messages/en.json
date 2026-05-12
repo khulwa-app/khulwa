@@ -1,0 +1,90 @@
+{
+  "common": {
+    "appName": "Khulwa",
+    "tagline": "A retreat for deep work",
+    "loading": "Loading…"
+  },
+  "actions": {
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "reset": "Reset",
+    "skip": "Skip",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signOut": "Sign out",
+    "continueWithGoogle": "Continue with Google"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Invalid email address",
+    "minLength": "Minimum {min} characters",
+    "passwordMismatch": "Passwords do not match"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "network": "Network error",
+    "unauthorized": "Unauthorized",
+    "notFound": "Not found"
+  },
+  "home": {
+    "meta": {
+      "title": "Khulwa",
+      "description": "Khulwa — for deep work"
+    },
+    "round": "Round {current} of {total}"
+  },
+  "auth": {
+    "signIn": {
+      "meta": {
+        "title": "Sign in · Khulwa"
+      },
+      "title": "Welcome back",
+      "subtitle": "Enter your retreat",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "forgotPassword": "Forgot password?",
+      "noAccount": "No account?",
+      "createOne": "Create one"
+    },
+    "signUp": {
+      "meta": {
+        "title": "Sign up · Khulwa"
+      },
+      "title": "Begin your retreat",
+      "subtitle": "Create a new account",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password"
+      },
+      "haveAccount": "Have an account?"
+    },
+    "forgotPassword": {
+      "meta": {
+        "title": "Reset password · Khulwa"
+      },
+      "title": "Reset password",
+      "subtitle": "We'll send a link to your email",
+      "submit": "Send link",
+      "checkEmail": "Check your email",
+      "backToSignIn": "Back to sign in"
+    }
+  },
+  "components": {
+    "timer": {
+      "ariaLabel": "Pomodoro timer"
+    },
+    "localeToggle": {
+      "label": "Change language",
+      "ar": "العربية",
+      "en": "English"
+    }
+  }
+}

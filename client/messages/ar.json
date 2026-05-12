@@ -1,0 +1,90 @@
+{
+  "common": {
+    "appName": "خلوة",
+    "tagline": "خَلوة للعمل العميق",
+    "loading": "جاري التحميل…"
+  },
+  "actions": {
+    "start": "ابدأ",
+    "pause": "إيقاف",
+    "resume": "متابعة",
+    "reset": "إعادة",
+    "skip": "تخطي",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "submit": "إرسال",
+    "signIn": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "signOut": "تسجيل الخروج",
+    "continueWithGoogle": "المتابعة عبر Google"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "email": "البريد الإلكتروني غير صالح",
+    "minLength": "أقل عدد حروف هو {min}",
+    "passwordMismatch": "كلمتا المرور غير متطابقتين"
+  },
+  "errors": {
+    "generic": "حدث خطأ ما",
+    "network": "خطأ في الاتصال",
+    "unauthorized": "غير مصرّح",
+    "notFound": "غير موجود"
+  },
+  "home": {
+    "meta": {
+      "title": "خلوة",
+      "description": "خلوة — للعمل العميق"
+    },
+    "round": "الجولة {current} من {total}"
+  },
+  "auth": {
+    "signIn": {
+      "meta": {
+        "title": "تسجيل الدخول · خلوة"
+      },
+      "title": "أهلاً بعودتك",
+      "subtitle": "ادخل إلى خَلوتك",
+      "fields": {
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور"
+      },
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "noAccount": "ليس لديك حساب؟",
+      "createOne": "أنشئ حساباً"
+    },
+    "signUp": {
+      "meta": {
+        "title": "إنشاء حساب · خلوة"
+      },
+      "title": "ابدأ خَلوتك",
+      "subtitle": "أنشئ حساباً جديداً",
+      "fields": {
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "confirmPassword": "تأكيد كلمة المرور"
+      },
+      "haveAccount": "لديك حساب؟"
+    },
+    "forgotPassword": {
+      "meta": {
+        "title": "استعادة كلمة المرور · خلوة"
+      },
+      "title": "استعادة كلمة المرور",
+      "subtitle": "سنرسل رابطاً إلى بريدك",
+      "submit": "إرسال الرابط",
+      "checkEmail": "تفقد بريدك",
+      "backToSignIn": "العودة لتسجيل الدخول"
+    }
+  },
+  "components": {
+    "timer": {
+      "ariaLabel": "مؤقت بومودورو"
+    },
+    "localeToggle": {
+      "label": "تغيير اللغة",
+      "ar": "العربية",
+      "en": "English"
+    }
+  }
+}

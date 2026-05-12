@@ -1,0 +1,1 @@
+export const KHULWA_LOCALE_COOKIE_NAME = "NEXT_LOCALE";

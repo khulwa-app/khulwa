@@ -1,12 +1,11 @@
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 import { tokens } from "./tokens";
 import { semanticTokens } from "./semantic-tokens";
-import { conditions } from "./conditions";
 import { textStyles } from "./text-styles";
+import { slotRecipes } from "./slot-recipes";
 
 const config = defineConfig({
   cssVarsPrefix: "khulwa",
-  conditions,
   globalCss: {
     "html, body": {
       bg: "bg.canvas",
@@ -29,6 +28,7 @@ const config = defineConfig({
       xl: "80em",
       "2xl": "96em",
     },
+    slotRecipes,
     tokens,
     semanticTokens,
     textStyles,

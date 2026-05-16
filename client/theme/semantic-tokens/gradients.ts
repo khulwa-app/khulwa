@@ -9,4 +9,7 @@ export const semanticGradients = defineSemanticTokens.gradients({
   brandSheen: {
     value: "{gradients.brandSheen}",
   },
+  loginPage: {
+    value: "{gradients.loginPage}",
+  },
 });

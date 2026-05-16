@@ -20,8 +20,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={getDirection(locale)} suppressHydrationWarning className={fontVariables}>
-      <body>
+    <html lang={locale} dir={getDirection(locale)} className={fontVariables}>
+      <body suppressHydrationWarning>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AppChakraProvider>
             <LocaleSync />

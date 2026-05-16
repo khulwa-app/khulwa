@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typegen": "chakra typegen ./theme/system.ts",
+    "gen-chakra-types": "chakra typegen ./theme/system.ts",
     "postinstall": "chakra typegen ./theme/system.ts || true"
   },
   "dependencies": {

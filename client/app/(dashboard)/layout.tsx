@@ -1,4 +1,4 @@
-import Navbar from "@/modules/home/components/navbar/navbar";
+import { Navbar } from "@/components/ui";
 import { Box } from "@chakra-ui/react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -15,7 +15,8 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
   return (
     <Box position="relative" minHeight="100vh" overflow="hidden">
       <Navbar />
-      {children}
+      <Box>{children}</Box>
+      {/* // TODO: Dock  */}
     </Box>
   );
 }

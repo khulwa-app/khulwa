@@ -30,53 +30,6 @@
     "unauthorized": "Unauthorized",
     "notFound": "Not found"
   },
-  "home": {
-    "meta": {
-      "title": "Khulwa",
-      "description": "Khulwa — for deep work"
-    },
-    "round": "Round {current} of {total}"
-  },
-  "auth": {
-    "signIn": {
-      "meta": {
-        "title": "Sign in · Khulwa"
-      },
-      "title": "Welcome back",
-      "subtitle": "Enter your retreat",
-      "fields": {
-        "email": "Email",
-        "password": "Password"
-      },
-      "forgotPassword": "Forgot password?",
-      "noAccount": "No account?",
-      "createOne": "Create one"
-    },
-    "signUp": {
-      "meta": {
-        "title": "Sign up · Khulwa"
-      },
-      "title": "Begin your retreat",
-      "subtitle": "Create a new account",
-      "fields": {
-        "name": "Name",
-        "email": "Email",
-        "password": "Password",
-        "confirmPassword": "Confirm password"
-      },
-      "haveAccount": "Have an account?"
-    },
-    "forgotPassword": {
-      "meta": {
-        "title": "Reset password · Khulwa"
-      },
-      "title": "Reset password",
-      "subtitle": "We'll send a link to your email",
-      "submit": "Send link",
-      "checkEmail": "Check your email",
-      "backToSignIn": "Back to sign in"
-    }
-  },
   "components": {
     "timer": {
       "ariaLabel": "Pomodoro timer"
@@ -85,6 +38,73 @@
       "label": "Change language",
       "ar": "العربية",
       "en": "English"
+    }
+  },
+  "home": {
+    "metadata": {
+      "title": "Khulwa",
+      "description": "Khulwa — for deep work"
+    },
+    "round": "Round {current} of {total}"
+  },
+  "login": {
+    "metadata": {
+      "title": "Sign in · Khulwa",
+      "description": "Enter your retreat"
+    },
+    "form": {
+      "title": "Welcome back",
+      "subtitle": "Enter your retreat",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "submit": "Sign in",
+      "forgotPassword": "Forgot password?",
+      "noAccount": "No account?",
+      "createOne": "Create one"
+    },
+    "brandPanel": {
+      "logoAria": "Khulwa logo",
+      "eyebrow": "SACRED SOLITUDE",
+      "headline": "A retreat for your deep work.",
+      "description": "Quiet by design. Inspired by the Sufi خلوة — a private chamber for contemplation.",
+      "quote": "“In khulwa, the soul finds its measure.”",
+      "quoteAttribution": "— Ibn Arabi · 13th c."
+    }
+  },
+  "signUp": {
+    "metadata": {
+      "title": "Sign up · Khulwa",
+      "description": "Begin your retreat"
+    },
+    "form": {
+      "title": "Begin your retreat",
+      "subtitle": "Create a new account",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password"
+      },
+      "submit": "Create account",
+      "haveAccount": "Have an account?"
+    }
+  },
+  "forgotPassword": {
+    "metadata": {
+      "title": "Reset password · Khulwa",
+      "description": "Restore access to your retreat"
+    },
+    "form": {
+      "title": "Reset password",
+      "subtitle": "We'll send a link to your email",
+      "fields": {
+        "email": "Email"
+      },
+      "submit": "Send link",
+      "checkEmail": "Check your email",
+      "backToSignIn": "Back to sign in"
     }
   }
 }

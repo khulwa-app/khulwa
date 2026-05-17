@@ -10,6 +10,7 @@ export const cardSlotRecipe = defineSlotRecipe({
         root: {
           boxShadow: "sm",
           bgImage: "var(--khulwa-gradients-login-page)",
+          borderRadius: 0,
         },
       },
     },

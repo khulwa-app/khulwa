@@ -6,7 +6,7 @@ export function Navbar() {
     <HStack position="absolute" top={0} left={0} right={0} p={4} zIndex={10}>
       <Logo />
       <Box>
-        <Text>Test</Text>
+        <Text>Karim</Text>
       </Box>
     </HStack>
   );

@@ -10,7 +10,7 @@ export function LoginPage() {
       <GridItem display={{ base: "none", md: "block" }} colSpan={{ base: 1, md: 5 }}>
         <Card.Root p={{ md: 8, lg: 10, xl: 16 }} variant="login-page" minH="100vh">
           <VStack flex={1} align="start">
-            <Logo variant="light" height={64} />
+            <Logo variant="light" height={64} />    
 
             <VStack gap={4} align="start" justify="center" flex={1}>
               <Text textStyle="eyebrow" color="white/50">

@@ -38,6 +38,9 @@
       "label": "Change language",
       "ar": "العربية",
       "en": "English"
+    },
+    "logo": {
+      "ariaLabel": "Khulwa logo"
     }
   },
   "home": {

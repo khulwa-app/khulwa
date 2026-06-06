@@ -1,3 +1,3 @@
-export * from "./box";
+export * from "./badge";
 export * from "./logo";
-export * from "./logo/navbar";
+export * from "./navbar";

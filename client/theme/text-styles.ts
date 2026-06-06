@@ -1,234 +1,156 @@
 import { defineTextStyles } from "@chakra-ui/react";
 
-// Khulwa textStyles — Platform storefront-v2 naming convention.
-// Display family: Reem Kufi (heading-h1..h3 + quote)
-// Body family: Noto Sans Arabic (heading-h4..h6 + body/paragraph/label/eyebrow/numeric)
-// Use textStyle="heading-h1" / "paragraph-md" / "numeric-timer" directly.
 export const textStyles = defineTextStyles({
-  // Display (Reem Kufi)
+  "display-xl": {
+    value: {
+      fontFamily: "display",
+      fontSize: "7xl",
+      fontWeight: "medium",
+      lineHeight: "1.045",
+      letterSpacing: "-0.03em",
+    },
+  },
+  "display-lg": {
+    value: {
+      fontFamily: "display",
+      fontSize: "6xl",
+      fontWeight: "medium",
+      lineHeight: "1.0625",
+      letterSpacing: "-0.025em",
+    },
+  },
+  "display-md": {
+    value: {
+      fontFamily: "display",
+      fontSize: "5xl",
+      fontWeight: "medium",
+      lineHeight: "1.1666",
+      letterSpacing: "-0.02em",
+    },
+  },
+
   "heading-h1": {
     value: {
       fontFamily: "display",
-      fontSize: "7xl", // 88px
-      fontWeight: "bold",
-      lineHeight: "none",
-      letterSpacing: "tight",
+      fontSize: "4xl",
+      fontWeight: "medium",
+      lineHeight: "1.2",
+      letterSpacing: "-0.015em",
     },
   },
   "heading-h2": {
     value: {
       fontFamily: "display",
-      fontSize: "6xl", // 56px
-      fontWeight: "bold",
-      lineHeight: "tight",
-      letterSpacing: "tight",
+      fontSize: "3xl",
+      fontWeight: "medium",
+      lineHeight: "1.25",
+      letterSpacing: "-0.01em",
     },
   },
   "heading-h3": {
     value: {
       fontFamily: "display",
-      fontSize: "5xl", // 40px
-      fontWeight: "medium",
-      lineHeight: "snug",
-      letterSpacing: "tight-h3",
+      fontSize: "2xl",
+      fontWeight: "semibold",
+      lineHeight: "1.3333",
+      letterSpacing: "-0.005em",
     },
   },
-
-  // Subheadings (Noto Arabic SemiBold)
   "heading-h4": {
     value: {
-      fontFamily: "body",
-      fontSize: "4xl", // 30px
+      fontFamily: "display",
+      fontSize: "xl",
       fontWeight: "semibold",
-      lineHeight: "snug",
-      letterSpacing: "tight-h3",
+      lineHeight: "1.4",
+      letterSpacing: "-0.0025em",
     },
   },
   "heading-h5": {
     value: {
-      fontFamily: "body",
-      fontSize: "3xl", // 24px
+      fontFamily: "display",
+      fontSize: "md",
       fontWeight: "semibold",
-      lineHeight: "snug",
-      letterSpacing: "normal",
-    },
-  },
-  "heading-h6": {
-    value: {
-      fontFamily: "body",
-      fontSize: "2xl", // 20px
-      fontWeight: "semibold",
-      lineHeight: "snug",
-      letterSpacing: "normal",
+      lineHeight: "1.5",
+      letterSpacing: "0",
     },
   },
 
-  // Body (medium weight — UI emphasis)
   "body-lg": {
     value: {
       fontFamily: "body",
-      fontSize: "xl", // 18px
-      fontWeight: "medium",
-      lineHeight: "normal",
-      letterSpacing: "tight-h3",
+      fontSize: "lg",
+      fontWeight: "normal",
+      lineHeight: "1.5555",
+      letterSpacing: "0",
     },
   },
   "body-md": {
     value: {
       fontFamily: "body",
-      fontSize: "lg", // 16px
-      fontWeight: "medium",
-      lineHeight: "normal",
-      letterSpacing: "tight-body",
+      fontSize: "md",
+      fontWeight: "normal",
+      lineHeight: "1.5",
+      letterSpacing: "0",
     },
   },
   "body-sm": {
     value: {
       fontFamily: "body",
-      fontSize: "md", // 14px
-      fontWeight: "medium",
-      lineHeight: "tight",
-      letterSpacing: "tight-sm",
-    },
-  },
-  "body-xs": {
-    value: {
-      fontFamily: "body",
-      fontSize: "sm", // 12px
-      fontWeight: "medium",
-      lineHeight: "none",
-      letterSpacing: "normal",
-    },
-  },
-
-  // Paragraph (regular weight — long-form reading)
-  "paragraph-lg": {
-    value: {
-      fontFamily: "body",
-      fontSize: "xl",
-      fontWeight: "normal",
-      lineHeight: "normal",
-      letterSpacing: "tight-h3",
-    },
-  },
-  "paragraph-md": {
-    value: {
-      fontFamily: "body",
-      fontSize: "lg",
-      fontWeight: "normal",
-      lineHeight: "normal",
-      letterSpacing: "tight-body",
-    },
-  },
-  "paragraph-sm": {
-    value: {
-      fontFamily: "body",
-      fontSize: "md",
-      fontWeight: "normal",
-      lineHeight: "tight",
-      letterSpacing: "tight-sm",
-    },
-  },
-  "paragraph-xs": {
-    value: {
-      fontFamily: "body",
       fontSize: "sm",
       fontWeight: "normal",
-      lineHeight: "none",
-      letterSpacing: "normal",
+      lineHeight: "1.4285",
+      letterSpacing: "0",
     },
   },
 
-  // Label (caps tracking)
+  "label-lg": {
+    value: {
+      fontFamily: "body",
+      fontSize: "label-sm",
+      fontWeight: "medium",
+      lineHeight: "1.2307",
+      letterSpacing: "0.03em",
+      textTransform: "uppercase",
+    },
+  },
+  "dock-label": {
+    value: {
+      fontFamily: "body",
+      fontSize: "label-sm",
+      fontWeight: "medium",
+      lineHeight: "1.2307",
+      letterSpacing: "0",
+    },
+  },
   "label-md": {
-    value: {
-      fontFamily: "body",
-      fontSize: "md",
-      fontWeight: "medium",
-      lineHeight: "tight",
-      letterSpacing: "wide",
-    },
-  },
-  "label-sm": {
-    value: {
-      fontFamily: "body",
-      fontSize: "sm",
-      fontWeight: "medium",
-      lineHeight: "none",
-      letterSpacing: "wider",
-    },
-  },
-  eyebrow: {
     value: {
       fontFamily: "body",
       fontSize: "xs",
       fontWeight: "medium",
-      lineHeight: "none",
-      letterSpacing: "widest",
+      lineHeight: "1.3333",
+      letterSpacing: "0.05em",
       textTransform: "uppercase",
     },
   },
 
-  // Numeric (Noto Arabic Bold + tabular figures)
   "numeric-timer": {
     value: {
-      fontFamily: "body",
+      fontFamily: "mono",
       fontSize: "timer",
-      fontWeight: "bold",
-      lineHeight: "none",
-      letterSpacing: "tighter",
-      fontVariantNumeric: "tabular-nums",
-    },
-  },
-  "numeric-xl": {
-    value: {
-      fontFamily: "body",
-      fontSize: "7xl", // 88px
-      fontWeight: "bold",
-      lineHeight: "none",
-      letterSpacing: "tight",
-      fontVariantNumeric: "tabular-nums",
-    },
-  },
-  "numeric-streak": {
-    value: {
-      fontFamily: "body",
-      fontSize: "8xl", // 96px
-      fontWeight: "bold",
-      lineHeight: "none",
-      letterSpacing: "tight",
-      fontVariantNumeric: "tabular-nums",
-    },
-  },
-  "numeric-lg": {
-    value: {
-      fontFamily: "body",
-      fontSize: "6xl", // 56px (closest scale stop; Figma was 64px)
-      fontWeight: "bold",
-      lineHeight: "none",
-      letterSpacing: "tight",
-      fontVariantNumeric: "tabular-nums",
-    },
-  },
-  "numeric-md": {
-    value: {
-      fontFamily: "body",
-      fontSize: "5xl", // 40px (closest; Figma was 48px)
-      fontWeight: "bold",
-      lineHeight: "none",
-      letterSpacing: "tight-h3",
-      fontVariantNumeric: "tabular-nums",
-    },
-  },
-
-  // Quote (Reem Kufi for italic-feel via display curvature)
-  quote: {
-    value: {
-      fontFamily: "display",
-      fontSize: "md",
       fontWeight: "medium",
-      lineHeight: "tight",
-      letterSpacing: "normal",
+      lineHeight: "1",
+      letterSpacing: "-0.04em",
+      fontVariantNumeric: "tabular-nums",
+    },
+  },
+  "numeric-display": {
+    value: {
+      fontFamily: "mono",
+      fontSize: "numeric-display",
+      fontWeight: "medium",
+      lineHeight: "1.0714",
+      letterSpacing: "-0.02em",
+      fontVariantNumeric: "tabular-nums",
     },
   },
 });

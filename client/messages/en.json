@@ -41,6 +41,52 @@
     },
     "logo": {
       "ariaLabel": "Khulwa logo"
+    },
+    "navbar": {
+      "quote": "“Slow is smooth, smooth is fast.”"
+    },
+    "badge": {
+      "streak": "{count, plural, one {# day streak} other {# days streak}}",
+      "round": "Round {current} of {total}",
+      "onSchedule": "On schedule",
+      "liveFocus": "Live focus",
+      "quietHours": "Quiet hours · {state, select, on {On} other {Off}}"
+    }
+  },
+  "khulwa": {
+    "metadata": {
+      "title": "Khulwa",
+      "description": "Khulwa — a retreat for deep work"
+    },
+    "greeting": {
+      "morning": "GOOD MORNING",
+      "afternoon": "GOOD AFTERNOON",
+      "evening": "GOOD EVENING",
+      "night": "GOOD NIGHT"
+    },
+    "ownership": "You're owning this {day}, {name}.",
+    "guest": "friend",
+    "phase": {
+      "focus": "Khulwa",
+      "shortBreak": "Waqfa",
+      "longBreak": "Raha"
+    },
+    "eyebrow": {
+      "focus": "DEEP KHULWA",
+      "shortBreak": "WAQFA",
+      "longBreak": "RAHA"
+    },
+    "actions": {
+      "begin": "Begin Khulwa",
+      "pause": "Pause",
+      "resume": "Resume"
+    },
+    "aria": {
+      "phaseTabs": "Khulwa phase",
+      "roundProgress": "Round {current} of {total}"
+    },
+    "ambient": {
+      "title": "Desert dusk"
     }
   },
   "home": {
@@ -48,7 +94,37 @@
       "title": "Khulwa",
       "description": "Khulwa — for deep work"
     },
-    "round": "Round {current} of {total}"
+    "guest": "friend",
+    "subtitle": "Pick one thing. Stay with it.",
+    "headline": {
+      "morning": "Morning, {name}.",
+      "afternoon": "Afternoon, {name}.",
+      "evening": "Evening, {name}.",
+      "night": "Night, {name}."
+    }
+  },
+  "spaces": {
+    "ambient": {
+      "title": "Ambient"
+    },
+    "tasks": {
+      "title": "Tasks",
+      "placeholder": "Your tasks will live here."
+    },
+    "stats": {
+      "title": "Stats",
+      "placeholder": "Your focus stats will live here."
+    }
+  },
+  "dock": {
+    "aria": { "label": "Dock" },
+    "destinations": {
+      "home": "Home",
+      "focus": "Focus",
+      "ambient": "Ambient",
+      "tasks": "Tasks",
+      "stats": "Stats"
+    }
   },
   "login": {
     "metadata": {

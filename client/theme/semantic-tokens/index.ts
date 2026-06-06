@@ -1,7 +1,7 @@
 import { semanticColors } from "./colors";
-import { semanticGradients } from "./gradients";
+import { semanticShadows } from "./shadows";
 
 export const semanticTokens = {
   colors: semanticColors,
-  gradients: semanticGradients,
+  shadows: semanticShadows,
 };

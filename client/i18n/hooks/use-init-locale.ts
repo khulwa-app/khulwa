@@ -30,5 +30,5 @@ export const useInitLocale = () => {
       !!cookieLocale && locales.includes(cookieLocale.toLowerCase() as LocaleType);
     const locale = accepted ? (cookieLocale as string) : DEFAULT_LOCALE;
     updateLocaleAndReload(locale);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [updateLocaleAndReload]);
 };

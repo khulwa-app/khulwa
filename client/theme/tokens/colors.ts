@@ -1,57 +1,47 @@
 import { defineTokens } from "@chakra-ui/react";
 
-// Chakra v3 / Tailwind 11-stop ramps. Aligned with Waha v7.1 design system.
 export const colors = defineTokens.colors({
-  teal: {
-    50: { value: "#F0FDFA" },
-    100: { value: "#CCFBF1" },
-    200: { value: "#99F6E4" },
-    300: { value: "#5EEAD4" },
-    400: { value: "#2DD4BF" },
-    500: { value: "#14B8A6" },
-    600: { value: "#0D9488" },
-    700: { value: "#0F766E" },
-    800: { value: "#115E59" },
-    900: { value: "#134E4A" },
-    950: { value: "#042F2E" },
+  bg: {
+    base: { value: "#FAF7F2" },
+    elevated: { value: "#FFFFFF" },
+    sunken: { value: "#F2EDE5" },
+    inverse: { value: "#1A1814" },
   },
-  orange: {
-    50: { value: "#FFF7ED" },
-    100: { value: "#FFEDD5" },
-    200: { value: "#FED7AA" },
-    300: { value: "#FDBA74" },
-    400: { value: "#FB923C" },
-    500: { value: "#F97316" },
-    600: { value: "#EA580C" },
-    700: { value: "#C2410C" },
-    800: { value: "#9A3412" },
-    900: { value: "#7C2D12" },
-    950: { value: "#431407" },
+
+  surface: {
+    card: { value: "#FFFFFF" },
+    muted: { value: "#F5F1EA" },
   },
-  stone: {
-    50: { value: "#FAFAF9" },
-    100: { value: "#F5F5F4" },
-    200: { value: "#E7E5E4" },
-    300: { value: "#D6D3D1" },
-    400: { value: "#A8A29E" },
-    500: { value: "#78716C" },
-    600: { value: "#57534E" },
-    700: { value: "#44403C" },
-    800: { value: "#292524" },
-    900: { value: "#1C1917" },
-    950: { value: "#0C0A09" },
+
+  fg: {
+    default: { value: "#1A1814" },
+    muted: { value: "#6B6357" },
+    subtle: { value: "#9B9286" },
+    inverse: { value: "#FAF7F2" },
   },
-  red: {
-    50: { value: "#FEF2F2" },
-    100: { value: "#FEE2E2" },
-    200: { value: "#FECACA" },
-    300: { value: "#FCA5A5" },
-    400: { value: "#F87171" },
-    500: { value: "#EF4444" },
-    600: { value: "#DC2626" },
-    700: { value: "#B91C1C" },
-    800: { value: "#991B1B" },
-    900: { value: "#7F1D1D" },
-    950: { value: "#450A0A" },
+
+  border: {
+    subtle: { value: "#ECE5D9" },
+    default: { value: "#D9CFBC" },
+    strong: { value: "#B5A892" },
+  },
+
+  primary: {
+    default: { value: "#7C9885" },
+    hover: { value: "#6A8473" },
+    pressed: { value: "#587062" },
+    subtle: { value: "#E3EBE3" },
+  },
+
+  accent: {
+    default: { value: "#D97706" },
+    subtle: { value: "#FEF3E2" },
+  },
+
+  status: {
+    success: { value: "#4F7A5C" },
+    successSubtle: { value: "#E3EFE6" },
+    warning: { value: "#C77E13" },
+    danger: { value: "#B85C3F" },
   },
 });

@@ -1,5 +1,5 @@
-import DashboardHomePage from "./client.page";
+import { Spaces } from "@/modules/spaces";
 
 export default function Page() {
-  return <DashboardHomePage />;
+  return <Spaces />;
 }

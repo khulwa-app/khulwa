@@ -1,66 +1,47 @@
 import { defineSemanticTokens } from "@chakra-ui/react";
 
-// Single light theme. No _dark. Aligned with Waha v7.1 / Chakra v3 conventions.
-// primary = teal, secondary = orange (CTA), danger = red.
-// colorPalette/* = recipe tokens that resolve at component level via colorPalette prop.
 export const semanticColors = defineSemanticTokens.colors({
-  // Surfaces
   bg: {
-    canvas: { value: "{colors.stone.50}" },
-    DEFAULT: { value: "{colors.stone.50}" },
-    subtle: { value: "{colors.stone.100}" },
-    muted: { value: "{colors.stone.200}" },
-    emphasized: { value: "{colors.stone.300}" },
-    inverted: { value: "{colors.stone.900}" },
-    panel: { value: "{colors.stone.50}" },
-    error: { value: "{colors.red.50}" },
-    success: { value: "{colors.teal.50}" },
+    base: { value: { base: "#FAF7F2", _dark: "#1A1814" } },
+    elevated: { value: { base: "#FFFFFF", _dark: "#252220" } },
+    sunken: { value: { base: "#F2EDE5", _dark: "#141210" } },
+    inverse: { value: { base: "#1A1814", _dark: "#FAF7F2" } },
   },
-  // Foreground
+
+  surface: {
+    card: { value: { base: "#FFFFFF", _dark: "#252220" } },
+    muted: { value: { base: "#F5F1EA", _dark: "#1F1D1A" } },
+  },
+
   fg: {
-    DEFAULT: { value: "{colors.stone.900}" },
-    muted: { value: "{colors.stone.600}" },
-    subtle: { value: "{colors.stone.500}" },
-    inverted: { value: "{colors.stone.50}" },
-    error: { value: "{colors.red.700}" },
-    success: { value: "{colors.teal.700}" },
+    default: { value: { base: "#1A1814", _dark: "#F5F1EA" } },
+    muted: { value: { base: "#6B6357", _dark: "#B5A892" } },
+    subtle: { value: { base: "#9B9286", _dark: "#7A7164" } },
+    inverse: { value: { base: "#FAF7F2", _dark: "#1A1814" } },
   },
-  // Border
+
   border: {
-    DEFAULT: { value: "{colors.stone.200}" },
-    subtle: { value: "{colors.stone.100}" },
-    muted: { value: "{colors.stone.300}" },
-    emphasized: { value: "{colors.stone.400}" },
-    error: { value: "{colors.red.500}" },
+    subtle: { value: { base: "#ECE5D9", _dark: "#2A2723" } },
+    default: { value: { base: "#D9CFBC", _dark: "#3A352E" } },
+    strong: { value: { base: "#B5A892", _dark: "#544E44" } },
   },
-  // Primary brand (teal)
+
   primary: {
-    solid: { value: "{colors.teal.600}" },
-    fg: { value: "{colors.stone.50}" },
-    contrast: { value: "{colors.stone.50}" },
-    subtle: { value: "{colors.teal.50}" },
-    muted: { value: "{colors.teal.100}" },
-    emphasized: { value: "{colors.teal.700}" },
-    focusRing: { value: "{colors.teal.500}" },
+    default: { value: { base: "#7C9885", _dark: "#9CB3A4" } },
+    hover: { value: { base: "#6A8473", _dark: "#B0C4B8" } },
+    pressed: { value: { base: "#587062", _dark: "#C4D4CC" } },
+    subtle: { value: { base: "#E3EBE3", _dark: "#2A332C" } },
   },
-  // Secondary / CTA (orange)
-  secondary: {
-    solid: { value: "{colors.orange.600}" },
-    fg: { value: "{colors.stone.50}" },
-    contrast: { value: "{colors.stone.50}" },
-    subtle: { value: "{colors.orange.50}" },
-    muted: { value: "{colors.orange.100}" },
-    emphasized: { value: "{colors.orange.700}" },
+
+  accent: {
+    default: { value: { base: "#D97706", _dark: "#D97706" } },
+    subtle: { value: { base: "#FEF3E2", _dark: "#3A2810" } },
   },
-  // Danger / destructive (red)
-  danger: {
-    solid: { value: "{colors.red.600}" },
-    fg: { value: "{colors.stone.50}" },
-    contrast: { value: "{colors.stone.50}" },
-    subtle: { value: "{colors.red.50}" },
-    muted: { value: "{colors.red.100}" },
-    emphasized: { value: "{colors.red.700}" },
+
+  status: {
+    success: { value: { base: "#4F7A5C", _dark: "#4F7A5C" } },
+    successSubtle: { value: { base: "#E3EFE6", _dark: "#1E2A22" } },
+    warning: { value: { base: "#C77E13", _dark: "#C77E13" } },
+    danger: { value: { base: "#B85C3F", _dark: "#B85C3F" } },
   },
-  // Focus ring (used by all interactive elements)
-  focusRing: { value: "{colors.teal.500}" },
 });

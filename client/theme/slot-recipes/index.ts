@@ -1,5 +1,7 @@
-import { cardSlotRecipe } from "./card";
+import { dockSlotRecipe } from "./dock";
+import { badgeSlotRecipe } from "./badge";
 
 export const slotRecipes = {
-  card: cardSlotRecipe,
+  dock: dockSlotRecipe,
+  badge: badgeSlotRecipe,
 };

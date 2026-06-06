@@ -41,6 +41,52 @@
     },
     "logo": {
       "ariaLabel": "شعار خلوة"
+    },
+    "navbar": {
+      "quote": "«التأنّي يُتقن العمل، والإتقان يُسرّع الإنجاز.»"
+    },
+    "badge": {
+      "streak": "سلسلة {count} يوم",
+      "round": "الجولة {current} من {total}",
+      "onSchedule": "وفق الجدول",
+      "liveFocus": "تركيز مباشر",
+      "quietHours": "ساعات الهدوء · {state, select, on {مُفعّل} other {مُعطّل}}"
+    }
+  },
+  "khulwa": {
+    "metadata": {
+      "title": "خلوة",
+      "description": "خلوة — للعمل العميق"
+    },
+    "greeting": {
+      "morning": "صباح الخير",
+      "afternoon": "ظهر مبارك",
+      "evening": "مساء الخير",
+      "night": "ليلة هادئة"
+    },
+    "ownership": "أنت تتقن هذا {day} يا {name}.",
+    "guest": "صديقي",
+    "phase": {
+      "focus": "خَلوة",
+      "shortBreak": "وقفة",
+      "longBreak": "راحة"
+    },
+    "eyebrow": {
+      "focus": "خَلوة عميقة",
+      "shortBreak": "وقفة",
+      "longBreak": "راحة طويلة"
+    },
+    "actions": {
+      "begin": "ابدأ الخَلوة",
+      "pause": "وقفة",
+      "resume": "استئناف"
+    },
+    "aria": {
+      "phaseTabs": "مرحلة الخَلوة",
+      "roundProgress": "الجولة {current} من {total}"
+    },
+    "ambient": {
+      "title": "غسق الصحراء"
     }
   },
   "home": {
@@ -48,7 +94,37 @@
       "title": "خلوة",
       "description": "خلوة — للعمل العميق"
     },
-    "round": "الجولة {current} من {total}"
+    "guest": "صديقي",
+    "subtitle": "ركّز على شيء واحد، وابقَ معه.",
+    "headline": {
+      "morning": "صباح الخير، {name}.",
+      "afternoon": "نهارك سعيد، {name}.",
+      "evening": "مساء الخير، {name}.",
+      "night": "طابت ليلتك، {name}."
+    }
+  },
+  "spaces": {
+    "ambient": {
+      "title": "محيط"
+    },
+    "tasks": {
+      "title": "المهام",
+      "placeholder": "مهامك ستظهر هنا."
+    },
+    "stats": {
+      "title": "الإحصاءات",
+      "placeholder": "إحصاءات تركيزك ستظهر هنا."
+    }
+  },
+  "dock": {
+    "aria": { "label": "الشريط السفلي" },
+    "destinations": {
+      "home": "الرئيسية",
+      "focus": "تركيز",
+      "ambient": "محيط",
+      "tasks": "المهام",
+      "stats": "الإحصاءات"
+    }
   },
   "login": {
     "metadata": {

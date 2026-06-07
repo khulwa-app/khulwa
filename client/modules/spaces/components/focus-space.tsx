@@ -2,59 +2,43 @@
 
 import { Box, Button, HStack, Text, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
-import { ArrowsRotate, ForwardStep } from "@zappicon/react";
+import { RotateCcw, SkipForward } from "lucide-react";
 import { formatPomodoro } from "@/modules/clock";
-import { usePomodoro, PhaseTabs } from "@/modules/pomodoro";
+import { usePomodoro, usePomodoroHydrated, PhaseTabs } from "@/modules/pomodoro";
 
 export function FocusSpace() {
   const t = useTranslations("khulwa");
-  const { minutes, seconds, isRunning, phase, currentRound, totalRounds, start, pause, reset, skip, setPhase } =
-    usePomodoro();
+  const hydrated = usePomodoroHydrated();
+  const { minutes, seconds, isRunning, hasStarted, phase, currentRound, totalRounds, start, pause, reset, skip, setPhase } = usePomodoro();
+  const primaryLabel = isRunning ? t("actions.pause") : hasStarted ? t("actions.resume") : t("actions.begin");
 
   return (
     <Box position="relative" h="full" w="full" bg="bg.base" overflow="hidden">
-      <VStack position="relative" h="full" w="full" justify="center" align="center" gap="5" padding="6">
-        <Text textStyle="label-md" color="fg.muted">
-          {t(`eyebrow.${phase}`)}
-        </Text>
+      {hydrated && (
+        <VStack position="relative" h="full" w="full" justify="center" align="center" gap="5" padding="6">
+          <Text textStyle="label-md" color="fg.muted">
+            {t(`eyebrow.${phase}`)}
+          </Text>
 
-        <PhaseTabs
-          phase={phase}
-          currentRound={currentRound}
-          totalRounds={totalRounds}
-          onPhaseChange={setPhase}
-        />
+          <PhaseTabs phase={phase} currentRound={currentRound} totalRounds={totalRounds} onPhaseChange={setPhase} />
 
-        <Text textStyle="numeric-display" data-numeric color="fg.default" suppressHydrationWarning>
-          {formatPomodoro(minutes, seconds)}
-        </Text>
+          <Text textStyle="numeric-display" data-numeric color="fg.default" suppressHydrationWarning>
+            {formatPomodoro(minutes, seconds)}
+          </Text>
 
-        <HStack gap="3">
-          <Button onClick={isRunning ? pause : start} visual="solid" size="lg">
-            {isRunning ? t("actions.pause") : t("actions.begin")}
-          </Button>
-          <Button
-            onClick={reset}
-            visual="ghost"
-            size="md"
-            shape="pill"
-            w="12"
-            aria-label={t("actions.pause")}
-          >
-            <ArrowsRotate size={20} />
-          </Button>
-          <Button
-            onClick={skip}
-            visual="ghost"
-            size="md"
-            shape="pill"
-            w="12"
-            aria-label={t("actions.resume")}
-          >
-            <ForwardStep size={20} />
-          </Button>
-        </HStack>
-      </VStack>
+          <HStack gap="3">
+            <Button onClick={isRunning ? pause : start} visual="solid" size="lg">
+              {primaryLabel}
+            </Button>
+            <Button onClick={reset} visual="ghost" size="md" shape="pill" w="12" aria-label={t("actions.pause")}>
+              <RotateCcw size={20} />
+            </Button>
+            <Button onClick={skip} visual="ghost" size="md" shape="pill" w="12" aria-label={t("actions.resume")}>
+              <SkipForward size={20} />
+            </Button>
+          </HStack>
+        </VStack>
+      )}
     </Box>
   );
 }

@@ -5,6 +5,7 @@ export const fonts = defineTokens.fonts({
   heading: { value: "var(--font-display), 'Geist', system-ui, sans-serif" },
   body: { value: "var(--font-body), 'Inter', system-ui, sans-serif" },
   mono: { value: "var(--font-mono), 'Geist Mono', ui-monospace, monospace" },
+  arabicDisplay: { value: "var(--font-arabic-display), 'Aref Ruqaa', 'Amiri', serif" },
 });
 
 export const fontSizes = defineTokens.fontSizes({

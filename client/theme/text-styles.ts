@@ -1,6 +1,91 @@
 import { defineTextStyles } from "@chakra-ui/react";
 
+// Soft shadows that keep on-media text legible over busy photo backgrounds.
+const MEDIA_SHADOW = "0 2px 20px rgba(0,0,0,0.45)";
+const MEDIA_SHADOW_SOFT = "0 1px 12px rgba(0,0,0,0.45)";
+
 export const textStyles = defineTextStyles({
+  // On-media variants — white ink + shadow baked in, for text over space
+  // photo backgrounds (no per-instance color/textShadow props needed).
+  "display-on-media": {
+    value: {
+      fontFamily: "display",
+      fontSize: "6xl",
+      fontWeight: "medium",
+      lineHeight: "1.0625",
+      letterSpacing: "-0.025em",
+      color: "fg.onMedia",
+      textShadow: MEDIA_SHADOW,
+    },
+  },
+  "body-on-media": {
+    value: {
+      fontFamily: "body",
+      fontSize: "xl",
+      fontWeight: "normal",
+      lineHeight: "1.5",
+      letterSpacing: "0",
+      color: "fg.onMediaMuted",
+      textShadow: MEDIA_SHADOW_SOFT,
+    },
+  },
+  "label-on-media": {
+    value: {
+      fontFamily: "body",
+      fontSize: "xs",
+      fontWeight: "medium",
+      lineHeight: "1.3333",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase",
+      color: "fg.onMediaMuted",
+      textShadow: MEDIA_SHADOW_SOFT,
+    },
+  },
+  "clock-on-media": {
+    value: {
+      fontFamily: "body",
+      fontSize: "md",
+      fontWeight: "medium",
+      lineHeight: "1.4",
+      letterSpacing: "0.01em",
+      color: "fg.onMediaMuted",
+      textShadow: MEDIA_SHADOW_SOFT,
+    },
+  },
+  "caption-on-media": {
+    value: {
+      fontFamily: "body",
+      fontSize: "sm",
+      fontWeight: "normal",
+      lineHeight: "1.5",
+      letterSpacing: "0.02em",
+      color: "fg.onMediaMuted",
+      textShadow: MEDIA_SHADOW_SOFT,
+    },
+  },
+  "brand-on-media": {
+    value: {
+      fontFamily: "arabicDisplay",
+      fontSize: "xl",
+      fontWeight: "normal",
+      lineHeight: "1.2",
+      letterSpacing: "0",
+      color: "primary.default",
+      textShadow: MEDIA_SHADOW_SOFT,
+    },
+  },
+  "verse-on-media": {
+    value: {
+      fontFamily: "arabicDisplay",
+      fontSize: "3xl",
+      fontWeight: "normal",
+      lineHeight: "1.4",
+      letterSpacing: "0",
+      color: "fg.onMedia",
+      textShadow: MEDIA_SHADOW,
+    },
+  },
+
   "display-xl": {
     value: {
       fontFamily: "display",
@@ -75,6 +160,15 @@ export const textStyles = defineTextStyles({
     },
   },
 
+  "body-xl": {
+    value: {
+      fontFamily: "body",
+      fontSize: "xl",
+      fontWeight: "normal",
+      lineHeight: "1.5",
+      letterSpacing: "0",
+    },
+  },
   "body-lg": {
     value: {
       fontFamily: "body",

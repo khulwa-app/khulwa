@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Aref_Ruqaa, Geist, Geist_Mono, Inter } from "next/font/google";
 
 export const geist = Geist({
   subsets: ["latin"],
@@ -24,4 +24,12 @@ export const geistMono = Geist_Mono({
   preload: true,
 });
 
-export const fontVariables = `${geist.variable} ${inter.variable} ${geistMono.variable}`;
+export const arefRuqaa = Aref_Ruqaa({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-arabic-display",
+  display: "swap",
+  preload: false,
+});
+
+export const fontVariables = `${geist.variable} ${inter.variable} ${geistMono.variable} ${arefRuqaa.variable}`;

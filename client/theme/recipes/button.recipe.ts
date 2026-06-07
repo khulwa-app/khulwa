@@ -67,10 +67,10 @@ export const khulwaButtonRecipe = defineRecipe({
       },
     },
     size: {
-      sm: { h: "8", minW: "8", paddingInline: "3", textStyle: "label-md" },
-      md: { h: "10", minW: "10", paddingInline: "4", textStyle: "label-lg" },
-      lg: { h: "12", minW: "12", paddingInline: "6", textStyle: "label-lg" },
-      xl: { h: "14", minW: "14", paddingInline: "8", textStyle: "heading-h5" },
+      sm: { h: "8", minW: "8", paddingInline: "3", fontSize: "sm" },
+      md: { h: "10", minW: "10", paddingInline: "4", fontSize: "sm" },
+      lg: { h: "12", minW: "12", paddingInline: "6", fontSize: "md" },
+      xl: { h: "16", minW: "16", paddingInline: "8", fontSize: "lg" },
     },
     shape: {
       pill: { rounded: "full" },

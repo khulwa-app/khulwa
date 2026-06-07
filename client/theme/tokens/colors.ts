@@ -1,46 +1,47 @@
 import { defineTokens } from "@chakra-ui/react";
 
+// Dark-only palette (raw scale). Matches semantic-tokens/colors.ts.
 export const colors = defineTokens.colors({
   bg: {
-    base: { value: "#FAF7F2" },
-    elevated: { value: "#FFFFFF" },
-    sunken: { value: "#F2EDE5" },
-    inverse: { value: "#1A1814" },
-  },
-
-  surface: {
-    card: { value: "#FFFFFF" },
-    muted: { value: "#F5F1EA" },
-  },
-
-  fg: {
-    default: { value: "#1A1814" },
-    muted: { value: "#6B6357" },
-    subtle: { value: "#9B9286" },
+    base: { value: "#1A1814" },
+    elevated: { value: "#252220" },
+    sunken: { value: "#141210" },
     inverse: { value: "#FAF7F2" },
   },
 
+  surface: {
+    card: { value: "#252220" },
+    muted: { value: "#1F1D1A" },
+  },
+
+  fg: {
+    default: { value: "#F5F1EA" },
+    muted: { value: "#B5A892" },
+    subtle: { value: "#7A7164" },
+    inverse: { value: "#1A1814" },
+  },
+
   border: {
-    subtle: { value: "#ECE5D9" },
-    default: { value: "#D9CFBC" },
-    strong: { value: "#B5A892" },
+    subtle: { value: "#2A2723" },
+    default: { value: "#3A352E" },
+    strong: { value: "#544E44" },
   },
 
   primary: {
-    default: { value: "#7C9885" },
-    hover: { value: "#6A8473" },
-    pressed: { value: "#587062" },
-    subtle: { value: "#E3EBE3" },
+    default: { value: "#9CB3A4" },
+    hover: { value: "#B0C4B8" },
+    pressed: { value: "#C4D4CC" },
+    subtle: { value: "#2C3A33" },
   },
 
   accent: {
-    default: { value: "#D97706" },
-    subtle: { value: "#FEF3E2" },
+    default: { value: "#F1A23A" },
+    subtle: { value: "#3A2D18" },
   },
 
   status: {
     success: { value: "#4F7A5C" },
-    successSubtle: { value: "#E3EFE6" },
+    successSubtle: { value: "#1E2A22" },
     warning: { value: "#C77E13" },
     danger: { value: "#B85C3F" },
   },

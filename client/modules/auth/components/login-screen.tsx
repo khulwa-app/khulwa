@@ -16,7 +16,7 @@ export function LoginScreen() {
           align="start"
           color="fg.inverse"
         >
-          <Logo size={48} onInverse />
+          <Logo size={52} />
 
           <VStack gap={4} align="start" justify="center" flex={1}>
             <Text textStyle="label-md" color="primary.default">
@@ -25,7 +25,7 @@ export function LoginScreen() {
             <Text maxW="72" textStyle="heading-h2" color="fg.inverse">
               {t("brandPanel.headline")}
             </Text>
-            <Text color="fg.inverse" opacity={0.8} maxW="md">
+            <Text textStyle="body-md" color="fg.inverse" opacity={0.8} maxW="md">
               {t("brandPanel.description")}
             </Text>
           </VStack>

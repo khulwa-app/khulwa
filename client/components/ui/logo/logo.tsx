@@ -13,30 +13,15 @@ const White = chakra(WhiteLogo);
 interface LogoProps {
   href?: string | null;
   size?: number;
-  onInverse?: boolean;
+  /** "white" (default) for dark surfaces; "dark" for light surfaces. */
+  variant?: "white" | "dark";
 }
 
-export function Logo({ href = Routes.Home, size = 28, onInverse = false }: LogoProps) {
+export function Logo({ href = Routes.Home, size = 28, variant = "white" }: LogoProps) {
   const t = useTranslations("components.logo");
 
-  const mark = (
-    <>
-      <DarkInk
-        h={`${size}px`}
-        w="auto"
-        display={onInverse ? "none" : "block"}
-        _dark={{ display: onInverse ? "block" : "none" }}
-        aria-hidden
-      />
-      <White
-        h={`${size}px`}
-        w="auto"
-        display={onInverse ? "block" : "none"}
-        _dark={{ display: onInverse ? "none" : "block" }}
-        aria-hidden
-      />
-    </>
-  );
+  const Mark = variant === "dark" ? DarkInk : White;
+  const mark = <Mark h={`${size}px`} w="auto" aria-hidden />;
 
   if (href === null) {
     return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Check } from "@zappicon/react";
+import { Check } from "lucide-react";
 import { Badge } from "./badge";
 
 export function ScheduleBadge() {

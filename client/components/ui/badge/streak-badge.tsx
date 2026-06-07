@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Fire from "@/assets/svg/icons/fire.svg";
+import { Flame } from "lucide-react";
 import { Badge } from "./badge";
 
 interface StreakBadgeProps {
@@ -12,7 +12,7 @@ export function StreakBadge({ count }: StreakBadgeProps) {
   const t = useTranslations("components.badge");
   return (
     <Badge.Root tone="accent" emphasis="subtle">
-      <Badge.Icon as={Fire} />
+      <Badge.Icon as={Flame} />
       <Badge.Label>{t("streak", { count })}</Badge.Label>
     </Badge.Root>
   );

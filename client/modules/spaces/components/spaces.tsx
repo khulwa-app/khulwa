@@ -1,54 +1,21 @@
 "use client";
 
-import type { ComponentType, ReactNode } from "react";
+import type { ComponentType } from "react";
 import { useState, useEffect } from "react";
-import { chakra, Presence, useRecipe } from "@chakra-ui/react";
+import { chakra, Presence, useSlotRecipe } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
-import { usePomodoro } from "@/modules/pomodoro";
+import { usePomodoro, usePomodoroStore } from "@/modules/pomodoro";
 import { formatPomodoro } from "@/modules/clock";
-import { spacesShellRecipe } from "@/theme/recipes";
 import { AmbientSpace } from "./ambient-space";
 import { FocusSpace } from "./focus-space";
 import { HomeSpace } from "./home-space";
-import { TasksSpace } from "./tasks-space";
-import { StatsSpace } from "./stats-space";
-
-const SpacesShell = chakra("div", spacesShellRecipe);
-
-type SpaceLayerProps = {
-  space: Space;
-  activeSpace: Space;
-  initialActive: Space;
-  children: ReactNode;
-};
-
-function SpaceLayer({ space, activeSpace, initialActive, children }: SpaceLayerProps) {
-  const recipe = useRecipe({ key: "spaceLayer" });
-  const styles = recipe();
-  const isActive = activeSpace === space;
-  return (
-    <Presence
-      css={styles}
-      present={isActive}
-      skipAnimationOnMount={initialActive === space}
-      unmountOnExit={false}
-      lazyMount={false}
-      pointerEvents={isActive ? "auto" : "none"}
-      aria-hidden={!isActive}
-    >
-      {children}
-    </Presence>
-  );
-}
 
 const layers: { space: Space; Component: ComponentType }[] = [
   { space: Space.Home, Component: HomeSpace },
   { space: Space.Focus, Component: FocusSpace },
   { space: Space.Ambient, Component: AmbientSpace },
-  { space: Space.Tasks, Component: TasksSpace },
-  { space: Space.Stats, Component: StatsSpace },
 ];
 
 function useInitialActive(current: Space): Space {
@@ -74,16 +41,32 @@ function usePageTitle() {
 
 export function Spaces() {
   usePageTitle();
+  useEffect(() => {
+    usePomodoroStore.persist.rehydrate();
+  }, []);
   const activeSpace = useSpace((s) => s.activeSpace);
   const initialActive = useInitialActive(activeSpace);
+  const styles = useSlotRecipe({ key: "spaces" })();
 
   return (
-    <SpacesShell>
-      {layers.map(({ space, Component }) => (
-        <SpaceLayer key={space} space={space} activeSpace={activeSpace} initialActive={initialActive}>
-          <Component />
-        </SpaceLayer>
-      ))}
-    </SpacesShell>
+    <chakra.div css={styles.shell}>
+      {layers.map(({ space, Component }) => {
+        const isActive = activeSpace === space;
+        return (
+          <Presence
+            key={space}
+            css={styles.layer}
+            present={isActive}
+            skipAnimationOnMount={initialActive === space}
+            unmountOnExit={false}
+            lazyMount={false}
+            pointerEvents={isActive ? "auto" : "none"}
+            aria-hidden={!isActive}
+          >
+            <Component />
+          </Presence>
+        );
+      })}
+    </chakra.div>
   );
 }

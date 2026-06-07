@@ -101,29 +101,35 @@
       "afternoon": "Afternoon, {name}.",
       "evening": "Evening, {name}.",
       "night": "Night, {name}."
-    }
-  },
-  "spaces": {
-    "ambient": {
-      "title": "Ambient"
     },
-    "tasks": {
-      "title": "Tasks",
-      "placeholder": "Your tasks will live here."
+    "upNext": {
+      "eyebrow": "Up next",
+      "duration": "{focus}m focus · {break}m break",
+      "startFocus": "Start focus",
+      "changeTask": "Change task",
+      "sampleTask": "Read chapter 4 — Cognitive psychology"
     },
-    "stats": {
-      "title": "Stats",
-      "placeholder": "Your focus stats will live here."
+    "verse": {
+      "arabic": "رَبِّ زِدْنِي عِلْمًا",
+      "meaning": "My Lord, increase me in knowledge",
+      "citation": "Ṭāhā 20:114"
     }
   },
   "dock": {
-    "aria": { "label": "Dock" },
+    "aria": { "nav": "Spaces", "tools": "Tools" },
     "destinations": {
       "home": "Home",
       "focus": "Focus",
-      "ambient": "Ambient",
+      "ambient": "Ambient"
+    },
+    "tools": {
       "tasks": "Tasks",
-      "stats": "Stats"
+      "music": "Music",
+      "notes": "Notes"
+    },
+    "chrome": {
+      "settings": "Settings",
+      "fullscreen": "Fullscreen"
     }
   },
   "login": {

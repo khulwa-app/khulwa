@@ -8,12 +8,10 @@ import { getWeekdayName, formatClock } from "../utils";
 export function HomeClock() {
   const locale = useLocale();
   const now = useClock();
-  const day = getWeekdayName(now, locale);
-  const time = formatClock(now, { hour12: true, locale });
 
   return (
-    <Text textStyle="label-md" color="primary.default" textAlign="center" suppressHydrationWarning>
-      {`${day} · ${time}`}
+    <Text textStyle="clock-on-media" textAlign="center">
+      {`${getWeekdayName(now, locale)} · ${formatClock(now, { hour12: true, locale, withSeconds: true })}`}
     </Text>
   );
 }

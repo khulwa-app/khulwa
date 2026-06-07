@@ -101,29 +101,35 @@
       "afternoon": "نهارك سعيد، {name}.",
       "evening": "مساء الخير، {name}.",
       "night": "طابت ليلتك، {name}."
-    }
-  },
-  "spaces": {
-    "ambient": {
-      "title": "محيط"
     },
-    "tasks": {
-      "title": "المهام",
-      "placeholder": "مهامك ستظهر هنا."
+    "upNext": {
+      "eyebrow": "التالي",
+      "duration": "{focus}د تركيز · {break}د راحة",
+      "startFocus": "ابدأ التركيز",
+      "changeTask": "غيّر المهمة",
+      "sampleTask": "اقرأ الفصل ٤ — علم النفس المعرفي"
     },
-    "stats": {
-      "title": "الإحصاءات",
-      "placeholder": "إحصاءات تركيزك ستظهر هنا."
+    "verse": {
+      "arabic": "رَبِّ زِدْنِي عِلْمًا",
+      "meaning": "دعاءٌ للمعرفة",
+      "citation": "سورة طه · ١١٤"
     }
   },
   "dock": {
-    "aria": { "label": "الشريط السفلي" },
+    "aria": { "nav": "المساحات", "tools": "الأدوات" },
     "destinations": {
       "home": "الرئيسية",
       "focus": "تركيز",
-      "ambient": "محيط",
+      "ambient": "محيط"
+    },
+    "tools": {
       "tasks": "المهام",
-      "stats": "الإحصاءات"
+      "music": "موسيقى",
+      "notes": "ملاحظات"
+    },
+    "chrome": {
+      "settings": "الإعدادات",
+      "fullscreen": "ملء الشاشة"
     }
   },
   "login": {

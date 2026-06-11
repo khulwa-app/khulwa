@@ -114,15 +114,22 @@
     }
   },
   "tasks": {
+    "title": "Tasks",
     "addTask": "Add Task",
     "placeholder": "What will you do?",
+    "empty": "Nothing yet. What's the one thing today?",
+    "done": "Done",
     "minutesShort": "m",
     "aria": {
       "complete": "Mark as completed",
       "doingNow": "Focus on this task",
       "delete": "Delete task",
-      "eta": "Estimated minutes"
+      "eta": "Estimated minutes",
+      "editBody": "Edit task"
     }
+  },
+  "panels": {
+    "aria": { "close": "Close panel" }
   },
   "dock": {
     "aria": { "nav": "Spaces", "tools": "Tools" },

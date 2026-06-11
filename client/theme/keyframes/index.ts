@@ -9,4 +9,12 @@ export const keyframes = defineKeyframes({
     from: { opacity: 1 },
     to: { opacity: 0 },
   },
+  "panel-in": {
+    from: { opacity: 0, transform: "translateY(12px) scale(0.98)" },
+    to: { opacity: 1, transform: "translateY(0) scale(1)" },
+  },
+  "panel-out": {
+    from: { opacity: 1, transform: "translateY(0) scale(1)" },
+    to: { opacity: 0, transform: "translateY(12px) scale(0.98)" },
+  },
 });

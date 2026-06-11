@@ -14,7 +14,7 @@ export type Task = {
 
 type TasksState = {
   tasks: Task[];
-  addTask: () => void;
+  addTask: (body: string) => void;
   removeTask: (id: string) => void;
   updateTask: (id: string, patch: Partial<Omit<Task, "id">>) => void;
   toggleCompleted: (id: string) => void;
@@ -24,23 +24,16 @@ type TasksState = {
 export const useTasksStore = create<TasksState>()(
   persist(
     (set) => ({
-      tasks: [
-        {
-          id: "mock-id",
-          body: "Scaffold tasks UI using mock data from store",
-          completed: false,
-          isDoingNow: true,
-          eta: 30,
-          priority: "high",
-        },
-      ],
-      addTask: () =>
+      tasks: [],
+      // Tasks are created from quick-add text, never empty — avoids junk
+      // empty rows accumulating in localStorage.
+      addTask: (body: string) =>
         set((state) => ({
           tasks: [
             ...state.tasks,
             {
               id: crypto.randomUUID(),
-              body: "",
+              body: body.trim(),
               completed: false,
               isDoingNow: false,
               eta: 30,
@@ -62,6 +55,19 @@ export const useTasksStore = create<TasksState>()(
           tasks: state.tasks.map((task) => ({ ...task, isDoingNow: task.id === id ? !task.isDoingNow : false })),
         })),
     }),
-    { name: "khulwa-tasks", storage: createJSONStorage(() => localStorage), version: 1 },
+    {
+      name: "khulwa-tasks",
+      storage: createJSONStorage(() => localStorage),
+      version: 2,
+      // v1 allowed empty-body tasks (created blank, edited in place) and
+      // shipped a seeded mock task — drop both on upgrade.
+      migrate: (persisted) => {
+        const state = persisted as { tasks?: Task[] };
+        return {
+          ...state,
+          tasks: (state.tasks ?? []).filter((task) => task.body.trim() !== "" && task.id !== "mock-id"),
+        };
+      },
+    },
   ),
 );

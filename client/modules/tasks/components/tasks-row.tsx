@@ -1,14 +1,70 @@
-import { useTranslations } from "next-intl";
-import { Task, useTasksStore } from "../hooks/use-tasks-store.hook";
-import { Checkbox, HStack, IconButton, Input, InputGroup } from "@chakra-ui/react";
-import { Target, Trash2 } from "lucide-react";
+"use client";
 
-export function TaskRow({ task, autoFocus }: { task: Task; autoFocus?: boolean }) {
+import { Checkbox, HStack, IconButton, Text } from "@chakra-ui/react";
+import { Target, Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { InlineEdit } from "@/components/ui";
+import { Task, useTasksStore } from "../hooks/use-tasks-store.hook";
+
+function EditableBody({ task }: { task: Task }) {
   const t = useTranslations("tasks");
-  const { updateTask, removeTask, toggleCompleted, setDoingNow } = useTasksStore();
+  const updateTask = useTasksStore((s) => s.updateTask);
 
   return (
-    <HStack gap="2">
+    <InlineEdit
+      value={task.body}
+      onCommit={(body) => updateTask(task.id, { body })}
+      flex="1"
+      minW="0"
+      textStyle="sm"
+      // Long titles stay one line and scroll inside their own slot (caret can
+      // travel while editing); the hidden scrollbar keeps the row clean.
+      whiteSpace="nowrap"
+      overflowX="auto"
+      css={{ scrollbarWidth: "none", "&::-webkit-scrollbar": { display: "none" } }}
+      aria-label={t("aria.editBody")}
+      color={task.completed ? "fg.subtle" : "fg.default"}
+      textDecoration={task.completed ? "line-through" : undefined}
+    />
+  );
+}
+
+function EtaChip({ task }: { task: Task }) {
+  const t = useTranslations("tasks");
+  const updateTask = useTasksStore((s) => s.updateTask);
+
+  return (
+    <Text flexShrink="0" textStyle="sm" color="fg.muted" fontVariantNumeric="tabular-nums" cursor="text">
+      <InlineEdit
+        as="span"
+        value={String(task.eta)}
+        parse={(raw) => {
+          const parsed = parseInt(raw, 10);
+          return Number.isNaN(parsed) ? null : String(Math.max(0, parsed));
+        }}
+        onCommit={(eta) => updateTask(task.id, { eta: Number(eta) })}
+        inputMode="numeric"
+        aria-label={t("aria.eta")}
+      />
+      {t("minutesShort")}
+    </Text>
+  );
+}
+
+export function TaskRow({ task }: { task: Task }) {
+  const t = useTranslations("tasks");
+  const { removeTask, toggleCompleted, setDoingNow } = useTasksStore();
+
+  return (
+    <HStack
+      gap="2"
+      paddingInline="2"
+      paddingBlock="1"
+      rounded="lg"
+      _hover={{ bg: "surface.muted" }}
+      transitionProperty="background-color"
+      transitionDuration="0.15s"
+    >
       <Checkbox.Root
         size="sm"
         checked={task.completed}
@@ -19,37 +75,18 @@ export function TaskRow({ task, autoFocus }: { task: Task; autoFocus?: boolean }
         <Checkbox.Control />
       </Checkbox.Root>
 
-      <Input
-        variant="subtle"
-        size="sm"
-        flex="1"
-        value={task.body}
-        placeholder={t("placeholder")}
-        autoFocus={autoFocus}
-        onChange={(e) => updateTask(task.id, { body: e.target.value })}
-        textDecoration={task.completed ? "line-through" : undefined}
-        color={task.completed ? "fg.subtle" : undefined}
-      />
+      <EditableBody task={task} />
 
-      <InputGroup w="20" flexShrink="0" endElement={t("minutesShort")}>
-        <Input
-          variant="subtle"
-          size="sm"
-          type="number"
-          min={0}
-          step={5}
-          value={task.eta}
-          aria-label={t("aria.eta")}
-          onChange={(e) => updateTask(task.id, { eta: Math.max(0, Number(e.target.value) || 0) })}
-        />
-      </InputGroup>
+      <EtaChip task={task} />
 
       <IconButton
         visual="ghost"
         size="sm"
         aria-label={t("aria.doingNow")}
         aria-pressed={task.isDoingNow}
-        color={task.isDoingNow ? "primary.default" : "fg.subtle"}
+        color={task.isDoingNow ? "fg.inverse" : "fg.subtle"}
+        bg={task.isDoingNow ? "primary.default" : undefined}
+        _hover={task.isDoingNow ? { bg: "primary.hover" } : undefined}
         onClick={() => setDoingNow(task.id)}
       >
         <Target size={16} />

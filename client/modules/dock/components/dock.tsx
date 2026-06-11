@@ -6,8 +6,7 @@ import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
 import { usePanels, Panel } from "@/modules/panels";
 import { Dock } from "@/theme/slot-recipes/dock";
-import { Popover } from "@/components/ui";
-import TasksForm from "@/modules/tasks/components/tasks-form";
+import { TasksPanel } from "@/modules/tasks/components/tasks-panel";
 
 export function DockNav() {
   const tDest = useTranslations("dock.destinations");
@@ -32,8 +31,17 @@ export function DockNav() {
     </Dock.Item>
   );
 
+  // Togglers open floating panels (music / tasks / notepad / settings) —
+  // not navigation. aria-pressed reflects the open state.
   const toggleItem = (panel: Panel, Icon: LucideIcon, label: string) => (
-    <Dock.Item key={panel} type="button" aria-label={label} title={label} aria-pressed={openPanel === panel}>
+    <Dock.Item
+      key={panel}
+      type="button"
+      aria-label={label}
+      title={label}
+      aria-pressed={openPanel === panel}
+      onClick={() => togglePanel(panel)}
+    >
       <Icon size={16} />
     </Dock.Item>
   );
@@ -47,16 +55,12 @@ export function DockNav() {
   return (
     <>
       <Dock.Root side="start" role="toolbar" aria-label={tAria("tools")}>
-        <Popover
-          open={openPanel === Panel.Tasks}
-          onOpenChange={() => togglePanel(Panel.Tasks)}
-          trigger={toggleItem(Panel.Tasks, ListTodo, tTools("tasks"))}
-        >
-          <TasksForm />
-        </Popover>
+        {toggleItem(Panel.Tasks, ListTodo, tTools("tasks"))}
         {toggleItem(Panel.Music, Music, tTools("music"))}
         {toggleItem(Panel.Notes, Pen, tTools("notes"))}
       </Dock.Root>
+
+      <TasksPanel />
 
       <Dock.Root side="end" as="nav" aria-label={tAria("nav")}>
         {navItem(Space.Ambient, TreeDeciduous, tDest("ambient"))}

@@ -1,4 +1,9 @@
-import { createSlotRecipeContext, defineSlotRecipe, type HTMLChakraProps, type SlotRecipeProps } from "@chakra-ui/react";
+import {
+  createSlotRecipeContext,
+  defineSlotRecipe,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+} from "@chakra-ui/react";
 
 export const dockSlotRecipe = defineSlotRecipe({
   className: "khulwa-dock",
@@ -34,15 +39,13 @@ export const dockSlotRecipe = defineSlotRecipe({
         bg: "bg.elevated/85",
         color: "fg.default",
         boxShadow: "md",
-        transform: "translateY(-1px)",
       },
-      _active: { transform: "translateY(0) scale(0.96)" },
       // Selected — filled brand square. nav uses aria-current, togglers aria-pressed.
       "&[aria-current='page'], &[aria-pressed='true']": {
         bg: "primary.default",
         color: "fg.inverse",
         boxShadow: "md",
-        _hover: { bg: "primary.hover", color: "fg.inverse", transform: "translateY(-1px)" },
+        _hover: { bg: "primary.hover", color: "fg.inverse" },
       },
     },
   },

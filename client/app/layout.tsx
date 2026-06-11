@@ -21,7 +21,7 @@ export default async function RootLayout({
   const locale = (await getLocale()) as LocaleType;
 
   return (
-    <html lang={locale} dir="ltr" className={fontVariables} suppressHydrationWarning>
+    <html lang={locale} dir="ltr" className={`${fontVariables} dark`} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <NextIntlClientProvider>
           <AppChakraProvider>

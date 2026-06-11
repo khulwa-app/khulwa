@@ -102,17 +102,26 @@
       "evening": "مساء الخير، {name}.",
       "night": "طابت ليلتك، {name}."
     },
-    "upNext": {
-      "eyebrow": "التالي",
-      "duration": "{focus}د تركيز · {break}د راحة",
-      "startFocus": "ابدأ التركيز",
-      "changeTask": "غيّر المهمة",
-      "sampleTask": "اقرأ الفصل ٤ — علم النفس المعرفي"
+    "doingNow": {
+      "eyebrow": "تركّز الآن",
+      "eta": "بقي نحو {eta, plural, one {دقيقة واحدة} two {دقيقتان} few {# دقائق} other {# دقيقة}}",
+      "changeTask": "غيّر المهمة"
     },
     "verse": {
       "arabic": "رَبِّ زِدْنِي عِلْمًا",
       "meaning": "دعاءٌ للمعرفة",
       "citation": "سورة طه · ١١٤"
+    }
+  },
+  "tasks": {
+    "addTask": "أضف مهمة",
+    "placeholder": "ماذا ستفعل؟",
+    "minutesShort": "د",
+    "aria": {
+      "complete": "وضع علامة مكتملة",
+      "doingNow": "ركّز على هذه المهمة",
+      "delete": "احذف المهمة",
+      "eta": "الدقائق المقدّرة"
     }
   },
   "dock": {

@@ -1,12 +1,17 @@
 import { defineSemanticTokens } from "@chakra-ui/react";
 
-// Khulwa is dark-only. Every token resolves to its dark counterpart.
 export const semanticColors = defineSemanticTokens.colors({
   bg: {
+    DEFAULT: { value: "#1A1814" },
     base: { value: "#1A1814" },
     elevated: { value: "#252220" },
     sunken: { value: "#141210" },
     inverse: { value: "#FAF7F2" },
+    panel: { value: "#252220" },
+    subtle: { value: "#1F1D1A" },
+    muted: { value: "#252220" },
+    emphasized: { value: "#2A2723" },
+    inverted: { value: "#FAF7F2" },
   },
 
   surface: {
@@ -15,10 +20,12 @@ export const semanticColors = defineSemanticTokens.colors({
   },
 
   fg: {
+    DEFAULT: { value: "#F5F1EA" },
     default: { value: "#F5F1EA" },
     muted: { value: "#B5A892" },
     subtle: { value: "#7A7164" },
     inverse: { value: "#1A1814" },
+    inverted: { value: "#1A1814" },
     // Always-light text for content over photo backgrounds (theme-independent),
     // paired with the on-media text styles.
     onMedia: { value: "#FAF7F2" },
@@ -26,8 +33,11 @@ export const semanticColors = defineSemanticTokens.colors({
   },
 
   border: {
+    DEFAULT: { value: "#3A352E" },
     subtle: { value: "#2A2723" },
     default: { value: "#3A352E" },
+    muted: { value: "#2A2723" },
+    emphasized: { value: "#544E44" },
     strong: { value: "#544E44" },
   },
 

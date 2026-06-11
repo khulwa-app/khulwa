@@ -6,6 +6,8 @@ import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
 import { usePanels, Panel } from "@/modules/panels";
 import { Dock } from "@/theme/slot-recipes/dock";
+import { Popover } from "@/components/ui";
+import TasksForm from "@/modules/tasks/components/tasks-form";
 
 export function DockNav() {
   const tDest = useTranslations("dock.destinations");
@@ -30,17 +32,8 @@ export function DockNav() {
     </Dock.Item>
   );
 
-  // Togglers open floating panels (music / tasks / notepad / settings) —
-  // not navigation. aria-pressed reflects the open state.
   const toggleItem = (panel: Panel, Icon: LucideIcon, label: string) => (
-    <Dock.Item
-      key={panel}
-      type="button"
-      aria-label={label}
-      title={label}
-      aria-pressed={openPanel === panel}
-      onClick={() => togglePanel(panel)}
-    >
+    <Dock.Item key={panel} type="button" aria-label={label} title={label} aria-pressed={openPanel === panel}>
       <Icon size={16} />
     </Dock.Item>
   );
@@ -54,7 +47,13 @@ export function DockNav() {
   return (
     <>
       <Dock.Root side="start" role="toolbar" aria-label={tAria("tools")}>
-        {toggleItem(Panel.Tasks, ListTodo, tTools("tasks"))}
+        <Popover
+          open={openPanel === Panel.Tasks}
+          onOpenChange={() => togglePanel(Panel.Tasks)}
+          trigger={toggleItem(Panel.Tasks, ListTodo, tTools("tasks"))}
+        >
+          <TasksForm />
+        </Popover>
         {toggleItem(Panel.Music, Music, tTools("music"))}
         {toggleItem(Panel.Notes, Pen, tTools("notes"))}
       </Dock.Root>
@@ -64,7 +63,12 @@ export function DockNav() {
         {navItem(Space.Home, House, tDest("home"))}
         {navItem(Space.Focus, Lightbulb, tDest("focus"))}
         {toggleItem(Panel.Settings, Settings, tChrome("settings"))}
-        <Dock.Item type="button" aria-label={tChrome("fullscreen")} title={tChrome("fullscreen")} onClick={toggleFullscreen}>
+        <Dock.Item
+          type="button"
+          aria-label={tChrome("fullscreen")}
+          title={tChrome("fullscreen")}
+          onClick={toggleFullscreen}
+        >
           <Expand size={16} />
         </Dock.Item>
       </Dock.Root>

@@ -5,12 +5,10 @@ import { Box } from "@chakra-ui/react";
 
 interface SpaceBackgroundProps {
   src: string;
-  /** Overall darkening multiplier (0–1). Default 0.5. */
   tint?: number;
 }
 
-
-export function SpaceBackground({ src, tint = 0.4 }: SpaceBackgroundProps) {
+export function SpaceBackground({ src, tint = 0.5 }: SpaceBackgroundProps) {
   return (
     <Box position="absolute" inset={0} zIndex={0} overflow="hidden" pointerEvents="none" aria-hidden>
       <Image src={src} alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
@@ -19,3 +17,4 @@ export function SpaceBackground({ src, tint = 0.4 }: SpaceBackgroundProps) {
     </Box>
   );
 }
+

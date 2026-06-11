@@ -102,17 +102,26 @@
       "evening": "Evening, {name}.",
       "night": "Night, {name}."
     },
-    "upNext": {
-      "eyebrow": "Up next",
-      "duration": "{focus}m focus · {break}m break",
-      "startFocus": "Start focus",
-      "changeTask": "Change task",
-      "sampleTask": "Read chapter 4 — Cognitive psychology"
+    "doingNow": {
+      "eyebrow": "Focusing now",
+      "eta": "about {eta, plural, one {# minute} other {# minutes}} to go",
+      "changeTask": "Change task"
     },
     "verse": {
       "arabic": "رَبِّ زِدْنِي عِلْمًا",
       "meaning": "My Lord, increase me in knowledge",
       "citation": "Ṭāhā 20:114"
+    }
+  },
+  "tasks": {
+    "addTask": "Add Task",
+    "placeholder": "What will you do?",
+    "minutesShort": "m",
+    "aria": {
+      "complete": "Mark as completed",
+      "doingNow": "Focus on this task",
+      "delete": "Delete task",
+      "eta": "Estimated minutes"
     }
   },
   "dock": {

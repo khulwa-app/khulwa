@@ -16,7 +16,6 @@ type PomodoroState = {
   start: () => void;
   pause: () => void;
   reset: () => void;
-
   skip: () => void;
   tick: (deltaMs: number) => void;
 };

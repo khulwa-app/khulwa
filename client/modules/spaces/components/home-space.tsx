@@ -25,14 +25,10 @@ export function HomeSpace() {
         align="center"
         gap="12"
         padding="6"
-        // Clears the fixed dock so the card never slides under it on short
-        // viewports (also nudges the stack to the optical center).
         paddingBlockEnd={{ base: "20", md: "24" }}
       >
         <Presence present animationName={{ _open: "fade-in" }} animationDuration="moderate">
           <VStack gap="6" textAlign="center" minH="40" justify="center">
-            {/* Clock + greeting are one perceptual unit (tight), the verse a
-                separate devotional moment (looser) — grouped gaps, not a flat list. */}
             <VStack gap="2">
               <HomeClock />
               <Text textStyle="display-on-media">{t(`headline.${band}`, { name })}</Text>

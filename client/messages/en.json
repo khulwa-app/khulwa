@@ -103,9 +103,11 @@
       "night": "Night, {name}."
     },
     "doingNow": {
-      "eyebrow": "Focusing now",
+      "eyebrow": "Your one thing",
       "eta": "about {eta, plural, one {# minute} other {# minutes}} to go",
-      "changeTask": "Change task"
+      "changeTask": "Change task",
+      "enterFocus": "Enter focus",
+      "choose": "Choose your one thing"
     },
     "verse": {
       "arabic": "رَبِّ زِدْنِي عِلْمًا",

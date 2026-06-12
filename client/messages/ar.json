@@ -103,9 +103,11 @@
       "night": "طابت ليلتك، {name}."
     },
     "doingNow": {
-      "eyebrow": "تركّز الآن",
+      "eyebrow": "مهمتك الواحدة",
       "eta": "بقي نحو {eta, plural, one {دقيقة واحدة} two {دقيقتان} few {# دقائق} other {# دقيقة}}",
-      "changeTask": "غيّر المهمة"
+      "changeTask": "غيّر المهمة",
+      "enterFocus": "ادخل التركيز",
+      "choose": "اختر مهمتك الواحدة"
     },
     "verse": {
       "arabic": "رَبِّ زِدْنِي عِلْمًا",

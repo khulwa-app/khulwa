@@ -7,11 +7,12 @@ import { getWeekdayName, formatClock } from "../utils";
 
 export function HomeClock() {
   const locale = useLocale();
-  const now = useClock();
+  // No seconds shown — ticking per minute avoids a re-render every second.
+  const now = useClock({ intervalMs: 60_000 });
 
   return (
     <Text textStyle="clock-on-media" textAlign="center">
-      {`${getWeekdayName(now, locale)} · ${formatClock(now, { hour12: true, locale, withSeconds: true })}`}
+      {`${getWeekdayName(now, locale)} · ${formatClock(now, { hour12: true, locale })}`}
     </Text>
   );
 }

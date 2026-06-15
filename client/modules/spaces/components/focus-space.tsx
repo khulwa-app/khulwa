@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { RotateCcw, SkipForward } from "lucide-react";
 import { formatPomodoro } from "@/modules/clock";
 import { usePomodoro, usePomodoroHydrated, PhaseTabs } from "@/modules/pomodoro";
+import { DoingNowCaption } from "@/modules/tasks/components/doing-now-caption";
 
 export function FocusSpace() {
   const t = useTranslations("khulwa");
@@ -25,6 +26,8 @@ export function FocusSpace() {
           <Text textStyle="numeric-display" data-numeric color="fg.default" suppressHydrationWarning>
             {formatPomodoro(minutes, seconds)}
           </Text>
+
+          <DoingNowCaption />
 
           <HStack gap="3">
             <Button onClick={isRunning ? pause : start} visual="solid" size="lg">

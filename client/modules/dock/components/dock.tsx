@@ -27,12 +27,12 @@ export function DockNav() {
       aria-current={activeSpace === space ? "page" : undefined}
       onClick={() => changeSpace(space)}
     >
-      <Icon size={16} />
+      <Dock.ItemIcon>
+        <Icon />
+      </Dock.ItemIcon>
     </Dock.Item>
   );
 
-  // Togglers open floating panels (music / tasks / notepad / settings) —
-  // not navigation. aria-pressed reflects the open state.
   const toggleItem = (panel: Panel, Icon: LucideIcon, label: string) => (
     <Dock.Item
       key={panel}
@@ -42,7 +42,9 @@ export function DockNav() {
       aria-pressed={openPanel === panel}
       onClick={() => togglePanel(panel)}
     >
-      <Icon size={16} />
+      <Dock.ItemIcon>
+        <Icon />
+      </Dock.ItemIcon>
     </Dock.Item>
   );
 
@@ -73,7 +75,9 @@ export function DockNav() {
           title={tChrome("fullscreen")}
           onClick={toggleFullscreen}
         >
-          <Expand size={16} />
+          <Dock.ItemIcon>
+            <Expand />
+          </Dock.ItemIcon>
         </Dock.Item>
       </Dock.Root>
     </>

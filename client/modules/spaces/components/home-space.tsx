@@ -4,11 +4,11 @@ import { Box, Presence, Text, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 import { HomeClock, useTimeBand } from "@/modules/clock";
 import { DoingNowCard } from "@/modules/tasks/components/doing-now-card";
+import { RotatingAyah } from "@/modules/verses";
 import { SpaceBackground } from "./space-background";
 
 export function HomeSpace() {
   const t = useTranslations("home");
-  const tVerse = useTranslations("home.verse");
   const name = t("guest");
   const band = useTimeBand();
 
@@ -33,14 +33,7 @@ export function HomeSpace() {
               <HomeClock />
               <Text textStyle="display-on-media">{t(`headline.${band}`, { name })}</Text>
             </VStack>
-            <VStack gap="1" align="center">
-              <Text textStyle="verse-on-media" dir="rtl" lang="ar">
-                {tVerse("arabic")}
-              </Text>
-              <Text textStyle="caption-on-media">
-                {tVerse("meaning")} · {tVerse("citation")}
-              </Text>
-            </VStack>
+            <RotatingAyah />
           </VStack>
         </Presence>
         <DoingNowCard />

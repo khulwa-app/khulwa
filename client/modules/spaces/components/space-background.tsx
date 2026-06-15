@@ -8,7 +8,7 @@ interface SpaceBackgroundProps {
   tint?: number;
 }
 
-export function SpaceBackground({ src, tint = 0.5 }: SpaceBackgroundProps) {
+export function SpaceBackground({ src, tint = 0.65 }: SpaceBackgroundProps) {
   return (
     <Box position="absolute" inset={0} zIndex={0} overflow="hidden" pointerEvents="none" aria-hidden>
       <Image src={src} alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />

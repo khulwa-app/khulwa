@@ -9,15 +9,6 @@ import { usePanels, Panel } from "@/modules/panels";
 import { useTasksStore } from "../hooks/use-tasks-store.hook";
 import { useTasksHydrated } from "../hooks/use-tasks-hydrated.hook";
 
-// Same translucent material as the dock — the card belongs to the chrome
-// family floating over the photo, not a second opaque surface.
-const glass = {
-  bg: "bg.elevated/55",
-  backdropFilter: "blur(8px)",
-  boxShadow: "sm",
-  rounded: "2xl",
-} as const;
-
 export function DoingNowCard() {
   const t = useTranslations("home.doingNow");
   const hydrated = useTasksHydrated();
@@ -38,7 +29,7 @@ export function DoingNowCard() {
   if (!currentTask) {
     return (
       <Presence present animationName={{ _open: "fade-in" }} animationDuration="moderate">
-        <Button visual="ghost" size="md" shape="pill" {...glass} paddingInline="5" onClick={openTasksPanel}>
+        <Button visual="ghost" size="md" shape="pill" layerStyle="glass" rounded="2xl" paddingInline="5" onClick={openTasksPanel}>
           {t("choose")}
           <ArrowRight size={16} />
         </Button>
@@ -48,7 +39,7 @@ export function DoingNowCard() {
 
   return (
     <Presence present animationName={{ _open: "fade-in" }} animationDuration="moderate">
-      <VStack w="full" maxW="md" align="stretch" gap="4" {...glass} paddingInline="6" paddingBlock="5">
+      <VStack w="full" maxW="md" align="stretch" gap="4" layerStyle="glass" rounded="2xl" paddingInline="6" paddingBlock="5">
         <VStack align="start" gap="1" minW="0">
           <Text textStyle="label-md" color="primary.default">
             {`${t("eyebrow")} · ${t("eta", { eta: currentTask.eta })}`}

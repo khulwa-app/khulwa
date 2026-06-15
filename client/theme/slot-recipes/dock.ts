@@ -7,7 +7,7 @@ import {
 
 export const dockSlotRecipe = defineSlotRecipe({
   className: "khulwa-dock",
-  slots: ["root", "item"],
+  slots: ["root", "item", "itemIcon"],
   base: {
     root: {
       position: "fixed",
@@ -21,36 +21,37 @@ export const dockSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
-      boxSize: "9",
+      boxSize: "10",
       rounded: "lg",
       border: "0",
       appearance: "none",
       cursor: "pointer",
       flexShrink: "0",
       color: "fg.muted",
-      // Translucent glass box — sits over photo backgrounds, reads premium.
-      bg: "bg.elevated/55",
-      boxShadow: "sm",
-      backdropFilter: "blur(8px)",
+      layerStyle: "glass",
       transitionProperty: "background-color, color, transform, box-shadow",
-      transitionDuration: "0.18s",
+      transitionDuration: "moderate",
       transitionTimingFunction: "ease",
       _hover: {
         bg: "bg.elevated/85",
-        color: "fg.default",
-        boxShadow: "md",
       },
-      // Selected — filled brand square. nav uses aria-current, togglers aria-pressed.
       "&[aria-current='page'], &[aria-pressed='true']": {
         bg: "primary.default",
         color: "fg.inverse",
-        boxShadow: "md",
+        boxShadow: "sm",
         _hover: { bg: "primary.hover", color: "fg.inverse" },
       },
     },
+
+    itemIcon: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: "0",
+      "& svg": { boxSize: "4" },
+    },
   },
   variants: {
-    // Corner anchor for the cluster.
     side: {
       start: { root: { insetInlineStart: { base: "3", md: "5" } } },
       end: { root: { insetInlineEnd: { base: "3", md: "5" } } },
@@ -61,8 +62,10 @@ export const dockSlotRecipe = defineSlotRecipe({
 const ctx = createSlotRecipeContext({ key: "dock" });
 type RootProps = HTMLChakraProps<"div", SlotRecipeProps<"dock">>;
 type ButtonProps = HTMLChakraProps<"button">;
+type ItemIconProps = HTMLChakraProps<"span">;
 
 export const Dock = {
   Root: ctx.withProvider<HTMLDivElement, RootProps>("div", "root"),
   Item: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "item"),
+  ItemIcon: ctx.withContext<HTMLSpanElement, ItemIconProps>("span", "itemIcon"),
 };

@@ -1,14 +1,39 @@
 "use client";
 
-import { Box, Collapsible, Text, VStack } from "@chakra-ui/react";
+import { Collapsible, VStack } from "@chakra-ui/react";
 import { ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ScrollArea } from "@/components/ui";
 import { SidePanel, usePanels, Panel } from "@/modules/panels";
-import { useTasksStore } from "../hooks/use-tasks-store.hook";
+import { Task, useTasksStore } from "../hooks/use-tasks-store.hook";
 import { useTasksHydrated } from "../hooks/use-tasks-hydrated.hook";
 import { QuickAdd } from "./quick-add";
+import { TaskList } from "./task-list";
 import { TaskRow } from "./tasks-row";
+
+// Folded section (Later / Done) — today's list stays unfolded: progressive
+// disclosure keeps the panel showing only the current intention by default.
+function FoldedSection({ label, tasks }: { label: string; tasks: Task[] }) {
+  if (tasks.length === 0) return null;
+
+  return (
+    <Collapsible.Root>
+      <Collapsible.Trigger asChild>
+        <TaskList.SectionTrigger>
+          <ChevronRight size={14} />
+          {`${label} (${tasks.length})`}
+        </TaskList.SectionTrigger>
+      </Collapsible.Trigger>
+      <Collapsible.Content>
+        <TaskList.SectionContent>
+          {tasks.map((task, index) => (
+            <TaskRow key={task.id} task={task} index={index} />
+          ))}
+        </TaskList.SectionContent>
+      </Collapsible.Content>
+    </Collapsible.Root>
+  );
+}
 
 export function TasksPanel() {
   const t = useTranslations("tasks");
@@ -17,7 +42,8 @@ export function TasksPanel() {
   const close = usePanels((s) => s.close);
   const tasks = useTasksStore((s) => s.tasks);
 
-  const active = tasks.filter((task) => !task.completed);
+  const today = tasks.filter((task) => !task.completed && task.today);
+  const later = tasks.filter((task) => !task.completed && !task.today);
   const done = tasks.filter((task) => task.completed);
 
   return (
@@ -27,48 +53,20 @@ export function TasksPanel() {
 
         {hydrated && (
           <ScrollArea flex="1" minH="0" w="full">
-            {active.length === 0 && done.length === 0 ? (
-              <Text textStyle="sm" color="fg.muted" textAlign="center" paddingBlock="8">
-                {t("empty")}
-              </Text>
-            ) : (
-              <VStack gap="1" align="stretch">
-                {active.map((task) => (
-                  <TaskRow key={task.id} task={task} />
-                ))}
+            <TaskList.Root>
+              {tasks.length === 0 ? (
+                <TaskList.Empty>{t("empty")}</TaskList.Empty>
+              ) : (
+                <>
+                  {today.map((task, index) => (
+                    <TaskRow key={task.id} task={task} index={index} />
+                  ))}
 
-                {done.length > 0 && (
-                  <Collapsible.Root>
-                    <Collapsible.Trigger asChild>
-                      <Box
-                        as="button"
-                        display="flex"
-                        alignItems="center"
-                        gap="1"
-                        w="full"
-                        marginTop="2"
-                        paddingInline="2"
-                        paddingBlock="1"
-                        cursor="pointer"
-                        color="fg.muted"
-                        textStyle="label-md"
-                        css={{ "&[data-state=open] svg": { transform: "rotate(90deg)" } }}
-                      >
-                        <ChevronRight size={14} style={{ transition: "transform 0.15s ease" }} />
-                        {`${t("done")} (${done.length})`}
-                      </Box>
-                    </Collapsible.Trigger>
-                    <Collapsible.Content>
-                      <VStack gap="1" align="stretch" paddingTop="1">
-                        {done.map((task) => (
-                          <TaskRow key={task.id} task={task} />
-                        ))}
-                      </VStack>
-                    </Collapsible.Content>
-                  </Collapsible.Root>
-                )}
-              </VStack>
-            )}
+                  <FoldedSection label={t("later")} tasks={later} />
+                  <FoldedSection label={t("done")} tasks={done} />
+                </>
+              )}
+            </TaskList.Root>
           </ScrollArea>
         )}
       </VStack>

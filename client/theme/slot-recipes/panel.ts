@@ -23,12 +23,10 @@ export const panelSlotRecipe = defineSlotRecipe({
       maxW: "calc(100vw - 1.5rem)",
       maxH: "min(70vh, 34rem)",
       overflow: "hidden",
-      rounded: "2xl",
-      borderWidth: "1px",
-      borderColor: "border.subtle",
-      bg: "bg.elevated/90",
-      backdropFilter: "blur(16px)",
-      boxShadow: "lg",
+      rounded: "lg",
+      // Dense cut of the shared glass material — same family as the dock
+      // and doing-now card, with a thicker scrim for body text.
+      layerStyle: "glass.dense",
     },
     header: {
       display: "flex",

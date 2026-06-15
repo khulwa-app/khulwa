@@ -4,7 +4,8 @@ import { useState } from "react";
 import { IconButton, Input, InputGroup } from "@chakra-ui/react";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useTasksStore } from "../hooks/use-tasks-store.hook";
+import { estimateEta } from "@/modules/ai";
+import { DEFAULT_ETA, useTasksStore } from "../hooks/use-tasks-store.hook";
 
 export function QuickAdd() {
   const t = useTranslations("tasks");
@@ -14,8 +15,17 @@ export function QuickAdd() {
   const submit = () => {
     const body = draft.trim();
     if (!body) return;
-    addTask(body);
+    const id = addTask(body);
     setDraft("");
+    // Fire-and-forget: the task exists instantly with the default eta; the
+    // AI estimate quietly improves it when it lands — unless the user set
+    // their own value first (never fight the human). Failure changes nothing.
+    void estimateEta(body).then((eta) => {
+      if (eta === null) return;
+      const { tasks, updateTask } = useTasksStore.getState();
+      const task = tasks.find((candidate) => candidate.id === id);
+      if (task && task.eta === DEFAULT_ETA) updateTask(id, { eta });
+    });
   };
 
   return (

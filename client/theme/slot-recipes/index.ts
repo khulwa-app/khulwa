@@ -4,6 +4,8 @@ import { spacesSlotRecipe } from "./spaces";
 import { popoverSlotRecipe } from "./popover";
 import { panelSlotRecipe } from "./panel";
 import { scrollAreaSlotRecipe } from "./scroll-area";
+import { taskListSlotRecipe } from "./task-list";
+import { timerPillSlotRecipe } from "./floating-timer";
 
 export const slotRecipes = {
   dock: dockSlotRecipe,
@@ -12,4 +14,6 @@ export const slotRecipes = {
   popover: popoverSlotRecipe,
   panel: panelSlotRecipe,
   scrollArea: scrollAreaSlotRecipe,
+  taskList: taskListSlotRecipe,
+  timerPill: timerPillSlotRecipe,
 };

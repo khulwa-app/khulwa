@@ -2,6 +2,7 @@ import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 import { tokens } from "./tokens";
 import { semanticTokens } from "./semantic-tokens";
 import { textStyles } from "./text-styles";
+import { layerStyles } from "./layer-styles";
 import { recipes } from "./recipes";
 import { keyframes } from "./keyframes";
 import { slotRecipes } from "./slot-recipes";
@@ -22,6 +23,7 @@ const config = defineConfig({
     tokens,
     semanticTokens,
     textStyles,
+    layerStyles,
     recipes,
     keyframes,
     slotRecipes,

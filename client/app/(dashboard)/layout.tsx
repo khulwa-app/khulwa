@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "@/components/ui";
 import { Dock } from "@/modules/dock";
+import { FloatingTimer } from "@/modules/pomodoro";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("khulwa.metadata");
@@ -22,6 +23,7 @@ export default async function DashboardLayout({
       <Suspense fallback={null}>
         {children}
         <Dock />
+        <FloatingTimer />
       </Suspense>
     </Box>
   );

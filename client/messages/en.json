@@ -108,11 +108,6 @@
       "changeTask": "Change task",
       "enterFocus": "Enter focus",
       "choose": "Choose your one thing"
-    },
-    "verse": {
-      "arabic": "رَبِّ زِدْنِي عِلْمًا",
-      "meaning": "My Lord, increase me in knowledge",
-      "citation": "Ṭāhā 20:114"
     }
   },
   "tasks": {
@@ -120,18 +115,32 @@
     "addTask": "Add Task",
     "placeholder": "What will you do?",
     "empty": "Nothing yet. What's the one thing today?",
+    "later": "Later",
     "done": "Done",
+    "addStep": "Add a step",
+    "breakIntoSteps": "Break into steps",
+    "breaking": "Breaking down…",
     "minutesShort": "m",
     "aria": {
       "complete": "Mark as completed",
       "doingNow": "Focus on this task",
       "delete": "Delete task",
       "eta": "Estimated minutes",
-      "editBody": "Edit task"
+      "editBody": "Edit task",
+      "expand": "Toggle steps",
+      "defer": "Move to later",
+      "doToday": "Do today",
+      "completeStep": "Mark step as completed",
+      "deleteStep": "Delete step",
+      "editStep": "Edit step",
+      "split": "Suggest steps"
     }
   },
   "panels": {
     "aria": { "close": "Close panel" }
+  },
+  "pomodoro": {
+    "backToFocus": "Return to focus"
   },
   "dock": {
     "aria": { "nav": "Spaces", "tools": "Tools" },

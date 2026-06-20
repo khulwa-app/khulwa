@@ -7,6 +7,8 @@ import { Space } from "@/modules/space/types";
 import { usePanels, Panel } from "@/modules/panels";
 import { Dock } from "@/theme/slot-recipes/dock";
 import { TasksPanel } from "@/modules/tasks/components/tasks-panel";
+import SoundsPanel from "@/modules/sounds/sounds-panel";
+import { useSounds } from "@/modules/sounds";
 
 export function DockNav() {
   const tDest = useTranslations("dock.destinations");
@@ -17,6 +19,7 @@ export function DockNav() {
   const changeSpace = useSpace((s) => s.changeSpace);
   const openPanel = usePanels((s) => s.open);
   const togglePanel = usePanels((s) => s.toggle);
+  const ambientPlaying = useSounds((s) => Object.values(s.playing).some(Boolean));
 
   const navItem = (space: Space, Icon: LucideIcon, label: string) => (
     <Dock.Item
@@ -33,13 +36,14 @@ export function DockNav() {
     </Dock.Item>
   );
 
-  const toggleItem = (panel: Panel, Icon: LucideIcon, label: string) => (
+  const toggleItem = (panel: Panel, Icon: LucideIcon, label: string, playing?: boolean) => (
     <Dock.Item
       key={panel}
       type="button"
       aria-label={label}
       title={label}
       aria-pressed={openPanel === panel}
+      data-playing={playing || undefined}
       onClick={() => togglePanel(panel)}
     >
       <Dock.ItemIcon>
@@ -58,11 +62,12 @@ export function DockNav() {
     <>
       <Dock.Root side="start" role="toolbar" aria-label={tAria("tools")}>
         {toggleItem(Panel.Tasks, ListTodo, tTools("tasks"))}
-        {toggleItem(Panel.Music, Music, tTools("music"))}
+        {toggleItem(Panel.Music, Music, tTools("music"), ambientPlaying)}
         {toggleItem(Panel.Notes, Pen, tTools("notes"))}
       </Dock.Root>
 
       <TasksPanel />
+      <SoundsPanel />
 
       <Dock.Root side="end" as="nav" aria-label={tAria("nav")}>
         {navItem(Space.Ambient, TreeDeciduous, tDest("ambient"))}

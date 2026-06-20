@@ -6,6 +6,7 @@ import { panelSlotRecipe } from "./panel";
 import { scrollAreaSlotRecipe } from "./scroll-area";
 import { taskListSlotRecipe } from "./task-list";
 import { timerPillSlotRecipe } from "./floating-timer";
+import { soundsSlotRecipe } from "./sounds";
 
 export const slotRecipes = {
   dock: dockSlotRecipe,
@@ -16,4 +17,5 @@ export const slotRecipes = {
   scrollArea: scrollAreaSlotRecipe,
   taskList: taskListSlotRecipe,
   timerPill: timerPillSlotRecipe,
+  sounds: soundsSlotRecipe,
 };

@@ -23,6 +23,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.78.0",
+    "react-howler": "^5.2.0",
     "zustand": "^5.0.13"
   },
   "devDependencies": {
@@ -31,6 +32,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-howler": "^5.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.2.5",
     "typescript": "^5"

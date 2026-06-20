@@ -18,6 +18,7 @@ export const dockSlotRecipe = defineSlotRecipe({
       gap: "2",
     },
     item: {
+      position: "relative",
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
@@ -40,6 +41,15 @@ export const dockSlotRecipe = defineSlotRecipe({
         color: "fg.inverse",
         boxShadow: "sm",
         _hover: { bg: "primary.hover", color: "fg.inverse" },
+      },
+      "&[data-playing]::after": {
+        content: '""',
+        position: "absolute",
+        top: "1.5",
+        insetInlineEnd: "1.5",
+        boxSize: "1.5",
+        rounded: "full",
+        bg: "accent.default",
       },
     },
 

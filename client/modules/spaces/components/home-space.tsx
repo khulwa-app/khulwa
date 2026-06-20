@@ -14,7 +14,7 @@ export function HomeSpace() {
 
   return (
     <Box position="relative" h="full" w="full" bg="bg.base" overflow="hidden">
-      <SpaceBackground src="/spaces/door-2.webp" />
+      <SpaceBackground src="/spaces/pixel-sunset.webp" />
 
       <VStack
         position="relative"

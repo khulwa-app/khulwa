@@ -1,4 +1,4 @@
-import { Aref_Ruqaa, Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono, IBM_Plex_Sans_Arabic, Inter, Reem_Kufi } from "next/font/google";
 
 export const geist = Geist({
   subsets: ["latin"],
@@ -24,12 +24,24 @@ export const geistMono = Geist_Mono({
   preload: true,
 });
 
-export const arefRuqaa = Aref_Ruqaa({
+// Arabic coverage for the bilingual UI (Geist/Inter are Latin-only); harmonises
+// with Inter for body/UI text.
+export const plexSansArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic", "latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-arabic-body",
+  display: "swap",
+  preload: true,
+});
+
+// Reem Kufi — geometric kufi for the āyah / Arabic display. Clean and minimal,
+// supports vowelled (tashkeel) text.
+export const reemKufi = Reem_Kufi({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600"],
   variable: "--font-arabic-display",
   display: "swap",
   preload: false,
 });
 
-export const fontVariables = `${geist.variable} ${inter.variable} ${geistMono.variable} ${arefRuqaa.variable}`;
+export const fontVariables = `${geist.variable} ${inter.variable} ${geistMono.variable} ${plexSansArabic.variable} ${reemKufi.variable}`;

@@ -26,7 +26,7 @@ export const panelSlotRecipe = defineSlotRecipe({
       rounded: "lg",
       // Dense cut of the shared glass material — same family as the dock
       // and doing-now card, with a thicker scrim for body text.
-      layerStyle: "glass.dense",
+      layerStyle: "overlay",
     },
     header: {
       display: "flex",

@@ -1,11 +1,13 @@
 import { defineTokens } from "@chakra-ui/react";
 
 export const fonts = defineTokens.fonts({
-  display: { value: "var(--font-display), 'Geist', system-ui, sans-serif" },
-  heading: { value: "var(--font-display), 'Geist', system-ui, sans-serif" },
-  body: { value: "var(--font-body), 'Inter', system-ui, sans-serif" },
+  // v3 "Quiet Focus": Geist for display/heading, Inter for body, Geist Mono for
+  // timers/data. IBM Plex Sans Arabic carries Arabic UI; Amiri the āyah.
+  display: { value: "var(--font-display), var(--font-arabic-body), 'Geist', system-ui, sans-serif" },
+  heading: { value: "var(--font-display), var(--font-arabic-body), 'Geist', system-ui, sans-serif" },
+  body: { value: "var(--font-body), var(--font-arabic-body), 'Inter', system-ui, sans-serif" },
   mono: { value: "var(--font-mono), 'Geist Mono', ui-monospace, monospace" },
-  arabicDisplay: { value: "var(--font-arabic-display), 'Aref Ruqaa', 'Amiri', serif" },
+  arabicDisplay: { value: "var(--font-arabic-display), 'Reem Kufi', sans-serif" },
 });
 
 export const fontSizes = defineTokens.fontSizes({

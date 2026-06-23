@@ -6,6 +6,8 @@ import { RotateCcw, SkipForward } from "lucide-react";
 import { formatPomodoro } from "@/modules/clock";
 import { usePomodoro, usePomodoroHydrated, PhaseTabs } from "@/modules/pomodoro";
 import { DoingNowCaption } from "@/modules/tasks/components/doing-now-caption";
+import { Space } from "@/modules/space/types";
+import { SpaceBackground } from "./space-background";
 
 export function FocusSpace() {
   const t = useTranslations("khulwa");
@@ -15,8 +17,9 @@ export function FocusSpace() {
 
   return (
     <Box position="relative" h="full" w="full" bg="bg.base" overflow="hidden">
+      <SpaceBackground space={Space.Focus} />
       {hydrated && (
-        <VStack position="relative" h="full" w="full" justify="center" align="center" gap="5" padding="6">
+        <VStack position="relative" zIndex={1} h="full" w="full" justify="center" align="center" gap="5" padding="6">
           <Text textStyle="label-md" color="fg.muted">
             {t(`eyebrow.${phase}`)}
           </Text>

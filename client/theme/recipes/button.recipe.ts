@@ -29,9 +29,15 @@ export const khulwaButtonRecipe = defineRecipe({
   variants: {
     visual: {
       solid: {
-        bg: "primary.default",
+        bg: "fg.default",
         color: "fg.inverse",
-        _hover: { bg: "primary.hover" },
+        _hover: { bg: "fg.muted" },
+        _active: { transform: "scale(0.98)" },
+      },
+      tonal: {
+        bg: "primary.subtle",
+        color: "primary.hover",
+        _hover: { bg: "primary.default", color: "fg.inverse" },
         _active: { bg: "primary.pressed" },
       },
       accent: {
@@ -56,6 +62,16 @@ export const khulwaButtonRecipe = defineRecipe({
         bg: "transparent",
         color: "fg.muted",
         _hover: { bg: "surface.muted", color: "fg.default" },
+      },
+      chip: {
+        bg: "bg.elevated",
+        color: "fg.muted",
+        borderWidth: "1px",
+        borderStyle: "solid",
+        borderColor: "border.default",
+        boxShadow: "sm",
+        _hover: { bg: "bg.emphasized", color: "fg.default", borderColor: "border.strong" },
+        _active: { transform: "scale(0.96)" },
       },
       danger: {
         bg: "transparent",

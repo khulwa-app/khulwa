@@ -7,7 +7,7 @@ import {
 
 export const dockSlotRecipe = defineSlotRecipe({
   className: "khulwa-dock",
-  slots: ["root", "item", "itemIcon"],
+  slots: ["root", "item", "itemIcon", "group", "groupItem", "streak"],
   base: {
     root: {
       position: "fixed",
@@ -22,25 +22,27 @@ export const dockSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
-      boxSize: "10",
-      rounded: "lg",
+      boxSize: "9",
+      rounded: "md",
       border: "0",
       appearance: "none",
       cursor: "pointer",
       flexShrink: "0",
       color: "fg.muted",
-      layerStyle: "glass",
+      layerStyle: "raised",
       transitionProperty: "background-color, color, transform, box-shadow",
       transitionDuration: "moderate",
       transitionTimingFunction: "ease",
       _hover: {
-        bg: "bg.elevated/85",
+        bg: "bg.emphasized",
+        color: "fg.default",
       },
-      "&[aria-current='page'], &[aria-pressed='true']": {
-        bg: "primary.default",
-        color: "fg.inverse",
-        boxShadow: "sm",
-        _hover: { bg: "primary.hover", color: "fg.inverse" },
+      _active: { transform: "scale(0.94)" },
+      "&[aria-pressed='true']": {
+        bg: "primary.subtle",
+        color: "primary.default",
+        boxShadow: "none",
+        _hover: { bg: "primary.subtle", color: "primary.default" },
       },
       "&[data-playing]::after": {
         content: '""',
@@ -58,7 +60,60 @@ export const dockSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
       flexShrink: "0",
-      "& svg": { boxSize: "4" },
+      "& svg": { boxSize: "0.9375rem" },
+    },
+
+    group: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "1",
+      padding: "0.5",
+      rounded: "md",
+      layerStyle: "raised",
+      flexShrink: "0",
+    },
+
+    groupItem: {
+      position: "relative",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxSize: "8",
+      rounded: "md",
+      border: "0",
+      appearance: "none",
+      cursor: "pointer",
+      flexShrink: "0",
+      color: "fg.muted",
+      bg: "transparent",
+      transitionProperty: "background-color, color, transform",
+      transitionDuration: "moderate",
+      transitionTimingFunction: "ease",
+      _hover: { bg: "bg.emphasized", color: "fg.default" },
+      _active: { transform: "scale(0.94)" },
+      "&[aria-current='page']": {
+        bg: "fg.default",
+        color: "fg.inverse",
+        boxShadow: "xs",
+        _hover: { bg: "fg.default", color: "fg.inverse" },
+      },
+    },
+
+    streak: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "1.5",
+      height: "9",
+      paddingInline: "2.5",
+      rounded: "md",
+      layerStyle: "raised",
+      flexShrink: "0",
+      color: "fg.default",
+      fontSize: "sm",
+      fontWeight: "medium",
+      fontVariantNumeric: "tabular-nums",
+      "& svg": { boxSize: "0.9375rem", color: "accent.default" },
     },
   },
   variants: {
@@ -73,9 +128,14 @@ const ctx = createSlotRecipeContext({ key: "dock" });
 type RootProps = HTMLChakraProps<"div", SlotRecipeProps<"dock">>;
 type ButtonProps = HTMLChakraProps<"button">;
 type ItemIconProps = HTMLChakraProps<"span">;
+type GroupProps = HTMLChakraProps<"div">;
+type StreakProps = HTMLChakraProps<"div">;
 
 export const Dock = {
   Root: ctx.withProvider<HTMLDivElement, RootProps>("div", "root"),
   Item: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "item"),
   ItemIcon: ctx.withContext<HTMLSpanElement, ItemIconProps>("span", "itemIcon"),
+  Group: ctx.withContext<HTMLDivElement, GroupProps>("div", "group"),
+  GroupItem: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "groupItem"),
+  Streak: ctx.withContext<HTMLDivElement, StreakProps>("div", "streak"),
 };

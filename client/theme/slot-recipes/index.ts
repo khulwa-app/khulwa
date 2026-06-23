@@ -7,6 +7,7 @@ import { scrollAreaSlotRecipe } from "./scroll-area";
 import { taskListSlotRecipe } from "./task-list";
 import { timerPillSlotRecipe } from "./floating-timer";
 import { soundsSlotRecipe } from "./sounds";
+import { themePickerSlotRecipe } from "./theme-picker";
 
 export const slotRecipes = {
   dock: dockSlotRecipe,
@@ -18,4 +19,5 @@ export const slotRecipes = {
   taskList: taskListSlotRecipe,
   timerPill: timerPillSlotRecipe,
   sounds: soundsSlotRecipe,
+  themePicker: themePickerSlotRecipe,
 };

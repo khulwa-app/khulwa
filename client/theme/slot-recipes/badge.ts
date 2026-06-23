@@ -39,9 +39,9 @@ export const badgeSlotRecipe = defineSlotRecipe({
     { tone: "neutral", emphasis: "subtle", css: { root: { bg: "surface.muted", color: "fg.default" } } },
     { tone: "neutral", emphasis: "muted", css: { root: { bg: "surface.muted", color: "fg.muted" } } },
     { tone: "neutral", emphasis: "solid", css: { root: { bg: "fg.default", color: "fg.inverse" } } },
-    // primary · sage
+    // primary · jade
     { tone: "primary", emphasis: "subtle", css: { root: { bg: "primary.subtle", color: "primary.default" } } },
-    // accent · amber
+    // accent · sage
     { tone: "accent", emphasis: "subtle", css: { root: { bg: "accent.subtle", color: "accent.default" } } },
     // success
     { tone: "success", emphasis: "subtle", css: { root: { bg: "status.successSubtle", color: "status.success" } } },

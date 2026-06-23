@@ -22,14 +22,20 @@ export function DoingNowCard() {
     if (openPanel !== Panel.Tasks) togglePanel(Panel.Tasks);
   };
 
-  // Tasks rehydrate from localStorage after mount; rendering only afterwards
-  // avoids flashing the empty prompt before the real task arrives.
   if (!hydrated) return null;
 
   if (!currentTask) {
     return (
       <Presence present animationName={{ _open: "fade-in" }} animationDuration="moderate">
-        <Button visual="ghost" size="md" shape="pill" layerStyle="glass" rounded="2xl" paddingInline="5" onClick={openTasksPanel}>
+        <Button
+          visual="ghost"
+          size="md"
+          shape="pill"
+          layerStyle="raised"
+          rounded="lg"
+          paddingInline="5"
+          onClick={openTasksPanel}
+        >
           {t("choose")}
           <ArrowRight size={16} />
         </Button>
@@ -39,7 +45,16 @@ export function DoingNowCard() {
 
   return (
     <Presence present animationName={{ _open: "fade-in" }} animationDuration="moderate">
-      <VStack w="full" maxW="md" align="stretch" gap="4" layerStyle="glass" rounded="2xl" paddingInline="6" paddingBlock="5">
+      <VStack
+        w="full"
+        maxW="md"
+        align="stretch"
+        gap="4"
+        layerStyle="raised"
+        rounded="lg"
+        paddingInline="6"
+        paddingBlock="5"
+      >
         <VStack align="start" gap="1" minW="0">
           <Text textStyle="label-md" color="primary.default">
             {`${t("eyebrow")} · ${t("eta", { eta: currentTask.eta })}`}

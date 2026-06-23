@@ -51,6 +51,10 @@
       "onSchedule": "On schedule",
       "liveFocus": "Live focus",
       "quietHours": "Quiet hours · {state, select, on {On} other {Off}}"
+    },
+    "colorMode": {
+      "toLight": "Switch to light",
+      "toDark": "Switch to dark"
     }
   },
   "khulwa": {
@@ -108,6 +112,9 @@
       "changeTask": "Change task",
       "enterFocus": "Enter focus",
       "choose": "Choose your one thing"
+    },
+    "verse": {
+      "eyebrow": "Verse for today"
     }
   },
   "tasks": {
@@ -137,13 +144,22 @@
     }
   },
   "panels": {
-    "aria": { "close": "Close panel" }
+    "aria": {
+      "close": "Close panel"
+    }
   },
   "pomodoro": {
     "backToFocus": "Return to focus"
   },
+  "theme": {
+    "title": "Theme"
+  },
   "dock": {
-    "aria": { "nav": "Spaces", "tools": "Tools" },
+    "aria": {
+      "nav": "Spaces",
+      "tools": "Tools",
+      "controls": "Controls"
+    },
     "destinations": {
       "home": "Home",
       "focus": "Focus",

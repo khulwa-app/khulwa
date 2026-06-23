@@ -17,6 +17,7 @@ export default function SoundsPanel() {
   const setMaster = useSounds((s) => s.setMaster);
 
   const toggleMaster = () => (master <= 0 ? setMaster(0.5) : setMaster(0));
+
   return (
     <SidePanel open={open} title="Ambient" onClose={close}>
       <VStack h="full" w="full" gap="3" align="stretch">

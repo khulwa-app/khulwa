@@ -10,7 +10,7 @@ interface VolumeSliderProps extends Omit<BoxProps, "onChange"> {
 
 export function VolumeSlider({ value, onChange, label, ...boxProps }: VolumeSliderProps) {
   return (
-    <Box layerStyle="sliderSaffron" paddingInline="1" {...boxProps}>
+    <Box layerStyle="sliderAccent" paddingInline="1" {...boxProps}>
       <Slider.Root
         size="sm"
         min={0}

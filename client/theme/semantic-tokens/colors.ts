@@ -1,62 +1,63 @@
 import { defineSemanticTokens } from "@chakra-ui/react";
 
+// `_dark` emitted so values beat Chakra's defaultConfig under the `.dark` class.
+const c = (v: string) => ({ value: { base: v, _dark: v } });
+
 export const semanticColors = defineSemanticTokens.colors({
   bg: {
-    DEFAULT: { value: "#1A1814" },
-    base: { value: "#1A1814" },
-    elevated: { value: "#252220" },
-    sunken: { value: "#141210" },
-    inverse: { value: "#FAF7F2" },
-    panel: { value: "#252220" },
-    subtle: { value: "#1F1D1A" },
-    muted: { value: "#252220" },
-    emphasized: { value: "#2A2723" },
-    inverted: { value: "#FAF7F2" },
+    DEFAULT: c("#1A1814"),
+    base: c("#1A1814"),
+    elevated: c("#252220"),
+    sunken: c("#141210"),
+    inverse: c("#F5F1EA"),
+    panel: c("#252220"),
+    subtle: c("#1F1D1A"),
+    muted: c("#1F1D1A"),
+    emphasized: c("#2E2A26"),
+    inverted: c("#F5F1EA"),
   },
 
   surface: {
-    card: { value: "#252220" },
-    muted: { value: "#1F1D1A" },
+    card: c("#252220"),
+    muted: c("#1F1D1A"),
   },
 
   fg: {
-    DEFAULT: { value: "#F5F1EA" },
-    default: { value: "#F5F1EA" },
-    muted: { value: "#B5A892" },
-    subtle: { value: "#7A7164" },
-    inverse: { value: "#1A1814" },
-    inverted: { value: "#1A1814" },
-    // Always-light text for content over photo backgrounds (theme-independent),
-    // paired with the on-media text styles.
-    onMedia: { value: "#FAF7F2" },
-    onMediaMuted: { value: "rgba(250, 247, 242, 0.8)" },
+    DEFAULT: c("#F5F1EA"),
+    default: c("#F5F1EA"),
+    muted: c("#B5A892"),
+    subtle: c("#6F6657"),
+    inverse: c("#1A1814"),
+    inverted: c("#1A1814"),
+    onMedia: { value: "#F4F6F4" },
+    onMediaMuted: { value: "rgba(244, 246, 244, 0.82)" },
   },
 
   border: {
-    DEFAULT: { value: "#3A352E" },
-    subtle: { value: "#2A2723" },
-    default: { value: "#3A352E" },
-    muted: { value: "#2A2723" },
-    emphasized: { value: "#544E44" },
-    strong: { value: "#544E44" },
+    DEFAULT: c("#3A3327"),
+    subtle: c("#2A2419"),
+    default: c("#3A3327"),
+    muted: c("#2A2419"),
+    emphasized: c("#4A4234"),
+    strong: c("#564C3C"),
   },
 
   primary: {
-    default: { value: "#9CB3A4" },
-    hover: { value: "#B0C4B8" },
-    pressed: { value: "#C4D4CC" },
-    subtle: { value: "#2C3A33" },
+    default: c("#9CB3A4"),
+    hover: c("#9BBCA8"),
+    pressed: c("#ACC9B8"),
+    subtle: c("#2C3A33"),
   },
 
   accent: {
-    default: { value: "#F1A23A" },
-    subtle: { value: "#3A2D18" },
+    default: c("#F1A23A"),
+    subtle: c("#3A2D18"),
   },
 
   status: {
-    success: { value: "#4F7A5C" },
-    successSubtle: { value: "#1E2A22" },
-    warning: { value: "#C77E13" },
-    danger: { value: "#B85C3F" },
+    success: c("#6CB87C"),
+    successSubtle: c("#16291E"),
+    warning: c("#D2A24A"),
+    danger: c("#DD6A5C"),
   },
 });

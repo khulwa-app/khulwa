@@ -86,6 +86,41 @@ export const textStyles = defineTextStyles({
     },
   },
 
+  // Themed verse + caption for the flat (non-photo) home — readable in light
+  // and dark; the *-on-media variants above are for photo wallpapers only.
+  verse: {
+    value: {
+      fontFamily: "arabicDisplay",
+      fontSize: "3xl",
+      fontWeight: "normal",
+      lineHeight: "1.4",
+      letterSpacing: "0",
+      color: "fg.default",
+    },
+  },
+  "verse-caption": {
+    value: {
+      fontFamily: "body",
+      fontSize: "sm",
+      fontWeight: "normal",
+      lineHeight: "1.5",
+      letterSpacing: "0.02em",
+      color: "fg.muted",
+    },
+  },
+  // The home āyah, foregrounded — Reem Kufi (geometric) at display scale.
+  // Medium weight reads cleanly large; line-height leaves room for tashkeel.
+  // No letter-spacing: Arabic must never be tracked.
+  "ayah-hero": {
+    value: {
+      fontFamily: "arabicDisplay",
+      fontWeight: "medium",
+      lineHeight: "1.7",
+      letterSpacing: "0",
+      color: "fg.default",
+    },
+  },
+
   "display-xl": {
     value: {
       fontFamily: "display",

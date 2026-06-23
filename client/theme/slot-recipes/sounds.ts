@@ -23,7 +23,7 @@ export const soundsSlotRecipe = defineSlotRecipe({
       gap: "1.5",
       paddingBlock: "2.5",
       paddingInline: "1",
-      rounded: "lg",
+      rounded: "md",
       cursor: "pointer",
       transitionProperty: "background-color",
       transitionDuration: "fast",

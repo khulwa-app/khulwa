@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "@chakra-ui/react";
 
 // Compact / premium task list. Rows are calm at rest (checkbox · title ·
 // muted meta) and reveal their action cluster on hover; the active doing-now
-// task carries a saffron left-accent so "current focus" reads without
+// task carries a jade left-accent so "current focus" reads without
 // hovering. Consumed as compound components via
 // modules/tasks/components/task-list.tsx.
 export const taskListSlotRecipe = defineSlotRecipe({
@@ -63,7 +63,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       paddingInline: "2",
       paddingBlock: "1",
       minH: "8",
-      rounded: "lg",
+      rounded: "md",
       transitionProperty: "background-color",
       transitionDuration: "fast",
       _hover: { bg: "surface.muted" },
@@ -160,9 +160,8 @@ export const taskListSlotRecipe = defineSlotRecipe({
         _hover: { color: "primary.hover" },
       },
     },
-    // The bold AI moment: a gradient chip that breathes at rest and sweeps a
-    // shimmer band while generating. Effects are confined here on purpose so
-    // the rest of the app stays calm.
+    // The AI "break into steps" moment — amber (the dopamine hue), used as a
+    // quiet tinted chip. No gradient/shimmer: it stays calm and on-system.
     aiAction: {
       display: "inline-flex",
       alignItems: "center",
@@ -177,28 +176,14 @@ export const taskListSlotRecipe = defineSlotRecipe({
       fontSize: "xs",
       fontWeight: "medium",
       whiteSpace: "nowrap",
-      color: "fg.inverse",
-      backgroundImage: "linear-gradient(110deg, {colors.primary.default}, {colors.accent.default}, {colors.primary.default})",
-      backgroundSize: "200% 100%",
-      backgroundPosition: "0% 0",
-      animationName: "glow-pulse",
-      animationDuration: "3s",
-      animationTimingFunction: "ease-in-out",
-      animationIterationCount: "infinite",
-      transitionProperty: "transform, filter",
+      bg: "accent.subtle",
+      color: "accent.default",
+      transitionProperty: "background-color, color, transform",
       transitionDuration: "fast",
-      _hover: { filter: "brightness(1.08)" },
+      _hover: { bg: "accent.default", color: "fg.inverse" },
       _active: { transform: "scale(0.97)" },
-      _disabled: { cursor: "wait" },
+      _disabled: { cursor: "wait", opacity: 0.7 },
       "& svg": { flexShrink: "0" },
-      // Generating: stop the resting glow, run the light sweep instead.
-      "&[data-pending]": {
-        animationName: "shimmer",
-        animationDuration: "1.2s",
-        animationTimingFunction: "linear",
-        animationIterationCount: "infinite",
-      },
-      _motionReduce: { animationName: "none", backgroundPosition: "0% 0" },
     },
     counter: {
       flexShrink: "0",

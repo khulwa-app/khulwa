@@ -8,7 +8,7 @@ import {
 // The pomodoro "mini player": a quiet glass pill floating bottom-center,
 // same chrome family as the dock. data-paused recedes the pill (a paused
 // session stays visible — forgetting it is the focus-loss the pill
-// prevents); data-phase=focus switches the dot to the saffron accent.
+// prevents); data-phase=focus switches the dot to the jade accent.
 export const timerPillSlotRecipe = defineSlotRecipe({
   className: "khulwa-timer-pill",
   slots: ["positioner", "root", "dot"],
@@ -31,14 +31,14 @@ export const timerPillSlotRecipe = defineSlotRecipe({
       rounded: "full",
       border: "0",
       cursor: "pointer",
-      layerStyle: "glass",
+      layerStyle: "raised",
       color: "fg.default",
       fontSize: "sm",
       fontWeight: "medium",
       fontVariantNumeric: "tabular-nums",
       transitionProperty: "background-color, box-shadow, opacity",
       transitionDuration: "moderate",
-      _hover: { bg: "bg.elevated/85", boxShadow: "glass.hover" },
+      _hover: { bg: "bg.emphasized", boxShadow: "lg" },
       _active: { transform: "scale(0.98)" },
       "&[data-paused]": { opacity: 0.6 },
     },

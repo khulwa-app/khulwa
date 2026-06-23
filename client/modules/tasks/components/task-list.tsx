@@ -36,7 +36,7 @@ export const TaskList = {
   Action: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "action", {
     defaultProps: { type: "button" },
   }),
-  // The bold AI "Break into steps" chip (gradient + glow/shimmer).
+  // The AI "Break into steps" chip — a quiet amber tint.
   AiAction: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "aiAction", {
     defaultProps: { type: "button" },
   }),

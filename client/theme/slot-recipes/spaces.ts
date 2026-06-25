@@ -16,8 +16,8 @@ export const spacesSlotRecipe = defineSlotRecipe({
     layer: {
       position: "absolute",
       inset: 0,
-      animationDuration: "180ms",
-      animationTimingFunction: "ease-out",
+      animationDuration: "enter",
+      animationTimingFunction: "enter",
       animationFillMode: "both",
       animationName: { _open: "fade-in", _closed: "fade-out" },
       animationDelay: { _open: "220ms", _closed: "0ms" },

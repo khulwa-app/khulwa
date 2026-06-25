@@ -12,6 +12,8 @@ type PomodoroState = {
   isRunning: boolean;
   currentRound: number;
   timeLeftMs: number;
+  completionCount: number;
+  lastCompletedPhase: PomodoroPhase | null;
   setPhase: (phase: PomodoroPhase) => void;
   start: () => void;
   pause: () => void;
@@ -73,6 +75,8 @@ export const usePomodoroStore = create<PomodoroState>()(
         isRunning: false,
         currentRound: 1,
         timeLeftMs: durationMinutesFor(INITIAL_OPTIONS, INITIAL_PHASE) * MS_PER_MINUTE,
+        completionCount: 0,
+        lastCompletedPhase: null,
         setPhase: (phase) => {
           stopTicking();
           set((s) => ({
@@ -121,6 +125,8 @@ export const usePomodoroStore = create<PomodoroState>()(
               currentRound: next.round,
               timeLeftMs: durationMinutesFor(s.options, next.phase) * MS_PER_MINUTE,
               isRunning: s.options.autoStart,
+              completionCount: s.completionCount + 1,
+              lastCompletedPhase: s.phase,
             };
           }),
       };

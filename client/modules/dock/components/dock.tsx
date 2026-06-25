@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, House, Lightbulb, TreeDeciduous, ListTodo, Music, Pen, Settings, Expand, type LucideIcon } from "lucide-react";
+import { Flame, House, Lightbulb, TreeDeciduous, ListTodo, Music, Pen, Repeat, BarChart3, Settings, Expand, type LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
@@ -9,7 +9,9 @@ import { Dock } from "@/theme/slot-recipes/dock";
 import { TasksPanel } from "@/modules/tasks/components/tasks-panel";
 import SoundsPanel from "@/modules/sounds/sounds-panel";
 import { useSounds } from "@/modules/sounds";
-import { BackgroundsPanel } from "@/modules/spaces/components/backgrounds-panel";
+import { RhythmPanel } from "@/modules/rhythm";
+import { ProgressPanel } from "@/modules/progress";
+import { SettingsPanel } from "@/modules/spaces/components/settings-panel";
 
 export function DockNav() {
   const tDest = useTranslations("dock.destinations");
@@ -66,13 +68,17 @@ export function DockNav() {
     <>
       <Dock.Root side="start" role="toolbar" aria-label={tAria("tools")}>
         {toggleItem(Panel.Tasks, ListTodo, tTools("tasks"))}
+        {toggleItem(Panel.Rhythm, Repeat, tTools("rhythm"))}
+        {toggleItem(Panel.Progress, BarChart3, tTools("progress"))}
         {toggleItem(Panel.Music, Music, tTools("music"), ambientPlaying)}
         {toggleItem(Panel.Notes, Pen, tTools("notes"))}
       </Dock.Root>
 
       <TasksPanel />
+      <RhythmPanel />
+      <ProgressPanel />
       <SoundsPanel />
-      <BackgroundsPanel />
+      <SettingsPanel />
 
       <Dock.Root side="end" role="toolbar" aria-label={tAria("controls")}>
         <Dock.Streak title={tBadge("streak", { count: streakCount })} aria-label={tBadge("streak", { count: streakCount })}>

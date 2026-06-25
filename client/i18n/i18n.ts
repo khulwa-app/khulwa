@@ -1,14 +1,7 @@
-"use server";
+import { DEFAULT_LOCALE, type LocaleType } from "./config";
 
-import { cookies } from "next/headers";
-import { DEFAULT_LOCALE, locales, type LocaleType } from "./config";
-import { KHULWA_LOCALE_COOKIE_NAME } from "./constants";
-
-export async function getUserLocale(): Promise<LocaleType> {
-  const cookieLocale = (await cookies()).get(KHULWA_LOCALE_COOKIE_NAME)?.value;
-
-  const accepted =
-    !!cookieLocale && locales.includes(cookieLocale.toLowerCase() as LocaleType);
-
-  return accepted ? (cookieLocale as LocaleType) : DEFAULT_LOCALE;
+// UI is English-only — no cookie, no switching. Kept as a function so the
+// next-intl request config (request.ts) keeps a single source of truth.
+export function getUserLocale(): LocaleType {
+  return DEFAULT_LOCALE;
 }

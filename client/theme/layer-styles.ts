@@ -1,13 +1,53 @@
 import { defineLayerStyles } from "@chakra-ui/react";
 
 export const layerStyles = defineLayerStyles({
-  // Fine film grain — subtle texture layered over photo wallpapers only.
-  grain: {
-    description: "fine film grain overlay",
+  scrim: {
+    description: "modal backdrop",
     value: {
-      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-      opacity: 0.05,
-      mixBlendMode: "overlay",
+      bg: "bg.scrim",
+      backdropFilter: "blur(2px)",
+    },
+  },
+  // Brand gradients — kept as layer-styles (consistent with `noor`), not tokens.
+  "gradient-brand-radial": {
+    description: "brand hero accent — violet core blooming to magenta",
+    value: {
+      backgroundImage:
+        "radial-gradient(circle at 50% 42%, {colors.violet.500} 0%, {colors.magenta.500} 58%, {colors.magentaClear} 72%)",
+    },
+  },
+  "gradient-brand-linear": {
+    description: "brand linear accent",
+    value: {
+      backgroundImage: "linear-gradient(135deg, {colors.violet.500}, {colors.magenta.500})",
+    },
+  },
+  "space-backdrop": {
+    description: "calm ambient wash behind spaces — subtle violet/magenta tints",
+    value: {
+      bg: "bg.base",
+      backgroundImage:
+        "radial-gradient(60% 50% at 12% 8%, {colors.violetA.200} 0%, {colors.violetClear} 70%), radial-gradient(55% 45% at 88% 92%, {colors.magentaA.200} 0%, {colors.magentaClear} 70%)",
+      _dark: {
+        backgroundImage:
+          "radial-gradient(60% 50% at 12% 8%, {colors.violetA.100} 0%, {colors.violetClear} 70%), radial-gradient(55% 45% at 88% 92%, {colors.magentaA.100} 0%, {colors.magentaClear} 70%)",
+      },
+    },
+  },
+  noor: {
+    description: "the Noor companion — living violet→magenta light",
+    value: {
+      // Richer, fuller gradient (color carries further out) + crisper edge —
+      // less blur, more colour. The glow + hue cycle live on the component.
+      backgroundImage:
+        "radial-gradient(circle at 50% 40%, {colors.violet.400} 0%, {colors.violet.500} 26%, {colors.magenta.500} 60%, {colors.magenta.400} 74%, {colors.magentaClear} 86%)",
+      borderRadius: "full",
+      filter: "blur(3px)",
+      boxShadow: "0 0 40px 8px {colors.magentaA.400}, 0 0 22px 2px {colors.violetA.500}",
+      _dark: {
+        backgroundImage:
+          "radial-gradient(circle at 50% 40%, {colors.violet.300} 0%, {colors.violet.400} 26%, {colors.magenta.400} 60%, {colors.magenta.500} 74%, {colors.magentaClear} 86%)",
+      },
     },
   },
   sliderAccent: {
@@ -31,6 +71,17 @@ export const layerStyles = defineLayerStyles({
       background: "surface.card",
       borderWidth: "1px",
       borderColor: "border.subtle",
+      borderRadius: "surface", // general card tier
+      boxShadow: "sm",
+    },
+  },
+  "card-anchor": {
+    description: "anchor surface card — roundest tier (doing-now, resume)",
+    value: {
+      background: "surface.card",
+      borderWidth: "1px",
+      borderColor: "border.subtle",
+      borderRadius: "surface", // anchor cards share the one container tier
       boxShadow: "sm",
     },
   },
@@ -40,6 +91,8 @@ export const layerStyles = defineLayerStyles({
       background: "bg.elevated",
       borderWidth: "1px",
       borderColor: "border.subtle",
+      // No radius here — `raised` is shared by large cards and small chrome
+      // (dock items, pills), so each consumer sets its own `rounded` token.
       boxShadow: "md",
     },
   },
@@ -49,6 +102,7 @@ export const layerStyles = defineLayerStyles({
       background: "bg.elevated",
       borderWidth: "1px",
       borderColor: "border.default",
+      borderRadius: "surface", // modals / palette / sheets
       boxShadow: "xl",
     },
   },

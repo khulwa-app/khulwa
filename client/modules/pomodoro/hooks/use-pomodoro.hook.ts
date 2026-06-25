@@ -14,6 +14,9 @@ type UsePomodoroReturn = {
   // True once the current phase has elapsed any time (paused mid-phase) —
   // distinguishes "Resume" from a fresh "Begin".
   hasStarted: boolean;
+  completionCount: number;
+  lastCompletedPhase: PomodoroPhase | null;
+  focusMinutes: number;
   start: () => void;
   pause: () => void;
   reset: () => void;
@@ -45,6 +48,8 @@ export function usePomodoro(): UsePomodoroReturn {
   const reset = usePomodoroStore((s) => s.reset);
   const skip = usePomodoroStore((s) => s.skip);
   const setPhase = usePomodoroStore((s) => s.setPhase);
+  const completionCount = usePomodoroStore((s) => s.completionCount);
+  const lastCompletedPhase = usePomodoroStore((s) => s.lastCompletedPhase);
 
   const totalSeconds = Math.ceil(timeLeftMs / 1000);
   const minutes = Math.floor(totalSeconds / 60);
@@ -59,6 +64,9 @@ export function usePomodoro(): UsePomodoroReturn {
     totalRounds: options.rounds,
     isRunning,
     hasStarted,
+    completionCount,
+    lastCompletedPhase,
+    focusMinutes: options.focusMinutes,
     start,
     pause,
     reset,

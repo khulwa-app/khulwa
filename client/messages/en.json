@@ -54,7 +54,8 @@
     },
     "colorMode": {
       "toLight": "Switch to light",
-      "toDark": "Switch to dark"
+      "toDark": "Switch to dark",
+      "ariaLabel": "Toggle color theme"
     }
   },
   "khulwa": {
@@ -83,7 +84,9 @@
     "actions": {
       "begin": "Begin Khulwa",
       "pause": "Pause",
-      "resume": "Resume"
+      "resume": "Resume",
+      "reset": "Reset",
+      "skip": "Skip"
     },
     "aria": {
       "phaseTabs": "Khulwa phase",
@@ -91,6 +94,20 @@
     },
     "ambient": {
       "title": "Desert dusk"
+    },
+    "resume": {
+      "title": "Continue your session"
+    },
+    "categories": {
+      "deepWork": "Deep Work",
+      "learning": "Learning",
+      "reading": "Reading",
+      "dhikr": "Dhikr",
+      "none": "No category"
+    },
+    "progress": {
+      "title": "Progress",
+      "today": "Today's focus"
     }
   },
   "home": {
@@ -111,7 +128,11 @@
       "eta": "about {eta, plural, one {# minute} other {# minutes}} to go",
       "changeTask": "Change task",
       "enterFocus": "Enter focus",
-      "choose": "Choose your one thing"
+      "choose": "Choose your one thing",
+      "intentionPlaceholder": "What's your one thing?",
+      "begin": "Begin",
+      "beginHint": "Press enter to begin · intention optional",
+      "etaShort": "{eta} min"
     },
     "verse": {
       "eyebrow": "Verse for today"
@@ -151,8 +172,34 @@
   "pomodoro": {
     "backToFocus": "Return to focus"
   },
-  "theme": {
-    "title": "Theme"
+  "palette": {
+    "label": "Command palette",
+    "search": "Type a command…",
+    "empty": "No matching commands",
+    "hint": "Press ⌘K for commands",
+    "groups": {
+      "session": "Session",
+      "navigate": "Navigate",
+      "panels": "Panels"
+    },
+    "commands": {
+      "begin": "Begin focus",
+      "pause": "Pause session",
+      "resume": "Resume session",
+      "reset": "Reset timer",
+      "skip": "Skip phase",
+      "home": "Go to Home",
+      "focus": "Go to Focus",
+      "ambient": "Go to Ambient",
+      "tasks": "Open Tasks",
+      "music": "Open Music",
+      "notes": "Open Notes",
+      "settings": "Open Settings"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "empty": "Preferences will live here. For now, switch the light and dark themes from the top bar."
   },
   "dock": {
     "aria": {
@@ -167,12 +214,25 @@
     },
     "tools": {
       "tasks": "Tasks",
+      "rhythm": "Rhythm",
+      "progress": "Progress",
       "music": "Music",
       "notes": "Notes"
     },
     "chrome": {
       "settings": "Settings",
       "fullscreen": "Fullscreen"
+    }
+  },
+  "rhythm": {
+    "title": "Daily rhythm",
+    "progress": "{done} of {total} kept",
+    "items": {
+      "morningDhikr": "Morning dhikr",
+      "deepWork": "Deep work",
+      "read": "Read",
+      "reflect": "Reflect",
+      "rest": "Rest"
     }
   },
   "login": {

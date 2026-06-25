@@ -31,6 +31,10 @@ export const DEFAULT_ETA = 30;
 type TasksState = {
   tasks: Task[];
   addTask: (body: string) => string;
+  // One-tap session: create a task and make it the sole doing-now in a single
+  // commit, so the home intention input can go straight to Focus. Returns the
+  // new id so the AI eta estimate can patch it later (same as addTask).
+  quickStart: (body: string) => string;
   removeTask: (id: string) => void;
   updateTask: (id: string, patch: Partial<Omit<Task, "id">>) => void;
   toggleCompleted: (id: string) => void;
@@ -63,6 +67,28 @@ export const useTasksStore = create<TasksState>()(
               body: body.trim(),
               completed: false,
               isDoingNow: false,
+              eta: DEFAULT_ETA,
+              priority: "medium",
+              today: true,
+              steps: [],
+              createdAt: Date.now(),
+              completedAt: null,
+            },
+          ],
+        }));
+        return id;
+      },
+      quickStart: (body: string) => {
+        const id = crypto.randomUUID();
+        set((state) => ({
+          tasks: [
+            // Clear any prior doing-now — only one intention at a time.
+            ...state.tasks.map((task) => ({ ...task, isDoingNow: false })),
+            {
+              id,
+              body: body.trim(),
+              completed: false,
+              isDoingNow: true,
               eta: DEFAULT_ETA,
               priority: "medium",
               today: true,

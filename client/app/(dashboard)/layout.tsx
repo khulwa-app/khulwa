@@ -3,8 +3,10 @@ import { Box } from "@chakra-ui/react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "@/components/ui";
+import { CommandHint, CommandPalette } from "@/modules/command-palette";
 import { Dock } from "@/modules/dock";
 import { FloatingTimer } from "@/modules/pomodoro";
+import { GlobalShortcuts } from "@/modules/shortcuts";
 import { SoundsEngine } from "@/modules/sounds";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -21,6 +23,9 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
       <Navbar />
       <Suspense fallback={null}>
         {children}
+        <GlobalShortcuts />
+        <CommandPalette />
+        <CommandHint />
         <Dock />
         <FloatingTimer />
         <SoundsEngine />

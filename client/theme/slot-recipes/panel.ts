@@ -16,17 +16,21 @@ export const panelSlotRecipe = defineSlotRecipe({
       insetInlineStart: { base: "3", md: "5" },
       // Clears the dock cluster (bottom 4/6 + item height 9).
       bottom: { base: "16", md: "20" },
-      zIndex: 900,
+      zIndex: "panel",
       display: "flex",
       flexDirection: "column",
       w: "22rem",
       maxW: "calc(100vw - 1.5rem)",
       maxH: "min(70vh, 34rem)",
       overflow: "hidden",
-      rounded: "lg",
+      rounded: "surface",
       // Dense cut of the shared glass material — same family as the dock
       // and doing-now card, with a thicker scrim for body text.
       layerStyle: "overlay",
+      transformOrigin: "bottom",
+      _open: { animationName: "panel-in", animationDuration: "enter", animationTimingFunction: "enter" },
+      _closed: { animationName: "panel-out", animationDuration: "exit", animationTimingFunction: "exit" },
+      _motionReduce: { _open: { animationName: "fade-in" }, _closed: { animationName: "fade-out" } },
     },
     header: {
       display: "flex",

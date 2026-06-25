@@ -1,30 +1,37 @@
 import { defineTokens } from "@chakra-ui/react";
 
 export const fonts = defineTokens.fonts({
-  // v3 "Quiet Focus": Geist for display/heading, Inter for body, Geist Mono for
-  // timers/data. IBM Plex Sans Arabic carries Arabic UI; Amiri the āyah.
-  display: { value: "var(--font-display), var(--font-arabic-body), 'Geist', system-ui, sans-serif" },
-  heading: { value: "var(--font-display), var(--font-arabic-body), 'Geist', system-ui, sans-serif" },
+  display: { value: "var(--font-display), var(--font-arabic-body), 'DM Sans', system-ui, sans-serif" },
+  heading: { value: "var(--font-display), var(--font-arabic-body), 'DM Sans', system-ui, sans-serif" },
   body: { value: "var(--font-body), var(--font-arabic-body), 'Inter', system-ui, sans-serif" },
-  mono: { value: "var(--font-mono), 'Geist Mono', ui-monospace, monospace" },
-  arabicDisplay: { value: "var(--font-arabic-display), 'Reem Kufi', sans-serif" },
+  mono: { value: "var(--font-mono), 'JetBrains Mono', ui-monospace, monospace" },
+  // āyah / Arabic display: Klapt Arabic (geometric kufi — soft outside, sharp
+  // inside). Self-host the licensed webfont and expose it via next/font/local
+  // (see app/fonts.ts); falls back to Reem Kufi until the files land.
+  arabicDisplay: {
+    value: "'Klapt Arabic', var(--font-arabic-display), 'Reem Kufi', sans-serif",
+  },
 });
 
+// UI end (2xs–2xl) kept stable; display end (3xl+) retuned to a calmer ~1.25
+// modular ratio so large type feels composed rather than shouty.
 export const fontSizes = defineTokens.fontSizes({
-  xs: { value: "0.75rem" },
-  "label-sm": { value: "0.8125rem" },
-  sm: { value: "0.875rem" },
-  md: { value: "1rem" },
-  lg: { value: "1.125rem" },
-  xl: { value: "1.25rem" },
-  "2xl": { value: "1.5rem" },
-  "3xl": { value: "2rem" },
-  "4xl": { value: "2.5rem" },
-  "5xl": { value: "3rem" },
-  "6xl": { value: "4rem" },
-  "7xl": { value: "5.5rem" },
-  timer: { value: "9rem" },
-  "numeric-display": { value: "3.5rem" },
+  "2xs": { value: "0.6875rem" }, // 11px — micro labels, overline chips
+  xs: { value: "0.75rem" }, //      12px
+  "label-sm": { value: "0.8125rem" }, // 13px
+  sm: { value: "0.875rem" }, //     14px
+  md: { value: "1rem" }, //         16px — base
+  lg: { value: "1.125rem" }, //     18px
+  xl: { value: "1.25rem" }, //      20px
+  "2xl": { value: "1.5rem" }, //    24px
+  "3xl": { value: "1.875rem" }, //  30px
+  "4xl": { value: "2.375rem" }, //  38px
+  "5xl": { value: "3rem" }, //      48px
+  "6xl": { value: "3.75rem" }, //   60px
+  "7xl": { value: "4.75rem" }, //   76px
+  "8xl": { value: "6rem" }, //      96px — hero / ghosted āyah
+  timer: { value: "9rem" }, //     144px — running timer
+  "numeric-display": { value: "3.5rem" }, // 56px — session counters
 });
 
 export const fontWeights = defineTokens.fontWeights({

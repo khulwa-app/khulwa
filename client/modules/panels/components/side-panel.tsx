@@ -28,13 +28,7 @@ export function SidePanel({ open, onClose, title, children }: SidePanelProps) {
   }, [open, onClose]);
 
   return (
-    <Presence
-      present={open}
-      lazyMount
-      unmountOnExit
-      animationName={{ _open: "panel-in", _closed: "panel-out" }}
-      animationDuration="fast"
-    >
+    <Presence present={open} lazyMount unmountOnExit>
       <Panel.Root role="dialog" aria-label={title}>
         <Panel.Header>
           <Panel.Title>{title}</Panel.Title>

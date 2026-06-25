@@ -1,93 +1,6 @@
 import { defineTextStyles } from "@chakra-ui/react";
 
-// Soft shadows that keep on-media text legible over busy photo backgrounds.
-const MEDIA_SHADOW = "0 2px 20px rgba(0,0,0,0.45)";
-const MEDIA_SHADOW_SOFT = "0 1px 12px rgba(0,0,0,0.45)";
-
 export const textStyles = defineTextStyles({
-  // On-media variants — white ink + shadow baked in, for text over space
-  // photo backgrounds (no per-instance color/textShadow props needed).
-  "display-on-media": {
-    value: {
-      fontFamily: "display",
-      fontSize: "6xl",
-      fontWeight: "medium",
-      lineHeight: "1.0625",
-      letterSpacing: "-0.025em",
-      color: "fg.onMedia",
-      textShadow: MEDIA_SHADOW,
-    },
-  },
-  "body-on-media": {
-    value: {
-      fontFamily: "body",
-      fontSize: "xl",
-      fontWeight: "normal",
-      lineHeight: "1.5",
-      letterSpacing: "0",
-      color: "fg.onMediaMuted",
-      textShadow: MEDIA_SHADOW_SOFT,
-    },
-  },
-  "label-on-media": {
-    value: {
-      fontFamily: "body",
-      fontSize: "xs",
-      fontWeight: "medium",
-      lineHeight: "1.3333",
-      letterSpacing: "0.05em",
-      textTransform: "uppercase",
-      color: "fg.onMediaMuted",
-      textShadow: MEDIA_SHADOW_SOFT,
-    },
-  },
-  "clock-on-media": {
-    value: {
-      fontFamily: "body",
-      fontSize: "md",
-      fontWeight: "medium",
-      lineHeight: "1.4",
-      letterSpacing: "0.01em",
-      color: "fg.onMediaMuted",
-      textShadow: MEDIA_SHADOW_SOFT,
-    },
-  },
-  "caption-on-media": {
-    value: {
-      fontFamily: "body",
-      fontSize: "sm",
-      fontWeight: "normal",
-      lineHeight: "1.5",
-      letterSpacing: "0.02em",
-      color: "fg.onMediaMuted",
-      textShadow: MEDIA_SHADOW_SOFT,
-    },
-  },
-  "brand-on-media": {
-    value: {
-      fontFamily: "arabicDisplay",
-      fontSize: "xl",
-      fontWeight: "normal",
-      lineHeight: "1.2",
-      letterSpacing: "0",
-      color: "primary.default",
-      textShadow: MEDIA_SHADOW_SOFT,
-    },
-  },
-  "verse-on-media": {
-    value: {
-      fontFamily: "arabicDisplay",
-      fontSize: "3xl",
-      fontWeight: "normal",
-      lineHeight: "1.4",
-      letterSpacing: "0",
-      color: "fg.onMedia",
-      textShadow: MEDIA_SHADOW,
-    },
-  },
-
-  // Themed verse + caption for the flat (non-photo) home — readable in light
-  // and dark; the *-on-media variants above are for photo wallpapers only.
   verse: {
     value: {
       fontFamily: "arabicDisplay",
@@ -108,16 +21,28 @@ export const textStyles = defineTextStyles({
       color: "fg.muted",
     },
   },
-  // The home āyah, foregrounded — Reem Kufi (geometric) at display scale.
-  // Medium weight reads cleanly large; line-height leaves room for tashkeel.
-  // No letter-spacing: Arabic must never be tracked.
+  // The home āyah, foregrounded — Klapt Arabic (geometric kufi) at display
+  // scale. Medium weight reads cleanly large; line-height leaves room for
+  // tashkeel. No letter-spacing: Arabic must never be tracked.
   "ayah-hero": {
     value: {
       fontFamily: "arabicDisplay",
+      fontSize: "8xl",
       fontWeight: "medium",
       lineHeight: "1.7",
       letterSpacing: "0",
       color: "fg.default",
+    },
+  },
+  // Overline / micro-label — mono-feel uppercase tag for clocks, dates, eyebrows.
+  overline: {
+    value: {
+      fontFamily: "body",
+      fontSize: "2xs",
+      fontWeight: "medium",
+      lineHeight: "1.2",
+      letterSpacing: "0.12em",
+      textTransform: "uppercase",
     },
   },
 
@@ -262,6 +187,55 @@ export const textStyles = defineTextStyles({
     },
   },
 
+  greeting: {
+    value: {
+      fontFamily: "display",
+      fontSize: { base: "4xl", md: "6xl" },
+      fontWeight: "medium",
+      lineHeight: "1.1",
+      letterSpacing: "-0.02em",
+    },
+  },
+  "clock-display": {
+    value: {
+      fontFamily: "mono",
+      fontSize: { base: "xl", md: "2xl" },
+      fontWeight: "medium",
+      lineHeight: "1",
+      letterSpacing: "-0.02em",
+      fontVariantNumeric: "tabular-nums",
+    },
+  },
+  "ayah-hero-corner": {
+    value: {
+      fontFamily: "arabicDisplay",
+      fontSize: { base: "md", md: "lg" },
+      fontWeight: "medium",
+      lineHeight: "1.25",
+      letterSpacing: "0",
+      color: "fg.muted",
+    },
+  },
+  "ayah-hero-compact": {
+    value: {
+      fontFamily: "arabicDisplay",
+      fontSize: { base: "xl", md: "2xl" },
+      fontWeight: "medium",
+      lineHeight: "1.5",
+      letterSpacing: "0",
+    },
+  },
+  "verse-meaning": {
+    value: {
+      fontFamily: "body",
+      fontSize: "xs",
+      fontWeight: "normal",
+      lineHeight: "1.3",
+      letterSpacing: "0",
+      color: "fg.subtle",
+    },
+  },
+
   "numeric-timer": {
     value: {
       fontFamily: "mono",
@@ -269,6 +243,16 @@ export const textStyles = defineTextStyles({
       fontWeight: "medium",
       lineHeight: "1",
       letterSpacing: "-0.04em",
+      fontVariantNumeric: "tabular-nums",
+    },
+  },
+  "numeric-sm": {
+    value: {
+      fontFamily: "mono",
+      fontSize: "2xl",
+      fontWeight: "medium",
+      lineHeight: "1",
+      letterSpacing: "-0.02em",
       fontVariantNumeric: "tabular-nums",
     },
   },

@@ -1,21 +1,19 @@
 import { defineSemanticTokens } from "@chakra-ui/react";
 
+// Elevation roles reference primitive shadows; dark mode swaps to the
+// deeper/cooler family so cards stay legible against charcoal.
+const dual = (light: string, dark: string) => ({
+  value: { base: `{shadows.${light}}`, _dark: `{shadows.${dark}}` },
+});
+
 export const semanticShadows = defineSemanticTokens.shadows({
   focus: { value: "{shadows.focus}" },
 
-  xs: { value: "0 1px 2px rgba(26, 24, 20, 0.04)" },
-  sm: {
-    value: "0 1px 2px rgba(26, 24, 20, 0.05), 0 2px 6px rgba(26, 24, 20, 0.06)",
-  },
-  md: {
-    value: "0 2px 4px rgba(26, 24, 20, 0.06), 0 8px 24px rgba(26, 24, 20, 0.08)",
-  },
-  lg: {
-    value: "0 4px 8px rgba(26, 24, 20, 0.06), 0 16px 40px rgba(26, 24, 20, 0.10)",
-  },
-  xl: {
-    value: "0 8px 16px rgba(26, 24, 20, 0.08), 0 24px 64px rgba(26, 24, 20, 0.12)",
-  },
+  xs: dual("xsLight", "xsDark"),
+  sm: dual("smLight", "smDark"),
+  md: dual("mdLight", "mdDark"),
+  lg: dual("lgLight", "lgDark"),
+  xl: dual("xlLight", "xlDark"),
 
-  "glow-sage": { value: "0 0 32px 4px rgba(124, 152, 133, 0.30)" },
+  "glow-sage": dual("glowSageLight", "glowSageDark"),
 });

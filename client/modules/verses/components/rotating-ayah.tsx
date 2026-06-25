@@ -5,28 +5,43 @@ import { useLocale } from "next-intl";
 import type { LocaleType } from "@/i18n/config";
 import { useRotatingAyah } from "../hooks/use-rotating-ayah.hook";
 
-const MEDIA_SHADOW = "0 2px 20px rgba(0,0,0,0.5)";
-
-// The home āyah, minimal: a large geometric (Reem Kufi) verse, a quiet
-// translation, and a small citation — nothing else. Remounting on index change
-// replays a soft crossfade. `onMedia` switches to always-light ink over photo
-// wallpapers.
-export function RotatingAyah({ onMedia = false }: { onMedia?: boolean }) {
+export function RotatingAyah({
+  compact = false,
+  corner = false,
+}: {
+  compact?: boolean;
+  corner?: boolean;
+}) {
   const locale = useLocale() as LocaleType;
   const { ayah, index } = useRotatingAyah();
 
-  const ink = onMedia ? "fg.onMedia" : "fg.default";
-  const inkMuted = onMedia ? "fg.onMediaMuted" : "fg.muted";
-  const inkSubtle = onMedia ? "fg.onMediaMuted" : "fg.subtle";
-  const shadow = onMedia ? MEDIA_SHADOW : undefined;
+  if (corner) {
+    return (
+      <VStack
+        key={index}
+        gap="1"
+        align="end"
+        textAlign="end"
+        animationName="fade-in"
+        animationDuration="slowest"
+        animationTimingFunction="ease-out"
+        _motionReduce={{ animationName: "none" }}
+      >
+        <Text textStyle="ayah-hero-corner" dir="rtl" lang="ar">
+          {ayah.arabic}
+        </Text>
+        <Text textStyle="verse-meaning">{ayah.meaning[locale]}</Text>
+      </VStack>
+    );
+  }
 
   return (
     <VStack
       key={index}
-      gap="5"
+      gap={compact ? "2" : "5"}
       align="center"
       w="full"
-      maxW="3xl"
+      maxW={compact ? "xl" : "3xl"}
       paddingInline="4"
       animationName="fade-in"
       animationDuration="slowest"
@@ -34,24 +49,29 @@ export function RotatingAyah({ onMedia = false }: { onMedia?: boolean }) {
       _motionReduce={{ animationName: "none" }}
     >
       <Text
-        textStyle="ayah-hero"
-        fontSize={{ base: "4xl", md: "6xl" }}
+        textStyle={compact ? "ayah-hero-compact" : "ayah-hero"}
         textAlign="center"
         dir="rtl"
         lang="ar"
-        color={ink}
-        textShadow={shadow}
+        color={compact ? "fg.muted" : "fg.default"}
       >
         {ayah.arabic}
       </Text>
 
-      <Text textStyle="body-md" textAlign="center" maxW="lg" color={inkMuted} textShadow={shadow}>
+      <Text
+        textStyle={compact ? "body-sm" : "body-md"}
+        textAlign="center"
+        maxW="lg"
+        color={compact ? "fg.subtle" : "fg.muted"}
+      >
         {ayah.meaning[locale]}
       </Text>
 
-      <Text textStyle="label-md" color={inkSubtle} textShadow={shadow}>
-        {ayah.citation[locale]}
-      </Text>
+      {!compact && (
+        <Text textStyle="label-md" color="fg.subtle">
+          {ayah.citation[locale]}
+        </Text>
+      )}
     </VStack>
   );
 }

@@ -1,5 +1,7 @@
 import { defineRecipe } from "@chakra-ui/react";
 
+// Canonical interaction contract: hover-in uses `enter` duration + ease-out;
+// press feedback is `instant` via transform scale; focus keeps the global ring.
 export const khulwaButtonRecipe = defineRecipe({
   className: "khulwa-button",
   base: {
@@ -15,14 +17,15 @@ export const khulwaButtonRecipe = defineRecipe({
     whiteSpace: "nowrap",
     userSelect: "none",
     flexShrink: "0",
-    transitionProperty: "background-color, color, border-color, transform, box-shadow",
-    transitionDuration: "0.15s",
-    transitionTimingFunction: "ease",
+    transitionProperty: "background-color, border-color, color, transform, box-shadow, opacity",
+    transitionDuration: "enter",
+    transitionTimingFunction: "enter",
+    _active: { transform: "scale(0.97)", transitionDuration: "instant" },
+    _motionReduce: { _active: { transform: "none" } },
     _disabled: { opacity: 0.5, cursor: "not-allowed" },
-    _active: { transform: "scale(0.98)" },
     _focusVisible: {
       outline: "2px solid",
-      outlineColor: "primary.default",
+      outlineColor: "border.focus",
       outlineOffset: "2px",
     },
   },
@@ -32,23 +35,25 @@ export const khulwaButtonRecipe = defineRecipe({
         bg: "fg.default",
         color: "fg.inverse",
         _hover: { bg: "fg.muted" },
-        _active: { transform: "scale(0.98)" },
+        _active: { bg: "fg.muted", transform: "scale(0.97)" },
       },
       tonal: {
         bg: "primary.subtle",
-        color: "primary.hover",
-        _hover: { bg: "primary.default", color: "fg.inverse" },
-        _active: { bg: "primary.pressed" },
+        color: "primary.pressed",
+        _hover: { bg: "primary.default", color: "primary.fg" },
+        _active: { bg: "primary.pressed", color: "primary.fg" },
       },
       accent: {
         bg: "accent.default",
-        color: "fg.inverse",
-        _hover: { filter: "brightness(0.95)" },
+        color: "accent.fg",
+        _hover: { bg: "accent.hover" },
+        _active: { bg: "accent.pressed", transform: "scale(0.97)" },
       },
       ink: {
         bg: "fg.default",
         color: "fg.inverse",
         _hover: { bg: "fg.muted" },
+        _active: { bg: "fg.muted" },
       },
       outline: {
         bg: "transparent",
@@ -56,12 +61,14 @@ export const khulwaButtonRecipe = defineRecipe({
         borderStyle: "solid",
         borderColor: "border.default",
         color: "fg.default",
-        _hover: { bg: "surface.muted", borderColor: "border.strong" },
+        _hover: { bg: "surface.muted", borderColor: "border.emphasized" },
+        _active: { bg: "bg.emphasized", borderColor: "border.strong" },
       },
       ghost: {
         bg: "transparent",
         color: "fg.muted",
         _hover: { bg: "surface.muted", color: "fg.default" },
+        _active: { bg: "bg.emphasized" },
       },
       chip: {
         bg: "bg.elevated",
@@ -71,7 +78,7 @@ export const khulwaButtonRecipe = defineRecipe({
         borderColor: "border.default",
         boxShadow: "sm",
         _hover: { bg: "bg.emphasized", color: "fg.default", borderColor: "border.strong" },
-        _active: { transform: "scale(0.96)" },
+        _active: { bg: "bg.emphasized", transform: "scale(0.96)" },
       },
       danger: {
         bg: "transparent",
@@ -80,6 +87,7 @@ export const khulwaButtonRecipe = defineRecipe({
         borderColor: "status.danger",
         color: "status.danger",
         _hover: { bg: "status.danger", color: "fg.inverse" },
+        _active: { bg: "status.danger", color: "fg.inverse", transform: "scale(0.97)" },
       },
     },
     size: {
@@ -89,13 +97,14 @@ export const khulwaButtonRecipe = defineRecipe({
       xl: { h: "16", minW: "16", paddingInline: "8", fontSize: "lg" },
     },
     shape: {
-      pill: { rounded: "full" },
-      rounded: { rounded: "md" },
+      pill: { rounded: "pill" },
+      rounded: { rounded: "controlWide" },
+      circle: { rounded: "circle", aspectRatio: "1", paddingInline: "0" },
     },
   },
   defaultVariants: {
     visual: "solid",
     size: "md",
-    shape: "pill",
+    shape: "rounded",
   },
 });

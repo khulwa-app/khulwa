@@ -1,1 +1,1 @@
-export * from "./home-clock";
+export {};

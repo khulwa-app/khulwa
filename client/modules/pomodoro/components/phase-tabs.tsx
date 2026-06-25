@@ -21,7 +21,6 @@ function PhaseTabsComponent({ phase, currentRound, totalRounds, onPhaseChange }:
       "aria-selected": phase === target,
       visual: phase === target ? "solid" : "outline",
       size: "sm",
-      shape: "pill",
       onClick: () => onPhaseChange(target),
     }) as const;
 

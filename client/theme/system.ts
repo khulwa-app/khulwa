@@ -17,6 +17,7 @@ const config = defineConfig({
     },
     "[data-numeric]": { fontVariantNumeric: "tabular-nums" },
     "svg.lucide": { strokeWidth: "2" },
+    "*:focus": { outline: "none" },
     "*:focus-visible": { outline: "none", boxShadow: "focus" },
   },
   theme: {

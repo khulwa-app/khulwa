@@ -1,6 +1,6 @@
-import { Geist, Geist_Mono, IBM_Plex_Sans_Arabic, Inter, Reem_Kufi } from "next/font/google";
+import { DM_Sans, IBM_Plex_Sans_Arabic, Inter, JetBrains_Mono, Reem_Kufi } from "next/font/google";
 
-export const geist = Geist({
+export const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-display",
@@ -16,7 +16,7 @@ export const inter = Inter({
   preload: true,
 });
 
-export const geistMono = Geist_Mono({
+export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["500", "600"],
   variable: "--font-mono",
@@ -24,8 +24,6 @@ export const geistMono = Geist_Mono({
   preload: true,
 });
 
-// Arabic coverage for the bilingual UI (Geist/Inter are Latin-only); harmonises
-// with Inter for body/UI text.
 export const plexSansArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic", "latin"],
   weight: ["400", "500", "600", "700"],
@@ -34,8 +32,6 @@ export const plexSansArabic = IBM_Plex_Sans_Arabic({
   preload: true,
 });
 
-// Reem Kufi — geometric kufi for the āyah / Arabic display. Clean and minimal,
-// supports vowelled (tashkeel) text.
 export const reemKufi = Reem_Kufi({
   subsets: ["arabic", "latin"],
   weight: ["400", "500", "600"],
@@ -44,4 +40,4 @@ export const reemKufi = Reem_Kufi({
   preload: false,
 });
 
-export const fontVariables = `${geist.variable} ${inter.variable} ${geistMono.variable} ${plexSansArabic.variable} ${reemKufi.variable}`;
+export const fontVariables = `${dmSans.variable} ${inter.variable} ${jetbrainsMono.variable} ${plexSansArabic.variable} ${reemKufi.variable}`;

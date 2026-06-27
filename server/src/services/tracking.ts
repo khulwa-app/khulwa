@@ -1,0 +1,93 @@
+import { and, eq, sql } from "drizzle-orm";
+import type { DB } from "../db/index.js";
+import { dailyCategoryTotal, focusSession, streak } from "../db/schema/focus.js";
+
+type Tx = Parameters<Parameters<DB["transaction"]>[0]>[0];
+
+export type Category = (typeof focusSession.category.enumValues)[number];
+
+export const CATEGORIES = focusSession.category.enumValues;
+
+export type FocusSessionInput = {
+  userId: string;
+  taskId?: string | null;
+  category: Category | null;
+  durationSeconds: number;
+  startedAt: Date;
+  endedAt: Date;
+};
+
+function toDay(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
+
+function dayDiff(from: string, to: string): number {
+  return Math.round((Date.parse(to) - Date.parse(from)) / 86_400_000);
+}
+
+export async function recomputeStreak(tx: Tx, userId: string, activeDay: string) {
+  const [existing] = await tx.select().from(streak).where(eq(streak.userId, userId));
+
+  if (existing?.lastActiveDay === activeDay) return existing;
+
+  let current = 1;
+  if (existing?.lastActiveDay && dayDiff(existing.lastActiveDay, activeDay) === 1) {
+    current = existing.current + 1;
+  }
+  const longest = Math.max(existing?.longest ?? 0, current);
+
+  const [row] = await tx
+    .insert(streak)
+    .values({ userId, current, longest, lastActiveDay: activeDay })
+    .onConflictDoUpdate({
+      target: streak.userId,
+      set: { current, longest, lastActiveDay: activeDay, updatedAt: new Date() },
+    })
+    .returning();
+  return row;
+}
+
+export async function recordFocusSession(db: DB, input: FocusSessionInput) {
+  const day = toDay(input.endedAt);
+
+  return db.transaction(async (tx) => {
+    await tx.insert(focusSession).values({
+      userId: input.userId,
+      taskId: input.taskId ?? null,
+      category: input.category,
+      durationSeconds: input.durationSeconds,
+      startedAt: input.startedAt,
+      endedAt: input.endedAt,
+    });
+
+    if (input.category) {
+      await tx
+        .insert(dailyCategoryTotal)
+        .values({
+          userId: input.userId,
+          day,
+          category: input.category,
+          totalSeconds: input.durationSeconds,
+        })
+        .onConflictDoUpdate({
+          target: [dailyCategoryTotal.userId, dailyCategoryTotal.day, dailyCategoryTotal.category],
+          set: {
+            totalSeconds: sql`${dailyCategoryTotal.totalSeconds} + ${input.durationSeconds}`,
+            updatedAt: new Date(),
+          },
+        });
+    }
+
+    const streakRow = await recomputeStreak(tx, input.userId, day);
+
+    const rows = await tx
+      .select({ category: dailyCategoryTotal.category, totalSeconds: dailyCategoryTotal.totalSeconds })
+      .from(dailyCategoryTotal)
+      .where(and(eq(dailyCategoryTotal.userId, input.userId), eq(dailyCategoryTotal.day, day)));
+
+    const todayTotals: Partial<Record<Category, number>> = {};
+    for (const r of rows) todayTotals[r.category] = r.totalSeconds;
+
+    return { streak: streakRow, todayTotals };
+  });
+}

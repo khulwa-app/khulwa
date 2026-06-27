@@ -4,6 +4,7 @@ import { toNodeHandler } from "better-auth/node";
 import { env } from "./env.js";
 import { auth } from "./auth/index.js";
 import { healthRouter } from "./routes/health.js";
+import { apiRouter } from "./routes/index.js";
 
 export function createApp(): Express {
   const app = express();
@@ -21,6 +22,7 @@ export function createApp(): Express {
   app.use(express.urlencoded({ extended: true }));
 
   app.use("/health", healthRouter);
+  app.use("/api", apiRouter);
 
   app.use((_req: Request, res: Response) => {
     res.status(404).json({ error: "Not Found" });

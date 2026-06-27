@@ -1,11 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/services/http";
-import { TASKS_QUERY_KEY } from "../query/constants";
+import { applyDeleteTask } from "./optimistic";
+import { useTaskMutation } from "./use-task-mutation.hook";
 
 export function useDeleteTask() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (id: string) => api.delete<void>(`/tasks/${id}`),
-    onSuccess: () => void qc.invalidateQueries({ queryKey: [TASKS_QUERY_KEY] }),
-  });
+  return useTaskMutation(
+    (id: string) => api.delete<void>(`/tasks/${id}`),
+    (tasks, id) => applyDeleteTask(tasks, id),
+  );
 }

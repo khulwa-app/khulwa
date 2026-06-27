@@ -1,12 +1,12 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/services/http";
 import type { Task, UpdateTaskInput } from "./tasks.types";
-import { TASKS_QUERY_KEY } from "../query/constants";
+import { applyUpdateTask, replaceTask } from "./optimistic";
+import { useTaskMutation } from "./use-task-mutation.hook";
 
 export function useUpdateTask() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: ({ id, patch }: { id: string; patch: UpdateTaskInput }) => api.patch<Task>(`/tasks/${id}`, patch),
-    onSuccess: () => void qc.invalidateQueries({ queryKey: [TASKS_QUERY_KEY] }),
-  });
+  return useTaskMutation(
+    ({ id, patch }: { id: string; patch: UpdateTaskInput }) => api.patch<Task>(`/tasks/${id}`, patch),
+    (tasks, { id, patch }) => applyUpdateTask(tasks, id, patch),
+    (tasks, task) => replaceTask(tasks, task),
+  );
 }

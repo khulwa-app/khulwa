@@ -2,33 +2,13 @@
 
 import { Show, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
-import { Collapsible, ScrollArea } from "@/components/ui";
+import { ScrollArea } from "@/components/ui";
 import { SidePanel, usePanels, Panel } from "@/modules/panels";
-import { useTasks, type Task } from "@/services/tasks";
+import { useTasks } from "@/services/tasks";
 import { QuickAdd } from "./quick-add";
 import { TaskList } from "./task-list";
 import { TaskRow } from "./tasks-row";
-import { ChevronRight } from "lucide-react";
-
-function FoldedSection({ label, tasks }: { label: string; tasks: Task[] }) {
-  if (!tasks.length) return null;
-  return (
-    <Collapsible
-      trigger={
-        <TaskList.SectionTrigger>
-          <ChevronRight size={14} />
-          {`${label} (${tasks.length})`}
-        </TaskList.SectionTrigger>
-      }
-    >
-      <TaskList.SectionContent>
-        {tasks.map((task, index) => (
-          <TaskRow key={task.id} task={task} index={index} />
-        ))}
-      </TaskList.SectionContent>
-    </Collapsible>
-  );
-}
+import { FoldedSection } from "./folded-section";
 
 export function TasksPanel() {
   const t = useTranslations("tasks");

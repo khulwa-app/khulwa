@@ -28,7 +28,7 @@ export const auth = betterAuth({
     sendResetPassword: async ({ user, url }) => {
       await sendEmail({
         to: user.email,
-        subject: "Reset your Waha password",
+        subject: "Reset your Khulwa password",
         html: `<p>Reset your password: <a href="${url}">${url}</a></p>`,
         text: `Reset your password: ${url}`,
       });
@@ -39,7 +39,7 @@ export const auth = betterAuth({
     sendVerificationEmail: async ({ user, url }) => {
       await sendEmail({
         to: user.email,
-        subject: "Verify your Waha email",
+        subject: "Verify your Khulwa email",
         html: `<p>Verify your email: <a href="${url}">${url}</a></p>`,
         text: `Verify your email: ${url}`,
       });
@@ -58,7 +58,7 @@ export const auth = betterAuth({
     : undefined,
 
   advanced: {
-    cookiePrefix: "waha",
+    cookiePrefix: "khulwa",
     useSecureCookies: isProd,
     defaultCookieAttributes: {
       sameSite: isProd ? "none" : "lax",

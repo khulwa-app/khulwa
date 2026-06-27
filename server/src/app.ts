@@ -15,7 +15,6 @@ export function createApp(): Express {
     }),
   );
 
-  // Better Auth needs the raw Node request — mount BEFORE express.json
   app.all("/api/auth/*splat", toNodeHandler(auth));
 
   app.use(express.json({ limit: "1mb" }));

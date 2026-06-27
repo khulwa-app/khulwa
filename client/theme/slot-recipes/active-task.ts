@@ -7,7 +7,7 @@ import {
 
 export const activeTaskSlotRecipe = defineSlotRecipe({
   className: "khulwa-active-task",
-  slots: ["root", "empty", "mark", "dot", "task", "eta", "hint"],
+  slots: ["root", "empty", "bar", "mark", "dot", "task", "eta", "hint"],
   base: {
     root: {
       display: "flex",
@@ -17,6 +17,14 @@ export const activeTaskSlotRecipe = defineSlotRecipe({
       paddingInline: "2",
     },
     empty: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: "3",
+      width: "full",
+      maxW: "sm",
+    },
+    bar: {
       display: "flex",
       alignItems: "center",
       width: "full",
@@ -68,6 +76,7 @@ type TextProps = HTMLChakraProps<"p">;
 export const ActiveTask = {
   Root: ctx.withProvider<HTMLDivElement, RootProps>("div", "root"),
   Empty: ctx.withProvider<HTMLDivElement, RootProps>("div", "empty"),
+  Bar: ctx.withContext<HTMLDivElement, DivProps>("div", "bar"),
   Mark: ctx.withContext<HTMLDivElement, DivProps>("div", "mark"),
   Dot: ctx.withContext<HTMLDivElement, DivProps>("div", "dot"),
   Task: ctx.withContext<HTMLParagraphElement, TextProps>("p", "task"),

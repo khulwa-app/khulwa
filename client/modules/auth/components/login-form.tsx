@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Box, Button, HStack, Input, Text, VStack } from "@chakra-ui/react";
-import { signIn, signUp } from "../auth-client";
+import { signIn, signUp } from "@/services/auth";
 
 type Mode = "signin" | "signup";
 

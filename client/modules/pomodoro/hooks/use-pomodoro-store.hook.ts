@@ -33,10 +33,16 @@ function durationMinutesFor(options: PomodoroOptions, phase: PomodoroPhase): num
   }
 }
 
-function computeNextSlot(options: PomodoroOptions, phase: PomodoroPhase, currentRound: number): { phase: PomodoroPhase; round: number } {
+function computeNextSlot(
+  options: PomodoroOptions,
+  phase: PomodoroPhase,
+  currentRound: number,
+): { phase: PomodoroPhase; round: number } {
   switch (phase) {
     case PomodoroPhase.Focus:
-      return currentRound < options.rounds ? { phase: PomodoroPhase.ShortBreak, round: currentRound } : { phase: PomodoroPhase.LongBreak, round: currentRound };
+      return currentRound < options.rounds
+        ? { phase: PomodoroPhase.ShortBreak, round: currentRound }
+        : { phase: PomodoroPhase.LongBreak, round: currentRound };
     case PomodoroPhase.ShortBreak:
       return { phase: PomodoroPhase.Focus, round: currentRound + 1 };
     case PomodoroPhase.LongBreak:
@@ -134,7 +140,14 @@ export const usePomodoroStore = create<PomodoroState>()(
     {
       name: "khulwa-pomodoro",
       storage: createJSONStorage(() => localStorage),
-      version: 1,
+      version: 2,
+      migrate: () =>
+        ({
+          options: DEFAULT_POMODORO,
+          phase: INITIAL_PHASE,
+          currentRound: 1,
+          timeLeftMs: durationMinutesFor(DEFAULT_POMODORO, INITIAL_PHASE) * MS_PER_MINUTE,
+        }) as PomodoroState,
       partialize: (s) => ({
         options: s.options,
         phase: s.phase,

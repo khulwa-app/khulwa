@@ -7,7 +7,7 @@ export function Navbar() {
   return (
     <Nav.Root>
       <Nav.Brand>
-        <Logo size="10" />
+        <Logo size="8" />
       </Nav.Brand>
       <Nav.Actions>
         <ColorModeToggle />

@@ -1,2 +1,2 @@
-export * from "./chakra-provider";
+export * from "./app-provider";
 export * from "./query-provider";

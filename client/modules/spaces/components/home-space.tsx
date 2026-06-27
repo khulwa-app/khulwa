@@ -13,7 +13,7 @@ import {
 } from "@/modules/clock";
 import { NoorOrb } from "@/modules/companion";
 import { TodayProgress } from "@/modules/progress";
-import { DoingNowCard } from "@/modules/tasks/components/doing-now-card";
+import { DoingNowCard } from "@/modules/tasks/components/doing-now/doing-now-card";
 import { RotatingAyah } from "@/modules/verses";
 import { useMounted } from "@/hooks/use-mounted";
 import { SpaceBackground } from "./space-background";
@@ -58,11 +58,11 @@ export function HomeSpace() {
 
       <Home.Stage>
         <Home.Intro>
-          <Box {...entrance(0)}>
+          <Box {...entrance(100)}>
             <NoorOrb />
           </Box>
 
-          <Home.Clock {...entrance(120)}>
+          <Home.Clock {...entrance(250)}>
             <Text textStyle="clock-display" color="fg.onMesh" suppressHydrationWarning>
               {time}
             </Text>
@@ -71,18 +71,18 @@ export function HomeSpace() {
             </Text>
           </Home.Clock>
 
-          <Text textStyle="greeting" color="fg.onMesh" suppressHydrationWarning {...entrance(240)}>
+          <Text textStyle="greeting" color="fg.onMesh" suppressHydrationWarning {...entrance(350)}>
             {greeting}
           </Text>
         </Home.Intro>
 
-        <VStack w="full" gap="6" {...entrance(380)}>
+        <VStack w="full" gap="6" {...entrance(450)}>
           <DoingNowCard />
         </VStack>
 
-        <Box {...entrance(500)}>
+        {/* <Box {...entrance(150)}>
           <TodayProgress />
-        </Box>
+        </Box> */}
       </Home.Stage>
     </Home.Root>
   );

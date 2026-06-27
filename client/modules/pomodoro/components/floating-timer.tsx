@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { formatPomodoro } from "@/modules/clock";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
-import { useTasksStore } from "@/modules/tasks/hooks/use-tasks-store.hook";
+import { useTasks } from "@/services/tasks";
 import { TimerPill } from "@/theme/slot-recipes/floating-timer";
 import { usePomodoro } from "../hooks/use-pomodoro.hook";
 import { usePomodoroHydrated } from "../hooks/use-pomodoro-hydrated.hook";
@@ -17,7 +17,8 @@ export function FloatingTimer() {
   const { minutes, seconds, isRunning, hasStarted, phase } = usePomodoro();
   const activeSpace = useSpace((s) => s.activeSpace);
   const changeSpace = useSpace((s) => s.changeSpace);
-  const currentTask = useTasksStore((s) => s.tasks.find((task) => task.isDoingNow));
+  const { data: tasks } = useTasks();
+  const currentTask = tasks?.find((task) => task.isDoingNow);
 
   const present = hydrated && hasStarted && activeSpace !== Space.Focus;
 

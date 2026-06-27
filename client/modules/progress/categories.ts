@@ -1,11 +1,11 @@
+export type { CategoryId } from "@/services/progress";
+
 export const CATEGORIES = [
   { id: "deepWork", color: "category.deepWork" },
   { id: "learning", color: "category.learning" },
   { id: "reading", color: "category.reading" },
   { id: "dhikr", color: "category.dhikr" },
 ] as const;
-
-export type CategoryId = (typeof CATEGORIES)[number]["id"];
 
 export function dayKey(d: Date = new Date()): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;

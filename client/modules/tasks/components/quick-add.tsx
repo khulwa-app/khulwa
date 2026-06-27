@@ -5,25 +5,29 @@ import { IconButton, Input, InputGroup } from "@chakra-ui/react";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { estimateEta } from "@/modules/ai";
-import { DEFAULT_ETA, useTasksStore } from "../hooks/use-tasks-store.hook";
+import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
 
 export function QuickAdd() {
   const t = useTranslations("tasks");
-  const addTask = useTasksStore((s) => s.addTask);
+  const createTask = useCreateTask();
+  const updateTask = useUpdateTask();
   const [draft, setDraft] = useState("");
 
   const submit = () => {
     const body = draft.trim();
     if (!body) return;
-    const id = addTask(body);
     setDraft("");
 
-    void estimateEta(body).then((eta) => {
-      if (eta === null) return;
-      const { tasks, updateTask } = useTasksStore.getState();
-      const task = tasks.find((candidate) => candidate.id === id);
-      if (task && task.eta === DEFAULT_ETA) updateTask(id, { eta });
-    });
+    createTask.mutate(
+      { body },
+      {
+        onSuccess: (task) => {
+          void estimateEta(body).then((eta) => {
+            if (eta !== null && task.eta === DEFAULT_ETA) updateTask.mutate({ id: task.id, patch: { eta } });
+          });
+        },
+      },
+    );
   };
 
   return (

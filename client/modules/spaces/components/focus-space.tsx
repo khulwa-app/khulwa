@@ -7,8 +7,9 @@ import { Pause, Play, RotateCcw, SkipForward } from "lucide-react";
 import { formatPomodoro } from "@/modules/clock";
 import { NoorOrb } from "@/modules/companion";
 import { usePomodoro, usePomodoroHydrated, PhaseTabs, PomodoroPhase } from "@/modules/pomodoro";
-import { CategoryChip, dayKey, useProgressStore } from "@/modules/progress";
-import { DoingNowCaption } from "@/modules/tasks/components/doing-now-caption";
+import { CategoryChip, useProgressStore } from "@/modules/progress";
+import { useLogFocusSession } from "@/services/progress";
+import { DoingNowCaption } from "@/modules/tasks/components/doing-now/doing-now-caption";
 import { SpaceBackground } from "./space-background";
 
 export function FocusSpace() {
@@ -42,14 +43,22 @@ export function FocusSpace() {
     setBlooming(wasFocus && !reduce);
   }
 
+  const selected = useProgressStore((s) => s.selected);
+  const { mutate: logSession } = useLogFocusSession();
   const loggedCompletion = useRef(completionCount);
   useEffect(() => {
     if (completionCount <= loggedCompletion.current) return;
     loggedCompletion.current = completionCount;
     if (lastCompletedPhase !== PomodoroPhase.Focus) return;
-    const { selected, logFocus } = useProgressStore.getState();
-    if (selected) logFocus(dayKey(), selected, focusMinutes * 60);
-  }, [completionCount, lastCompletedPhase, focusMinutes]);
+    const endedAt = new Date();
+    const startedAt = new Date(endedAt.getTime() - focusMinutes * 60_000);
+    logSession({
+      category: selected,
+      durationSeconds: focusMinutes * 60,
+      startedAt: startedAt.toISOString(),
+      endedAt: endedAt.toISOString(),
+    });
+  }, [completionCount, lastCompletedPhase, focusMinutes, selected, logSession]);
 
   useEffect(() => {
     if (!blooming) return;

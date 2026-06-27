@@ -1,40 +1,45 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Input, Presence, VStack } from "@chakra-ui/react";
+import { Button, Input, Presence } from "@chakra-ui/react";
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ActiveTask } from "@/theme/slot-recipes/active-task";
 import { estimateEta } from "@/modules/ai";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
-import { DEFAULT_ETA, useTasksStore } from "../hooks/use-tasks-store.hook";
+import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
 
 export function DoingNowEmpty() {
   const t = useTranslations("home.doingNow");
-  const quickStart = useTasksStore((s) => s.quickStart);
+  const createTask = useCreateTask();
+  const updateTask = useUpdateTask();
   const changeSpace = useSpace((s) => s.changeSpace);
   const [draft, setDraft] = useState("");
 
   const begin = () => {
     const body = draft.trim();
     if (body) {
-      const id = quickStart(body);
       setDraft("");
-      void estimateEta(body).then((eta) => {
-        if (eta === null) return;
-        const { tasks, updateTask } = useTasksStore.getState();
-        const task = tasks.find((candidate) => candidate.id === id);
-        if (task && task.eta === DEFAULT_ETA) updateTask(id, { eta });
-      });
+      createTask.mutate(
+        { body },
+        {
+          onSuccess: (task) => {
+            updateTask.mutate({ id: task.id, patch: { isDoingNow: true } });
+            void estimateEta(body).then((eta) => {
+              if (eta !== null && task.eta === DEFAULT_ETA) updateTask.mutate({ id: task.id, patch: { eta } });
+            });
+          },
+        },
+      );
     }
     changeSpace(Space.Focus);
   };
 
   return (
     <Presence present animationName={{ _open: "fade-in" }} animationDuration="moderate">
-      <VStack w="full" maxW="sm" gap="3">
-        <ActiveTask.Empty>
+      <ActiveTask.Empty>
+        <ActiveTask.Bar>
           <ActiveTask.Mark aria-hidden />
           <Input
             variant="bare"
@@ -53,9 +58,9 @@ export function DoingNowEmpty() {
             {t("enterFocus")}
             <ArrowRight size={14} />
           </Button>
-        </ActiveTask.Empty>
+        </ActiveTask.Bar>
         <ActiveTask.Hint>{t("beginHint")}</ActiveTask.Hint>
-      </VStack>
+      </ActiveTask.Empty>
     </Presence>
   );
 }

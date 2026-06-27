@@ -3,7 +3,7 @@
 import { IconButton } from "@chakra-ui/react";
 import { Moon, Sun } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useColorMode } from "@/components/ui/color-mode";
+import { useColorMode } from "@/hooks/use-color-mode";
 import { useMounted } from "@/hooks/use-mounted";
 
 export function ColorModeToggle() {

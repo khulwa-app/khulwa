@@ -6,7 +6,6 @@ import { statBarSlotRecipe } from "./stat-bar";
 import { rhythmListSlotRecipe } from "./rhythm-list";
 import { commandPaletteSlotRecipe } from "./command-palette";
 import { spacesSlotRecipe } from "./spaces";
-import { popoverSlotRecipe } from "./popover";
 import { panelSlotRecipe } from "./panel";
 import { scrollAreaSlotRecipe } from "./scroll-area";
 import { taskListSlotRecipe } from "./task-list";
@@ -26,7 +25,6 @@ export const slotRecipes = {
   rhythmList: rhythmListSlotRecipe,
   commandPalette: commandPaletteSlotRecipe,
   spaces: spacesSlotRecipe,
-  popover: popoverSlotRecipe,
   panel: panelSlotRecipe,
   scrollArea: scrollAreaSlotRecipe,
   taskList: taskListSlotRecipe,

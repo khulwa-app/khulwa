@@ -5,17 +5,25 @@ import { Checkbox, Spinner } from "@chakra-ui/react";
 import { ChevronRight, Moon, Sparkles, Sun, Target, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { splitTask } from "@/modules/ai";
-import { Step, Task, useTasksStore } from "../hooks/use-tasks-store.hook";
+import {
+  useAddStep,
+  useDeleteStep,
+  useDeleteTask,
+  useUpdateStep,
+  useUpdateTask,
+  type Task,
+  type TaskStep,
+} from "@/services/tasks";
 import { TaskList } from "./task-list";
 
 function EditableBody({ task }: { task: Task }) {
   const t = useTranslations("tasks");
-  const updateTask = useTasksStore((s) => s.updateTask);
+  const updateTask = useUpdateTask();
 
   return (
     <TaskList.Editable
       value={task.body}
-      onCommit={(body) => updateTask(task.id, { body })}
+      onCommit={(body) => updateTask.mutate({ id: task.id, patch: { body } })}
       data-completed={task.completed || undefined}
       aria-label={t("aria.editBody")}
     />
@@ -24,7 +32,7 @@ function EditableBody({ task }: { task: Task }) {
 
 function EtaChip({ task }: { task: Task }) {
   const t = useTranslations("tasks");
-  const updateTask = useTasksStore((s) => s.updateTask);
+  const updateTask = useUpdateTask();
 
   return (
     <TaskList.Eta>
@@ -36,7 +44,7 @@ function EtaChip({ task }: { task: Task }) {
           const parsed = parseInt(raw, 10);
           return Number.isNaN(parsed) ? null : String(Math.max(0, parsed));
         }}
-        onCommit={(eta) => updateTask(task.id, { eta: Number(eta) })}
+        onCommit={(eta) => updateTask.mutate({ id: task.id, patch: { eta: Number(eta) } })}
         inputMode="numeric"
         aria-label={t("aria.eta")}
       />
@@ -45,16 +53,17 @@ function EtaChip({ task }: { task: Task }) {
   );
 }
 
-function StepRow({ taskId, step }: { taskId: string; step: Step }) {
+function StepRow({ step }: { step: TaskStep }) {
   const t = useTranslations("tasks");
-  const { updateStep, toggleStep, removeStep } = useTasksStore();
+  const updateStep = useUpdateStep();
+  const deleteStep = useDeleteStep();
 
   return (
     <TaskList.StepRow>
       <Checkbox.Root
         size="sm"
         checked={step.completed}
-        onCheckedChange={() => toggleStep(taskId, step.id)}
+        onCheckedChange={() => updateStep.mutate({ id: step.id, patch: { completed: !step.completed } })}
         aria-label={t("aria.completeStep")}
       >
         <Checkbox.HiddenInput />
@@ -63,13 +72,13 @@ function StepRow({ taskId, step }: { taskId: string; step: Step }) {
 
       <TaskList.Editable
         value={step.body}
-        onCommit={(body) => updateStep(taskId, step.id, body)}
+        onCommit={(body) => updateStep.mutate({ id: step.id, patch: { body } })}
         data-tone="muted"
         data-completed={step.completed || undefined}
         aria-label={t("aria.editStep")}
       />
 
-      <TaskList.Action data-danger aria-label={t("aria.deleteStep")} onClick={() => removeStep(taskId, step.id)}>
+      <TaskList.Action data-danger aria-label={t("aria.deleteStep")} onClick={() => deleteStep.mutate(step.id)}>
         <Trash2 size={14} />
       </TaskList.Action>
     </TaskList.StepRow>
@@ -78,7 +87,7 @@ function StepRow({ taskId, step }: { taskId: string; step: Step }) {
 
 function AddStep({ taskId }: { taskId: string }) {
   const t = useTranslations("tasks");
-  const addStep = useTasksStore((s) => s.addStep);
+  const addStep = useAddStep();
   const [draft, setDraft] = useState("");
 
   return (
@@ -90,7 +99,7 @@ function AddStep({ taskId }: { taskId: string }) {
         if (e.key !== "Enter") return;
         const body = draft.trim();
         if (!body) return;
-        addStep(taskId, body);
+        addStep.mutate({ taskId, body });
         setDraft("");
       }}
     />
@@ -99,7 +108,7 @@ function AddStep({ taskId }: { taskId: string }) {
 
 function BreakIntoSteps({ task }: { task: Task }) {
   const t = useTranslations("tasks");
-  const addStep = useTasksStore((s) => s.addStep);
+  const addStep = useAddStep();
   const [pending, startTransition] = useTransition();
 
   return (
@@ -110,7 +119,7 @@ function BreakIntoSteps({ task }: { task: Task }) {
       onClick={() =>
         startTransition(async () => {
           const steps = await splitTask(task.body, task.eta);
-          steps?.forEach((step) => addStep(task.id, step));
+          steps?.forEach((step) => addStep.mutate({ taskId: task.id, body: step }));
         })
       }
     >
@@ -125,7 +134,8 @@ const STAGGER_CAP = 8;
 
 export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
   const t = useTranslations("tasks");
-  const { removeTask, toggleCompleted, setDoingNow, toggleToday } = useTasksStore();
+  const updateTask = useUpdateTask();
+  const deleteTask = useDeleteTask();
   const [expanded, setExpanded] = useState(false);
 
   const doneSteps = task.steps.filter((step) => step.completed).length;
@@ -137,7 +147,7 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
         <Checkbox.Root
           size="sm"
           checked={task.completed}
-          onCheckedChange={() => toggleCompleted(task.id)}
+          onCheckedChange={() => updateTask.mutate({ id: task.id, patch: { completed: !task.completed } })}
           aria-label={t("aria.complete")}
         >
           <Checkbox.HiddenInput />
@@ -162,7 +172,7 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
 
           <TaskList.Action
             aria-label={task.today ? t("aria.defer") : t("aria.doToday")}
-            onClick={() => toggleToday(task.id)}
+            onClick={() => updateTask.mutate({ id: task.id, patch: { today: !task.today } })}
           >
             {task.today ? <Moon size={15} /> : <Sun size={15} />}
           </TaskList.Action>
@@ -170,12 +180,12 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
           <TaskList.Action
             aria-label={t("aria.doingNow")}
             aria-pressed={task.isDoingNow}
-            onClick={() => setDoingNow(task.id)}
+            onClick={() => updateTask.mutate({ id: task.id, patch: { isDoingNow: !task.isDoingNow } })}
           >
             <Target size={15} />
           </TaskList.Action>
 
-          <TaskList.Action data-danger aria-label={t("aria.delete")} onClick={() => removeTask(task.id)}>
+          <TaskList.Action data-danger aria-label={t("aria.delete")} onClick={() => deleteTask.mutate(task.id)}>
             <Trash2 size={15} />
           </TaskList.Action>
         </TaskList.Actions>
@@ -184,7 +194,7 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
       {expanded && (
         <TaskList.Steps>
           {task.steps.map((step) => (
-            <StepRow key={step.id} taskId={task.id} step={step} />
+            <StepRow key={step.id} step={step} />
           ))}
           <TaskList.AddStepRow>
             <AddStep taskId={task.id} />

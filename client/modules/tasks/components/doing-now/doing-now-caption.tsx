@@ -3,21 +3,19 @@
 import { Box, Text } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 import { usePanels, Panel } from "@/modules/panels";
-import { useTasksStore } from "../hooks/use-tasks-store.hook";
-import { useTasksHydrated } from "../hooks/use-tasks-hydrated.hook";
+import { useTasks } from "@/services/tasks";
 
 export function DoingNowCaption() {
   const t = useTranslations("home.doingNow");
-  const hydrated = useTasksHydrated();
-  const tasks = useTasksStore((s) => s.tasks);
+  const { data: tasks } = useTasks();
   const openPanel = usePanels((s) => s.open);
   const togglePanel = usePanels((s) => s.toggle);
 
-  const currentTask = tasks.find((task) => task.isDoingNow);
+  const currentTask = tasks?.find((task) => task.isDoingNow);
 
   return (
     <Box minH="6" display="flex" alignItems="center" justifyContent="center" aria-live="polite">
-      {hydrated && currentTask && (
+      {currentTask && (
         <Text
           key={currentTask.id}
           as="button"

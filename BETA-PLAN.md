@@ -34,7 +34,7 @@ needed for Phase 1** unless a card says so.
 
 ## FOUNDATION — do before Phase 1 (prerequisite plumbing)
 
-### F1 — Server: `requireAuth` middleware + route scaffolding
+### F1 — Server: `requireAuth` middleware + route scaffolding — ✅ DONE
 **Goal.** A reusable auth guard that resolves the better-auth session and attaches `req.user`, plus a
 `/api` router to hang feature routes on.
 **Files.** `server/src/auth/index.ts` (existing `auth`), new `server/src/middleware/require-auth.ts`,
@@ -46,7 +46,7 @@ needed for Phase 1** unless a card says so.
   Feature routers (tasks, notes, focus, progress, streak) attach to it, all behind `requireAuth`.
 **Acceptance.** A protected `GET /api/me` returns the user when logged in, 401 otherwise (verify with the running client session).
 
-### F2 — Client: server-state data layer (TanStack Query)
+### F2 — Client: server-state data layer (TanStack Query) — ✅ DONE
 **Goal.** One consistent way to read/write server data; stop using localStorage for anything the DB owns.
 **Decision.** Add `@tanstack/react-query` for **server state** (tasks, notes, progress, streak). Keep
 Zustand only for **ephemeral UI / runtime** state (`usePanels`, `useSounds`, the pomodoro *timer runtime*).
@@ -64,7 +64,7 @@ provider mounted in `client/app/app/layout.tsx` (or a client providers wrapper).
 > The 4 note checkboxes: streak logic BE, streak API + replace localStorage, category % tracking BE,
 > tracking API to feed charts. Built on the `focusSession` → `dailyCategoryTotal` → `streak` model.
 
-### P1.1 — Focus-session ingest endpoint (the write path)
+### P1.1 — Focus-session ingest endpoint (the write path) — ✅ DONE
 **Goal.** One transactional write when a focus block completes: insert the session, upsert the day/category
 total, recompute the streak.
 **Files.** new `server/src/routes/focus.ts`, new `server/src/services/tracking.ts` (pure functions), schema (read-only).
@@ -78,7 +78,7 @@ Return `{ streak, todayTotals }` so the client can update without a refetch.
 **Acceptance.** Posting a session creates exactly one `focusSession` row, bumps the right daily total,
 and updates `streak`. Re-posting accumulates, doesn't duplicate the daily row.
 
-### P1.2 — Streak compute logic (BE)
+### P1.2 — Streak compute logic (BE) — ✅ DONE
 **Goal.** Maintain `streak.current / longest / lastActiveDay` from activity days.
 **Files.** `server/src/services/tracking.ts` (`recomputeStreak(tx, userId, activeDay)`).
 **Rules.** A day "counts" if it has ≥1 focus session (any category). On a new active `day`:
@@ -87,7 +87,7 @@ and updates `streak`. Re-posting accumulates, doesn't duplicate the daily row.
 store a tz; for beta, derive day from `endedAt` in UTC and note the limitation).
 **Acceptance.** Unit-style check: consecutive days increment; a gap resets to 1; same-day repeats don't change current.
 
-### P1.3 — Read endpoints: streak + progress aggregates
+### P1.3 — Read endpoints: streak + progress aggregates — ✅ DONE
 **Goal.** Feed the dock streak badge and the Progress charts.
 **Files.** new `server/src/routes/progress.ts` (+ streak route or fold in).
 **Endpoints.**
@@ -97,7 +97,7 @@ store a tz; for beta, derive day from `endedAt` in UTC and note the limitation).
   `{ range, totals: { [category]: seconds }, series: [{ day, [category]: seconds }] }`.
 **Acceptance.** Both return correct numbers for a seeded user; empty user returns zeros/empty series, not 500.
 
-### P1.4 — Client: log focus via API + read streak/progress from API
+### P1.4 — Client: log focus via API + read streak/progress from API — ✅ DONE
 **Goal.** Replace the localStorage progress/streak path with the server.
 **Files.** `client/modules/spaces/components/focus-space.tsx` (logs on focus completion — currently
 `useProgressStore.logFocus(...)`), `client/modules/progress/hooks/use-progress-store.hook.ts` (retire or thin
@@ -111,7 +111,7 @@ new `client/modules/progress/api.ts` (query/mutation hooks).
 **Acceptance.** Completing a focus round updates the dock streak and progress without reload; data survives a
 refresh (it's in Postgres); localStorage no longer holds progress.
 
-### P1.R — Recommended addition: Tasks & Notes persistence API
+### P1.R — Recommended addition: Tasks & Notes persistence API — ✅ DONE (tasks client migrated; notes API ready, notes client lands with P2.4)
 > *Not literal note checkboxes, but mandatory-login + existing `task`/`taskStep`/`note` tables imply it.
 > Needed before the Phase 2 "simpler tasks panel" and "notes panel" are meaningfully done. Trim if you
 > want beta to stay localStorage for tasks.*

@@ -2,19 +2,17 @@
 
 import { useTranslations } from "next-intl";
 import { Card } from "@/theme/slot-recipes/card";
-import { CATEGORIES, dayKey, formatDuration, type CategoryId } from "../categories";
-import { useProgressHydrated, useProgressStore } from "../hooks";
+import { CATEGORIES, formatDuration, type CategoryId } from "../categories";
+import { useProgress } from "@/services/progress";
 import { CategoryBar } from "./category-bar";
 
 const EMPTY: Partial<Record<CategoryId, number>> = {};
 
 export function TodayProgress() {
   const t = useTranslations("khulwa.progress");
-  const hydrated = useProgressHydrated();
-  const byDate = useProgressStore((s) => s.byDate);
+  const { data } = useProgress("day");
 
-  if (!hydrated) return null;
-  const today = byDate[dayKey()] ?? EMPTY;
+  const today = data?.totals ?? EMPTY;
   const total = Object.values(today).reduce((sum, v) => sum + (v ?? 0), 0);
   if (total === 0) return null;
 

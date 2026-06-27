@@ -11,6 +11,7 @@ import SoundsPanel from "@/modules/sounds/sounds-panel";
 import { useSounds } from "@/modules/sounds";
 import { RhythmPanel } from "@/modules/rhythm";
 import { ProgressPanel } from "@/modules/progress";
+import { useStreak } from "@/services/progress";
 import { SettingsPanel } from "@/modules/spaces/components/settings-panel";
 
 export function DockNav() {
@@ -25,7 +26,8 @@ export function DockNav() {
   const togglePanel = usePanels((s) => s.toggle);
   const ambientPlaying = useSounds((s) => Object.values(s.playing).some(Boolean));
 
-  const streakCount = 0;
+  const { data: streak } = useStreak();
+  const streakCount = streak?.current ?? 0;
 
   const navItem = (space: Space, Icon: LucideIcon, label: string) => (
     <Dock.GroupItem

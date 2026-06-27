@@ -1,12 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "./fetcher";
-
-export type Me = {
-  id: string;
-  name: string;
-  email: string;
-  image?: string | null;
-};
+import { api } from "@/services/http";
+import type { Me } from "./auth.types";
 
 export function useMe() {
   return useQuery({

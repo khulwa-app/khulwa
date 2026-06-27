@@ -11,7 +11,6 @@ type UsePomodoroReturn = {
   currentRound: number;
   totalRounds: number;
   isRunning: boolean;
-
   hasStarted: boolean;
   completionCount: number;
   lastCompletedPhase: PomodoroPhase | null;

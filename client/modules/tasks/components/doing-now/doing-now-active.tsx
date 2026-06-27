@@ -7,7 +7,7 @@ import { ActiveTask } from "@/theme/slot-recipes/active-task";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
 import { usePanels, Panel } from "@/modules/panels";
-import type { Task } from "../hooks/use-tasks-store.hook";
+import type { Task } from "@/services/tasks";
 
 export function DoingNowActive({ task }: { task: Task }) {
   const t = useTranslations("home.doingNow");

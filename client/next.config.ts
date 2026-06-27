@@ -11,7 +11,12 @@ const svgrOptions = {
   dimensions: false,
 };
 
+const SERVER_URL = process.env.SERVER_URL ?? "http://localhost:4000";
+
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [{ source: "/api/:path*", destination: `${SERVER_URL}/api/:path*` }];
+  },
   turbopack: {
     rules: {
       "*.svg": {

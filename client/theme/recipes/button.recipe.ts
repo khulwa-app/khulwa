@@ -1,7 +1,5 @@
 import { defineRecipe } from "@chakra-ui/react";
 
-// Canonical interaction contract: hover-in uses `enter` duration + ease-out;
-// press feedback is `instant` via transform scale; focus keeps the global ring.
 export const khulwaButtonRecipe = defineRecipe({
   className: "khulwa-button",
   base: {
@@ -17,6 +15,9 @@ export const khulwaButtonRecipe = defineRecipe({
     whiteSpace: "nowrap",
     userSelect: "none",
     flexShrink: "0",
+    rounded: "controlWide",
+
+    cornerShape: "normal",
     transitionProperty: "background-color, border-color, color, transform, box-shadow, opacity",
     transitionDuration: "enter",
     transitionTimingFunction: "enter",
@@ -30,55 +31,46 @@ export const khulwaButtonRecipe = defineRecipe({
     },
   },
   variants: {
-    visual: {
-      solid: {
-        bg: "fg.default",
-        color: "fg.inverse",
-        _hover: { bg: "fg.muted" },
-        _active: { bg: "fg.muted", transform: "scale(0.97)" },
+    size: {
+      sm: { h: "8", minW: "8", paddingInline: "3", fontSize: "sm" },
+      md: { h: "11", minW: "11", paddingInline: "4", fontSize: "sm" },
+      lg: { h: "12", minW: "12", paddingInline: "6", fontSize: "md" },
+      xl: { h: "16", minW: "16", paddingInline: "8", fontSize: "lg" },
+    },
+    variant: {
+      primary: {
+        bg: "primary.default",
+        color: "primary.fg",
+        _hover: { bg: "primary.hover" },
+        _active: { bg: "primary.pressed", transform: "scale(0.97)" },
       },
-      tonal: {
-        bg: "primary.subtle",
-        color: "primary.pressed",
-        _hover: { bg: "primary.default", color: "primary.fg" },
-        _active: { bg: "primary.pressed", color: "primary.fg" },
+
+      secondary: {
+        bg: "bg.elevated",
+        color: "fg.default",
+        borderWidth: "1px",
+        borderStyle: "solid",
+        borderColor: "border.default",
+        boxShadow: "sm",
+        _hover: { bg: "bg.emphasized", borderColor: "border.strong" },
+        _active: { bg: "bg.emphasized", transform: "scale(0.96)" },
       },
-      accent: {
-        bg: "accent.default",
-        color: "accent.fg",
-        _hover: { bg: "accent.hover" },
-        _active: { bg: "accent.pressed", transform: "scale(0.97)" },
-      },
-      ink: {
-        bg: "fg.default",
-        color: "fg.inverse",
-        _hover: { bg: "fg.muted" },
-        _active: { bg: "fg.muted" },
-      },
+
       outline: {
         bg: "transparent",
         borderWidth: "1px",
         borderStyle: "solid",
         borderColor: "border.default",
-        color: "fg.default",
-        _hover: { bg: "surface.muted", borderColor: "border.emphasized" },
+        color: "fg.muted",
+        _hover: { bg: "surface.muted", borderColor: "border.emphasized", color: "fg.default" },
         _active: { bg: "bg.emphasized", borderColor: "border.strong" },
       },
+
       ghost: {
         bg: "transparent",
         color: "fg.muted",
         _hover: { bg: "surface.muted", color: "fg.default" },
         _active: { bg: "bg.emphasized" },
-      },
-      chip: {
-        bg: "bg.elevated",
-        color: "fg.muted",
-        borderWidth: "1px",
-        borderStyle: "solid",
-        borderColor: "border.default",
-        boxShadow: "sm",
-        _hover: { bg: "bg.emphasized", color: "fg.default", borderColor: "border.strong" },
-        _active: { bg: "bg.emphasized", transform: "scale(0.96)" },
       },
       danger: {
         bg: "transparent",
@@ -89,22 +81,23 @@ export const khulwaButtonRecipe = defineRecipe({
         _hover: { bg: "status.danger", color: "fg.inverse" },
         _active: { bg: "status.danger", color: "fg.inverse", transform: "scale(0.97)" },
       },
-    },
-    size: {
-      sm: { h: "8", minW: "8", paddingInline: "3", fontSize: "sm" },
-      md: { h: "10", minW: "10", paddingInline: "4", fontSize: "sm" },
-      lg: { h: "12", minW: "12", paddingInline: "6", fontSize: "md" },
-      xl: { h: "16", minW: "16", paddingInline: "8", fontSize: "lg" },
-    },
-    shape: {
-      pill: { rounded: "pill" },
-      rounded: { rounded: "controlWide" },
-      circle: { rounded: "circle", aspectRatio: "1", paddingInline: "0" },
+
+      link: {
+        bg: "transparent",
+        color: "primary.default",
+        fontWeight: "medium",
+        h: "auto",
+        minW: "0",
+        paddingInline: "0",
+        rounded: "0",
+        display: "inline",
+        _hover: { color: "primary.hover", textDecoration: "underline" },
+        _active: { transform: "none" },
+      },
     },
   },
   defaultVariants: {
-    visual: "solid",
+    variant: "primary",
     size: "md",
-    shape: "rounded",
   },
 });

@@ -19,7 +19,7 @@ function PhaseTabsComponent({ phase, currentRound, totalRounds, onPhaseChange }:
     ({
       role: "tab",
       "aria-selected": phase === target,
-      visual: phase === target ? "solid" : "outline",
+      variant: phase === target ? "primary" : "outline",
       size: "sm",
       onClick: () => onPhaseChange(target),
     }) as const;
@@ -38,7 +38,13 @@ function PhaseTabsComponent({ phase, currentRound, totalRounds, onPhaseChange }:
           gap="2"
         >
           {Array.from({ length: totalRounds }, (_, index) => (
-            <Box key={index} aria-hidden boxSize="2" rounded="full" bg={index < currentRound ? "primary.default" : "primary.subtle"} />
+            <Box
+              key={index}
+              aria-hidden
+              boxSize="2"
+              rounded="full"
+              bg={index < currentRound ? "primary.default" : "fg.onMeshSubtle"}
+            />
           ))}
         </HStack>
       </VStack>

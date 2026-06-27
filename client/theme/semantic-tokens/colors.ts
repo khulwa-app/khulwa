@@ -1,9 +1,5 @@
 import { defineSemanticTokens } from "@chakra-ui/react";
 
-// Every role references a primitive via {colors.<scale>.<step>}.
-// ZERO hardcoded hex/rgba in this file. Roles never share a CSS var with the
-// primitive layer. Dark is re-tuned tonal variants (charcoal end), not inverted
-// light — verified for contrast independently.
 const c = (token: string) => `{colors.${token}}`;
 const dual = (light: string, dark: string) => ({ value: { base: c(light), _dark: c(dark) } });
 
@@ -26,6 +22,11 @@ export const semanticColors = defineSemanticTokens.colors({
     muted: dual("sand.200", "charcoal.700"),
   },
 
+  field: {
+    bg: dual("sand.200", "charcoal.700"),
+    bgHover: dual("sand.300", "charcoal.600"),
+  },
+
   fg: {
     DEFAULT: dual("sand.950", "charcoal.50"),
     default: dual("sand.950", "charcoal.50"),
@@ -34,6 +35,10 @@ export const semanticColors = defineSemanticTokens.colors({
     faint: dual("sand.500", "charcoal.500"),
     inverse: dual("sand.100", "charcoal.900"),
     inverseMuted: dual("sand.300", "charcoal.600"),
+
+    onMesh: dual("inkA.strong", "whiteA.strong"),
+    onMeshMuted: dual("inkA.mid", "whiteA.mid"),
+    onMeshSubtle: dual("inkA.soft", "whiteA.soft"),
   },
 
   border: {
@@ -43,30 +48,40 @@ export const semanticColors = defineSemanticTokens.colors({
     muted: dual("sand.300", "charcoal.700"),
     emphasized: dual("sand.500", "charcoal.500"),
     strong: dual("sand.600", "charcoal.500"),
-    focus: dual("violet.500", "violet.400"),
+    focus: dual("indigo.500", "indigo.400"),
   },
 
   primary: {
-    default: dual("violet.500", "violet.400"),
-    hover: dual("violet.600", "violet.300"),
-    pressed: dual("violet.700", "violet.500"),
-    subtle: dual("violet.100", "charcoal.700"),
-    fg: dual("white", "charcoal.900"),
+    default: dual("indigo.500", "indigo.500"),
+    hover: dual("indigo.600", "indigo.400"),
+    pressed: dual("indigo.700", "indigo.600"),
+    subtle: dual("indigo.100", "charcoal.700"),
+
+    onSubtle: dual("indigo.700", "indigo.300"),
+
+    wash: dual("indigo.100", "charcoal.600"),
+    fg: dual("white", "white"),
   },
 
   accent: {
-    default: dual("magenta.500", "magenta.400"),
-    hover: dual("magenta.400", "magenta.300"),
-    pressed: dual("magenta.600", "magenta.500"),
-    subtle: dual("magenta.100", "charcoal.700"),
+    default: dual("azure.600", "azure.400"),
+    hover: dual("azure.500", "azure.300"),
+    pressed: dual("azure.700", "azure.500"),
+    subtle: dual("azure.100", "charcoal.700"),
     fg: dual("white", "charcoal.900"),
   },
 
   category: {
-    deepWork: dual("violet.500", "violet.400"),
-    learning: dual("magenta.500", "magenta.400"),
+    deepWork: dual("indigo.500", "indigo.400"),
+    learning: dual("cyan.500", "cyan.400"),
     reading: dual("teal.500", "teal.400"),
     dhikr: dual("amber.500", "amber.400"),
+  },
+
+  glass: {
+    chromeBg: dual("glassChromeBgLight", "glassChromeBgDark"),
+    panelBg: dual("glassPanelBgLight", "glassPanelBgDark"),
+    border: dual("glassBorderLight", "glassBorderDark"),
   },
 
   status: {

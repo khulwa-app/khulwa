@@ -9,7 +9,7 @@ import { Space } from "@/modules/space/types";
 export type Command = {
   id: string;
   label: string;
-  // Optional keyboard hint shown right-aligned (matches GlobalShortcuts keys).
+
   hint?: string;
   run: () => void;
 };
@@ -20,11 +20,6 @@ export type CommandGroup = {
   commands: Command[];
 };
 
-/**
- * Builds the palette command list from the live stores — every command maps to
- * an action that already exists (no new behaviour). Labels are i18n-driven so
- * the palette is bilingual like the rest of the app.
- */
 export function useCommands(): CommandGroup[] {
   const t = useTranslations("palette");
   const { isRunning, hasStarted, start, pause, reset, skip } = usePomodoro();

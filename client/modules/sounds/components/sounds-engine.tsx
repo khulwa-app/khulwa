@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SOUNDS } from "../catalog";
 import { useSounds } from "../hooks/use-sounds-store.hook";
 import { SoundLayer } from "./sound-layer";
@@ -11,13 +11,8 @@ export function SoundsEngine() {
   const master = useSounds((s) => s.master);
   const [mounted, setMounted] = useState<string[]>([]);
 
-  useEffect(() => {
-    const playingIds = Object.keys(playing).filter((id) => playing[id]);
-    setMounted((prev) => {
-      const missing = playingIds.filter((id) => !prev.includes(id));
-      return missing.length ? [...prev, ...missing] : prev;
-    });
-  }, [playing]);
+  const missing = Object.keys(playing).filter((id) => playing[id] && !mounted.includes(id));
+  if (missing.length) setMounted([...mounted, ...missing]);
 
   return (
     <>

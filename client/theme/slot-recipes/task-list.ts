@@ -1,10 +1,5 @@
 import { defineSlotRecipe } from "@chakra-ui/react";
 
-// Compact / premium task list. Rows are calm at rest (checkbox · title ·
-// muted meta) and reveal their action cluster on hover; the active doing-now
-// task carries a jade left-accent so "current focus" reads without
-// hovering. Consumed as compound components via
-// modules/tasks/components/task-list.tsx.
 export const taskListSlotRecipe = defineSlotRecipe({
   className: "khulwa-task-list",
   slots: [
@@ -33,8 +28,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       alignItems: "stretch",
       gap: "0.5",
     },
-    // One task: the row plus its (optional) expanded steps. Staggered entrance
-    // (delay set inline per index). The left-accent bar marks the active task.
+
     item: {
       position: "relative",
       display: "flex",
@@ -68,9 +62,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
       _hover: { bg: "surface.muted" },
-      // Hover-reveal of the action cluster is driven from the row (the hovered
-      // element) targeting the stable data-reveal child — only where hover
-      // exists, so touch devices keep the actions visible.
+
       "@media (hover: hover)": {
         "& [data-reveal]": {
           opacity: "0",
@@ -85,8 +77,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
         },
       },
     },
-    // Always-visible muted cluster: step count + ETA. Sits between the title
-    // and the (revealed) actions.
+
     meta: {
       display: "flex",
       alignItems: "center",
@@ -96,8 +87,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       color: "fg.subtle",
       fontVariantNumeric: "tabular-nums",
     },
-    // Layout only — the reveal animation is driven from the row slot via the
-    // data-reveal attribute on this element.
+
     actions: {
       display: "flex",
       alignItems: "center",
@@ -132,8 +122,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       "&[data-tone=muted]": { color: "fg.muted" },
       "&[data-completed]": { color: "fg.subtle", textDecoration: "line-through" },
     },
-    // Self-contained icon button (no Button recipe). Quiet by default; a soft
-    // square-rounded hover. Modifiers ride on attributes the button carries.
+
     action: {
       display: "inline-flex",
       alignItems: "center",
@@ -164,8 +153,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
         _hover: { color: "primary.hover" },
       },
     },
-    // The AI "break into steps" moment — amber (the dopamine hue), used as a
-    // quiet tinted chip. No gradient/shimmer: it stays calm and on-system.
+
     aiAction: {
       display: "inline-flex",
       alignItems: "center",
@@ -173,7 +161,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       flexShrink: "0",
       h: "7",
       paddingInline: "3",
-      rounded: "chip",
+      rounded: "controlWide",
       border: "0",
       cursor: "pointer",
       fontFamily: "body",
@@ -201,8 +189,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       flexShrink: "0",
       fontVariantNumeric: "tabular-nums",
       cursor: "text",
-      // Inner editable number inherits the muted xs meta size, not the
-      // editable slot's default sm, so the whole meta cluster reads uniform.
+
       "& [contenteditable]": { textStyle: "xs", color: "inherit" },
     },
     addStep: {

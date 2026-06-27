@@ -16,30 +16,25 @@ export function CommandPalette() {
   const groups = useCommands();
   const dismissHint = useUiPrefsStore((s) => s.dismissHint);
 
-  // Element to return focus to when the modal closes (restore focus).
   const restoreRef = useRef<HTMLElement | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   const openPalette = () => {
     restoreRef.current = (document.activeElement as HTMLElement) ?? null;
     setOpen(true);
-    // First open retires the discoverability nudge for good.
+
     dismissHint(CMD_PALETTE_HINT_ID);
   };
   const close = () => setOpen(false);
 
-  // Restore focus to the trigger once the dialog has unmounted.
   useEffect(() => {
     if (open) return;
     restoreRef.current?.focus?.();
     restoreRef.current = null;
   }, [open]);
 
-  // allowInInput so ⌘K still works while the home intention field is focused.
   useHotkey("mod+k", () => (open ? close() : openPalette()), { allowInInput: true });
 
-  // Minimal focus trap: keep Tab/Shift+Tab cycling within the dialog so focus
-  // can't escape to the page behind it.
   const trapTab = (e: React.KeyboardEvent) => {
     if (e.key !== "Tab") return;
     const root = contentRef.current;

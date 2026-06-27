@@ -5,8 +5,6 @@ import {
   type SlotRecipeProps,
 } from "@chakra-ui/react";
 
-// Floating, non-modal tool panel anchored above the dock's start cluster
-// (tasks / music / notes). The space stays visible and interactive behind it.
 export const panelSlotRecipe = defineSlotRecipe({
   className: "khulwa-panel",
   slots: ["root", "header", "title", "body"],
@@ -14,7 +12,7 @@ export const panelSlotRecipe = defineSlotRecipe({
     root: {
       position: "fixed",
       insetInlineStart: { base: "3", md: "5" },
-      // Clears the dock cluster (bottom 4/6 + item height 9).
+
       bottom: { base: "16", md: "20" },
       zIndex: "panel",
       display: "flex",
@@ -24,8 +22,7 @@ export const panelSlotRecipe = defineSlotRecipe({
       maxH: "min(70vh, 34rem)",
       overflow: "hidden",
       rounded: "surface",
-      // Dense cut of the shared glass material — same family as the dock
-      // and doing-now card, with a thicker scrim for body text.
+
       layerStyle: "overlay",
       transformOrigin: "bottom",
       _open: { animationName: "panel-in", animationDuration: "enter", animationTimingFunction: "enter" },

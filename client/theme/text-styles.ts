@@ -21,9 +21,7 @@ export const textStyles = defineTextStyles({
       color: "fg.muted",
     },
   },
-  // The home āyah, foregrounded — Klapt Arabic (geometric kufi) at display
-  // scale. Medium weight reads cleanly large; line-height leaves room for
-  // tashkeel. No letter-spacing: Arabic must never be tracked.
+
   "ayah-hero": {
     value: {
       fontFamily: "arabicDisplay",
@@ -34,14 +32,14 @@ export const textStyles = defineTextStyles({
       color: "fg.default",
     },
   },
-  // Overline / micro-label — mono-feel uppercase tag for clocks, dates, eyebrows.
+
   overline: {
     value: {
       fontFamily: "body",
       fontSize: "2xs",
       fontWeight: "medium",
       lineHeight: "1.2",
-      letterSpacing: "0.12em",
+      letterSpacing: "0.1em",
       textTransform: "uppercase",
     },
   },
@@ -60,7 +58,7 @@ export const textStyles = defineTextStyles({
       fontFamily: "display",
       fontSize: "6xl",
       fontWeight: "medium",
-      lineHeight: "1.0625",
+      lineHeight: "1.05",
       letterSpacing: "-0.025em",
     },
   },
@@ -97,7 +95,7 @@ export const textStyles = defineTextStyles({
       fontFamily: "display",
       fontSize: "2xl",
       fontWeight: "semibold",
-      lineHeight: "1.3333",
+      lineHeight: "1.33",
       letterSpacing: "-0.005em",
     },
   },
@@ -261,7 +259,7 @@ export const textStyles = defineTextStyles({
       fontFamily: "mono",
       fontSize: "numeric-display",
       fontWeight: "medium",
-      lineHeight: "1.0714",
+      lineHeight: "1.07",
       letterSpacing: "-0.02em",
       fontVariantNumeric: "tabular-nums",
     },

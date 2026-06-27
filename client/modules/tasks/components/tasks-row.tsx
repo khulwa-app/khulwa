@@ -97,8 +97,6 @@ function AddStep({ taskId }: { taskId: string }) {
   );
 }
 
-// Explicit, never automatic: AI suggests steps only when asked, appends them
-// to the existing step UI for the user to prune, and never replaces anything.
 function BreakIntoSteps({ task }: { task: Task }) {
   const t = useTranslations("tasks");
   const addStep = useTasksStore((s) => s.addStep);
@@ -122,7 +120,6 @@ function BreakIntoSteps({ task }: { task: Task }) {
   );
 }
 
-// Stagger row entrance ~40ms each, capped so a long list doesn't crawl in.
 const STAGGER_MS = 40;
 const STAGGER_CAP = 8;
 
@@ -149,14 +146,11 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
 
         <EditableBody task={task} />
 
-        {/* Always visible: a calm, muted summary of the row. */}
         <TaskList.Meta>
           {task.steps.length > 0 && <span>{`${doneSteps}/${task.steps.length}`}</span>}
           <EtaChip task={task} />
         </TaskList.Meta>
 
-        {/* Revealed on hover (kept visible on touch). The active task's
-            left-accent bar is the at-rest "doing now" signal. */}
         <TaskList.Actions data-reveal>
           <TaskList.Action
             aria-label={t("aria.expand")}

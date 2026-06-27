@@ -8,37 +8,30 @@ export const layerStyles = defineLayerStyles({
       backdropFilter: "blur(2px)",
     },
   },
-  // Brand gradients — kept as layer-styles (consistent with `noor`), not tokens.
-  "gradient-brand-radial": {
-    description: "brand hero accent — violet core blooming to magenta",
-    value: {
-      backgroundImage:
-        "radial-gradient(circle at 50% 42%, {colors.violet.500} 0%, {colors.magenta.500} 58%, {colors.magentaClear} 72%)",
-    },
-  },
-  "gradient-brand-linear": {
-    description: "brand linear accent",
-    value: {
-      backgroundImage: "linear-gradient(135deg, {colors.violet.500}, {colors.magenta.500})",
-    },
-  },
   "space-backdrop": {
-    description: "calm ambient wash behind spaces — subtle violet/magenta tints",
+    description: "vivid brand mesh behind spaces — full-bleed indigo→violet→magenta→pink",
     value: {
-      bg: "bg.base",
+      backgroundColor: "{colors.violet.50}",
       backgroundImage:
-        "radial-gradient(60% 50% at 12% 8%, {colors.violetA.200} 0%, {colors.violetClear} 70%), radial-gradient(55% 45% at 88% 92%, {colors.magentaA.200} 0%, {colors.magentaClear} 70%)",
+        "radial-gradient(58% 54% at 84% 14%, {colors.magenta.300} 0%, {colors.magentaClear} 58%)," +
+        "radial-gradient(56% 52% at 78% 86%, {colors.magenta.200} 0%, {colors.magentaClear} 56%)," +
+        "radial-gradient(70% 66% at 14% 86%, {colors.violet.300} 0%, {colors.violetClear} 62%)," +
+        "radial-gradient(52% 48% at 4% 8%, {colors.indigo.200} 0%, {colors.indigoClear} 55%)," +
+        "radial-gradient(100% 90% at 48% 54%, {colors.violet.200} 0%, {colors.violetClear} 70%)",
       _dark: {
+        backgroundColor: "{colors.indigo.700}",
         backgroundImage:
-          "radial-gradient(60% 50% at 12% 8%, {colors.violetA.100} 0%, {colors.violetClear} 70%), radial-gradient(55% 45% at 88% 92%, {colors.magentaA.100} 0%, {colors.magentaClear} 70%)",
+          "radial-gradient(62% 58% at 85% 12%, {colors.magenta.500} 0%, {colors.magentaClear} 56%)," +
+          "radial-gradient(58% 54% at 80% 88%, {colors.magenta.400} 0%, {colors.magentaClear} 55%)," +
+          "radial-gradient(74% 70% at 12% 84%, {colors.violet.500} 0%, {colors.violetClear} 62%)," +
+          "radial-gradient(58% 54% at 4% 8%, {colors.indigo.500} 0%, {colors.indigoClear} 56%)," +
+          "radial-gradient(92% 82% at 48% 52%, {colors.violet.600} 0%, {colors.violetClear} 70%)",
       },
     },
   },
   noor: {
     description: "the Noor companion — living violet→magenta light",
     value: {
-      // Richer, fuller gradient (color carries further out) + crisper edge —
-      // less blur, more colour. The glow + hue cycle live on the component.
       backgroundImage:
         "radial-gradient(circle at 50% 40%, {colors.violet.400} 0%, {colors.violet.500} 26%, {colors.magenta.500} 60%, {colors.magenta.400} 74%, {colors.magentaClear} 86%)",
       borderRadius: "full",
@@ -63,15 +56,13 @@ export const layerStyles = defineLayerStyles({
     },
   },
 
-  // Solid elevation tiers — the flat v3 surfaces (no glass/blur). Cards, the
-  // floating chrome (dock, pills, doing-now card), and overlays (panels).
   card: {
     description: "resting surface card",
     value: {
       background: "surface.card",
       borderWidth: "1px",
       borderColor: "border.subtle",
-      borderRadius: "surface", // general card tier
+      borderRadius: "surface",
       boxShadow: "sm",
     },
   },
@@ -81,28 +72,28 @@ export const layerStyles = defineLayerStyles({
       background: "surface.card",
       borderWidth: "1px",
       borderColor: "border.subtle",
-      borderRadius: "surface", // anchor cards share the one container tier
+      borderRadius: "surface",
       boxShadow: "sm",
     },
   },
   raised: {
-    description: "raised / floating chrome (dock, pills, cards)",
+    description: "glass-chrome — floating chrome (dock, timer pill, badges)",
     value: {
-      background: "bg.elevated",
+      background: "glass.chromeBg",
       borderWidth: "1px",
-      borderColor: "border.subtle",
-      // No radius here — `raised` is shared by large cards and small chrome
-      // (dock items, pills), so each consumer sets its own `rounded` token.
+      borderColor: "glass.border",
+      backdropFilter: "blur(16px) saturate(1.3)",
       boxShadow: "md",
     },
   },
   overlay: {
-    description: "modal / popover / sheet / tool panel",
+    description: "glass-panel — modals / palette / sheets / tool panel / menus",
     value: {
-      background: "bg.elevated",
+      background: "glass.panelBg",
       borderWidth: "1px",
-      borderColor: "border.default",
-      borderRadius: "surface", // modals / palette / sheets
+      borderColor: "glass.border",
+      borderRadius: "surface",
+      backdropFilter: "blur(28px) saturate(1.4)",
       boxShadow: "xl",
     },
   },

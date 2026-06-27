@@ -11,8 +11,6 @@ import { QuickAdd } from "./quick-add";
 import { TaskList } from "./task-list";
 import { TaskRow } from "./tasks-row";
 
-// Folded section (Later / Done) — today's list stays unfolded: progressive
-// disclosure keeps the panel showing only the current intention by default.
 function FoldedSection({ label, tasks }: { label: string; tasks: Task[] }) {
   if (tasks.length === 0) return null;
 

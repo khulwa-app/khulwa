@@ -12,6 +12,10 @@ import { scrollAreaSlotRecipe } from "./scroll-area";
 import { taskListSlotRecipe } from "./task-list";
 import { timerPillSlotRecipe } from "./floating-timer";
 import { soundsSlotRecipe } from "./sounds";
+import { ayahSlotRecipe } from "./ayah";
+import { navbarSlotRecipe } from "./navbar";
+import { activeTaskSlotRecipe } from "./active-task";
+import { homeSpaceSlotRecipe } from "./home-space";
 
 export const slotRecipes = {
   dock: dockSlotRecipe,
@@ -28,4 +32,8 @@ export const slotRecipes = {
   taskList: taskListSlotRecipe,
   timerPill: timerPillSlotRecipe,
   sounds: soundsSlotRecipe,
+  ayah: ayahSlotRecipe,
+  navbar: navbarSlotRecipe,
+  activeTask: activeTaskSlotRecipe,
+  homeSpace: homeSpaceSlotRecipe,
 };

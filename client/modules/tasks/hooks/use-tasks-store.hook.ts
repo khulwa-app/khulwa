@@ -16,24 +16,20 @@ export type Task = {
   isDoingNow: boolean;
   eta: number;
   priority: Priority;
-  // The quiet alternative to projects: a task is either part of today's
-  // intention or resting in "later".
+
   today: boolean;
-  // Flat steps, one level deep — enough for "split this", no tree complexity.
+
   steps: Step[];
   createdAt: number;
   completedAt: number | null;
 };
 
-// Default until the user (or the background AI estimate) sets a real value.
 export const DEFAULT_ETA = 30;
 
 type TasksState = {
   tasks: Task[];
   addTask: (body: string) => string;
-  // One-tap session: create a task and make it the sole doing-now in a single
-  // commit, so the home intention input can go straight to Focus. Returns the
-  // new id so the AI eta estimate can patch it later (same as addTask).
+
   quickStart: (body: string) => string;
   removeTask: (id: string) => void;
   updateTask: (id: string, patch: Partial<Omit<Task, "id">>) => void;
@@ -54,9 +50,7 @@ export const useTasksStore = create<TasksState>()(
   persist(
     (set) => ({
       tasks: [],
-      // Tasks are created from quick-add text, never empty — avoids junk
-      // empty rows accumulating in localStorage. Returns the new id so
-      // background work (AI eta estimate) can patch the task later.
+
       addTask: (body: string) => {
         const id = crypto.randomUUID();
         set((state) => ({
@@ -82,7 +76,6 @@ export const useTasksStore = create<TasksState>()(
         const id = crypto.randomUUID();
         set((state) => ({
           tasks: [
-            // Clear any prior doing-now — only one intention at a time.
             ...state.tasks.map((task) => ({ ...task, isDoingNow: false })),
             {
               id,
@@ -107,7 +100,7 @@ export const useTasksStore = create<TasksState>()(
           tasks: patchTask(state.tasks, id, (task) => ({
             completed: !task.completed,
             completedAt: !task.completed ? Date.now() : null,
-            // Completing the doing-now task releases it (the home card clears).
+
             isDoingNow: task.completed ? task.isDoingNow : false,
           })),
         })),
@@ -115,8 +108,7 @@ export const useTasksStore = create<TasksState>()(
         set((state) => ({
           tasks: state.tasks.map((task) => ({ ...task, isDoingNow: task.id === id ? !task.isDoingNow : false })),
         })),
-      toggleToday: (id) =>
-        set((state) => ({ tasks: patchTask(state.tasks, id, (task) => ({ today: !task.today })) })),
+      toggleToday: (id) => set((state) => ({ tasks: patchTask(state.tasks, id, (task) => ({ today: !task.today })) })),
       addStep: (taskId, body) =>
         set((state) => ({
           tasks: patchTask(state.tasks, taskId, (task) => ({
@@ -146,8 +138,7 @@ export const useTasksStore = create<TasksState>()(
       name: "khulwa-tasks",
       storage: createJSONStorage(() => localStorage),
       version: 3,
-      // v1 allowed empty-body tasks and shipped a seeded mock — drop both.
-      // v2 → v3 adds today/steps/timestamps; existing tasks land in "today".
+
       migrate: (persisted) => {
         const state = persisted as { tasks?: Array<Partial<Task> & { id: string; body: string }> };
         const now = Date.now();

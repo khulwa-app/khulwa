@@ -17,9 +17,7 @@ export function QuickAdd() {
     if (!body) return;
     const id = addTask(body);
     setDraft("");
-    // Fire-and-forget: the task exists instantly with the default eta; the
-    // AI estimate quietly improves it when it lands — unless the user set
-    // their own value first (never fight the human). Failure changes nothing.
+
     void estimateEta(body).then((eta) => {
       if (eta === null) return;
       const { tasks, updateTask } = useTasksStore.getState();
@@ -32,13 +30,7 @@ export function QuickAdd() {
     <InputGroup
       flexShrink="0"
       endElement={
-        <IconButton
-          visual="ghost"
-          size="sm"
-          aria-label={t("addTask")}
-          disabled={draft.trim() === ""}
-          onClick={submit}
-        >
+        <IconButton variant="ghost" size="sm" aria-label={t("addTask")} disabled={draft.trim() === ""} onClick={submit}>
           <Plus size={16} />
         </IconButton>
       }

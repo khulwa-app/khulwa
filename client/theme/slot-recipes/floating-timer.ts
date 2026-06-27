@@ -5,16 +5,10 @@ import {
   type SlotRecipeProps,
 } from "@chakra-ui/react";
 
-// The pomodoro "mini player": a quiet glass pill floating bottom-center,
-// same chrome family as the dock. data-paused recedes the pill (a paused
-// session stays visible — forgetting it is the focus-loss the pill
-// prevents); data-phase=focus switches the dot to the jade accent.
 export const timerPillSlotRecipe = defineSlotRecipe({
   className: "khulwa-timer-pill",
   slots: ["positioner", "root", "dot"],
   base: {
-    // Centering transform lives on the always-mounted positioner so the
-    // panel-in/out animation (which also transforms) can't fight it.
     positioner: {
       position: "fixed",
       bottom: { base: "4", md: "6" },
@@ -26,9 +20,9 @@ export const timerPillSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       gap: "2",
-      h: "9",
+      h: "11",
       paddingInline: "4",
-      rounded: "control",
+      rounded: "pill",
       border: "0",
       cursor: "pointer",
       layerStyle: "raised",

@@ -5,10 +5,6 @@ import { GoogleGenAI, Type } from "@google/genai";
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 const MODEL = "gemini-2.5-flash";
 
-// Both actions treat AI as optional: any failure (no key, 429, bad JSON)
-// returns null and the caller silently keeps what it has — never an error
-// toast in a calm app.
-
 export async function estimateEta(body: string): Promise<number | null> {
   try {
     const response = await ai.models.generateContent({

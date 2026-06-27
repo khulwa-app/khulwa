@@ -1,29 +1,40 @@
 import { defineTokens } from "@chakra-ui/react";
 
-// Primitive palette ONLY. Raw hex/rgba is permitted here and NOWHERE else.
-// Scale names (violet, magenta, sand, charcoal, teal, amber, green, gold, red)
-// never collide with semantic role names. The semantic layer owns all roles and
-// references these via {colors.<scale>.<step>}.
 export const colors = defineTokens.colors({
   white: { value: "#FFFFFF" },
   black: { value: "#000000" },
 
-  // Modal/backdrop scrim — rgba allowed in primitives only.
   scrim: { value: "rgba(20, 18, 28, 0.55)" },
   scrimStrong: { value: "rgba(10, 9, 14, 0.7)" },
 
-  // 0-alpha violet/magenta — explicit final stops for Safari gradient banding.
-  violetClear: { value: "rgba(107, 92, 246, 0)" },
+  whiteA: {
+    strong: { value: "rgba(255, 255, 255, 0.98)" },
+    mid: { value: "rgba(255, 255, 255, 0.84)" },
+    soft: { value: "rgba(255, 255, 255, 0.70)" },
+  },
+  inkA: {
+    strong: { value: "rgba(18, 16, 26, 0.94)" },
+    mid: { value: "rgba(18, 16, 26, 0.74)" },
+    soft: { value: "rgba(18, 16, 26, 0.60)" },
+  },
+
+  glassChromeBgLight: { value: "rgba(255, 255, 255, 0.72)" },
+  glassChromeBgDark: { value: "rgba(27, 24, 34, 0.70)" },
+  glassPanelBgLight: { value: "rgba(255, 255, 255, 0.86)" },
+  glassPanelBgDark: { value: "rgba(27, 24, 34, 0.86)" },
+  glassBorderLight: { value: "rgba(20, 18, 28, 0.08)" },
+  glassBorderDark: { value: "rgba(255, 255, 255, 0.09)" },
+
+  indigoClear: { value: "rgba(90, 77, 230, 0)" },
+  violetClear: { value: "rgba(108, 76, 224, 0)" },
   magentaClear: { value: "rgba(236, 72, 153, 0)" },
 
-  // Low-alpha brand tints — the calm space backdrop wash (P3). Keeps semantic
-  // + layer-styles hex/rgba-free.
   violetA: {
-    100: { value: "rgba(107, 92, 246, 0.06)" },
-    200: { value: "rgba(107, 92, 246, 0.10)" },
-    300: { value: "rgba(107, 92, 246, 0.16)" },
-    400: { value: "rgba(107, 92, 246, 0.28)" },
-    500: { value: "rgba(107, 92, 246, 0.45)" },
+    100: { value: "rgba(108, 76, 224, 0.06)" },
+    200: { value: "rgba(108, 76, 224, 0.10)" },
+    300: { value: "rgba(108, 76, 224, 0.16)" },
+    400: { value: "rgba(108, 76, 224, 0.28)" },
+    500: { value: "rgba(108, 76, 224, 0.45)" },
   },
   magentaA: {
     100: { value: "rgba(236, 72, 153, 0.06)" },
@@ -33,21 +44,58 @@ export const colors = defineTokens.colors({
     500: { value: "rgba(236, 72, 153, 0.48)" },
   },
 
-  // Primary — violet. 500 is the brand anchor; hover one step darker, pressed two.
+  indigo: {
+    50: { value: "#F2F1FE" },
+    100: { value: "#E6E4FD" },
+    200: { value: "#CBC7FB" },
+    300: { value: "#A39BF5" },
+    400: { value: "#6E61E8" },
+    500: { value: "#5A4DE6" },
+    600: { value: "#4A3DCF" },
+    700: { value: "#3D32AB" },
+    800: { value: "#302785" },
+    900: { value: "#221C5C" },
+  },
+
+  azure: {
+    50: { value: "#EEF3FF" },
+    100: { value: "#DCE6FE" },
+    200: { value: "#BCCEFD" },
+    300: { value: "#8FAAFA" },
+    400: { value: "#5C82F4" },
+    500: { value: "#3D63E8" },
+    600: { value: "#2F4ED1" },
+    700: { value: "#283FA6" },
+    800: { value: "#233680" },
+    900: { value: "#1E2D5E" },
+  },
+
+  cyan: {
+    50: { value: "#E7FAFD" },
+    100: { value: "#C6F1F8" },
+    200: { value: "#93E3F0" },
+    300: { value: "#54CDE3" },
+    400: { value: "#25B4D0" },
+    500: { value: "#0E9BBA" },
+    600: { value: "#0C7E99" },
+    700: { value: "#0C6377" },
+    800: { value: "#0C4D5C" },
+    900: { value: "#0A3B47" },
+  },
+
   violet: {
     50: { value: "#F4F2FE" },
     100: { value: "#ECEAFE" },
     200: { value: "#D6D1FB" },
-    300: { value: "#B7AEF8" },
+    300: { value: "#A78BFA" },
     400: { value: "#9385F4" },
-    500: { value: "#6B5CF6" },
-    600: { value: "#5B4AE8" },
+    500: { value: "#6C4CE0" },
+    600: { value: "#5B3DD0" },
     700: { value: "#4C3CD4" },
     800: { value: "#3B2FA6" },
     900: { value: "#2A2178" },
   },
 
-  // Accent — magenta. 400 is hover-up (brighter), 600 pressed (darker).
   magenta: {
     50: { value: "#FDF2F8" },
     100: { value: "#FCE7F1" },
@@ -61,22 +109,20 @@ export const colors = defineTokens.colors({
     900: { value: "#6E1A43" },
   },
 
-  // Warm neutral — light surfaces, borders, and the inverse/fg near-black.
   sand: {
     50: { value: "#FBFAF7" },
-    100: { value: "#F7F4EF" },
+    100: { value: "#F7F5F0" },
     200: { value: "#F1EDE4" },
     300: { value: "#E7E2D6" },
     400: { value: "#DDD7CA" },
     500: { value: "#C9C2B2" },
     600: { value: "#ADA694" },
-    700: { value: "#6E6A60" },
+    700: { value: "#6B6B6B" },
     800: { value: "#444038" },
     900: { value: "#2B2823" },
     950: { value: "#1C1C1C" },
   },
 
-  // Dark base — violet-tinted charcoal. 900 darkest; 50 lightest text.
   charcoal: {
     50: { value: "#EDECEF" },
     100: { value: "#D6D4DA" },
@@ -90,35 +136,32 @@ export const colors = defineTokens.colors({
     900: { value: "#14121A" },
   },
 
-  // Reading category.
   teal: {
     50: { value: "#ECFBF8" },
     100: { value: "#D0F4ED" },
     200: { value: "#A2E9DC" },
     300: { value: "#6FD8C7" },
     400: { value: "#43C7B3" },
-    500: { value: "#2BB8A6" },
+    500: { value: "#14B8A6" },
     600: { value: "#1F9587" },
     700: { value: "#19756B" },
     800: { value: "#155A53" },
     900: { value: "#114540" },
   },
 
-  // Dhikr / AI category.
   amber: {
     50: { value: "#FEF6E9" },
     100: { value: "#FCE9C8" },
     200: { value: "#F9D693" },
     300: { value: "#F6C260" },
     400: { value: "#F4B44C" },
-    500: { value: "#F2A93C" },
+    500: { value: "#F59E0B" },
     600: { value: "#D88E22" },
     700: { value: "#AE6F1A" },
     800: { value: "#855415" },
     900: { value: "#623E10" },
   },
 
-  // Success.
   green: {
     50: { value: "#EAF8F1" },
     100: { value: "#DBF1E7" },
@@ -132,7 +175,6 @@ export const colors = defineTokens.colors({
     900: { value: "#0B3A28" },
   },
 
-  // Warning.
   gold: {
     50: { value: "#FCF3E2" },
     100: { value: "#FBEED6" },
@@ -146,7 +188,6 @@ export const colors = defineTokens.colors({
     900: { value: "#503209" },
   },
 
-  // Danger.
   red: {
     50: { value: "#FCEEEF" },
     100: { value: "#FBE3DD" },
@@ -160,7 +201,5 @@ export const colors = defineTokens.colors({
     900: { value: "#5C1A25" },
   },
 
-  // Focus ring — resolves to violet 500. Kept as a primitive so shadows.focus
-  // and border.focus stay token-driven.
-  ring: { value: "#6B5CF6" },
+  ring: { value: "#5A4DE6" },
 });

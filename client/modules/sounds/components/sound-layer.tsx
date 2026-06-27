@@ -22,8 +22,11 @@ export function SoundLayer({
   const ref = useRef<ReactHowler>(null);
   const target = volume * master;
   const targetRef = useRef(target);
-  targetRef.current = target;
   const mounted = useRef(false);
+
+  useEffect(() => {
+    targetRef.current = target;
+  }, [target]);
 
   const fadeIn = () => {
     const howl = ref.current?.howler;

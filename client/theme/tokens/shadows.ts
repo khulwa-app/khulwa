@@ -1,8 +1,5 @@
 import { defineTokens } from "@chakra-ui/react";
 
-// Raw rgba elevation primitives — permitted here (tokens layer) only. Light
-// shadows are warm-neutral; dark shadows are deeper/cooler so elevation still
-// reads against charcoal surfaces. Semantic `shadows` picks light vs dark.
 export const shadows = defineTokens.shadows({
   focus: { value: "0 0 0 2px {colors.bg.elevated}, 0 0 0 4px {colors.ring}" },
 

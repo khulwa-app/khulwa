@@ -235,6 +235,36 @@
       "rest": "Rest"
     }
   },
+  "landing": {
+    "nav": {
+      "signIn": "Sign in",
+      "getStarted": "Get started"
+    },
+    "hero": {
+      "eyebrow": "Sacred solitude",
+      "headline": "A retreat for your deep work.",
+      "subcopy": "Quiet by design. Inspired by the Sufi خلوة — a private chamber to focus on one thing at a time.",
+      "cta": "Start focusing"
+    },
+    "features": {
+      "0": {
+        "title": "One intention",
+        "body": "Name your one thing and step into a single, undistracted khulwa."
+      },
+      "1": {
+        "title": "Ambient focus",
+        "body": "Layer calm soundscapes to settle into deep, unhurried work."
+      },
+      "2": {
+        "title": "Gentle streaks",
+        "body": "Track the rhythm of your focus — without the pressure."
+      }
+    },
+    "quote": {
+      "text": "“In khulwa, the soul finds its measure.”",
+      "attribution": "— Ibn Arabi"
+    }
+  },
   "login": {
     "metadata": {
       "title": "Sign in · Khulwa",
@@ -242,23 +272,26 @@
     },
     "form": {
       "title": "Welcome back",
-      "subtitle": "Enter your retreat",
+      "subtitle": "Sign in to continue your focus.",
+      "signupTitle": "Create your khulwa",
+      "signupSubtitle": "One account, all your khulwas.",
+      "continueWithGoogle": "Continue with Google",
+      "divider": "or",
       "fields": {
+        "name": "Name",
         "email": "Email",
         "password": "Password"
       },
       "submit": "Sign in",
-      "forgotPassword": "Forgot password?",
-      "noAccount": "No account?",
-      "createOne": "Create one"
-    },
-    "brandPanel": {
-      "logoAria": "Khulwa logo",
-      "eyebrow": "SACRED SOLITUDE",
-      "headline": "A retreat for your deep work.",
-      "description": "Quiet by design. Inspired by the Sufi خلوة — a private chamber for contemplation.",
-      "quote": "“In khulwa, the soul finds its measure.”",
-      "quoteAttribution": "— Ibn Arabi · 13th c."
+      "submitting": "Please wait",
+      "signupSubmit": "Create account",
+      "noAccount": "New here?",
+      "createOne": "Create an account",
+      "haveAccount": "Already have an account?",
+      "errors": {
+        "generic": "Something went wrong.",
+        "network": "Could not reach the server. Is it running?"
+      }
     }
   },
   "signUp": {

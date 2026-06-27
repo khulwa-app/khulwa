@@ -1,8 +1,5 @@
 import { defineTokens } from "@chakra-ui/react";
 
-// Unified motion vocabulary. Enter is ease-out (decelerate), exit ease-in
-// (accelerate) and ~70% of enter so dismissals feel responsive. Press feedback
-// uses `instant`. Recipes reference these by name; never inline raw ms.
 export const durations = defineTokens.durations({
   instant: { value: "100ms" },
   enter: { value: "200ms" },

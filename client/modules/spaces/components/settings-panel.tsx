@@ -5,8 +5,6 @@ import { SlidersHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Panel, SidePanel, usePanels } from "@/modules/panels";
 
-// Minimal Settings shell. The color-mode toggle lives in the navbar, so this
-// panel currently holds a calm placeholder until further preferences land.
 export function SettingsPanel() {
   const t = useTranslations("settings");
   const open = usePanels((s) => s.open === Panel.Settings);

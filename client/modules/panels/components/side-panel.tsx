@@ -13,8 +13,6 @@ interface SidePanelProps {
   children: React.ReactNode;
 }
 
-// Non-modal floating panel above the dock: no scrim, the space behind stays
-// interactive. Esc closes it as a keyboard escape route.
 export function SidePanel({ open, onClose, title, children }: SidePanelProps) {
   const tAria = useTranslations("panels.aria");
 
@@ -32,7 +30,7 @@ export function SidePanel({ open, onClose, title, children }: SidePanelProps) {
       <Panel.Root role="dialog" aria-label={title}>
         <Panel.Header>
           <Panel.Title>{title}</Panel.Title>
-          <IconButton visual="ghost" size="sm" aria-label={tAria("close")} onClick={onClose}>
+          <IconButton variant="ghost" size="sm" aria-label={tAria("close")} onClick={onClose}>
             <X size={16} />
           </IconButton>
         </Panel.Header>

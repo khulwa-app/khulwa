@@ -5,10 +5,11 @@ export const menuSlotRecipe = defineSlotRecipe({
   slots: ["content", "item", "itemText", "itemGroup", "itemGroupLabel", "separator", "indicator"],
   base: {
     content: {
-      bg: "bg.elevated",
+      bg: "glass.panelBg",
       borderWidth: "1px",
-      borderColor: "border.subtle",
+      borderColor: "glass.border",
       borderRadius: "surface",
+      backdropFilter: "blur(28px) saturate(1.4)",
       boxShadow: "lg",
       padding: "1.5",
       minW: "11rem",

@@ -30,12 +30,7 @@ export default function SoundsPanel() {
         </ScrollArea>
 
         <HStack flexShrink="0" gap="2" align="center">
-          <IconButton
-            visual="ghost"
-            size="sm"
-            aria-label={master ? "Mute" : "Unmute"}
-            onClick={toggleMaster}
-          >
+          <IconButton variant="ghost" size="sm" aria-label={master ? "Mute" : "Unmute"} onClick={toggleMaster}>
             {master ? <Volume2 size={18} /> : <VolumeOff size={18} />}
           </IconButton>
           <VolumeSlider flex="1" value={master} onChange={setMaster} label="Master volume" />

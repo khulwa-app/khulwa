@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { ayat } from "../ayat";
 
-// Advance roughly every 90s — within the "1–2 minutes" feel without being
-// restless. Starts at 0 so SSR and first client paint agree.
 const ROTATE_MS = 90_000;
 
 export function useRotatingAyah() {

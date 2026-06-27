@@ -11,8 +11,7 @@ type UsePomodoroReturn = {
   currentRound: number;
   totalRounds: number;
   isRunning: boolean;
-  // True once the current phase has elapsed any time (paused mid-phase) —
-  // distinguishes "Resume" from a fresh "Begin".
+
   hasStarted: boolean;
   completionCount: number;
   lastCompletedPhase: PomodoroPhase | null;

@@ -1,10 +1,8 @@
-import { api } from "@/services/http";
-import { applyDeleteTask } from "./optimistic";
-import { useTaskMutation } from "./use-task-mutation.hook";
+"use client";
+
+import { useTasksStore } from "./use-tasks-store.hook";
 
 export function useDeleteTask() {
-  return useTaskMutation(
-    (id: string) => api.delete<void>(`/tasks/${id}`),
-    (tasks, id) => applyDeleteTask(tasks, id),
-  );
+  const deleteTask = useTasksStore((s) => s.deleteTask);
+  return { mutate: (id: string) => deleteTask(id) };
 }

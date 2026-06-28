@@ -53,18 +53,18 @@ export const activeTaskSlotRecipe = defineSlotRecipe({
       flexShrink: "0",
     },
     task: {
-      textStyle: "body-sm",
+      textStyle: "body-md",
       color: "fg.onMeshMuted",
       lineClamp: 1,
       minW: "0",
     },
     eta: {
-      textStyle: "overline",
+      textStyle: "label-lg",
       color: "fg.onMeshSubtle",
       flexShrink: "0",
       whiteSpace: "nowrap",
     },
-    hint: { textStyle: "overline", color: "fg.onMeshSubtle" },
+    hint: { textStyle: "label-lg", color: "fg.onMeshSubtle" },
   },
 });
 

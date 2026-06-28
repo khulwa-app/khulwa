@@ -78,8 +78,7 @@ export function FocusSpace() {
           justify="center"
           align="center"
           paddingInline="6"
-          paddingBlock={{ base: "20", md: "24" }}
-          paddingBlockEnd={{ base: "24", md: "28" }}
+          paddingBlock={{ base: "16", md: "20" }}
         >
           <VStack gap={{ base: "5", md: "7" }} align="center">
             <NoorOrb size={72} bloom={blooming} />

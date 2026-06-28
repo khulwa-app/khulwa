@@ -10,7 +10,6 @@ export const CATEGORIES = focusSession.category.enumValues;
 
 export type FocusSessionInput = {
   userId: string;
-  taskId?: string | null;
   category: Category | null;
   durationSeconds: number;
   startedAt: Date;
@@ -53,7 +52,6 @@ export async function recordFocusSession(db: DB, input: FocusSessionInput) {
   return db.transaction(async (tx) => {
     await tx.insert(focusSession).values({
       userId: input.userId,
-      taskId: input.taskId ?? null,
       category: input.category,
       durationSeconds: input.durationSeconds,
       startedAt: input.startedAt,

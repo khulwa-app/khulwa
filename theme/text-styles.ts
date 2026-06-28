@@ -4,10 +4,21 @@ export const textStyles = defineTextStyles({
   overline: {
     value: {
       fontFamily: "body",
-      fontSize: "2xs",
+      fontSize: "xs",
       fontWeight: "medium",
       lineHeight: "1.2",
       letterSpacing: "0.1em",
+      textTransform: "uppercase",
+    },
+  },
+
+  "hero-meta": {
+    value: {
+      fontFamily: "body",
+      fontSize: { base: "sm", md: "md" },
+      fontWeight: "medium",
+      lineHeight: "1.4",
+      letterSpacing: "0.08em",
       textTransform: "uppercase",
     },
   },
@@ -165,10 +176,10 @@ export const textStyles = defineTextStyles({
   "clock-display": {
     value: {
       fontFamily: "display",
-      fontSize: { base: "xl", md: "2xl" },
-      fontWeight: "semibold",
+      fontSize: { base: "6xl", md: "8xl" },
+      fontWeight: "bold",
       lineHeight: "1",
-      letterSpacing: "0",
+      letterSpacing: "-0.03em",
       fontVariantNumeric: "tabular-nums",
     },
   },

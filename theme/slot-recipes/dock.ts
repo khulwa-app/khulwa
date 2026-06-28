@@ -15,7 +15,7 @@ export const dockSlotRecipe = defineSlotRecipe({
       zIndex: "dock",
       display: "flex",
       alignItems: "center",
-      gap: "2",
+      gap: "1.5",
     },
     item: {
       position: "relative",
@@ -61,7 +61,7 @@ export const dockSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
       flexShrink: "0",
-      "& svg": { boxSize: "0.9375rem" },
+      "& svg": { boxSize: "1.125rem" },
     },
 
     group: {

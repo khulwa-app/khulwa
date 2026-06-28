@@ -1,10 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { api } from "@/services/http";
-import type { Task } from "./tasks.types";
-import { TASKS_QUERY_KEY } from "../query/constants";
+"use client";
 
-export const DEFAULT_ETA = 15;
+import { useTasksStore } from "./use-tasks-store.hook";
+import { useTasksHydrated } from "./use-tasks-hydrated.hook";
+
+export { DEFAULT_ETA } from "./use-tasks-store.hook";
 
 export function useTasks() {
-  return useQuery({ queryKey: [TASKS_QUERY_KEY], queryFn: () => api.get<Task[]>("/tasks") });
+  const hydrated = useTasksHydrated();
+  const tasks = useTasksStore((s) => s.tasks);
+  return { data: hydrated ? tasks : undefined, isPending: !hydrated };
 }

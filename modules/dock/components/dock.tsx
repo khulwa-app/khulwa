@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, House, Lightbulb, TreeDeciduous, ListTodo, Music, Pen, Repeat, BarChart3, Settings, Expand, type LucideIcon } from "lucide-react";
+import { House, Lightbulb, TreeDeciduous, ListTodo, Music, Pen, Repeat, BarChart3, Settings, Expand, type LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
@@ -11,7 +11,6 @@ import SoundsPanel from "@/modules/sounds/sounds-panel";
 import { useSounds } from "@/modules/sounds";
 import { RhythmPanel } from "@/modules/rhythm";
 import { ProgressPanel } from "@/modules/progress";
-import { useStreak } from "@/services/progress";
 import { SettingsPanel } from "@/modules/settings";
 import { NotesPanel } from "@/modules/notes";
 
@@ -20,15 +19,11 @@ export function DockNav() {
   const tTools = useTranslations("dock.tools");
   const tChrome = useTranslations("dock.chrome");
   const tAria = useTranslations("dock.aria");
-  const tBadge = useTranslations("components.badge");
   const activeSpace = useSpace((s) => s.activeSpace);
   const changeSpace = useSpace((s) => s.changeSpace);
   const openPanel = usePanels((s) => s.open);
   const togglePanel = usePanels((s) => s.toggle);
   const ambientPlaying = useSounds((s) => Object.values(s.playing).some(Boolean));
-
-  const { data: streak } = useStreak();
-  const streakCount = streak?.current ?? 0;
 
   const navItem = (space: Space, Icon: LucideIcon, label: string) => (
     <Dock.GroupItem
@@ -85,11 +80,6 @@ export function DockNav() {
       <SettingsPanel />
 
       <Dock.Root side="end" role="toolbar" aria-label={tAria("controls")}>
-        <Dock.Streak title={tBadge("streak", { count: streakCount })} aria-label={tBadge("streak", { count: streakCount })}>
-          <Flame aria-hidden />
-          <span>{streakCount}</span>
-        </Dock.Streak>
-
         <Dock.Group as="nav" aria-label={tAria("nav")}>
           {navItem(Space.Ambient, TreeDeciduous, tDest("ambient"))}
           {navItem(Space.Home, House, tDest("home"))}

@@ -16,7 +16,7 @@ interface LogoProps {
   variant?: "white" | "dark";
 }
 
-export function Logo({ href = Routes.Home, size = "7", variant }: LogoProps) {
+export function Logo({ href = Routes.Home, size = "16", variant }: LogoProps) {
   const t = useTranslations("components.logo");
 
   let mark;

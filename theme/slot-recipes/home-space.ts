@@ -35,8 +35,7 @@ export const homeSpaceSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: { base: "8", md: "10" },
       paddingInline: "6",
-      paddingBlock: { base: "20", md: "24" },
-      paddingBlockEnd: { base: "24", md: "28" },
+      paddingBlock: { base: "16", md: "20" },
     },
     intro: {
       display: "flex",

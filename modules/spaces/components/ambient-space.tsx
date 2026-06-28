@@ -18,7 +18,7 @@ export function AmbientSpace() {
         align="center"
         gap="4"
         paddingInline="6"
-        paddingBlock={{ base: "20", md: "24" }}
+        paddingBlock={{ base: "16", md: "20" }}
       >
         <Text textStyle="heading-h2" color="fg.default">
           {t("title")}

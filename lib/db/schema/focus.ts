@@ -1,7 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { pgTable, pgEnum, text, integer, timestamp, date, unique } from "drizzle-orm/pg-core";
 import { user } from "./auth";
-import { task } from "./task";
 
 export const category = pgEnum("category", ["deepWork", "learning", "reading", "dhikr"]);
 
@@ -13,7 +12,6 @@ export const focusSession = pgTable("focus_session", {
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
 
-  taskId: text("task_id").references(() => task.id, { onDelete: "set null" }),
   category: category("category"),
   durationSeconds: integer("duration_seconds").notNull(),
   startedAt: timestamp("started_at", { withTimezone: true }).notNull(),

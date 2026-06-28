@@ -11,7 +11,6 @@ export type ProgressResponse = {
 };
 
 export type LogFocusInput = {
-  taskId?: string | null;
   category: CategoryId | null;
   durationSeconds: number;
   startedAt: string;

@@ -11,10 +11,10 @@ export const homeSpaceSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       position: "relative",
-      h: "full",
+      minH: "full",
       w: "full",
       bg: "bg.base",
-      overflow: "hidden",
+      overflowX: "hidden",
     },
     corner: {
       position: "absolute",
@@ -29,19 +29,20 @@ export const homeSpaceSlotRecipe = defineSlotRecipe({
       zIndex: 1,
       display: "flex",
       flexDirection: "column",
-      h: "full",
+      minH: "full",
       w: "full",
       justifyContent: "center",
       alignItems: "center",
-      gap: "10",
-      padding: "6",
+      gap: { base: "8", md: "10" },
+      paddingInline: "6",
+      paddingBlock: { base: "20", md: "24" },
       paddingBlockEnd: { base: "24", md: "28" },
     },
     intro: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      gap: "6",
+      gap: { base: "5", md: "6" },
       textAlign: "center",
     },
     clock: {

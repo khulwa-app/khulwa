@@ -1,8 +1,11 @@
 "use client";
 
-import { HStack, Text, VStack } from "@chakra-ui/react";
+import NextLink from "next/link";
+import { HStack, Link, Text, VStack } from "@chakra-ui/react";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SidePanel, usePanels, Panel } from "@/modules/panels";
+import { Routes } from "@/constants/routes";
 import { CATEGORIES, formatDuration, type CategoryId } from "../categories";
 import { useProgress } from "@/services/progress";
 import { CategoryBar } from "./category-bar";
@@ -36,6 +39,13 @@ export function ProgressPanel() {
             <CategoryBar key={c.id} id={c.id} color={c.color} seconds={today[c.id] ?? 0} max={max} />
           ))}
         </VStack>
+
+        <Link asChild textStyle="label-md" color="fg.muted" alignSelf="end" mt="auto">
+          <NextLink href={Routes.Progress} onClick={close}>
+            {t("seeAll")}
+            <ArrowRight size={14} />
+          </NextLink>
+        </Link>
       </VStack>
     </SidePanel>
   );

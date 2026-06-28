@@ -67,11 +67,21 @@ export function FocusSpace() {
   }, [blooming]);
 
   return (
-    <Box position="relative" h="full" w="full" bg="bg.base" overflow="hidden">
+    <Box position="relative" minH="full" w="full" bg="bg.base" overflowX="hidden">
       <SpaceBackground />
       {hydrated && (
-        <VStack position="relative" zIndex={1} h="full" w="full" justify="center" align="center" padding="6">
-          <VStack gap="7" align="center">
+        <VStack
+          position="relative"
+          zIndex={1}
+          minH="full"
+          w="full"
+          justify="center"
+          align="center"
+          paddingInline="6"
+          paddingBlock={{ base: "20", md: "24" }}
+          paddingBlockEnd={{ base: "24", md: "28" }}
+        >
+          <VStack gap={{ base: "5", md: "7" }} align="center">
             <NoorOrb size={72} bloom={blooming} />
 
             <PhaseTabs phase={phase} currentRound={currentRound} totalRounds={totalRounds} onPhaseChange={setPhase} />

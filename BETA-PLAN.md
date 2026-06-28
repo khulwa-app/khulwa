@@ -10,23 +10,32 @@ Tasks are ordered; later cards assume earlier ones. Each card is independently s
 
 ## 0. Conventions & ground rules (read first, every task)
 
-**Stack.** Client: Next.js 16 (`client/`, React 19, Chakra UI v3, Zustand, next-intl, better-auth
-react client). Server: Express 5 (`server/`, better-auth, Drizzle ORM, Postgres/Neon).
+> **STRUCTURE UPDATE (28 Jun 2026):** The Express `server/` was folded into the Next.js app and the
+> `client/` wrapper was flattened — **the single Next.js app IS the repo root.** Cards below may still
+> show old paths: map `client/X` → `X`, and `server/src/Y` → `lib/Y` (Drizzle services → `lib/services/`,
+> Express routes → `app/api/**/route.ts`). Backend now runs in-app; there is no separate server.
+
+**Stack.** Single Next.js 16 app at the repo root (React 19, Chakra UI v3, Zustand, next-intl,
+TanStack Query, better-auth). Backend runs **in the app**: route handlers in `app/api/**` calling
+Drizzle (Neon Postgres) via `lib/` (db, schema, auth, email, services, validation). No `/api` rewrite proxy.
 
 **Run.**
-- Client: `cd client && yarn dev` (`:3000`). Server: `cd server && yarn dev` (`:4000`).
-- `/api/*` on the client is rewritten to the server (`client/next.config.ts`). Auth cookies stay first-party.
-- DB: `cd server && yarn db:push` (apply schema), `yarn db:studio` (inspect).
-- After **any** Chakra theme change: `cd client && yarn typegen`.
+- `yarn dev` (`:3000`) — one process serves UI + API.
+- DB: `yarn db:push` (apply schema), `yarn db:studio` (inspect). Schema in `lib/db/schema/`.
+- After **any** Chakra theme change: `yarn typegen`.
+
+**Layering (hard rule).** Server-side code (SSR, route handlers, session/DB) lives in `app/` + `lib/`.
+Pure client UI lives in `modules/**`. Server-data-access (HTTP + TanStack) lives in `services/<domain>`.
+Never drive frequent UI toggles through URL navigation on a dynamic route — use Zustand (see spaces/panels).
 
 **Definition of done (every task).**
-1. `cd client && yarn lint && npx tsc --noEmit` clean; `cd server && npx tsc --noEmit` clean.
-2. No raw hex/px in client TSX — use tokens / `textStyle` / `layerStyle` / recipes (see `client/DESIGN-SYSTEM.md`).
+1. `yarn lint && npx tsc --noEmit` clean.
+2. No raw hex/px in TSX — use tokens / `textStyle` / `layerStyle` / recipes (see `DESIGN-SYSTEM.md`).
 3. Both light & dark verified for any UI.
-4. i18n: every user-facing string added to `client/messages/en.json` (+ `ar.json`) via `useTranslations`, never hardcoded.
-5. New square/labelled controls follow the radius tiers and the squircle list (`client/app/globals.css`).
+4. i18n: every user-facing string added to `messages/en.json` (+ `ar.json`) via `useTranslations`, never hardcoded.
+5. New square/labelled controls follow the radius tiers and the squircle list (`app/globals.css`).
 
-**Schema is already live.** All tables exist (`server/src/db/schema/`): `task`, `taskStep`,
+**Schema is already live.** All tables exist (`lib/db/schema/`): `task`, `taskStep`,
 `focusSession`, `dailyCategoryTotal`, `streak`, `note`, + better-auth tables. **No new migrations
 needed for Phase 1** unless a card says so.
 
@@ -137,7 +146,7 @@ category using `category.*` color tokens. Respect reduced-motion (disable chart 
 empty state ("No focus logged yet"). Keep the existing ProgressPanel as the quick glance; link "See all → /app/progress".
 **Acceptance.** Route renders real data, both themes, mobile width OK, empty state shown for new users.
 
-### P2.2 — Remove % progress from the dock
+### P2.2 — Remove % progress from the dock — ✅ DONE (dock shows real streak via `useStreak`; no % indicator remains)
 **Goal.** Declutter the dock per roadmap.
 **Files.** `client/modules/dock/components/dock.tsx`, `client/theme/slot-recipes/dock.ts`.
 **Note.** There is **no live % indicator** today — the dock shows a **streak** badge (`Dock.Streak`).
@@ -171,14 +180,14 @@ notes (title optional + content), autosave on blur/debounce via `PATCH /api/note
 (existing building block) for in-place editing.
 **Acceptance.** Pen button / `n` / palette open a working notes panel; notes persist; both themes.
 
-### P2.5 — Simpler tasks panel
+### P2.5 — Simpler tasks panel — ⏸ PARKED (design locked — core UI is done/loved)
 **Goal.** Reduce visual/interaction complexity of the tasks panel (roadmap: "simpler tasks panel").
 **Files.** `client/modules/tasks/components/tasks-panel.tsx`, `task-list.tsx`, `tasks-row.tsx`, `quick-add.tsx`.
 **Approach.** Needs a design pass — define "simpler" with the user before building (fewer per-row actions /
 collapse steps / lighter hover cluster). Treat as: propose 1–2 layout options, then implement the chosen one.
 **Acceptance.** Agreed simplified layout shipped; existing task actions still reachable; both themes.
 
-### P2.6 — Redesign Focus space (violet play btn, keep rounds + category logic)
+### P2.6 — Redesign Focus space (violet play btn, keep rounds + category logic) — ⏸ PARKED (design locked)
 **Goal.** Visual refresh of the focus space; keep the round/category mechanics.
 **Files.** `client/modules/spaces/components/focus-space.tsx`, `client/modules/pomodoro/components/phase-tabs.tsx`.
 **Notes.** Play button is already `iconPrimary` (violet) — confirm it reads as the intended violet CTA. Keep
@@ -186,7 +195,7 @@ collapse steps / lighter hover cluster). Treat as: propose 1–2 layout options,
 hierarchy redesign, not a logic change — get a design direction first.
 **Acceptance.** Refreshed layout, rounds + category logging intact, reduced-motion respected.
 
-### P2.7 — Logo redesign to new colors
+### P2.7 — Logo redesign to new colors — ⏸ PARKED (design locked)
 **Goal.** Update the logo to the current violet/magenta palette (SVG still uses the old magenta).
 **Files.** `client/assets/svg/logo/logo-dark.svg`, `logo-white.svg`, `client/components/ui/logo/logo.tsx`.
 **Approach.** Re-color the orb gradient to `violet.400 → magenta.500` (match `NoorOrb`); keep the auto
@@ -197,11 +206,11 @@ light/dark variant switching. Verify against the workspace logo explorations if 
 
 ## PHASE 3 — Cleanup / polish (P2)
 
-### P3.1 — Move `buildDateLine` to clock utils
+### P3.1 — Move `buildDateLine` to clock utils — ✅ DONE (helper no longer exists; date line uses `@/modules/clock`)
 **Files.** find `buildDateLine` (greeting/clock area) → move to the clock utils module; update imports.
 **Acceptance.** Single home for the helper; no behavior change; typecheck clean.
 
-### P3.2 — Shared `useMounted` hook
+### P3.2 — Shared `useMounted` hook — ✅ DONE (`hooks/use-mounted.ts`)
 **Goal.** One `useMounted()` replacing the repeated hydration-guard pattern (navbar toggle, color mode, etc.).
 **Files.** new `client/hooks/use-mounted.ts`; refactor call sites (color-mode toggle, any `mounted` useState).
 **Acceptance.** Duplicated mount guards replaced; SSR-safe; no flash.

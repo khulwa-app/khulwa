@@ -16,6 +16,11 @@ export const spacesSlotRecipe = defineSlotRecipe({
     layer: {
       position: "absolute",
       inset: 0,
+      // Scroll-safe: when a space's content is taller than the viewport it
+      // scrolls here instead of clipping (paired with minH content below).
+      overflowY: "auto",
+      overflowX: "hidden",
+      overscrollBehavior: "contain",
       animationDuration: "enter",
       animationTimingFunction: "enter",
       animationFillMode: "both",

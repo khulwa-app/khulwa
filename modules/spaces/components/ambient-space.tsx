@@ -7,9 +7,19 @@ import { SpaceBackground } from "./space-background";
 export function AmbientSpace() {
   const t = useTranslations("khulwa.ambient");
   return (
-    <Box position="relative" h="full" w="full" bg="bg.base" overflow="hidden">
+    <Box position="relative" minH="full" w="full" bg="bg.base" overflowX="hidden">
       <SpaceBackground />
-      <VStack position="relative" zIndex={1} h="full" w="full" justify="center" align="center" gap="4" padding="6">
+      <VStack
+        position="relative"
+        zIndex={1}
+        minH="full"
+        w="full"
+        justify="center"
+        align="center"
+        gap="4"
+        paddingInline="6"
+        paddingBlock={{ base: "20", md: "24" }}
+      >
         <Text textStyle="heading-h2" color="fg.default">
           {t("title")}
         </Text>

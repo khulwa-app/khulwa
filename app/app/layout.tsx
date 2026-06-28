@@ -44,7 +44,7 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
     <QueryProvider>
       <SessionProvider user={user ? { id: user.id, name: user.name, email: user.email, image: user.image } : null}>
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <Box position="relative" minHeight="100vh" overflow="hidden">
+          <Box position="relative" minHeight="100dvh" overflow="hidden">
             <Navbar />
             <Suspense fallback={null}>
               {children}

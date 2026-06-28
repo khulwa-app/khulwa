@@ -146,7 +146,7 @@ no %-progress UI remains," or (b) if a category-% ring was intended, it was neve
 Recommended: keep streak, mark the note item done.
 **Acceptance.** Dock shows only the intended metric; no dead/zero indicator.
 
-### P2.3 — Settings panel: real sections
+### P2.3 — Settings panel: real sections — ✅ DONE
 **Goal.** Turn the placeholder Settings panel into Account / Pomodoro / Theme sections.
 **Files.** `client/modules/spaces/components/settings-panel.tsx` (currently a placeholder), new section
 components under `client/modules/settings/`.

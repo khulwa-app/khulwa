@@ -41,7 +41,7 @@ export function QuickAdd() {
       endElementProps={{ paddingInline: "1" }}
     >
       <Input
-        variant="subtle"
+        variant="filled"
         size="md"
         value={draft}
         placeholder={t("placeholder")}

@@ -38,7 +38,7 @@ export const TaskList = {
   Eta: ctx.withContext<HTMLParagraphElement, TextProps>(Text, "eta"),
   Counter: ctx.withContext<HTMLParagraphElement, TextProps>(Text, "counter"),
   AddStepInput: ctx.withContext<HTMLInputElement, InputProps>(Input, "addStep", {
-    defaultProps: { variant: "bare", size: "sm" },
+    defaultProps: { variant: "plain", size: "sm" },
   }),
   SectionTrigger: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "sectionTrigger"),
   SectionContent: ctx.withContext<HTMLDivElement, DivProps>("div", "sectionContent"),

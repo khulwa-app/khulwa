@@ -14,7 +14,6 @@ import {
 import { NoorOrb } from "@/modules/companion";
 import { TodayProgress } from "@/modules/progress";
 import { DoingNowCard } from "@/modules/tasks/components/doing-now/doing-now-card";
-import { RotatingAyah } from "@/modules/verses";
 import { useMounted } from "@/hooks/use-mounted";
 import { SpaceBackground } from "./space-background";
 
@@ -51,10 +50,6 @@ export function HomeSpace() {
   return (
     <Home.Root>
       <SpaceBackground />
-
-      <Home.Corner>
-        <RotatingAyah />
-      </Home.Corner>
 
       <Home.Stage>
         <Home.Intro>

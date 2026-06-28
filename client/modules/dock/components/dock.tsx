@@ -12,7 +12,7 @@ import { useSounds } from "@/modules/sounds";
 import { RhythmPanel } from "@/modules/rhythm";
 import { ProgressPanel } from "@/modules/progress";
 import { useStreak } from "@/services/progress";
-import { SettingsPanel } from "@/modules/spaces/components/settings-panel";
+import { SettingsPanel } from "@/modules/settings";
 
 export function DockNav() {
   const tDest = useTranslations("dock.destinations");

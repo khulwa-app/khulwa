@@ -42,7 +42,7 @@ export function DoingNowEmpty() {
         <ActiveTask.Bar>
           <ActiveTask.Mark aria-hidden />
           <Input
-            variant="bare"
+            variant="plain"
             flex="1"
             minW="0"
             height="9"

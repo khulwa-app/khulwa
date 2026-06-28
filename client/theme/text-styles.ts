@@ -1,38 +1,6 @@
 import { defineTextStyles } from "@chakra-ui/react";
 
 export const textStyles = defineTextStyles({
-  verse: {
-    value: {
-      fontFamily: "arabicDisplay",
-      fontSize: "3xl",
-      fontWeight: "normal",
-      lineHeight: "1.4",
-      letterSpacing: "0",
-      color: "fg.default",
-    },
-  },
-  "verse-caption": {
-    value: {
-      fontFamily: "body",
-      fontSize: "sm",
-      fontWeight: "normal",
-      lineHeight: "1.5",
-      letterSpacing: "0.02em",
-      color: "fg.muted",
-    },
-  },
-
-  "ayah-hero": {
-    value: {
-      fontFamily: "arabicDisplay",
-      fontSize: "8xl",
-      fontWeight: "medium",
-      lineHeight: "1.7",
-      letterSpacing: "0",
-      color: "fg.default",
-    },
-  },
-
   overline: {
     value: {
       fontFamily: "body",
@@ -48,27 +16,27 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: "7xl",
-      fontWeight: "medium",
+      fontWeight: "semibold",
       lineHeight: "1.045",
-      letterSpacing: "-0.03em",
+      letterSpacing: "-0.01em",
     },
   },
   "display-lg": {
     value: {
       fontFamily: "display",
       fontSize: "6xl",
-      fontWeight: "medium",
+      fontWeight: "semibold",
       lineHeight: "1.05",
-      letterSpacing: "-0.025em",
+      letterSpacing: "-0.01em",
     },
   },
   "display-md": {
     value: {
       fontFamily: "display",
       fontSize: "5xl",
-      fontWeight: "medium",
+      fontWeight: "semibold",
       lineHeight: "1.1666",
-      letterSpacing: "-0.02em",
+      letterSpacing: "-0.005em",
     },
   },
 
@@ -76,18 +44,18 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: "4xl",
-      fontWeight: "medium",
+      fontWeight: "semibold",
       lineHeight: "1.2",
-      letterSpacing: "-0.015em",
+      letterSpacing: "0",
     },
   },
   "heading-h2": {
     value: {
       fontFamily: "display",
       fontSize: "3xl",
-      fontWeight: "medium",
+      fontWeight: "semibold",
       lineHeight: "1.25",
-      letterSpacing: "-0.01em",
+      letterSpacing: "0",
     },
   },
   "heading-h3": {
@@ -96,7 +64,7 @@ export const textStyles = defineTextStyles({
       fontSize: "2xl",
       fontWeight: "semibold",
       lineHeight: "1.33",
-      letterSpacing: "-0.005em",
+      letterSpacing: "0.005em",
     },
   },
   "heading-h4": {
@@ -105,7 +73,7 @@ export const textStyles = defineTextStyles({
       fontSize: "xl",
       fontWeight: "semibold",
       lineHeight: "1.4",
-      letterSpacing: "-0.0025em",
+      letterSpacing: "0.005em",
     },
   },
   "heading-h5": {
@@ -114,7 +82,7 @@ export const textStyles = defineTextStyles({
       fontSize: "md",
       fontWeight: "semibold",
       lineHeight: "1.5",
-      letterSpacing: "0",
+      letterSpacing: "0.01em",
     },
   },
 
@@ -122,36 +90,36 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "body",
       fontSize: "xl",
-      fontWeight: "normal",
+      fontWeight: "medium",
       lineHeight: "1.5",
-      letterSpacing: "0",
+      letterSpacing: "0.01em",
     },
   },
   "body-lg": {
     value: {
       fontFamily: "body",
       fontSize: "lg",
-      fontWeight: "normal",
+      fontWeight: "medium",
       lineHeight: "1.5555",
-      letterSpacing: "0",
+      letterSpacing: "0.01em",
     },
   },
   "body-md": {
     value: {
       fontFamily: "body",
       fontSize: "md",
-      fontWeight: "normal",
+      fontWeight: "medium",
       lineHeight: "1.5",
-      letterSpacing: "0",
+      letterSpacing: "0.01em",
     },
   },
   "body-sm": {
     value: {
       fontFamily: "body",
       fontSize: "sm",
-      fontWeight: "normal",
+      fontWeight: "medium",
       lineHeight: "1.4285",
-      letterSpacing: "0",
+      letterSpacing: "0.01em",
     },
   },
 
@@ -171,7 +139,7 @@ export const textStyles = defineTextStyles({
       fontSize: "label-sm",
       fontWeight: "medium",
       lineHeight: "1.2307",
-      letterSpacing: "0",
+      letterSpacing: "0.01em",
     },
   },
   "label-md": {
@@ -189,78 +157,48 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: { base: "4xl", md: "6xl" },
-      fontWeight: "medium",
+      fontWeight: "bold",
       lineHeight: "1.1",
-      letterSpacing: "-0.02em",
+      letterSpacing: "-0.005em",
     },
   },
   "clock-display": {
     value: {
-      fontFamily: "mono",
+      fontFamily: "display",
       fontSize: { base: "xl", md: "2xl" },
-      fontWeight: "medium",
+      fontWeight: "semibold",
       lineHeight: "1",
-      letterSpacing: "-0.02em",
+      letterSpacing: "0",
       fontVariantNumeric: "tabular-nums",
     },
   },
-  "ayah-hero-corner": {
-    value: {
-      fontFamily: "arabicDisplay",
-      fontSize: { base: "md", md: "lg" },
-      fontWeight: "medium",
-      lineHeight: "1.25",
-      letterSpacing: "0",
-      color: "fg.muted",
-    },
-  },
-  "ayah-hero-compact": {
-    value: {
-      fontFamily: "arabicDisplay",
-      fontSize: { base: "xl", md: "2xl" },
-      fontWeight: "medium",
-      lineHeight: "1.5",
-      letterSpacing: "0",
-    },
-  },
-  "verse-meaning": {
-    value: {
-      fontFamily: "body",
-      fontSize: "xs",
-      fontWeight: "normal",
-      lineHeight: "1.3",
-      letterSpacing: "0",
-      color: "fg.subtle",
-    },
-  },
-
   "numeric-timer": {
     value: {
-      fontFamily: "mono",
+      fontFamily: "display",
       fontSize: "timer",
-      fontWeight: "medium",
+      fontWeight: "bold",
       lineHeight: "1",
-      letterSpacing: "-0.04em",
+      letterSpacing: "-0.01em",
       fontVariantNumeric: "tabular-nums",
     },
   },
   "numeric-sm": {
     value: {
-      fontFamily: "mono",
+      fontFamily: "display",
       fontSize: "2xl",
-      fontWeight: "medium",
+      fontWeight: "semibold",
       lineHeight: "1",
-      letterSpacing: "-0.02em",
+      letterSpacing: "0",
       fontVariantNumeric: "tabular-nums",
     },
   },
   "numeric-display": {
     value: {
-      fontFamily: "mono",
+      fontFamily: "display",
       fontSize: "numeric-display",
-      fontWeight: "medium",
+      fontWeight: "bold",
       lineHeight: "1.07",
-      letterSpacing: "-0.02em",
+      letterSpacing: "-0.005em",
       fontVariantNumeric: "tabular-nums",
     },
   },

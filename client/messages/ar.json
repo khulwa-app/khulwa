@@ -49,8 +49,7 @@
       "streak": "{count, plural, zero {بلا تتابُع} one {يوم متتابع} two {يومان متتابعان} few {# أيام متتابعة} many {# يومًا متتابعًا} other {# يوم متتابع}}",
       "round": "الجولة {current} من {total}",
       "onSchedule": "وفق الخطة",
-      "liveFocus": "تركيز جارٍ",
-      "quietHours": "ساعات الهدوء · {state, select, on {مُفعّلة} other {مُعطّلة}}"
+      "liveFocus": "تركيز جارٍ"
     },
     "colorMode": {
       "toLight": "التبديل إلى الفاتح",
@@ -199,7 +198,26 @@
   },
   "settings": {
     "title": "الإعدادات",
-    "empty": "ستظهر التفضيلات هنا. في الوقت الحالي، بدّل بين السمتين الفاتحة والداكنة من الشريط العلوي."
+    "tabs": {
+      "account": "الحساب",
+      "focus": "التركيز",
+      "appearance": "المظهر"
+    },
+    "account": {
+      "signOut": "تسجيل الخروج"
+    },
+    "pomodoro": {
+      "focus": "تركيز",
+      "shortBreak": "استراحة قصيرة",
+      "longBreak": "استراحة طويلة",
+      "rounds": "الجولات",
+      "autoStart": "بدء التالي تلقائياً",
+      "minutes": "دقيقة",
+      "roundsUnit": "جولات"
+    },
+    "theme": {
+      "darkMode": "الوضع الداكن"
+    }
   },
   "dock": {
     "aria": {

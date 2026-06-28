@@ -1,7 +1,7 @@
 "use client";
 
 import { Nav } from "@/theme/slot-recipes/navbar";
-import { ColorModeToggle, Logo, QuietHoursBadge } from "@/components/ui";
+import { Logo } from "@/components/ui";
 
 export function Navbar() {
   return (
@@ -9,10 +9,6 @@ export function Navbar() {
       <Nav.Brand>
         <Logo size="8" />
       </Nav.Brand>
-      <Nav.Actions>
-        <ColorModeToggle />
-        <QuietHoursBadge on />
-      </Nav.Actions>
     </Nav.Root>
   );
 }

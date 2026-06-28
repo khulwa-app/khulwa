@@ -1,14 +1,10 @@
 import { defineTokens } from "@chakra-ui/react";
 
 export const fonts = defineTokens.fonts({
-  display: { value: "var(--font-display), var(--font-arabic-body), 'DM Sans', system-ui, sans-serif" },
-  heading: { value: "var(--font-display), var(--font-arabic-body), 'DM Sans', system-ui, sans-serif" },
-  body: { value: "var(--font-body), var(--font-arabic-body), 'Inter', system-ui, sans-serif" },
+  display: { value: "var(--font-degular), var(--font-arabic-body), system-ui, sans-serif" },
+  heading: { value: "var(--font-degular), var(--font-arabic-body), system-ui, sans-serif" },
+  body: { value: "var(--font-degular), var(--font-arabic-body), system-ui, sans-serif" },
   mono: { value: "var(--font-mono), 'JetBrains Mono', ui-monospace, monospace" },
-
-  arabicDisplay: {
-    value: "'Klapt Arabic', var(--font-arabic-display), 'Reem Kufi', sans-serif",
-  },
 });
 
 export const fontSizes = defineTokens.fontSizes({
@@ -36,6 +32,7 @@ export const fontWeights = defineTokens.fontWeights({
   medium: { value: "500" },
   semibold: { value: "600" },
   bold: { value: "700" },
+  black: { value: "900" },
 });
 
 export const lineHeights = defineTokens.lineHeights({

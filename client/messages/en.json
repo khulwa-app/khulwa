@@ -49,8 +49,7 @@
       "streak": "{count, plural, one {# day streak} other {# days streak}}",
       "round": "Round {current} of {total}",
       "onSchedule": "On schedule",
-      "liveFocus": "Live focus",
-      "quietHours": "Quiet hours · {state, select, on {On} other {Off}}"
+      "liveFocus": "Live focus"
     },
     "colorMode": {
       "toLight": "Switch to light",
@@ -199,7 +198,26 @@
   },
   "settings": {
     "title": "Settings",
-    "empty": "Preferences will live here. For now, switch the light and dark themes from the top bar."
+    "tabs": {
+      "account": "Account",
+      "focus": "Focus",
+      "appearance": "Appearance"
+    },
+    "account": {
+      "signOut": "Sign out"
+    },
+    "pomodoro": {
+      "focus": "Focus",
+      "shortBreak": "Short break",
+      "longBreak": "Long break",
+      "rounds": "Rounds",
+      "autoStart": "Auto-start next",
+      "minutes": "min",
+      "roundsUnit": "rounds"
+    },
+    "theme": {
+      "darkMode": "Dark mode"
+    }
   },
   "dock": {
     "aria": {

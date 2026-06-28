@@ -14,6 +14,7 @@ type PomodoroState = {
   timeLeftMs: number;
   completionCount: number;
   lastCompletedPhase: PomodoroPhase | null;
+  setOptions: (patch: Partial<PomodoroOptions>) => void;
   setPhase: (phase: PomodoroPhase) => void;
   start: () => void;
   pause: () => void;
@@ -83,6 +84,14 @@ export const usePomodoroStore = create<PomodoroState>()(
         timeLeftMs: durationMinutesFor(INITIAL_OPTIONS, INITIAL_PHASE) * MS_PER_MINUTE,
         completionCount: 0,
         lastCompletedPhase: null,
+        setOptions: (patch) =>
+          set((s) => {
+            const options = { ...s.options, ...patch };
+            return {
+              options,
+              timeLeftMs: s.isRunning ? s.timeLeftMs : durationMinutesFor(options, s.phase) * MS_PER_MINUTE,
+            };
+          }),
         setPhase: (phase) => {
           stopTicking();
           set((s) => ({
@@ -140,7 +149,7 @@ export const usePomodoroStore = create<PomodoroState>()(
     {
       name: "khulwa-pomodoro",
       storage: createJSONStorage(() => localStorage),
-      version: 2,
+      version: 3,
       migrate: () =>
         ({
           options: DEFAULT_POMODORO,

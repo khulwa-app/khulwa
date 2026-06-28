@@ -8,16 +8,16 @@ export const khulwaInputRecipe = defineRecipe({
     appearance: "none",
     fontFamily: "body",
     color: "fg.default",
-    borderRadius: "controlWide",
-
+    borderRadius: "control",
     borderWidth: "1px",
     borderStyle: "solid",
     borderColor: "transparent",
+    outline: "none",
     transitionProperty: "background-color, border-color, color, box-shadow",
     transitionDuration: "enter",
     transitionTimingFunction: "enter",
     _placeholder: { color: "fg.muted" },
-    _disabled: { opacity: 0.5, cursor: "not-allowed" },
+    _disabled: { opacity: 0.5, cursor: "not-allowed", _hover: { bg: "field.bg" } },
   },
   variants: {
     variant: {
@@ -25,26 +25,23 @@ export const khulwaInputRecipe = defineRecipe({
         bg: "field.bg",
         borderColor: "border.default",
         _hover: { bg: "field.bgHover", borderColor: "border.strong" },
-        _focus: { borderColor: "border.focus" },
+        _focus: { borderColor: "border.focus", bg: "field.bg" },
       },
-
-      subtle: {
-        bg: "transparent",
-        borderColor: "border.default",
-        _hover: { bg: "field.bg", borderColor: "border.strong" },
-        _focus: { bg: "field.bg", borderColor: "border.focus" },
+      filled: {
+        bg: "field.bg",
+        borderColor: "transparent",
+        _hover: { bg: "field.bgHover" },
+        _focus: { borderColor: "border.focus", bg: "field.bg" },
       },
-
-      bare: {
+      plain: {
         bg: "transparent",
         borderColor: "transparent",
         paddingInline: "0",
-        _focusVisible: { boxShadow: "none", outline: "none" },
       },
     },
     size: {
-      sm: { h: "8", paddingInline: "2.5", fontSize: "sm" },
-      md: { h: "11", paddingInline: "3", fontSize: "sm" },
+      sm: { h: "9", paddingInline: "3", fontSize: "sm" },
+      md: { h: "11", paddingInline: "3.5", fontSize: "sm" },
       lg: { h: "12", paddingInline: "4", fontSize: "md" },
     },
   },

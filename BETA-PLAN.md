@@ -160,7 +160,7 @@ components under `client/modules/settings/`.
 **Acceptance.** Toggling theme in Settings works and navbar no longer has the toggle; changing focus length
 actually changes the next timer; Account shows the real user and can sign out.
 
-### P2.4 — Notes panel implementation
+### P2.4 — Notes panel implementation — ✅ DONE
 **Goal.** Build the missing NotesPanel (slot already reserved: `Panel.Notes`, dock Pen button, `n` hotkey,
 palette entry — all currently toggle a panel that renders nothing).
 **Deps.** P1.R (notes API) for persistence; can ship localStorage-first then swap.

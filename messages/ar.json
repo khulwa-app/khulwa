@@ -1,0 +1,357 @@
+{
+  "common": {
+    "appName": "خَلْوة",
+    "tagline": "خلوة للعمل العميق",
+    "loading": "جارٍ التحميل…"
+  },
+  "actions": {
+    "start": "ابدأ",
+    "pause": "إيقاف مؤقت",
+    "resume": "متابعة",
+    "reset": "إعادة ضبط",
+    "skip": "تخطٍّ",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "submit": "إرسال",
+    "signIn": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "signOut": "تسجيل الخروج",
+    "continueWithGoogle": "المتابعة بحساب Google"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "email": "بريد إلكتروني غير صالح",
+    "minLength": "الحد الأدنى {min} حرفًا",
+    "passwordMismatch": "كلمتا المرور غير متطابقتين"
+  },
+  "errors": {
+    "generic": "حدث خطأ ما",
+    "network": "خطأ في الشبكة",
+    "unauthorized": "غير مصرّح",
+    "notFound": "غير موجود"
+  },
+  "components": {
+    "timer": {
+      "ariaLabel": "مؤقّت بومودورو"
+    },
+    "localeToggle": {
+      "label": "تغيير اللغة",
+      "ar": "العربية",
+      "en": "English"
+    },
+    "logo": {
+      "ariaLabel": "شعار خَلْوة"
+    },
+    "navbar": {
+      "quote": "«التأنّي يُتقن، والإتقان يُسرِع.»"
+    },
+    "badge": {
+      "streak": "{count, plural, zero {بلا تتابُع} one {يوم متتابع} two {يومان متتابعان} few {# أيام متتابعة} many {# يومًا متتابعًا} other {# يوم متتابع}}",
+      "round": "الجولة {current} من {total}",
+      "onSchedule": "وفق الخطة",
+      "liveFocus": "تركيز جارٍ"
+    },
+    "colorMode": {
+      "toLight": "التبديل إلى الفاتح",
+      "toDark": "التبديل إلى الداكن",
+      "ariaLabel": "تبديل سمة الألوان"
+    }
+  },
+  "khulwa": {
+    "metadata": {
+      "title": "خَلْوة",
+      "description": "خَلْوة — خلوة للعمل العميق"
+    },
+    "greeting": {
+      "morning": "صباح الخير",
+      "afternoon": "نهارك سعيد",
+      "evening": "مساء الخير",
+      "night": "طابت ليلتك"
+    },
+    "ownership": "هذا {day} لك يا {name}.",
+    "guest": "صديقي",
+    "phase": {
+      "focus": "خَلْوة",
+      "shortBreak": "وَقفة",
+      "longBreak": "راحة"
+    },
+    "eyebrow": {
+      "focus": "خَلْوة عميقة",
+      "shortBreak": "وَقفة",
+      "longBreak": "راحة"
+    },
+    "actions": {
+      "begin": "ابدأ الخَلْوة",
+      "pause": "إيقاف مؤقت",
+      "resume": "متابعة",
+      "reset": "إعادة ضبط",
+      "skip": "تخطٍّ"
+    },
+    "aria": {
+      "phaseTabs": "مرحلة الخَلْوة",
+      "roundProgress": "الجولة {current} من {total}"
+    },
+    "ambient": {
+      "title": "غسق الصحراء"
+    },
+    "resume": {
+      "title": "تابع جلستك"
+    },
+    "categories": {
+      "deepWork": "عمل عميق",
+      "learning": "تعلُّم",
+      "reading": "قراءة",
+      "dhikr": "ذِكر",
+      "none": "بلا تصنيف"
+    },
+    "progress": {
+      "title": "التقدّم",
+      "today": "تركيز اليوم"
+    }
+  },
+  "home": {
+    "metadata": {
+      "title": "خَلْوة",
+      "description": "خَلْوة — للعمل العميق"
+    },
+    "guest": "صديقي",
+    "subtitle": "اختر أمرًا واحدًا، والزمه.",
+    "headline": {
+      "morning": "صباح الخير يا {name}.",
+      "afternoon": "نهارك سعيد يا {name}.",
+      "evening": "مساء الخير يا {name}.",
+      "night": "طابت ليلتك يا {name}."
+    },
+    "doingNow": {
+      "eyebrow": "أمرك الواحد",
+      "eta": "بقي نحو {eta, plural, zero {أقل من دقيقة} one {دقيقة واحدة} two {دقيقتين} few {# دقائق} many {# دقيقة} other {# دقيقة}}",
+      "changeTask": "تغيير المهمة",
+      "enterFocus": "ادخل التركيز",
+      "choose": "اختر أمرك الواحد",
+      "intentionPlaceholder": "ما هو أمرك الواحد؟",
+      "begin": "ابدأ",
+      "beginHint": "اضغط Enter للبدء · النيّة اختيارية",
+      "etaShort": "{eta} د"
+    },
+    "verse": {
+      "eyebrow": "آية اليوم"
+    }
+  },
+  "tasks": {
+    "title": "المهام",
+    "addTask": "إضافة مهمة",
+    "placeholder": "ماذا ستفعل؟",
+    "empty": "لا شيء بعد. ما أمرك الواحد اليوم؟",
+    "later": "لاحقًا",
+    "done": "مُنجَز",
+    "addStep": "إضافة خطوة",
+    "breakIntoSteps": "قسّمها إلى خطوات",
+    "breaking": "جارٍ التقسيم…",
+    "minutesShort": "د",
+    "aria": {
+      "complete": "وضع علامة كمُنجَز",
+      "doingNow": "ركّز على هذه المهمة",
+      "delete": "حذف المهمة",
+      "eta": "الدقائق المقدّرة",
+      "editBody": "تعديل المهمة",
+      "expand": "إظهار الخطوات",
+      "defer": "تأجيل إلى لاحقًا",
+      "doToday": "اعملها اليوم",
+      "completeStep": "وضع علامة على الخطوة كمُنجَزة",
+      "deleteStep": "حذف الخطوة",
+      "editStep": "تعديل الخطوة",
+      "split": "اقترح خطوات"
+    }
+  },
+  "panels": {
+    "aria": {
+      "close": "إغلاق اللوحة"
+    }
+  },
+  "pomodoro": {
+    "backToFocus": "العودة إلى التركيز"
+  },
+  "palette": {
+    "label": "لوحة الأوامر",
+    "search": "اكتب أمرًا…",
+    "empty": "لا أوامر مطابقة",
+    "hint": "اضغط ⌘K للأوامر",
+    "groups": {
+      "session": "الجلسة",
+      "navigate": "التنقّل",
+      "panels": "اللوحات"
+    },
+    "commands": {
+      "begin": "ابدأ التركيز",
+      "pause": "إيقاف الجلسة مؤقتًا",
+      "resume": "متابعة الجلسة",
+      "reset": "إعادة ضبط المؤقّت",
+      "skip": "تخطّي المرحلة",
+      "home": "الانتقال إلى الرئيسية",
+      "focus": "الانتقال إلى التركيز",
+      "ambient": "الانتقال إلى الأجواء",
+      "tasks": "فتح المهام",
+      "music": "فتح الموسيقى",
+      "notes": "فتح الملاحظات",
+      "settings": "فتح الإعدادات"
+    }
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "tabs": {
+      "account": "الحساب",
+      "focus": "التركيز",
+      "appearance": "المظهر"
+    },
+    "account": {
+      "signOut": "تسجيل الخروج"
+    },
+    "pomodoro": {
+      "focus": "تركيز",
+      "shortBreak": "استراحة قصيرة",
+      "longBreak": "استراحة طويلة",
+      "rounds": "الجولات",
+      "autoStart": "بدء التالي تلقائياً",
+      "minutes": "دقيقة",
+      "roundsUnit": "جولات"
+    },
+    "theme": {
+      "darkMode": "الوضع الداكن"
+    }
+  },
+  "notes": {
+    "title": "ملاحظات",
+    "newNote": "ملاحظة جديدة",
+    "titlePlaceholder": "العنوان",
+    "contentPlaceholder": "اكتب شيئاً…",
+    "empty": "لا توجد ملاحظات بعد",
+    "delete": "حذف الملاحظة"
+  },
+  "dock": {
+    "aria": {
+      "nav": "المساحات",
+      "tools": "الأدوات",
+      "controls": "عناصر التحكّم"
+    },
+    "destinations": {
+      "home": "الرئيسية",
+      "focus": "التركيز",
+      "ambient": "الأجواء"
+    },
+    "tools": {
+      "tasks": "المهام",
+      "rhythm": "الإيقاع",
+      "progress": "التقدّم",
+      "music": "الموسيقى",
+      "notes": "الملاحظات"
+    },
+    "chrome": {
+      "settings": "الإعدادات",
+      "fullscreen": "ملء الشاشة"
+    }
+  },
+  "rhythm": {
+    "title": "الإيقاع اليومي",
+    "progress": "{done} من {total} مُلتزَم بها",
+    "items": {
+      "morningDhikr": "ذِكر الصباح",
+      "deepWork": "عمل عميق",
+      "read": "قراءة",
+      "reflect": "تأمُّل",
+      "rest": "راحة"
+    }
+  },
+  "landing": {
+    "nav": {
+      "signIn": "تسجيل الدخول",
+      "getStarted": "ابدأ الآن"
+    },
+    "hero": {
+      "eyebrow": "خلوة مُقدّسة",
+      "headline": "خلوةٌ لعملك العميق.",
+      "subcopy": "هادئة بطبيعتها. مستوحاة من الخَلْوة الصوفية — حُجرة خاصة تتفرّغ فيها لأمر واحد في كل مرة.",
+      "cta": "ابدأ التركيز"
+    },
+    "features": {
+      "0": {
+        "title": "نيّة واحدة",
+        "body": "سمِّ أمرك الواحد، وادخل خلوةً واحدة بلا تشتّت."
+      },
+      "1": {
+        "title": "تركيز بأجواء هادئة",
+        "body": "أضِف طبقات من الأصوات الهادئة لتستقرّ في عملٍ عميقٍ متأنٍّ."
+      },
+      "2": {
+        "title": "تتابُع لطيف",
+        "body": "تابِع إيقاع تركيزك — من غير ضغط."
+      }
+    },
+    "quote": {
+      "text": "«في الخَلْوة تجد الروح قَدْرها.»",
+      "attribution": "— ابن عربي"
+    }
+  },
+  "login": {
+    "metadata": {
+      "title": "تسجيل الدخول · خَلْوة",
+      "description": "ادخل خلوتك"
+    },
+    "form": {
+      "title": "أهلًا بعودتك",
+      "subtitle": "سجّل الدخول لتتابع تركيزك.",
+      "signupTitle": "أنشئ خلوتك",
+      "signupSubtitle": "حسابٌ واحد، وكل خلواتك.",
+      "continueWithGoogle": "المتابعة بحساب Google",
+      "divider": "أو",
+      "fields": {
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور"
+      },
+      "submit": "تسجيل الدخول",
+      "submitting": "يُرجى الانتظار",
+      "signupSubmit": "إنشاء حساب",
+      "noAccount": "جديد هنا؟",
+      "createOne": "أنشئ حسابًا",
+      "haveAccount": "لديك حساب بالفعل؟",
+      "errors": {
+        "generic": "حدث خطأ ما.",
+        "network": "تعذّر الوصول إلى الخادم. هل هو قيد التشغيل؟"
+      }
+    }
+  },
+  "signUp": {
+    "metadata": {
+      "title": "إنشاء حساب · خَلْوة",
+      "description": "ابدأ خلوتك"
+    },
+    "form": {
+      "title": "ابدأ خلوتك",
+      "subtitle": "أنشئ حسابًا جديدًا",
+      "fields": {
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "confirmPassword": "تأكيد كلمة المرور"
+      },
+      "submit": "إنشاء حساب",
+      "haveAccount": "لديك حساب؟"
+    }
+  },
+  "forgotPassword": {
+    "metadata": {
+      "title": "إعادة تعيين كلمة المرور · خَلْوة",
+      "description": "استعد الوصول إلى خلوتك"
+    },
+    "form": {
+      "title": "إعادة تعيين كلمة المرور",
+      "subtitle": "سنرسل رابطًا إلى بريدك الإلكتروني",
+      "fields": {
+        "email": "البريد الإلكتروني"
+      },
+      "submit": "إرسال الرابط",
+      "checkEmail": "تحقّق من بريدك الإلكتروني",
+      "backToSignIn": "العودة إلى تسجيل الدخول"
+    }
+  }
+}

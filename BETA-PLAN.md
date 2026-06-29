@@ -10,6 +10,12 @@ Tasks are ordered; later cards assume earlier ones. Each card is independently s
 
 ## 0. Conventions & ground rules (read first, every task)
 
+> **Full engineering conventions live in `CLAUDE.md`** (auto-loaded every session — the source of truth):
+> Chakra v3 **styling = theme/recipes only, never inline**; read Chakra/Next docs when unsure; clean small
+> single-responsibility components; layering (server in `app/`+`lib/`, UI in `modules/`, data in `services/`);
+> i18n + RTL; a11y. Design language: `design-system/khulwa/DESIGN-SYSTEM.md`. This section is the
+> task-specific summary only.
+
 > **STRUCTURE UPDATE (28 Jun 2026):** The Express `server/` was folded into the Next.js app and the
 > `client/` wrapper was flattened — **the single Next.js app IS the repo root.** Cards below may still
 > show old paths: map `client/X` → `X`, and `server/src/Y` → `lib/Y` (Drizzle services → `lib/services/`,
@@ -30,7 +36,7 @@ Never drive frequent UI toggles through URL navigation on a dynamic route — us
 
 **Definition of done (every task).**
 1. `yarn lint && npx tsc --noEmit` clean.
-2. No raw hex/px in TSX — use tokens / `textStyle` / `layerStyle` / recipes (see `DESIGN-SYSTEM.md`).
+2. No raw hex/px in TSX — use tokens / `textStyle` / `layerStyle` / recipes (see `design-system/khulwa/DESIGN-SYSTEM.md`).
 3. Both light & dark verified for any UI.
 4. i18n: every user-facing string added to `messages/en.json` (+ `ar.json`) via `useTranslations`, never hardcoded.
 5. New square/labelled controls follow the radius tiers and the squircle list (`app/globals.css`).

@@ -24,7 +24,7 @@ export const cardSlotRecipe = defineSlotRecipe({
       "&[data-interactive]": {
         cursor: "pointer",
         "@media (hover: hover)": {
-          _hover: { boxShadow: "md", transform: "translateY(-1px)", borderColor: "border.default" },
+          _hover: { transform: "translateY(-1px)", borderColor: "glass.borderFocus" },
         },
         _active: { transform: "scale(0.99)", transitionDuration: "instant" },
       },

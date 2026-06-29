@@ -5,6 +5,7 @@ export const durations = defineTokens.durations({
   enter: { value: "200ms" },
   exit: { value: "140ms" },
   slow: { value: "280ms" },
+  mood: { value: "400ms" },
 });
 
 export const easings = defineTokens.easings({

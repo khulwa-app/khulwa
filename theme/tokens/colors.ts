@@ -8,9 +8,12 @@ export const colors = defineTokens.colors({
   scrimStrong: { value: "rgba(10, 9, 14, 0.7)" },
 
   whiteA: {
-    strong: { value: "rgba(255, 255, 255, 0.98)" },
-    mid: { value: "rgba(255, 255, 255, 0.84)" },
+    faint: { value: "rgba(255, 255, 255, 0.08)" },
+    dim: { value: "rgba(255, 255, 255, 0.14)" },
+    disabled: { value: "rgba(255, 255, 255, 0.40)" },
     soft: { value: "rgba(255, 255, 255, 0.70)" },
+    mid: { value: "rgba(255, 255, 255, 0.84)" },
+    strong: { value: "rgba(255, 255, 255, 0.98)" },
   },
   inkA: {
     strong: { value: "rgba(18, 16, 26, 0.94)" },
@@ -18,12 +21,21 @@ export const colors = defineTokens.colors({
     soft: { value: "rgba(18, 16, 26, 0.60)" },
   },
 
-  glassChromeBgLight: { value: "rgba(255, 255, 255, 0.72)" },
-  glassChromeBgDark: { value: "rgba(27, 24, 34, 0.70)" },
-  glassPanelBgLight: { value: "rgba(255, 255, 255, 0.86)" },
-  glassPanelBgDark: { value: "rgba(27, 24, 34, 0.86)" },
+  glassChromeBg: { value: "rgba(255, 255, 255, 0.09)" },
+  glassPanelBg: { value: "rgba(255, 255, 255, 0.13)" },
+  glassFillStrong: { value: "rgba(255, 255, 255, 0.20)" },
   glassBorderLight: { value: "rgba(20, 18, 28, 0.08)" },
   glassBorderDark: { value: "rgba(255, 255, 255, 0.09)" },
+  glassBorderLit: { value: "rgba(255, 255, 255, 0.16)" },
+  glassBorderFocus: { value: "rgba(255, 255, 255, 0.42)" },
+
+  mesh: {
+    floor: { value: "#0A0E24" },
+    glowHi: { value: "rgba(124, 132, 255, 0.45)" },
+    glowIndigo: { value: "rgba(79, 70, 229, 0.80)" },
+    glowAzure: { value: "rgba(56, 100, 240, 0.70)" },
+    glowViolet: { value: "rgba(139, 80, 245, 0.70)" },
+  },
 
   indigoClear: { value: "rgba(90, 77, 230, 0)" },
   violetClear: { value: "rgba(108, 76, 224, 0)" },
@@ -173,6 +185,45 @@ export const colors = defineTokens.colors({
     700: { value: "#146646" },
     800: { value: "#0F4E35" },
     900: { value: "#0B3A28" },
+  },
+
+  sage: {
+    50: { value: "#F1F4F0" },
+    100: { value: "#E3E8E1" },
+    200: { value: "#C7D0C4" },
+    300: { value: "#A4B0A0" },
+    400: { value: "#7E8C7A" },
+    500: { value: "#5E6B5A" },
+    600: { value: "#4A5547" },
+    700: { value: "#3A4338" },
+    800: { value: "#2C332B" },
+    900: { value: "#1E241D" },
+  },
+
+  plum: {
+    50: { value: "#F4F1F6" },
+    100: { value: "#E8E2EC" },
+    200: { value: "#D2C5D8" },
+    300: { value: "#B49EBE" },
+    400: { value: "#8E7399" },
+    500: { value: "#6E5479" },
+    600: { value: "#574160" },
+    700: { value: "#44324B" },
+    800: { value: "#332639" },
+    900: { value: "#241A29" },
+  },
+
+  umber: {
+    50: { value: "#F6F3EF" },
+    100: { value: "#ECE4DA" },
+    200: { value: "#DBCAB5" },
+    300: { value: "#C3A983" },
+    400: { value: "#A8895E" },
+    500: { value: "#8C6E45" },
+    600: { value: "#715838" },
+    700: { value: "#59452C" },
+    800: { value: "#443422" },
+    900: { value: "#322618" },
   },
 
   gold: {

@@ -72,6 +72,33 @@ export const khulwaButtonRecipe = defineRecipe({
         _hover: { bg: "surface.muted", color: "fg.default" },
         _active: { bg: "bg.emphasized" },
       },
+
+      "onGlass.ghost": {
+        bg: "transparent",
+        color: "fg.onMesh",
+        _hover: { bg: "whiteA.faint" },
+        _active: { bg: "whiteA.dim", transform: "scale(0.97)" },
+      },
+
+      "onGlass.outline": {
+        bg: "whiteA.faint",
+        borderWidth: "1px",
+        borderStyle: "solid",
+        borderColor: "glass.borderLit",
+        color: "fg.onMesh",
+        backdropFilter: "blur(12px) saturate(1.4)",
+        _hover: { bg: "whiteA.dim" },
+        _active: { bg: "whiteA.dim", transform: "scale(0.97)" },
+      },
+
+      "onGlass.primary": {
+        bg: "glassFillStrong",
+        color: "fg.onMesh",
+        boxShadow: "glass-rim-sm",
+        backdropFilter: "blur(16px) saturate(1.5)",
+        _hover: { bg: "whiteA.dim" },
+        _active: { transform: "scale(0.97)" },
+      },
       danger: {
         bg: "transparent",
         borderWidth: "1px",

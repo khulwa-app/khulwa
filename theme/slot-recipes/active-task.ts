@@ -37,7 +37,7 @@ export const activeTaskSlotRecipe = defineSlotRecipe({
       transitionProperty: "border-color",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
-      _focusWithin: { borderColor: "border.focus" },
+      _focusWithin: { borderColor: "glass.borderFocus" },
     },
     mark: {
       boxSize: "2",

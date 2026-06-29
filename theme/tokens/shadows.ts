@@ -15,6 +15,9 @@ export const shadows = defineTokens.shadows({
   lgDark: { value: "0 4px 8px rgba(0, 0, 0, 0.40), 0 16px 40px rgba(0, 0, 0, 0.50)" },
   xlDark: { value: "0 8px 16px rgba(0, 0, 0, 0.44), 0 24px 64px rgba(0, 0, 0, 0.58)" },
 
-  glowSageLight: { value: "0 0 32px 4px rgba(124, 152, 133, 0.30)" },
-  glowSageDark: { value: "0 0 32px 6px rgba(124, 152, 133, 0.22)" },
+  glassRimTop: { value: "inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 2px 5px rgba(255, 255, 255, 0.10)" },
+  glassRimBottom: { value: "inset 0 -1px 0 rgba(255, 255, 255, 0.06)" },
+  glassLift: { value: "0 8px 32px rgba(8, 10, 30, 0.28)" },
+  glassLiftSm: { value: "0 4px 16px rgba(8, 10, 30, 0.22)" },
+  glassLiftLg: { value: "0 24px 80px rgba(8, 10, 30, 0.34)" },
 });

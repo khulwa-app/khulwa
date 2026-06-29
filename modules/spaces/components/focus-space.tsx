@@ -11,6 +11,7 @@ import { CategoryChip, useProgressStore } from "@/modules/progress";
 import { useLogFocusSession } from "@/services/progress";
 import { DoingNowCaption } from "@/modules/tasks/components/doing-now/doing-now-caption";
 import { SpaceBackground } from "./space-background";
+import { BreakScreen } from "./break-screen";
 
 export function FocusSpace() {
   const t = useTranslations("khulwa");
@@ -80,7 +81,18 @@ export function FocusSpace() {
           paddingInline="6"
           paddingBlock={{ base: "16", md: "20" }}
         >
-          <VStack gap={{ base: "5", md: "7" }} align="center">
+          {phase === PomodoroPhase.ShortBreak || phase === PomodoroPhase.LongBreak ? (
+            <BreakScreen
+              phase={phase}
+              minutes={minutes}
+              seconds={seconds}
+              isRunning={isRunning}
+              bloom={blooming}
+              onToggle={isRunning ? pause : start}
+              onSkip={skip}
+            />
+          ) : (
+            <VStack gap={{ base: "5", md: "7" }} align="center">
             <NoorOrb size={72} bloom={blooming} />
 
             <PhaseTabs phase={phase} currentRound={currentRound} totalRounds={totalRounds} onPhaseChange={setPhase} />
@@ -110,7 +122,8 @@ export function FocusSpace() {
                 <SkipForward size={20} />
               </IconButton>
             </HStack>
-          </VStack>
+            </VStack>
+          )}
         </VStack>
       )}
     </Box>

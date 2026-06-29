@@ -87,6 +87,19 @@
       "reset": "Reset",
       "skip": "Skip"
     },
+    "break": {
+      "currentTime": "Current time is {time}",
+      "shortBreak": {
+        "title": "Catch a quick rest",
+        "subtitle": "Step back, breathe, and let your focus settle."
+      },
+      "longBreak": {
+        "title": "A well-deserved retreat",
+        "subtitle": "You've earned this pause — rest deeply before the next Khulwa."
+      },
+      "lockScreen": "Lock screen",
+      "footerHint": "Your next Khulwa begins when the timer ends."
+    },
     "aria": {
       "phaseTabs": "Khulwa phase",
       "roundProgress": "Round {current} of {total}"

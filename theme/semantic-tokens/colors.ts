@@ -36,9 +36,10 @@ export const semanticColors = defineSemanticTokens.colors({
     inverse: dual("sand.100", "charcoal.900"),
     inverseMuted: dual("sand.300", "charcoal.600"),
 
-    onMesh: dual("inkA.strong", "whiteA.strong"),
-    onMeshMuted: dual("inkA.mid", "whiteA.mid"),
-    onMeshSubtle: dual("inkA.soft", "whiteA.soft"),
+    onMesh: { value: c("whiteA.strong") },
+    onMeshMuted: { value: c("whiteA.mid") },
+    onMeshSubtle: { value: c("whiteA.soft") },
+    onMeshDisabled: { value: c("whiteA.disabled") },
   },
 
   border: {
@@ -79,9 +80,11 @@ export const semanticColors = defineSemanticTokens.colors({
   },
 
   glass: {
-    chromeBg: dual("glassChromeBgLight", "glassChromeBgDark"),
-    panelBg: dual("glassPanelBgLight", "glassPanelBgDark"),
+    chromeBg: { value: c("glassChromeBg") },
+    panelBg: { value: c("glassPanelBg") },
     border: dual("glassBorderLight", "glassBorderDark"),
+    borderLit: { value: c("glassBorderLit") },
+    borderFocus: { value: c("glassBorderFocus") },
   },
 
   status: {

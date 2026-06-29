@@ -13,5 +13,13 @@ export const semanticShadows = defineSemanticTokens.shadows({
   lg: dual("lgLight", "lgDark"),
   xl: dual("xlLight", "xlDark"),
 
-  "glow-sage": dual("glowSageLight", "glowSageDark"),
+  "glass-rim": {
+    value: "{shadows.glassRimTop}, {shadows.glassRimBottom}, {shadows.glassLift}",
+  },
+  "glass-rim-sm": {
+    value: "{shadows.glassRimTop}, {shadows.glassRimBottom}, {shadows.glassLiftSm}",
+  },
+  "glass-rim-lg": {
+    value: "{shadows.glassRimTop}, {shadows.glassRimBottom}, {shadows.glassLiftLg}",
+  },
 });

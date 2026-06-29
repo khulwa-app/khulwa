@@ -27,7 +27,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: "7xl",
-      fontWeight: "semibold",
+      fontWeight: "extrabold",
       lineHeight: "1.045",
       letterSpacing: "-0.01em",
     },
@@ -36,7 +36,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: "6xl",
-      fontWeight: "semibold",
+      fontWeight: "bold",
       lineHeight: "1.05",
       letterSpacing: "-0.01em",
     },
@@ -45,7 +45,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: "5xl",
-      fontWeight: "semibold",
+      fontWeight: "bold",
       lineHeight: "1.1666",
       letterSpacing: "-0.005em",
     },
@@ -55,7 +55,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: "4xl",
-      fontWeight: "semibold",
+      fontWeight: "bold",
       lineHeight: "1.2",
       letterSpacing: "0",
     },
@@ -168,7 +168,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: { base: "4xl", md: "6xl" },
-      fontWeight: "bold",
+      fontWeight: "extrabold",
       lineHeight: "1.1",
       letterSpacing: "-0.005em",
     },
@@ -177,7 +177,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: { base: "6xl", md: "8xl" },
-      fontWeight: "bold",
+      fontWeight: "extrabold",
       lineHeight: "1",
       letterSpacing: "-0.03em",
       fontVariantNumeric: "tabular-nums",
@@ -187,7 +187,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: "timer",
-      fontWeight: "bold",
+      fontWeight: "extrabold",
       lineHeight: "1",
       letterSpacing: "-0.01em",
       fontVariantNumeric: "tabular-nums",
@@ -207,7 +207,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "display",
       fontSize: "numeric-display",
-      fontWeight: "bold",
+      fontWeight: "extrabold",
       lineHeight: "1.07",
       letterSpacing: "-0.005em",
       fontVariantNumeric: "tabular-nums",

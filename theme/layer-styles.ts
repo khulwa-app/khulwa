@@ -9,24 +9,21 @@ export const layerStyles = defineLayerStyles({
     },
   },
   "space-backdrop": {
-    description: "vivid brand mesh behind spaces — full-bleed indigo→violet→magenta→pink",
+    description: "deep liquid-glass mesh — indigo→violet→navy, theme-invariant, data-phase hue-shift, crossfade",
     value: {
-      backgroundColor: "{colors.violet.50}",
+      backgroundColor: "{colors.mesh.floor}",
       backgroundImage:
-        "radial-gradient(58% 54% at 84% 14%, {colors.magenta.300} 0%, {colors.magentaClear} 58%)," +
-        "radial-gradient(56% 52% at 78% 86%, {colors.magenta.200} 0%, {colors.magentaClear} 56%)," +
-        "radial-gradient(70% 66% at 14% 86%, {colors.violet.300} 0%, {colors.violetClear} 62%)," +
-        "radial-gradient(52% 48% at 4% 8%, {colors.indigo.200} 0%, {colors.indigoClear} 55%)," +
-        "radial-gradient(100% 90% at 48% 54%, {colors.violet.200} 0%, {colors.violetClear} 70%)",
-      _dark: {
-        backgroundColor: "{colors.indigo.700}",
-        backgroundImage:
-          "radial-gradient(62% 58% at 85% 12%, {colors.magenta.500} 0%, {colors.magentaClear} 56%)," +
-          "radial-gradient(58% 54% at 80% 88%, {colors.magenta.400} 0%, {colors.magentaClear} 55%)," +
-          "radial-gradient(74% 70% at 12% 84%, {colors.violet.500} 0%, {colors.violetClear} 62%)," +
-          "radial-gradient(58% 54% at 4% 8%, {colors.indigo.500} 0%, {colors.indigoClear} 56%)," +
-          "radial-gradient(92% 82% at 48% 52%, {colors.violet.600} 0%, {colors.violetClear} 70%)",
-      },
+        "radial-gradient(55% 55% at 20% 16%, {colors.mesh.glowHi} 0%, transparent 48%)," +
+        "radial-gradient(75% 70% at 8% 22%, {colors.mesh.glowIndigo} 0%, transparent 52%)," +
+        "radial-gradient(80% 75% at 90% 85%, {colors.mesh.glowViolet} 0%, transparent 55%)," +
+        "radial-gradient(70% 65% at 70% 55%, {colors.mesh.glowAzure} 0%, transparent 58%)",
+      filter: "saturate(1.15)",
+      transition: "filter {durations.mood} {easings.standard}",
+      "&[data-phase=shortBreak]": { filter: "saturate(1.00) hue-rotate(-38deg)" },
+      "&[data-phase=longBreak]": { filter: "saturate(1.05) hue-rotate(28deg)" },
+      "&[data-phase=micro]": { filter: "saturate(0.55) brightness(0.82)" },
+      "&[data-phase=alert]": { filter: "saturate(0.95) hue-rotate(115deg)" },
+      _motionReduce: { transition: "none" },
     },
   },
   noor: {
@@ -57,44 +54,44 @@ export const layerStyles = defineLayerStyles({
   },
 
   card: {
-    description: "resting surface card",
+    description: "content glass card — opaque surface + lit hairline + soft rim/lift",
     value: {
       background: "surface.card",
       borderWidth: "1px",
-      borderColor: "border.subtle",
+      borderColor: "glass.borderLit",
       borderRadius: "surface",
-      boxShadow: "sm",
+      boxShadow: "glass-rim-sm",
     },
   },
   "card-anchor": {
-    description: "anchor surface card — roundest tier (doing-now, resume)",
+    description: "content glass anchor card — roundest tier (doing-now, resume)",
     value: {
       background: "surface.card",
       borderWidth: "1px",
-      borderColor: "border.subtle",
+      borderColor: "glass.borderLit",
       borderRadius: "surface",
-      boxShadow: "sm",
+      boxShadow: "glass-rim-sm",
     },
   },
   raised: {
-    description: "glass-chrome — floating chrome (dock, timer pill, badges)",
+    description: "clear liquid glass chrome (dock, timer pill, badges) — light veil + specular rim + lift",
     value: {
       background: "glass.chromeBg",
       borderWidth: "1px",
-      borderColor: "glass.border",
-      backdropFilter: "blur(16px) saturate(1.3)",
-      boxShadow: "md",
+      borderColor: "glass.borderLit",
+      backdropFilter: "blur(24px) saturate(1.75)",
+      boxShadow: "glass-rim-sm",
     },
   },
   overlay: {
-    description: "glass-panel — modals / palette / sheets / tool panel / menus",
+    description: "clear liquid glass panel — modals / palette / sheets / tool panel / menus",
     value: {
       background: "glass.panelBg",
       borderWidth: "1px",
-      borderColor: "glass.border",
+      borderColor: "glass.borderLit",
       borderRadius: "surface",
-      backdropFilter: "blur(28px) saturate(1.4)",
-      boxShadow: "xl",
+      backdropFilter: "blur(30px) saturate(1.8)",
+      boxShadow: "glass-rim-lg",
     },
   },
 });

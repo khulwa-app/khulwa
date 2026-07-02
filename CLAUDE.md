@@ -74,11 +74,11 @@ This is the rule we care about most.
   non-obvious.
 - Prefer composition over props-explosions; lift shared types to a `*.types.ts` in the domain.
 
-## i18n & RTL
+## i18n (English-only)
 
-- **Every user-facing string** goes in `messages/en.json` (+ `ar.json`) via `useTranslations` — never hardcode.
-- **Logical properties only** for direction: `insetInlineStart/End`, `ms/me`, `paddingInline*` — never
-  `left`/`right`. Add `dir="ltr"` to LTR inputs (email/url) inside RTL.
+- **The app is English-only** (Arabic/RTL support was dropped 2026-07 — no `ar.json`, no `ar` locale, no RTL
+  handling). **Every user-facing string** still goes in `messages/en.json` via `useTranslations` — never hardcode.
+- Logical properties (`insetInlineStart/End`, `ms/me`, `paddingInline*`) remain the preferred style.
 
 ## Accessibility
 

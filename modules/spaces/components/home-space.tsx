@@ -7,7 +7,6 @@ import { Home } from "@/theme/slot-recipes/home-space";
 import {
   formatClock,
   formatGregorianDate,
-  formatHijriDate,
   getTimeBand,
   getWeekdayName,
   useClock,
@@ -30,7 +29,7 @@ export function HomeSpace() {
 
   const time = mounted ? formatClock(now, { hour12: true, locale }) : NBSP;
   const dateLine = mounted
-    ? [getWeekdayName(now, locale), formatGregorianDate(now, locale), formatHijriDate(now, locale)]
+    ? [getWeekdayName(now, locale), formatGregorianDate(now, locale)]
         .filter(Boolean)
         .join(" · ")
     : NBSP;

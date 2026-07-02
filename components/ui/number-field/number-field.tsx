@@ -14,7 +14,7 @@ interface NumberFieldProps extends Omit<InputProps, "value" | "onChange" | "type
 export function NumberField({ label, value, min, max, unit, onValueChange, ...rest }: NumberFieldProps) {
   return (
     <HStack justify="space-between" align="center">
-      <Text textStyle="body-sm" color="fg.default">
+      <Text textStyle="body-sm" color="fg">
         {label}
       </Text>
       <HStack gap="2.5" align="center">

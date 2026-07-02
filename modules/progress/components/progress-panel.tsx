@@ -29,7 +29,7 @@ export function ProgressPanel() {
           <Text textStyle="label-md" color="fg.subtle">
             {t("today")}
           </Text>
-          <Text textStyle="heading-h4" color="fg.default" fontVariantNumeric="tabular-nums" suppressHydrationWarning>
+          <Text textStyle="heading-h4" color="fg" fontVariantNumeric="tabular-nums" suppressHydrationWarning>
             {isPending ? "—" : formatDuration(total)}
           </Text>
         </HStack>

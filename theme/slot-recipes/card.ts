@@ -11,7 +11,7 @@ export const cardSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       layerStyle: "card",
-      rounded: "surface",
+      rounded: "3xl",
       width: "full",
       maxW: "sm",
       padding: "4",
@@ -37,7 +37,7 @@ export const cardSlotRecipe = defineSlotRecipe({
       gap: "3",
     },
     title: { textStyle: "label-md", color: "fg.subtle" },
-    meta: { textStyle: "label-md", color: "fg.default", fontVariantNumeric: "tabular-nums" },
+    meta: { textStyle: "label-md", color: "fg", fontVariantNumeric: "tabular-nums" },
     body: { display: "flex", flexDirection: "column", gap: "3" },
   },
 });

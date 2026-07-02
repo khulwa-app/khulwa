@@ -58,7 +58,7 @@ export function HomeSpace() {
             <Text textStyle="clock-display" color="fg.onMesh" suppressHydrationWarning>
               {time}
             </Text>
-            <Text textStyle="hero-meta" color="fg.onMeshMuted" suppressHydrationWarning>
+            <Text textStyle="hero-meta" color="fg.onMesh.muted" suppressHydrationWarning>
               {dateLine}
             </Text>
           </Home.Clock>

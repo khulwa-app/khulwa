@@ -52,7 +52,7 @@ export function FocusSpace() {
   }, [completionCount, lastCompletedPhase, focusMinutes, selected, logSession]);
 
   return (
-    <Box position="relative" minH="full" w="full" bg="bg.base" overflowX="hidden">
+    <Box position="relative" minH="full" w="full" bg="bg" overflowX="hidden">
       <SpaceBackground />
       {hydrated && (
         <VStack
@@ -78,7 +78,7 @@ export function FocusSpace() {
             <VStack gap={{ base: "5", md: "7" }} align="center">
             <PhaseTabs phase={phase} currentRound={currentRound} totalRounds={totalRounds} onPhaseChange={setPhase} />
 
-            <Text textStyle="numeric-display" data-numeric color="fg.default" suppressHydrationWarning>
+            <Text textStyle="numeric-display" data-numeric color="fg" suppressHydrationWarning>
               {formatPomodoro(minutes, seconds)}
             </Text>
 

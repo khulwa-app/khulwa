@@ -20,7 +20,7 @@ export function NoteCard({ note }: { note: Note }) {
   };
 
   return (
-    <Box bg="bg.subtle" borderWidth="1px" borderColor="border.subtle" rounded="control" paddingInline="3" paddingBlock="2">
+    <Box bg="bg.subtle" borderWidth="1px" borderColor="border.subtle" rounded="md" paddingInline="3" paddingBlock="2">
       <HStack gap="1" align="center">
         <Input
           variant="plain"
@@ -28,17 +28,17 @@ export function NoteCard({ note }: { note: Note }) {
           defaultValue={note.title ?? ""}
           placeholder={t("titlePlaceholder")}
           fontWeight="medium"
-          color="fg.default"
+          color="fg"
           aria-label={t("titlePlaceholder")}
           onBlur={(e) => saveTitle(e.target.value)}
         />
         <IconButton
           variant="ghost"
           size="sm"
-          color="fg.faint"
+          color="fg.disabled"
           aria-label={t("delete")}
           onClick={() => remove.mutate(note.id)}
-          _hover={{ color: "status.danger" }}
+          _hover={{ color: "fg.error" }}
         >
           <Trash2 size={14} />
         </IconButton>
@@ -55,7 +55,7 @@ export function NoteCard({ note }: { note: Note }) {
         minH="3.25rem"
         resize="none"
         textStyle="body-sm"
-        color="fg.default"
+        color="fg"
         _placeholder={{ color: "fg.muted" }}
         _focusVisible={{ outline: "none", boxShadow: "none" }}
       />

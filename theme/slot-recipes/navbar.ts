@@ -39,7 +39,7 @@ export const navbarSlotRecipe = defineSlotRecipe({
       fontSize: { base: "xs", md: "sm" },
       fontWeight: "medium",
       lineHeight: "1.4",
-      color: "fg.onMeshMuted",
+      color: "fg.onMesh.muted",
       display: { base: "none", sm: "block" },
     },
   },

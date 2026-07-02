@@ -20,7 +20,7 @@ export function DoingNowCaption() {
           key={currentTask.id}
           as="button"
           textStyle="sm"
-          color="fg.onMeshMuted"
+          color="fg.onMesh.muted"
           maxW="md"
           lineClamp={1}
           cursor="pointer"

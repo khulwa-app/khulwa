@@ -33,7 +33,7 @@ export const settingsSlotRecipe = defineSlotRecipe({
       width: "full",
       paddingInline: "3",
       paddingBlock: "2.5",
-      rounded: "controlWide",
+      rounded: "full",
       border: "0",
       bg: "transparent",
       cursor: "pointer",
@@ -45,8 +45,8 @@ export const settingsSlotRecipe = defineSlotRecipe({
       transitionProperty: "background-color, color",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
-      _hover: { bg: "primary.wash", color: "primary.hover" },
-      "&[aria-selected=true]": { bg: "primary.subtle", color: "primary.onSubtle" },
+      _hover: { bg: "primary.muted", color: "primary.emphasized" },
+      "&[aria-selected=true]": { bg: "primary.subtle", color: "primary.fg" },
       "& svg": { flexShrink: "0" },
     },
     pane: {
@@ -62,7 +62,7 @@ export const settingsSlotRecipe = defineSlotRecipe({
     },
     paneTitle: {
       textStyle: "heading-h4",
-      color: "fg.default",
+      color: "fg",
       overflowWrap: "break-word",
     },
   },

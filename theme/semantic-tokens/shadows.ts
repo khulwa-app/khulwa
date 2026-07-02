@@ -1,23 +1,17 @@
 import { defineSemanticTokens } from "@chakra-ui/react";
 
-const ref = (token: string) => ({ value: `{shadows.${token}}` });
-
 export const semanticShadows = defineSemanticTokens.shadows({
-  focus: ref("focus"),
+  focus: { value: "0 0 0 2px {colors.bg.panel}, 0 0 0 4px {colors.primary.focusRing}" },
 
-  xs: ref("xs"),
-  sm: ref("sm"),
-  md: ref("md"),
-  lg: ref("lg"),
-  xl: ref("xl"),
-
-  "glass-rim": {
-    value: "{shadows.glassRimEdge}, {shadows.glassRimSheen}, {shadows.glassLift}",
+  dock: {
+    value: "0 1px 2px rgba(10, 16, 20, 0.12), 0 3px 7px -1px rgba(10, 16, 20, 0.10)",
   },
-  "glass-rim-sm": {
-    value: "{shadows.glassRimEdge}, {shadows.glassRimSheen}, {shadows.glassLiftSm}",
+  glass: {
+    value:
+      "0 2px 6px rgba(10, 16, 20, 0.10), 0 16px 40px -4px rgba(10, 16, 20, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.30), inset 0 -1px 0 rgba(255, 255, 255, 0.05)",
   },
-  "glass-rim-lg": {
-    value: "{shadows.glassRimEdge}, {shadows.glassRimSheen}, {shadows.glassLiftLg}",
+  "glass-sm": {
+    value:
+      "0 1px 2px rgba(10, 16, 20, 0.12), 0 4px 10px -1px rgba(10, 16, 20, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.30), inset 0 -1px 0 rgba(255, 255, 255, 0.05)",
   },
 });

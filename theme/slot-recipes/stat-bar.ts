@@ -13,7 +13,7 @@ export const statBarSlotRecipe = defineSlotRecipe({
     dot: { boxSize: "2.5", rounded: "full", flexShrink: "0" },
     label: {
       textStyle: "body-sm",
-      color: "fg.default",
+      color: "fg",
       width: "20",
       flexShrink: "0",
       overflow: "hidden",

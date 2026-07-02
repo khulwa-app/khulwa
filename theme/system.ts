@@ -11,8 +11,8 @@ const config = defineConfig({
   cssVarsPrefix: "khulwa",
   globalCss: {
     "html, body": {
-      bg: "bg.base",
-      color: "fg.default",
+      bg: "bg",
+      color: "fg",
       fontFamily: "body",
     },
     "[data-numeric]": { fontVariantNumeric: "tabular-nums" },

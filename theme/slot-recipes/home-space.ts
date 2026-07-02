@@ -13,7 +13,7 @@ export const homeSpaceSlotRecipe = defineSlotRecipe({
       position: "relative",
       minH: "full",
       w: "full",
-      bg: "bg.base",
+      bg: "bg",
       overflowX: "hidden",
     },
     corner: {

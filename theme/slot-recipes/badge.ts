@@ -10,7 +10,7 @@ export const badgeSlotRecipe = defineSlotRecipe({
       width: "fit-content",
       borderStyle: "solid",
       borderWidth: "0",
-      rounded: "controlWide",
+      rounded: "full",
       whiteSpace: "nowrap",
       flexShrink: "0",
       transitionProperty: "background-color, color, transform",
@@ -44,13 +44,13 @@ export const badgeSlotRecipe = defineSlotRecipe({
     },
   },
   compoundVariants: [
-    { tone: "neutral", emphasis: "subtle", css: { root: { bg: "surface.muted", color: "fg.default" } } },
-    { tone: "neutral", emphasis: "muted", css: { root: { bg: "surface.muted", color: "fg.muted" } } },
-    { tone: "neutral", emphasis: "solid", css: { root: { bg: "fg.default", color: "fg.inverse" } } },
-    { tone: "primary", emphasis: "subtle", css: { root: { bg: "primary.subtle", color: "primary.onSubtle" } } },
-    { tone: "accent", emphasis: "subtle", css: { root: { bg: "accent.subtle", color: "accent.default" } } },
+    { tone: "neutral", emphasis: "subtle", css: { root: { bg: "bg.muted", color: "fg" } } },
+    { tone: "neutral", emphasis: "muted", css: { root: { bg: "bg.muted", color: "fg.muted" } } },
+    { tone: "neutral", emphasis: "solid", css: { root: { bg: "fg", color: "fg.inverted" } } },
+    { tone: "primary", emphasis: "subtle", css: { root: { bg: "primary.subtle", color: "primary.fg" } } },
+    { tone: "accent", emphasis: "subtle", css: { root: { bg: "primary.subtle", color: "primary.solid" } } },
 
-    { tone: "success", emphasis: "subtle", css: { root: { bg: "status.successSubtle", color: "status.success" } } },
+    { tone: "success", emphasis: "subtle", css: { root: { bg: "bg.success", color: "fg.success" } } },
   ],
   defaultVariants: { tone: "neutral", emphasis: "subtle", size: "md" },
 });

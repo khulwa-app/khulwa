@@ -5,32 +5,28 @@ export const colors = defineTokens.colors({
   black: { value: "#000000" },
 
   scrim: { value: "rgba(20, 18, 28, 0.55)" },
-  scrimStrong: { value: "rgba(10, 9, 14, 0.7)" },
 
   whiteA: {
     faint: { value: "rgba(255, 255, 255, 0.08)" },
     dim: { value: "rgba(255, 255, 255, 0.14)" },
+    sheet: { value: "rgba(255, 255, 255, 0.20)" },
     disabled: { value: "rgba(255, 255, 255, 0.40)" },
     soft: { value: "rgba(255, 255, 255, 0.70)" },
     mid: { value: "rgba(255, 255, 255, 0.84)" },
     strong: { value: "rgba(255, 255, 255, 0.98)" },
   },
   inkA: {
-    strong: { value: "rgba(18, 16, 26, 0.94)" },
-    mid: { value: "rgba(18, 16, 26, 0.74)" },
-    soft: { value: "rgba(18, 16, 26, 0.60)" },
+    clear: { value: "rgba(18, 16, 26, 0.30)" },
+    chip: { value: "rgba(18, 16, 26, 0.36)" },
+    veil: { value: "rgba(18, 16, 26, 0.48)" },
   },
 
-  glassFillStrong: { value: "rgba(18, 16, 26, 0.86)" },
-  glassRim: { value: "rgba(255, 255, 255, 0.16)" },
-  glassRimFocus: { value: "rgba(255, 255, 255, 0.40)" },
-
   mesh: {
-    floor: { value: "#E9F2EB" },
+    floor: { value: "#12946E" },
     glowHaze: { value: "rgba(255, 255, 255, 0.65)" },
-    glowSage: { value: "rgba(143, 201, 167, 0.62)" },
-    glowTeal: { value: "rgba(111, 216, 199, 0.55)" },
-    glowGreen: { value: "rgba(72, 185, 135, 0.48)" },
+    glowSage: { value: "rgba(54, 196, 150, 0.62)" },
+    glowTeal: { value: "rgba(38, 186, 171, 0.55)" },
+    glowGreen: { value: "rgba(13, 122, 96, 0.48)" },
   },
 
   indigo: {
@@ -137,6 +133,4 @@ export const colors = defineTokens.colors({
     800: { value: "#7C2331" },
     900: { value: "#5C1A25" },
   },
-
-  ring: { value: "#14B8A6" },
 });

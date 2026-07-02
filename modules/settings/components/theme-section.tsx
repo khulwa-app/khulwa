@@ -14,7 +14,7 @@ export function ThemeSection() {
 
   return (
     <HStack justify="space-between" align="center">
-      <Text textStyle="body-sm" color="fg.default">
+      <Text textStyle="body-sm" color="fg">
         {t("darkMode")}
       </Text>
       <Switch.Root

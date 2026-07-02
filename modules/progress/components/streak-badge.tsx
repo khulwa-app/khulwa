@@ -19,13 +19,13 @@ export function StreakBadge() {
       paddingInline="2.5"
       rounded="full"
       layerStyle="raised"
-      color="fg.default"
+      color="fg"
       textStyle="label-md"
       fontVariantNumeric="tabular-nums"
       title={t("streak", { count })}
       aria-label={t("streak", { count })}
     >
-      <Box asChild color="accent.default" display="inline-flex">
+      <Box asChild color="primary.solid" display="inline-flex">
         <Flame size={13} aria-hidden />
       </Box>
       {count}

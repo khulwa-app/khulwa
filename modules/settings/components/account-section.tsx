@@ -21,7 +21,7 @@ export function AccountSection() {
   return (
     <VStack align="stretch" gap="4">
       <VStack align="stretch" gap="0.5">
-        <Text textStyle="body-md" color="fg.default">
+        <Text textStyle="body-md" color="fg">
           {user?.name ?? "—"}
         </Text>
         <Text textStyle="body-sm" color="fg.muted">

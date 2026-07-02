@@ -17,7 +17,7 @@ export function Landing() {
   const t = useTranslations("landing");
 
   return (
-    <Box position="relative" minH="100vh" overflow="hidden" bg="bg.base">
+    <Box position="relative" minH="100vh" overflow="hidden" bg="bg">
       <Box position="absolute" inset={0} layerStyle="space-backdrop" pointerEvents="none" aria-hidden />
 
       <Flex
@@ -51,10 +51,10 @@ export function Landing() {
         paddingTop={{ base: "16", md: "24" }}
       >
         <VStack gap="4">
-          <Text textStyle="overline" color="primary.default">
+          <Text textStyle="overline" color="primary.solid">
             {t("hero.eyebrow")}
           </Text>
-          <Text textStyle="display-xl" color="fg.default" maxW="xl">
+          <Text textStyle="display-xl" color="fg" maxW="xl">
             {t("hero.headline")}
           </Text>
           <Text textStyle="body-lg" color="fg.muted" maxW="lg">
@@ -87,19 +87,19 @@ export function Landing() {
             padding="6"
             align="start"
             gap="3"
-            rounded="surface"
+            rounded="3xl"
           >
             <Flex
               boxSize="10"
               align="center"
               justify="center"
-              rounded="control"
+              rounded="md"
               bg="primary.subtle"
-              color="primary.default"
+              color="primary.solid"
             >
               <Icon size={20} />
             </Flex>
-            <Text textStyle="heading-h4" color="fg.default">
+            <Text textStyle="heading-h4" color="fg">
               {t(title)}
             </Text>
             <Text textStyle="body-sm" color="fg.muted">
@@ -113,7 +113,7 @@ export function Landing() {
         position="relative"
         zIndex={1}
         textStyle="body-sm"
-        color="fg.faint"
+        color="fg.disabled"
         textAlign="center"
         paddingBottom="10"
       >

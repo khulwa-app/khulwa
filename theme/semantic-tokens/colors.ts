@@ -6,70 +6,46 @@ const one = (token: string) => ({ value: c(token) });
 export const semanticColors = defineSemanticTokens.colors({
   bg: {
     DEFAULT: one("sage.50"),
-    base: one("sage.50"),
-    elevated: one("white"),
-    sunken: one("sage.100"),
-    inverse: one("sand.950"),
-    panel: one("white"),
     subtle: one("sage.100"),
     muted: one("sage.100"),
     emphasized: one("sage.200"),
+    panel: one("white"),
+    error: one("red.100"),
+    success: one("green.100"),
     scrim: one("scrim"),
-  },
-
-  surface: {
-    card: one("white"),
-    muted: one("sage.100"),
-  },
-
-  field: {
-    bg: one("sage.100"),
-    bgHover: one("sage.200"),
   },
 
   fg: {
     DEFAULT: one("sand.950"),
-    default: one("sand.950"),
     muted: one("sand.700"),
     subtle: one("sand.600"),
-    faint: one("sand.500"),
-    inverse: one("sand.100"),
-    inverseMuted: one("sand.300"),
+    disabled: one("sand.500"),
+    inverted: one("sand.100"),
+    error: one("red.500"),
+    success: one("green.500"),
 
-    onMesh: one("whiteA.strong"),
-    onMeshMuted: one("whiteA.mid"),
-    onMeshSubtle: one("whiteA.soft"),
-    onMeshDisabled: one("whiteA.disabled"),
+    onMesh: {
+      DEFAULT: one("whiteA.strong"),
+      muted: one("whiteA.mid"),
+      subtle: one("whiteA.soft"),
+    },
   },
 
   border: {
     DEFAULT: one("sage.300"),
     subtle: one("sage.200"),
-    default: one("sage.300"),
-    muted: one("sage.200"),
     emphasized: one("sage.400"),
-    strong: one("sage.500"),
     focus: one("sage.600"),
   },
 
   primary: {
-    default: one("sage.600"),
-    hover: one("sage.700"),
-    pressed: one("sage.800"),
-    subtle: one("sage.100"),
-
-    onSubtle: one("sage.700"),
-
-    wash: one("sage.100"),
-    fg: one("white"),
-  },
-
-  accent: {
-    default: one("teal.600"),
-    hover: one("teal.500"),
-    pressed: one("teal.700"),
+    solid: one("teal.500"),
+    contrast: one("white"),
+    fg: one("teal.700"),
+    muted: one("teal.200"),
     subtle: one("teal.100"),
-    fg: one("white"),
+    emphasized: one("teal.600"),
+    focusRing: one("teal.500"),
   },
 
   category: {
@@ -80,17 +56,12 @@ export const semanticColors = defineSemanticTokens.colors({
   },
 
   glass: {
-    chromeBg: one("inkA.soft"),
-    panelBg: one("inkA.mid"),
-    border: one("glassRim"),
-    borderLit: one("glassRim"),
-    borderFocus: one("glassRimFocus"),
-  },
-
-  status: {
-    success: one("green.500"),
-    successSubtle: one("green.100"),
-    danger: one("red.500"),
-    dangerSubtle: one("red.100"),
+    sheet: one("whiteA.sheet"),
+    chrome: one("inkA.chip"),
+    panel: one("inkA.veil"),
+    clear: one("inkA.clear"),
+    border: { value: "rgba(255, 255, 255, 0.16)" },
+    borderLit: { value: "rgba(255, 255, 255, 0.16)" },
+    borderFocus: { value: "rgba(255, 255, 255, 0.40)" },
   },
 });

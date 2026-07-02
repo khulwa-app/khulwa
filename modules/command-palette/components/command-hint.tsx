@@ -22,7 +22,7 @@ export function CommandHint() {
       zIndex="hint"
       pointerEvents="none"
     >
-      <Text textStyle="overline" color="fg.faint">
+      <Text textStyle="overline" color="fg.disabled">
         {t("hint")}
       </Text>
     </Box>

@@ -34,7 +34,7 @@ export function DoingNowActive({ task }: { task: Task }) {
         <IconButton
           variant="ghost"
           size="sm"
-          color="fg.onMeshMuted"
+          color="fg.onMesh.muted"
           flexShrink="0"
           aria-label={t("changeTask")}
           onClick={openTasksPanel}

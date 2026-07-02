@@ -42,7 +42,7 @@ export function PomodoroSection() {
       />
 
       <HStack justify="space-between" align="center">
-        <Text textStyle="body-sm" color="fg.default">
+        <Text textStyle="body-sm" color="fg">
           {t("autoStart")}
         </Text>
         <Switch.Root

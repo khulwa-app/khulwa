@@ -32,7 +32,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
       layerStyle: "overlay",
       borderRadius: "0",
       borderInlineEndWidth: "0",
-      boxShadow: "xl",
+      boxShadow: "glass",
       _open: { animationName: "drawer-in", animationDuration: "enter", animationTimingFunction: "enter" },
       _closed: { animationName: "drawer-out", animationDuration: "exit", animationTimingFunction: "exit" },
       _motionReduce: { _open: { animationName: "fade-in" }, _closed: { animationName: "fade-out" } },
@@ -49,7 +49,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
     },
     title: {
       textStyle: "heading-h4",
-      color: "fg.default",
+      color: "fg",
     },
     body: {
       display: "flex",

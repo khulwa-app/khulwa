@@ -1,6 +1,26 @@
 import { defineTextStyles } from "@chakra-ui/react";
 
 export const textStyles = defineTextStyles({
+  logo: {
+    value: {
+      fontFamily: "display",
+      fontSize: "logo",
+      fontWeight: "extrabold",
+      lineHeight: "1",
+      letterSpacing: "-0.01em",
+    },
+  },
+
+  tag: {
+    value: {
+      fontFamily: "body",
+      fontSize: "xs",
+      fontWeight: "medium",
+      lineHeight: "1.3333",
+      letterSpacing: "0",
+    },
+  },
+
   overline: {
     value: {
       fontFamily: "body",

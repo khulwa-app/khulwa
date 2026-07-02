@@ -30,8 +30,8 @@ export function CategoryChip() {
           gap="2"
           h="8"
           paddingInline="3"
-          rounded="controlWide"
-          bg="surface.muted"
+          rounded="full"
+          bg="bg.muted"
           color="fg.muted"
           fontSize="sm"
           fontWeight="medium"
@@ -39,12 +39,12 @@ export function CategoryChip() {
           transitionProperty="background-color, color"
           transitionDuration="enter"
           transitionTimingFunction="enter"
-          _hover={{ bg: "bg.emphasized", color: "fg.default" }}
-          _open={{ bg: "bg.emphasized", color: "fg.default" }}
+          _hover={{ bg: "bg.emphasized", color: "fg" }}
+          _open={{ bg: "bg.emphasized", color: "fg" }}
           suppressHydrationWarning
         >
           <Box boxSize="2" rounded="full" bg={current ? current.color : "fg.subtle"} />
-          <chakra.span color={current ? "fg.default" : "fg.muted"}>
+          <chakra.span color={current ? "fg" : "fg.muted"}>
             {current ? t(current.id) : t("none")}
           </chakra.span>
           <ChevronDown size={14} />

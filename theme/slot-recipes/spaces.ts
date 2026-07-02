@@ -9,7 +9,7 @@ export const spacesSlotRecipe = defineSlotRecipe({
       minHeight: "100dvh",
       width: "100%",
       overflow: "hidden",
-      bg: "bg.base",
+      bg: "bg",
       userSelect: "none",
       WebkitUserSelect: "none",
     },

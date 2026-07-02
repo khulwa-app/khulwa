@@ -29,7 +29,7 @@ export const activeTaskSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       width: "full",
       layerStyle: "raised",
-      rounded: "surface",
+      rounded: "3xl",
       gap: "3",
       paddingInlineStart: "5",
       paddingInlineEnd: "2",
@@ -54,17 +54,17 @@ export const activeTaskSlotRecipe = defineSlotRecipe({
     },
     task: {
       textStyle: "body-md",
-      color: "fg.onMeshMuted",
+      color: "fg.onMesh.muted",
       lineClamp: 1,
       minW: "0",
     },
     eta: {
       textStyle: "label-lg",
-      color: "fg.onMeshSubtle",
+      color: "fg.onMesh.subtle",
       flexShrink: "0",
       whiteSpace: "nowrap",
     },
-    hint: { textStyle: "label-lg", color: "fg.onMeshSubtle" },
+    hint: { textStyle: "label-lg", color: "fg.onMesh.subtle" },
   },
 });
 

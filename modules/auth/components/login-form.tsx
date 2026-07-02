@@ -49,7 +49,7 @@ export function LoginForm() {
   return (
     <VStack w="full" mx="auto" align="stretch" gap="5">
       <VStack align="center" textAlign="center" gap="1">
-        <Text textStyle="heading-h3" color="fg.default">
+        <Text textStyle="heading-h3" color="fg">
           {mode === "signin" ? t("title") : t("signupTitle")}
         </Text>
         <Text textStyle="body-sm" color="fg.muted">
@@ -61,7 +61,7 @@ export function LoginForm() {
         {t("continueWithGoogle")}
       </Button>
 
-      <HStack gap="3" color="fg.faint">
+      <HStack gap="3" color="fg.disabled">
         <Box flex="1" h="1px" bg="border.subtle" />
         <Text textStyle="overline">{t("divider")}</Text>
         <Box flex="1" h="1px" bg="border.subtle" />
@@ -99,7 +99,7 @@ export function LoginForm() {
           />
 
           {error && (
-            <Text textStyle="body-sm" color="status.danger">
+            <Text textStyle="body-sm" color="fg.error">
               {error}
             </Text>
           )}

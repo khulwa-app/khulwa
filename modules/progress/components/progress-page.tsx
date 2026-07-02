@@ -33,7 +33,7 @@ export function ProgressPage() {
     <Box h="100dvh" overflowY="auto" px={{ base: "5", md: "8" }} pt={{ base: "20", md: "24" }} pb="16">
       <VStack maxW="3xl" mx="auto" align="stretch" gap="6">
         <VStack align="start" gap="1">
-          <Heading textStyle="heading-h2" color="fg.default">
+          <Heading textStyle="heading-h2" color="fg">
             {t("title")}
           </Heading>
           <Text textStyle="body-sm" color="fg.muted">
@@ -58,7 +58,7 @@ export function ProgressPage() {
               </Card.Header>
               <Card.Body alignItems="center" gap="5">
                 <CategoryDonut totals={today}>
-                  <Text textStyle="numeric-sm" color="fg.default" fontVariantNumeric="tabular-nums">
+                  <Text textStyle="numeric-sm" color="fg" fontVariantNumeric="tabular-nums">
                     {formatDuration(todayTotal)}
                   </Text>
                   <Text textStyle="label-md" color="fg.subtle">

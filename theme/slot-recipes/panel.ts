@@ -21,7 +21,7 @@ export const panelSlotRecipe = defineSlotRecipe({
       maxW: "calc(100vw - 1.5rem)",
       maxH: "min(70vh, 34rem)",
       overflow: "hidden",
-      rounded: "surface",
+      rounded: "3xl",
 
       layerStyle: "overlay",
       transformOrigin: "bottom",
@@ -42,7 +42,7 @@ export const panelSlotRecipe = defineSlotRecipe({
     title: {
       textStyle: "label-md",
       fontWeight: "medium",
-      color: "fg.default",
+      color: "fg",
     },
     body: {
       display: "flex",

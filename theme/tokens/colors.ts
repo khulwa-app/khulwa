@@ -21,39 +21,16 @@ export const colors = defineTokens.colors({
     soft: { value: "rgba(18, 16, 26, 0.60)" },
   },
 
-  glassChromeBg: { value: "rgba(255, 255, 255, 0.09)" },
-  glassPanelBg: { value: "rgba(255, 255, 255, 0.13)" },
-  glassFillStrong: { value: "rgba(255, 255, 255, 0.20)" },
-  glassBorderLight: { value: "rgba(20, 18, 28, 0.08)" },
-  glassBorderDark: { value: "rgba(255, 255, 255, 0.09)" },
-  glassBorderLit: { value: "rgba(255, 255, 255, 0.16)" },
-  glassBorderFocus: { value: "rgba(255, 255, 255, 0.42)" },
+  glassFillStrong: { value: "rgba(18, 16, 26, 0.86)" },
+  glassRim: { value: "rgba(255, 255, 255, 0.16)" },
+  glassRimFocus: { value: "rgba(255, 255, 255, 0.40)" },
 
   mesh: {
-    floor: { value: "#0A0E24" },
-    glowHi: { value: "rgba(124, 132, 255, 0.45)" },
-    glowIndigo: { value: "rgba(79, 70, 229, 0.80)" },
-    glowAzure: { value: "rgba(56, 100, 240, 0.70)" },
-    glowViolet: { value: "rgba(139, 80, 245, 0.70)" },
-  },
-
-  indigoClear: { value: "rgba(90, 77, 230, 0)" },
-  violetClear: { value: "rgba(108, 76, 224, 0)" },
-  magentaClear: { value: "rgba(236, 72, 153, 0)" },
-
-  violetA: {
-    100: { value: "rgba(108, 76, 224, 0.06)" },
-    200: { value: "rgba(108, 76, 224, 0.10)" },
-    300: { value: "rgba(108, 76, 224, 0.16)" },
-    400: { value: "rgba(108, 76, 224, 0.28)" },
-    500: { value: "rgba(108, 76, 224, 0.45)" },
-  },
-  magentaA: {
-    100: { value: "rgba(236, 72, 153, 0.06)" },
-    200: { value: "rgba(236, 72, 153, 0.10)" },
-    300: { value: "rgba(236, 72, 153, 0.16)" },
-    400: { value: "rgba(236, 72, 153, 0.30)" },
-    500: { value: "rgba(236, 72, 153, 0.48)" },
+    floor: { value: "#E9F2EB" },
+    glowHaze: { value: "rgba(255, 255, 255, 0.65)" },
+    glowSage: { value: "rgba(143, 201, 167, 0.62)" },
+    glowTeal: { value: "rgba(111, 216, 199, 0.55)" },
+    glowGreen: { value: "rgba(72, 185, 135, 0.48)" },
   },
 
   indigo: {
@@ -69,19 +46,6 @@ export const colors = defineTokens.colors({
     900: { value: "#221C5C" },
   },
 
-  azure: {
-    50: { value: "#EEF3FF" },
-    100: { value: "#DCE6FE" },
-    200: { value: "#BCCEFD" },
-    300: { value: "#8FAAFA" },
-    400: { value: "#5C82F4" },
-    500: { value: "#3D63E8" },
-    600: { value: "#2F4ED1" },
-    700: { value: "#283FA6" },
-    800: { value: "#233680" },
-    900: { value: "#1E2D5E" },
-  },
-
   cyan: {
     50: { value: "#E7FAFD" },
     100: { value: "#C6F1F8" },
@@ -93,32 +57,6 @@ export const colors = defineTokens.colors({
     700: { value: "#0C6377" },
     800: { value: "#0C4D5C" },
     900: { value: "#0A3B47" },
-  },
-
-  violet: {
-    50: { value: "#F4F2FE" },
-    100: { value: "#ECEAFE" },
-    200: { value: "#D6D1FB" },
-    300: { value: "#A78BFA" },
-    400: { value: "#9385F4" },
-    500: { value: "#6C4CE0" },
-    600: { value: "#5B3DD0" },
-    700: { value: "#4C3CD4" },
-    800: { value: "#3B2FA6" },
-    900: { value: "#2A2178" },
-  },
-
-  magenta: {
-    50: { value: "#FDF2F8" },
-    100: { value: "#FCE7F1" },
-    200: { value: "#F9CCE0" },
-    300: { value: "#F5A3C9" },
-    400: { value: "#F05BA6" },
-    500: { value: "#EC4899" },
-    600: { value: "#D83A87" },
-    700: { value: "#B92E72" },
-    800: { value: "#94235A" },
-    900: { value: "#6E1A43" },
   },
 
   sand: {
@@ -133,19 +71,6 @@ export const colors = defineTokens.colors({
     800: { value: "#444038" },
     900: { value: "#2B2823" },
     950: { value: "#1C1C1C" },
-  },
-
-  charcoal: {
-    50: { value: "#EDECEF" },
-    100: { value: "#D6D4DA" },
-    200: { value: "#ABA8B5" },
-    300: { value: "#7E7A8B" },
-    400: { value: "#565163" },
-    500: { value: "#3D3950" },
-    600: { value: "#2E2A3D" },
-    700: { value: "#242030" },
-    800: { value: "#1B1822" },
-    900: { value: "#14121A" },
   },
 
   teal: {
@@ -200,45 +125,6 @@ export const colors = defineTokens.colors({
     900: { value: "#1E241D" },
   },
 
-  plum: {
-    50: { value: "#F4F1F6" },
-    100: { value: "#E8E2EC" },
-    200: { value: "#D2C5D8" },
-    300: { value: "#B49EBE" },
-    400: { value: "#8E7399" },
-    500: { value: "#6E5479" },
-    600: { value: "#574160" },
-    700: { value: "#44324B" },
-    800: { value: "#332639" },
-    900: { value: "#241A29" },
-  },
-
-  umber: {
-    50: { value: "#F6F3EF" },
-    100: { value: "#ECE4DA" },
-    200: { value: "#DBCAB5" },
-    300: { value: "#C3A983" },
-    400: { value: "#A8895E" },
-    500: { value: "#8C6E45" },
-    600: { value: "#715838" },
-    700: { value: "#59452C" },
-    800: { value: "#443422" },
-    900: { value: "#322618" },
-  },
-
-  gold: {
-    50: { value: "#FCF3E2" },
-    100: { value: "#FBEED6" },
-    200: { value: "#F5DCAC" },
-    300: { value: "#EDC277" },
-    400: { value: "#E3A748" },
-    500: { value: "#D98A1A" },
-    600: { value: "#B57115" },
-    700: { value: "#8E5811" },
-    800: { value: "#6C430D" },
-    900: { value: "#503209" },
-  },
-
   red: {
     50: { value: "#FCEEEF" },
     100: { value: "#FBE3DD" },
@@ -252,5 +138,5 @@ export const colors = defineTokens.colors({
     900: { value: "#5C1A25" },
   },
 
-  ring: { value: "#5A4DE6" },
+  ring: { value: "#14B8A6" },
 });

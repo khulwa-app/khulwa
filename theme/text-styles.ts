@@ -101,36 +101,36 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "body",
       fontSize: "xl",
-      fontWeight: "medium",
+      fontWeight: "normal",
       lineHeight: "1.5",
-      letterSpacing: "0.01em",
+      letterSpacing: "0",
     },
   },
   "body-lg": {
     value: {
       fontFamily: "body",
       fontSize: "lg",
-      fontWeight: "medium",
+      fontWeight: "normal",
       lineHeight: "1.5555",
-      letterSpacing: "0.01em",
+      letterSpacing: "0",
     },
   },
   "body-md": {
     value: {
       fontFamily: "body",
       fontSize: "md",
-      fontWeight: "medium",
+      fontWeight: "normal",
       lineHeight: "1.5",
-      letterSpacing: "0.01em",
+      letterSpacing: "0",
     },
   },
   "body-sm": {
     value: {
       fontFamily: "body",
       fontSize: "sm",
-      fontWeight: "medium",
+      fontWeight: "normal",
       lineHeight: "1.4285",
-      letterSpacing: "0.01em",
+      letterSpacing: "0",
     },
   },
 

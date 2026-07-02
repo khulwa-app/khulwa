@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Box, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 import { Pause, Play, RotateCcw, SkipForward } from "lucide-react";
 import { formatPomodoro } from "@/modules/clock";
-import { NoorOrb } from "@/modules/companion";
 import { usePomodoro, usePomodoroHydrated, PhaseTabs, PomodoroPhase } from "@/modules/pomodoro";
 import { CategoryChip, useProgressStore } from "@/modules/progress";
 import { useLogFocusSession } from "@/services/progress";
@@ -35,15 +34,6 @@ export function FocusSpace() {
   } = usePomodoro();
   const primaryLabel = isRunning ? t("actions.pause") : hasStarted ? t("actions.resume") : t("actions.begin");
 
-  const [prevCompletion, setPrevCompletion] = useState(completionCount);
-  const [blooming, setBlooming] = useState(false);
-  if (completionCount !== prevCompletion) {
-    setPrevCompletion(completionCount);
-    const wasFocus = lastCompletedPhase === PomodoroPhase.Focus;
-    const reduce = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setBlooming(wasFocus && !reduce);
-  }
-
   const selected = useProgressStore((s) => s.selected);
   const { mutate: logSession } = useLogFocusSession();
   const loggedCompletion = useRef(completionCount);
@@ -60,12 +50,6 @@ export function FocusSpace() {
       endedAt: endedAt.toISOString(),
     });
   }, [completionCount, lastCompletedPhase, focusMinutes, selected, logSession]);
-
-  useEffect(() => {
-    if (!blooming) return;
-    const id = setTimeout(() => setBlooming(false), 900);
-    return () => clearTimeout(id);
-  }, [blooming]);
 
   return (
     <Box position="relative" minH="full" w="full" bg="bg.base" overflowX="hidden">
@@ -87,14 +71,11 @@ export function FocusSpace() {
               minutes={minutes}
               seconds={seconds}
               isRunning={isRunning}
-              bloom={blooming}
               onToggle={isRunning ? pause : start}
               onSkip={skip}
             />
           ) : (
             <VStack gap={{ base: "5", md: "7" }} align="center">
-            <NoorOrb size={72} bloom={blooming} />
-
             <PhaseTabs phase={phase} currentRound={currentRound} totalRounds={totalRounds} onPhaseChange={setPhase} />
 
             <Text textStyle="numeric-display" data-numeric color="fg.default" suppressHydrationWarning>

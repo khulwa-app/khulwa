@@ -1,25 +1,23 @@
 import { defineSemanticTokens } from "@chakra-ui/react";
 
-const dual = (light: string, dark: string) => ({
-  value: { base: `{shadows.${light}}`, _dark: `{shadows.${dark}}` },
-});
+const ref = (token: string) => ({ value: `{shadows.${token}}` });
 
 export const semanticShadows = defineSemanticTokens.shadows({
-  focus: { value: "{shadows.focus}" },
+  focus: ref("focus"),
 
-  xs: dual("xsLight", "xsDark"),
-  sm: dual("smLight", "smDark"),
-  md: dual("mdLight", "mdDark"),
-  lg: dual("lgLight", "lgDark"),
-  xl: dual("xlLight", "xlDark"),
+  xs: ref("xs"),
+  sm: ref("sm"),
+  md: ref("md"),
+  lg: ref("lg"),
+  xl: ref("xl"),
 
   "glass-rim": {
-    value: "{shadows.glassRimTop}, {shadows.glassRimBottom}, {shadows.glassLift}",
+    value: "{shadows.glassRimEdge}, {shadows.glassRimSheen}, {shadows.glassLift}",
   },
   "glass-rim-sm": {
-    value: "{shadows.glassRimTop}, {shadows.glassRimBottom}, {shadows.glassLiftSm}",
+    value: "{shadows.glassRimEdge}, {shadows.glassRimSheen}, {shadows.glassLiftSm}",
   },
   "glass-rim-lg": {
-    value: "{shadows.glassRimTop}, {shadows.glassRimBottom}, {shadows.glassLiftLg}",
+    value: "{shadows.glassRimEdge}, {shadows.glassRimSheen}, {shadows.glassLiftLg}",
   },
 });

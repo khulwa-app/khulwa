@@ -3,21 +3,15 @@ import { defineTokens } from "@chakra-ui/react";
 export const shadows = defineTokens.shadows({
   focus: { value: "0 0 0 2px {colors.bg.elevated}, 0 0 0 4px {colors.ring}" },
 
-  xsLight: { value: "0 1px 2px rgba(26, 24, 20, 0.04)" },
-  smLight: { value: "0 1px 2px rgba(26, 24, 20, 0.05), 0 2px 6px rgba(26, 24, 20, 0.06)" },
-  mdLight: { value: "0 2px 4px rgba(26, 24, 20, 0.06), 0 8px 24px rgba(26, 24, 20, 0.08)" },
-  lgLight: { value: "0 4px 8px rgba(26, 24, 20, 0.06), 0 16px 40px rgba(26, 24, 20, 0.10)" },
-  xlLight: { value: "0 8px 16px rgba(26, 24, 20, 0.08), 0 24px 64px rgba(26, 24, 20, 0.12)" },
+  xs: { value: "0 1px 2px rgba(8, 10, 30, 0.06)" },
+  sm: { value: "0 1px 2px rgba(8, 10, 30, 0.06), 0 2px 6px rgba(8, 10, 30, 0.08)" },
+  md: { value: "0 2px 4px rgba(8, 10, 30, 0.07), 0 8px 24px rgba(8, 10, 30, 0.10)" },
+  lg: { value: "0 4px 8px rgba(8, 10, 30, 0.08), 0 16px 40px rgba(8, 10, 30, 0.12)" },
+  xl: { value: "0 8px 16px rgba(8, 10, 30, 0.10), 0 24px 64px rgba(8, 10, 30, 0.14)" },
 
-  xsDark: { value: "0 1px 2px rgba(0, 0, 0, 0.30)" },
-  smDark: { value: "0 1px 2px rgba(0, 0, 0, 0.32), 0 2px 6px rgba(0, 0, 0, 0.36)" },
-  mdDark: { value: "0 2px 4px rgba(0, 0, 0, 0.38), 0 8px 24px rgba(0, 0, 0, 0.44)" },
-  lgDark: { value: "0 4px 8px rgba(0, 0, 0, 0.40), 0 16px 40px rgba(0, 0, 0, 0.50)" },
-  xlDark: { value: "0 8px 16px rgba(0, 0, 0, 0.44), 0 24px 64px rgba(0, 0, 0, 0.58)" },
-
-  glassRimTop: { value: "inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 2px 5px rgba(255, 255, 255, 0.10)" },
-  glassRimBottom: { value: "inset 0 -1px 0 rgba(255, 255, 255, 0.06)" },
-  glassLift: { value: "0 8px 32px rgba(8, 10, 30, 0.28)" },
-  glassLiftSm: { value: "0 4px 16px rgba(8, 10, 30, 0.22)" },
-  glassLiftLg: { value: "0 24px 80px rgba(8, 10, 30, 0.34)" },
+  glassRimEdge: { value: "inset 0 1px 0 rgba(255, 255, 255, 0.16)" },
+  glassRimSheen: { value: "inset 0 6px 14px rgba(255, 255, 255, 0.08)" },
+  glassLiftSm: { value: "0 4px 16px rgba(8, 10, 30, 0.12)" },
+  glassLift: { value: "0 8px 32px rgba(8, 10, 30, 0.14)" },
+  glassLiftLg: { value: "0 24px 80px rgba(8, 10, 30, 0.16)" },
 });

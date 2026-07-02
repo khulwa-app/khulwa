@@ -4,7 +4,7 @@ export const fonts = defineTokens.fonts({
   display: { value: "var(--font-nunito), var(--font-arabic-body), system-ui, sans-serif" },
   heading: { value: "var(--font-nunito), var(--font-arabic-body), system-ui, sans-serif" },
   body: { value: "var(--font-nunito), var(--font-arabic-body), system-ui, sans-serif" },
-  mono: { value: "var(--font-mono), 'JetBrains Mono', ui-monospace, monospace" },
+  mono: { value: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" },
 });
 
 export const fontSizes = defineTokens.fontSizes({

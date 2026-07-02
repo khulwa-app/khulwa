@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Text, VStack } from "@chakra-ui/react";
+import { Text, VStack } from "@chakra-ui/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useUser } from "@/components/providers/session-provider";
 import { Home } from "@/theme/slot-recipes/home-space";
@@ -12,7 +12,6 @@ import {
   getWeekdayName,
   useClock,
 } from "@/modules/clock";
-import { NoorOrb } from "@/modules/companion";
 import { TodayProgress } from "@/modules/progress";
 import { DoingNowCard } from "@/modules/tasks/components/doing-now/doing-now-card";
 import { useMounted } from "@/hooks/use-mounted";
@@ -55,10 +54,6 @@ export function HomeSpace() {
 
       <Home.Stage>
         <Home.Intro>
-          <Box {...entrance(100)}>
-            <NoorOrb />
-          </Box>
-
           <Home.Clock {...entrance(250)}>
             <Text textStyle="clock-display" color="fg.onMesh" suppressHydrationWarning>
               {time}

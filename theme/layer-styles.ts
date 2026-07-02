@@ -9,35 +9,21 @@ export const layerStyles = defineLayerStyles({
     },
   },
   "space-backdrop": {
-    description: "deep liquid-glass mesh — indigo→violet→navy, theme-invariant, data-phase hue-shift, crossfade",
+    description: "bright sage-aurora bloom — pale field, sage/teal/green glows, data-phase hue-shift, crossfade",
     value: {
       backgroundColor: "{colors.mesh.floor}",
       backgroundImage:
-        "radial-gradient(55% 55% at 20% 16%, {colors.mesh.glowHi} 0%, transparent 48%)," +
-        "radial-gradient(75% 70% at 8% 22%, {colors.mesh.glowIndigo} 0%, transparent 52%)," +
-        "radial-gradient(80% 75% at 90% 85%, {colors.mesh.glowViolet} 0%, transparent 55%)," +
-        "radial-gradient(70% 65% at 70% 55%, {colors.mesh.glowAzure} 0%, transparent 58%)",
-      filter: "saturate(1.15)",
+        "radial-gradient(55% 55% at 20% 16%, {colors.mesh.glowHaze} 0%, transparent 48%)," +
+        "radial-gradient(75% 70% at 8% 22%, {colors.mesh.glowSage} 0%, transparent 52%)," +
+        "radial-gradient(80% 75% at 90% 85%, {colors.mesh.glowGreen} 0%, transparent 55%)," +
+        "radial-gradient(70% 65% at 70% 55%, {colors.mesh.glowTeal} 0%, transparent 58%)",
+      filter: "saturate(1.05)",
       transition: "filter {durations.mood} {easings.standard}",
-      "&[data-phase=shortBreak]": { filter: "saturate(1.00) hue-rotate(-38deg)" },
-      "&[data-phase=longBreak]": { filter: "saturate(1.05) hue-rotate(28deg)" },
-      "&[data-phase=micro]": { filter: "saturate(0.55) brightness(0.82)" },
-      "&[data-phase=alert]": { filter: "saturate(0.95) hue-rotate(115deg)" },
+      "&[data-phase=shortBreak]": { filter: "saturate(1.00) hue-rotate(-18deg)" },
+      "&[data-phase=longBreak]": { filter: "saturate(1.05) hue-rotate(20deg)" },
+      "&[data-phase=micro]": { filter: "saturate(0.70) brightness(0.96)" },
+      "&[data-phase=alert]": { filter: "saturate(1.00) hue-rotate(60deg)" },
       _motionReduce: { transition: "none" },
-    },
-  },
-  noor: {
-    description: "the Noor companion — living violet→magenta light",
-    value: {
-      backgroundImage:
-        "radial-gradient(circle at 50% 40%, {colors.violet.400} 0%, {colors.violet.500} 26%, {colors.magenta.500} 60%, {colors.magenta.400} 74%, {colors.magentaClear} 86%)",
-      borderRadius: "full",
-      filter: "blur(3px)",
-      boxShadow: "0 0 40px 8px {colors.magentaA.400}, 0 0 22px 2px {colors.violetA.500}",
-      _dark: {
-        backgroundImage:
-          "radial-gradient(circle at 50% 40%, {colors.violet.300} 0%, {colors.violet.400} 26%, {colors.magenta.400} 60%, {colors.magenta.500} 74%, {colors.magentaClear} 86%)",
-      },
     },
   },
   sliderAccent: {
@@ -54,41 +40,39 @@ export const layerStyles = defineLayerStyles({
   },
 
   card: {
-    description: "content glass card — opaque surface + lit hairline + soft rim/lift",
+    description: "frosted dark glass card — borderless, graduated rim + light lift, white text",
     value: {
-      background: "surface.card",
-      borderWidth: "1px",
-      borderColor: "glass.borderLit",
+      background: "glass.panelBg",
+      color: "fg.onMesh",
       borderRadius: "surface",
+      backdropFilter: "blur(24px) saturate(1.6)",
       boxShadow: "glass-rim-sm",
     },
   },
   "card-anchor": {
-    description: "content glass anchor card — roundest tier (doing-now, resume)",
+    description: "frosted dark glass anchor card — roundest tier (doing-now, resume)",
     value: {
-      background: "surface.card",
-      borderWidth: "1px",
-      borderColor: "glass.borderLit",
+      background: "glass.panelBg",
+      color: "fg.onMesh",
       borderRadius: "surface",
+      backdropFilter: "blur(24px) saturate(1.6)",
       boxShadow: "glass-rim-sm",
     },
   },
   raised: {
-    description: "clear liquid glass chrome (dock, timer pill, badges) — light veil + specular rim + lift",
+    description: "frosted dark glass chrome (dock, timer pill, badges) — borderless, graduated rim + lift",
     value: {
       background: "glass.chromeBg",
-      borderWidth: "1px",
-      borderColor: "glass.borderLit",
+      color: "fg.onMesh",
       backdropFilter: "blur(24px) saturate(1.75)",
       boxShadow: "glass-rim-sm",
     },
   },
   overlay: {
-    description: "clear liquid glass panel — modals / palette / sheets / tool panel / menus",
+    description: "frosted dark glass panel — modals / palette / sheets / tool panel / menus",
     value: {
       background: "glass.panelBg",
-      borderWidth: "1px",
-      borderColor: "glass.borderLit",
+      color: "fg.onMesh",
       borderRadius: "surface",
       backdropFilter: "blur(30px) saturate(1.8)",
       boxShadow: "glass-rim-lg",

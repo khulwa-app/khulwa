@@ -92,3 +92,11 @@ Filter every idea through Khulwa's ethos: AI works quietly at the edges
   need billing + graceful degradation.
 - Privacy: task text leaves the device only if the user enables AI.
 - Prerequisite: grow the task model first (see task manager v2 plan).
+
+## Design / Figma todos
+
+- **Rename phase strings** — design locks the pomodoro tabs as **Focus / Short Break / Long Break**; update `messages/en.json` + `ar.json` `khulwa.phase.*` (currently Khulwa/Waqfa/Raha) to match when implementing the new Focus space.
+- **Field retarget: "Forest bright"** — the whole wallpaper = 5 `mesh.*` tokens (`theme/tokens/colors.ts:28-34`). New direction: floor → saturated emerald `#12946E`, glows → one emerald/teal family (bright spring green `#36C496`, deep emerald `#0D7A60`, aqua `#26BAAB`, pale mint `#78D6A4`), **no dark center scrim** (white hero text passes WCAG large-text 3:1 on the saturated core through the 0.20 frost — keep the core mid-lightness, never pale). Re-tune the `data-phase` hue-rotate deltas (`theme/layer-styles.ts:22-25`) for the emerald base + re-verify contrast at port time.
+- **Aura/theme switcher (later)** — user wants switchable field auras (e.g. violet `#643FDB`) post-port. Port-ready violet numbers exist (tech-lead report): 5 mesh values, 4.26:1 contrast verified, phase hue-rotates re-tuned (shortBreak −30°/sat .95, longBreak +45°, alert +100°/sat 1.15). Architecture hint: aura = a set of 5 mesh values + 3 phase deltas → could become semantic-token modes or a data-attribute.
+
+- **Glass elevation consistency** — rule: on dark glass, hover/active/elevated states must read *lighter* (a `whiteA` veil), never darker (dark ink stacks into mud). Tasks row ⋯ menu already fixed (bright `glass/sheet` surface + `whiteA/faint` hover). Still using dark-ink `glass/chrome` for their active state: **dock active item** and **Notes toolbar active "B"** — sweep them to the white-veil treatment for uniform lighter-elevation. (Sounds active tiles retired — panel redesigned to icon toggles.)

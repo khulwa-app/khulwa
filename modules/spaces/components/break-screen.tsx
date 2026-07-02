@@ -4,7 +4,6 @@ import { Box, Button, HStack, Text, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 import { Lock, SkipForward } from "lucide-react";
 import { formatClock, formatPomodoro, useClock } from "@/modules/clock";
-import { NoorOrb } from "@/modules/companion";
 import { PomodoroPhase } from "@/modules/pomodoro";
 
 interface BreakScreenProps {
@@ -12,12 +11,11 @@ interface BreakScreenProps {
   minutes: number;
   seconds: number;
   isRunning: boolean;
-  bloom?: boolean;
   onToggle: () => void;
   onSkip: () => void;
 }
 
-export function BreakScreen({ phase, minutes, seconds, isRunning, bloom, onToggle, onSkip }: BreakScreenProps) {
+export function BreakScreen({ phase, minutes, seconds, isRunning, onToggle, onSkip }: BreakScreenProps) {
   const t = useTranslations("khulwa");
   const now = useClock();
   const key = phase === PomodoroPhase.LongBreak ? "longBreak" : "shortBreak";
@@ -30,8 +28,6 @@ export function BreakScreen({ phase, minutes, seconds, isRunning, bloom, onToggl
 
   return (
     <VStack gap={{ base: "5", md: "6" }} align="center" maxW="2xl" textAlign="center">
-      <NoorOrb size={64} bloom={bloom} />
-
       <Text textStyle="hero-meta" color="fg.onMeshMuted" suppressHydrationWarning>
         {t("break.currentTime", { time: formatClock(now, { hour12: true }) })}
       </Text>

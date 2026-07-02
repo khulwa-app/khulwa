@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import { Box, Button, Flex, HStack, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import { ArrowRight, Flame, Headphones, Target } from "lucide-react";
 import { Logo } from "@/components/ui";
-import { NoorOrb } from "@/modules/companion";
 import { Routes } from "@/constants";
 
 const FEATURES = [
@@ -51,8 +50,6 @@ export function Landing() {
         paddingInline="6"
         paddingTop={{ base: "16", md: "24" }}
       >
-        <NoorOrb size={76} />
-
         <VStack gap="4">
           <Text textStyle="overline" color="primary.default">
             {t("hero.eyebrow")}

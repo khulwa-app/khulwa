@@ -16,6 +16,8 @@ export const colors = defineTokens.colors({
     strong: { value: "rgba(255, 255, 255, 0.98)" },
   },
   inkA: {
+    press: { value: "rgba(18, 16, 26, 0.16)" },
+    lift: { value: "rgba(18, 16, 26, 0.24)" },
     clear: { value: "rgba(18, 16, 26, 0.30)" },
     chip: { value: "rgba(18, 16, 26, 0.36)" },
     veil: { value: "rgba(18, 16, 26, 0.48)" },

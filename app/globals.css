@@ -15,8 +15,6 @@ html {
   scroll-behavior: auto;
 }
 
-.khulwa-dock__item,
-.khulwa-dock__group,
 .khulwa-dock__streak,
 .khulwa-timer-pill__root {
   -webkit-backdrop-filter: blur(24px) saturate(1.75);
@@ -25,23 +23,4 @@ html {
 .khulwa-command-palette__content,
 .khulwa-menu__content {
   -webkit-backdrop-filter: blur(30px) saturate(1.8);
-}
-
-.khulwa-card__root,
-.khulwa-panel__root,
-.khulwa-menu__content,
-.khulwa-menu__item,
-.khulwa-command-palette__content,
-.khulwa-command-palette__kbd,
-.khulwa-dock__item,
-.khulwa-dock__group,
-.khulwa-dock__groupItem,
-.khulwa-dock__streak,
-.khulwa-task-list__row,
-.khulwa-task-list__action,
-.khulwa-task-list__stepRow,
-.khulwa-sounds__toggle,
-.khulwa-sounds__iconWrap,
-.khulwa-rhythm-list__item {
-  corner-shape: squircle;
 }

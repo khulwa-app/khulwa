@@ -26,7 +26,7 @@ export function DockNav() {
   const ambientPlaying = useSounds((s) => Object.values(s.playing).some(Boolean));
 
   const navItem = (space: Space, Icon: LucideIcon, label: string) => (
-    <Dock.GroupItem
+    <Dock.Item
       key={space}
       type="button"
       aria-label={label}
@@ -37,7 +37,7 @@ export function DockNav() {
       <Dock.ItemIcon>
         <Icon />
       </Dock.ItemIcon>
-    </Dock.GroupItem>
+    </Dock.Item>
   );
 
   const toggleItem = (panel: Panel, Icon: LucideIcon, label: string, playing?: boolean) => (
@@ -85,6 +85,8 @@ export function DockNav() {
           {navItem(Space.Home, House, tDest("home"))}
           {navItem(Space.Focus, Lightbulb, tDest("focus"))}
         </Dock.Group>
+
+        <Dock.Separator role="separator" aria-orientation="vertical" />
 
         {toggleItem(Panel.Settings, Settings, tChrome("settings"))}
         <Dock.Item

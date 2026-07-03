@@ -23,6 +23,13 @@ export const layerStyles = defineLayerStyles({
       "&[data-phase=longBreak]": { filter: "hue-rotate(40deg)" },
       "&[data-phase=micro]": { filter: "saturate(0.70) brightness(0.96)" },
       "&[data-phase=alert]": { filter: "saturate(1.15) hue-rotate(160deg)" },
+      _after: {
+        content: '""',
+        position: "absolute",
+        inset: 0,
+        bg: "glass.sheet",
+        pointerEvents: "none",
+      },
       _motionReduce: { transition: "none" },
     },
   },

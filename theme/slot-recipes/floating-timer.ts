@@ -11,7 +11,7 @@ export const timerPillSlotRecipe = defineSlotRecipe({
   base: {
     positioner: {
       position: "fixed",
-      bottom: { base: "4", md: "6" },
+      bottom: { base: "4", md: "14" },
       insetInlineStart: "50%",
       transform: "translateX(-50%)",
       zIndex: "panel",

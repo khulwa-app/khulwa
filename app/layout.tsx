@@ -3,7 +3,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { fontVariables } from "./fonts";
 import { Locale } from "@/i18n/config";
-import "./globals.css";
 import { AppProvider } from "@/components/providers";
 
 export async function generateMetadata(): Promise<Metadata> {

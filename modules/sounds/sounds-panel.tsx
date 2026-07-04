@@ -1,7 +1,8 @@
 "use client";
 
 import { HStack, IconButton, VStack } from "@chakra-ui/react";
-import { Volume2, VolumeOff } from "lucide-react";
+import { VolumeCross, VolumeLoud } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { ScrollArea } from "@/components/ui";
 import { Panel, SidePanel, usePanels } from "../panels";
 import { SOUNDS } from "./catalog";
@@ -31,7 +32,7 @@ export default function SoundsPanel() {
 
         <HStack flexShrink="0" gap="2" align="center">
           <IconButton variant="ghost" size="sm" aria-label={master ? "Mute" : "Unmute"} onClick={toggleMaster}>
-            {master ? <Volume2 size={18} /> : <VolumeOff size={18} />}
+            {master ? <Icon icon={VolumeLoud} boxSize="4.5" /> : <Icon icon={VolumeCross} boxSize="4.5" />}
           </IconButton>
           <VolumeSlider flex="1" value={master} onChange={setMaster} label="Master volume" />
         </HStack>

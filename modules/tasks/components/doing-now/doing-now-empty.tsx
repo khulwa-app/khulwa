@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Button, Input, Presence } from "@chakra-ui/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { ActiveTask } from "@/theme/slot-recipes/active-task";
 import { estimateEta } from "@/modules/ai";
@@ -56,7 +57,7 @@ export function DoingNowEmpty() {
           />
           <Button variant="primary" size="sm" flexShrink="0" onClick={begin}>
             {t("enterFocus")}
-            <ArrowRight size={14} />
+            <Icon icon={ArrowRight} boxSize="3.5" />
           </Button>
         </ActiveTask.Bar>
         <ActiveTask.Hint>{t("beginHint")}</ActiveTask.Hint>

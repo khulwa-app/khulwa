@@ -2,7 +2,8 @@
 
 import { useCallback, useState } from "react";
 import { Box, Menu, Portal, chakra } from "@chakra-ui/react";
-import { ChevronDown } from "lucide-react";
+import { AltArrowDown } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { CATEGORIES, type CategoryId } from "../categories";
 import { useProgressHydrated, useProgressStore } from "../hooks";
@@ -47,7 +48,7 @@ export function CategoryChip() {
           <chakra.span color={current ? "fg" : "fg.muted"}>
             {current ? t(current.id) : t("none")}
           </chakra.span>
-          <ChevronDown size={14} />
+          <Icon icon={AltArrowDown} boxSize="3.5" />
         </chakra.button>
       </Menu.Trigger>
       <Portal>

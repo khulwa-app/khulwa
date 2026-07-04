@@ -2,7 +2,8 @@
 
 import { Box, Button, HStack, Text, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
-import { Lock, SkipForward } from "lucide-react";
+import { LockKeyholeMinimalistic, SkipNext } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { formatClock, formatPomodoro, useClock } from "@/modules/clock";
 import { PomodoroPhase } from "@/modules/pomodoro";
 
@@ -51,11 +52,11 @@ export function BreakScreen({ phase, minutes, seconds, isRunning, onToggle, onSk
           {isRunning ? t("actions.pause") : t("actions.resume")}
         </Button>
         <Button variant="onGlass.ghost" size="lg" onClick={onSkip}>
-          <SkipForward size={16} aria-hidden />
+          <Icon icon={SkipNext} boxSize="4" />
           {t("actions.skip")}
         </Button>
         <Button variant="onGlass.ghost" size="lg" onClick={lockScreen}>
-          <Lock size={16} aria-hidden />
+          <Icon icon={LockKeyholeMinimalistic} boxSize="4" />
           {t("break.lockScreen")}
         </Button>
       </HStack>

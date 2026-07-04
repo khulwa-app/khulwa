@@ -1,7 +1,8 @@
 "use client";
 
 import { Button, Text, VStack } from "@chakra-ui/react";
-import { Plus } from "lucide-react";
+import { AddCircle } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { ScrollArea } from "@/components/ui";
 import { Panel, SidePanel, usePanels } from "@/modules/panels";
@@ -25,7 +26,7 @@ export function NotesPanel() {
           loading={create.isPending}
           onClick={() => create.mutate({})}
         >
-          <Plus size={16} />
+          <Icon icon={AddCircle} boxSize="4" />
           {t("newNote")}
         </Button>
 

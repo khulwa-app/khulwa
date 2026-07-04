@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import { Box, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
-import { Pause, Play, RotateCcw, SkipForward } from "lucide-react";
+import { Pause, Play, Restart, SkipNext } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { formatPomodoro } from "@/modules/clock";
 import { usePomodoro, usePomodoroHydrated, PhaseTabs, PomodoroPhase } from "@/modules/pomodoro";
 import { CategoryChip, useProgressStore } from "@/modules/progress";
@@ -88,7 +89,7 @@ export function FocusSpace() {
 
             <HStack gap="6" align="center">
               <IconButton onClick={reset} variant="ghost" boxSize="12" rounded="full" aria-label={t("actions.reset")}>
-                <RotateCcw size={20} />
+                <Icon icon={Restart} boxSize="5" />
               </IconButton>
               <IconButton
                 onClick={isRunning ? pause : start}
@@ -97,10 +98,14 @@ export function FocusSpace() {
                 rounded="full"
                 aria-label={primaryLabel}
               >
-                {isRunning ? <Pause size={26} fill="currentColor" /> : <Play size={26} fill="currentColor" />}
+                {isRunning ? (
+                  <Icon icon={Pause} weight="Bold" boxSize="6.5" />
+                ) : (
+                  <Icon icon={Play} weight="Bold" boxSize="6.5" />
+                )}
               </IconButton>
               <IconButton onClick={skip} variant="ghost" boxSize="12" rounded="full" aria-label={t("actions.skip")}>
-                <SkipForward size={20} />
+                <Icon icon={SkipNext} boxSize="5" />
               </IconButton>
             </HStack>
             </VStack>

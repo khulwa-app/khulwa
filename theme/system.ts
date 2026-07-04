@@ -18,7 +18,6 @@ const config = defineConfig({
     },
     html: { scrollBehavior: "auto" },
     "[data-numeric]": { fontVariantNumeric: "tabular-nums" },
-    ":where(svg.lucide)": { strokeWidth: "2" },
     "*:focus": { outline: "none" },
     "*:focus-visible": { outline: "none", boxShadow: "focus" },
   },

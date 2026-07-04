@@ -1,7 +1,7 @@
 "use client";
 
 import { Text, VStack } from "@chakra-ui/react";
-import { Check } from "lucide-react";
+import { Check, Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { ScrollArea } from "@/components/ui";
 import { RhythmList } from "@/theme/slot-recipes/rhythm-list";
@@ -35,13 +35,12 @@ export function RhythmPanel() {
           <RhythmList.Root>
             {RHYTHMS.map((r) => {
               const done = hydrated && !!today[r.id];
-              const Icon = r.icon;
               return (
                 <RhythmList.Item key={r.id} onClick={() => toggle(key, r.id)} aria-pressed={done}>
                   <RhythmList.Check data-checked={done || undefined}>
-                    {done && <Check size={12} strokeWidth={3} />}
+                    {done && <Icon icon={Check} boxSize="3" />}
                   </RhythmList.Check>
-                  <Icon size={16} />
+                  <Icon icon={r.icon} boxSize="4" />
                   <RhythmList.Label data-checked={done || undefined}>{t(`items.${r.id}`)}</RhythmList.Label>
                 </RhythmList.Item>
               );

@@ -12,6 +12,9 @@ const svgrOptions = {
 };
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: ["@solar-icons/react"],
+  },
   turbopack: {
     rules: {
       "*.svg": {

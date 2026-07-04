@@ -1,7 +1,8 @@
 "use client";
 
 import { Box, HStack, IconButton, Input, Textarea } from "@chakra-ui/react";
-import { Trash2 } from "lucide-react";
+import { TrashBinMinimalistic } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { useDeleteNote, useUpdateNote, type Note } from "@/services/notes";
 
@@ -40,7 +41,7 @@ export function NoteCard({ note }: { note: Note }) {
           onClick={() => remove.mutate(note.id)}
           _hover={{ color: "fg.error" }}
         >
-          <Trash2 size={14} />
+          <Icon icon={TrashBinMinimalistic} boxSize="3.5" />
         </IconButton>
       </HStack>
       <Textarea

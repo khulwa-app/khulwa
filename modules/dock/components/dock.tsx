@@ -1,6 +1,17 @@
 "use client";
 
-import { House, Lightbulb, TreeDeciduous, ListTodo, Music, Pen, Repeat, BarChart3, Settings, Expand, type LucideIcon } from "lucide-react";
+import {
+  Calendar,
+  ChecklistMinimalistic,
+  FullScreen,
+  HomeSmile,
+  Moon,
+  PenNewSquare,
+  Settings,
+  Soundwave,
+  Target,
+} from "@solar-icons/react";
+import { Icon, type Glyph } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
@@ -25,36 +36,42 @@ export function DockNav() {
   const togglePanel = usePanels((s) => s.toggle);
   const ambientPlaying = useSounds((s) => Object.values(s.playing).some(Boolean));
 
-  const navItem = (space: Space, Icon: LucideIcon, label: string) => (
-    <Dock.Item
-      key={space}
-      type="button"
-      aria-label={label}
-      title={label}
-      aria-current={activeSpace === space ? "page" : undefined}
-      onClick={() => changeSpace(space)}
-    >
-      <Dock.ItemIcon>
-        <Icon />
-      </Dock.ItemIcon>
-    </Dock.Item>
-  );
+  const navItem = (space: Space, icon: Glyph, label: string) => {
+    const isActive = activeSpace === space;
+    return (
+      <Dock.Item
+        key={space}
+        type="button"
+        aria-label={label}
+        title={label}
+        aria-current={isActive ? "page" : undefined}
+        onClick={() => changeSpace(space)}
+      >
+        <Dock.ItemIcon>
+          <Icon icon={icon} weight={isActive ? "Bold" : "Linear"} />
+        </Dock.ItemIcon>
+      </Dock.Item>
+    );
+  };
 
-  const toggleItem = (panel: Panel, Icon: LucideIcon, label: string, playing?: boolean) => (
-    <Dock.Item
-      key={panel}
-      type="button"
-      aria-label={label}
-      title={label}
-      aria-pressed={openPanel === panel}
-      data-playing={playing || undefined}
-      onClick={() => togglePanel(panel)}
-    >
-      <Dock.ItemIcon>
-        <Icon />
-      </Dock.ItemIcon>
-    </Dock.Item>
-  );
+  const toggleItem = (panel: Panel, icon: Glyph, label: string, playing?: boolean) => {
+    const isActive = openPanel === panel;
+    return (
+      <Dock.Item
+        key={panel}
+        type="button"
+        aria-label={label}
+        title={label}
+        aria-pressed={isActive}
+        data-playing={playing || undefined}
+        onClick={() => togglePanel(panel)}
+      >
+        <Dock.ItemIcon>
+          <Icon icon={icon} weight={isActive ? "Bold" : "Linear"} />
+        </Dock.ItemIcon>
+      </Dock.Item>
+    );
+  };
 
   const toggleFullscreen = () => {
     if (typeof document === "undefined") return;
@@ -65,11 +82,10 @@ export function DockNav() {
   return (
     <>
       <Dock.Root side="start" role="toolbar" aria-label={tAria("tools")}>
-        {toggleItem(Panel.Tasks, ListTodo, tTools("tasks"))}
-        {toggleItem(Panel.Rhythm, Repeat, tTools("rhythm"))}
-        {toggleItem(Panel.Progress, BarChart3, tTools("progress"))}
-        {toggleItem(Panel.Music, Music, tTools("music"), ambientPlaying)}
-        {toggleItem(Panel.Notes, Pen, tTools("notes"))}
+        {toggleItem(Panel.Tasks, ChecklistMinimalistic, tTools("tasks"))}
+        {toggleItem(Panel.Notes, PenNewSquare, tTools("notes"))}
+        {toggleItem(Panel.Music, Soundwave, tTools("music"), ambientPlaying)}
+        {toggleItem(Panel.Rhythm, Calendar, tTools("rhythm"))}
       </Dock.Root>
 
       <TasksPanel />
@@ -81,9 +97,9 @@ export function DockNav() {
 
       <Dock.Root side="end" role="toolbar" aria-label={tAria("controls")}>
         <Dock.Group as="nav" aria-label={tAria("nav")}>
-          {navItem(Space.Ambient, TreeDeciduous, tDest("ambient"))}
-          {navItem(Space.Home, House, tDest("home"))}
-          {navItem(Space.Focus, Lightbulb, tDest("focus"))}
+          {navItem(Space.Ambient, Moon, tDest("ambient"))}
+          {navItem(Space.Home, HomeSmile, tDest("home"))}
+          {navItem(Space.Focus, Target, tDest("focus"))}
         </Dock.Group>
 
         <Dock.Separator role="separator" aria-orientation="vertical" />
@@ -96,7 +112,7 @@ export function DockNav() {
           onClick={toggleFullscreen}
         >
           <Dock.ItemIcon>
-            <Expand />
+            <Icon icon={FullScreen} />
           </Dock.ItemIcon>
         </Dock.Item>
       </Dock.Root>

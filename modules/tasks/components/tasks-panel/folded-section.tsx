@@ -1,6 +1,7 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
+import { AltArrowRight } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { Collapsible } from "@/components/ui";
 import type { Task } from "@/services/tasks";
 import { TaskList } from "./task-list";
@@ -12,7 +13,7 @@ export function FoldedSection({ label, tasks }: { label: string; tasks: Task[] }
     <Collapsible
       trigger={
         <TaskList.SectionTrigger>
-          <ChevronRight size={14} />
+          <Icon icon={AltArrowRight} boxSize="3.5" />
           {`${label} (${tasks.length})`}
         </TaskList.SectionTrigger>
       }

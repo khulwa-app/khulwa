@@ -1,7 +1,8 @@
 "use client";
 
 import { IconButton } from "@chakra-ui/react";
-import { X } from "lucide-react";
+import { CloseCircle } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { Settings } from "@/theme/slot-recipes/settings";
 import { SETTINGS_TABS, type SettingsTab } from "../constants";
@@ -19,9 +20,9 @@ export function SettingsNav({ active, onSelect, onClose }: SettingsNavProps) {
   return (
     <Settings.Nav role="tablist" aria-orientation="vertical" aria-label={t("title")}>
       <IconButton variant="ghost" size="sm" aria-label={tAria("close")} alignSelf="start" mb="1" onClick={onClose}>
-        <X size={16} />
+        <Icon icon={CloseCircle} boxSize="4" />
       </IconButton>
-      {SETTINGS_TABS.map(({ id, icon: Icon }) => (
+      {SETTINGS_TABS.map(({ id, icon }) => (
         <Settings.NavItem
           key={id}
           type="button"
@@ -31,7 +32,7 @@ export function SettingsNav({ active, onSelect, onClose }: SettingsNavProps) {
           aria-controls={`settings-pane-${id}`}
           onClick={() => onSelect(id)}
         >
-          <Icon size={16} />
+          <Icon icon={icon} boxSize="4" />
           {t(`tabs.${id}`)}
         </Settings.NavItem>
       ))}

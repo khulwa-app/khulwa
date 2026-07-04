@@ -2,7 +2,8 @@
 
 import NextLink from "next/link";
 import { HStack, Link, Text, VStack } from "@chakra-ui/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { SidePanel, usePanels, Panel } from "@/modules/panels";
 import { Routes } from "@/constants/routes";
@@ -43,7 +44,7 @@ export function ProgressPanel() {
         <Link asChild textStyle="label-md" color="fg.muted" alignSelf="end" mt="auto">
           <NextLink href={Routes.Progress} onClick={close}>
             {t("seeAll")}
-            <ArrowRight size={14} />
+            <Icon icon={ArrowRight} boxSize="3.5" />
           </NextLink>
         </Link>
       </VStack>

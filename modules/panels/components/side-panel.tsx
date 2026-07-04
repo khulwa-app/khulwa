@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { IconButton, Presence } from "@chakra-ui/react";
-import { X } from "lucide-react";
+import { CloseCircle } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { Panel } from "@/theme/slot-recipes/panel";
 
@@ -31,7 +32,7 @@ export function SidePanel({ open, onClose, title, children }: SidePanelProps) {
         <Panel.Header>
           <Panel.Title>{title}</Panel.Title>
           <IconButton variant="ghost" size="sm" aria-label={tAria("close")} onClick={onClose}>
-            <X size={16} />
+            <Icon icon={CloseCircle} boxSize="4" />
           </IconButton>
         </Panel.Header>
         <Panel.Body>{children}</Panel.Body>

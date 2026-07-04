@@ -49,6 +49,7 @@ export const dockSlotRecipe = defineSlotRecipe({
         bg: "primary.solid",
         color: "primary.contrast",
         boxShadow: "dock",
+        "& svg [opacity]": { opacity: "0.35" },
         _hover: { bg: "primary.emphasized", color: "primary.contrast" },
       },
       "&[data-playing]::before": {
@@ -75,7 +76,7 @@ export const dockSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
       flexShrink: "0",
-      "& svg": { boxSize: "4.5", strokeWidth: "1.6" },
+      "& svg": { boxSize: "4.5" },
     },
 
     group: {

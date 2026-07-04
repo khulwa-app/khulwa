@@ -1,7 +1,8 @@
 "use client";
 
 import { Button, IconButton, Presence } from "@chakra-ui/react";
-import { ArrowRight, Repeat } from "lucide-react";
+import { ArrowRight, Repeat } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { ActiveTask } from "@/theme/slot-recipes/active-task";
 import { useSpace } from "@/modules/space";
@@ -29,7 +30,7 @@ export function DoingNowActive({ task }: { task: Task }) {
         <ActiveTask.Eta>{t("etaShort", { eta: task.eta })}</ActiveTask.Eta>
         <Button variant="primary" size="sm" flexShrink="0" onClick={() => changeSpace(Space.Focus)}>
           {t("enterFocus")}
-          <ArrowRight size={14} />
+          <Icon icon={ArrowRight} boxSize="3.5" />
         </Button>
         <IconButton
           variant="ghost"
@@ -39,7 +40,7 @@ export function DoingNowActive({ task }: { task: Task }) {
           aria-label={t("changeTask")}
           onClick={openTasksPanel}
         >
-          <Repeat size={15} />
+          <Icon icon={Repeat} boxSize="3.75" />
         </IconButton>
       </ActiveTask.Root>
     </Presence>

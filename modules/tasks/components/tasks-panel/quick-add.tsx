@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { IconButton, Input, InputGroup } from "@chakra-ui/react";
-import { Plus } from "lucide-react";
+import { AddCircle } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { estimateEta } from "@/modules/ai";
 import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
@@ -35,7 +36,7 @@ export function QuickAdd() {
       flexShrink="0"
       endElement={
         <IconButton variant="ghost" size="sm" aria-label={t("addTask")} disabled={draft.trim() === ""} onClick={submit}>
-          <Plus size={16} />
+          <Icon icon={AddCircle} boxSize="4" />
         </IconButton>
       }
       endElementProps={{ paddingInline: "1" }}

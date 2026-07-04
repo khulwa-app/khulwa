@@ -1,19 +1,23 @@
 "use client";
 
-import { Flame } from "lucide-react";
-import { Box, HStack } from "@chakra-ui/react";
+import { Fire } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
+import { HStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 import { useStreak } from "@/services/progress";
+import { usePanels, Panel } from "@/modules/panels";
 
 export function StreakBadge() {
   const t = useTranslations("components.badge");
+  const tTools = useTranslations("dock.tools");
   const { data } = useStreak();
+  const togglePanel = usePanels((s) => s.toggle);
   const count = data?.current ?? 0;
   if (count <= 0) return null;
 
   return (
     <HStack
-      as="span"
+      as="button"
       gap="1.5"
       h="7"
       paddingInline="2.5"
@@ -22,12 +26,12 @@ export function StreakBadge() {
       color="fg"
       textStyle="label-md"
       fontVariantNumeric="tabular-nums"
-      title={t("streak", { count })}
-      aria-label={t("streak", { count })}
+      cursor="pointer"
+      onClick={() => togglePanel(Panel.Progress)}
+      title={`${t("streak", { count })} · ${tTools("progress")}`}
+      aria-label={`${t("streak", { count })} · ${tTools("progress")}`}
     >
-      <Box asChild color="primary.solid" display="inline-flex">
-        <Flame size={13} aria-hidden />
-      </Box>
+      <Icon icon={Fire} boxSize="3.25" color="primary.solid" />
       {count}
     </HStack>
   );

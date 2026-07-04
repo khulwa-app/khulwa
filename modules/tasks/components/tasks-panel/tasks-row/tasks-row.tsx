@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Checkbox } from "@chakra-ui/react";
-import { ChevronRight, Moon, Sun, Target, Trash2 } from "lucide-react";
+import { AltArrowRight, Moon, Sun, Target, TrashBinMinimalistic } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { useDeleteTask, useUpdateTask, type Task } from "@/services/tasks";
 import { TaskList } from "../task-list";
@@ -50,14 +51,14 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
             aria-expanded={expanded}
             onClick={() => setExpanded((value) => !value)}
           >
-            <ChevronRight size={14} />
+            <Icon icon={AltArrowRight} boxSize="3.5" />
           </TaskList.Action>
 
           <TaskList.Action
             aria-label={task.today ? t("aria.defer") : t("aria.doToday")}
             onClick={() => updateTask.mutate({ id: task.id, patch: { today: !task.today } })}
           >
-            {task.today ? <Moon size={15} /> : <Sun size={15} />}
+            {task.today ? <Icon icon={Moon} boxSize="3.75" /> : <Icon icon={Sun} boxSize="3.75" />}
           </TaskList.Action>
 
           <TaskList.Action
@@ -65,11 +66,11 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
             aria-pressed={task.isDoingNow}
             onClick={() => updateTask.mutate({ id: task.id, patch: { isDoingNow: !task.isDoingNow } })}
           >
-            <Target size={15} />
+            <Icon icon={Target} boxSize="3.75" />
           </TaskList.Action>
 
           <TaskList.Action data-danger aria-label={t("aria.delete")} onClick={() => deleteTask.mutate(task.id)}>
-            <Trash2 size={15} />
+            <Icon icon={TrashBinMinimalistic} boxSize="3.75" />
           </TaskList.Action>
         </TaskList.Actions>
       </TaskList.Row>

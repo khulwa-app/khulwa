@@ -3,14 +3,15 @@
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import { Box, Button, Flex, HStack, SimpleGrid, Text, VStack } from "@chakra-ui/react";
-import { ArrowRight, Flame, Headphones, Target } from "lucide-react";
+import { ArrowRight, Fire, HeadphonesRound, Target } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { Logo } from "@/components/ui";
 import { Routes } from "@/constants";
 
 const FEATURES = [
   { icon: Target, title: "features.0.title", body: "features.0.body" },
-  { icon: Headphones, title: "features.1.title", body: "features.1.body" },
-  { icon: Flame, title: "features.2.title", body: "features.2.body" },
+  { icon: HeadphonesRound, title: "features.1.title", body: "features.1.body" },
+  { icon: Fire, title: "features.2.title", body: "features.2.body" },
 ] as const;
 
 export function Landing() {
@@ -65,7 +66,7 @@ export function Landing() {
         <Button asChild variant="primary" size="lg">
           <NextLink href={Routes.Login}>
             {t("hero.cta")}
-            <ArrowRight size={18} />
+            <Icon icon={ArrowRight} boxSize="4.5" />
           </NextLink>
         </Button>
       </VStack>
@@ -80,7 +81,7 @@ export function Landing() {
         paddingInline="6"
         paddingBlock={{ base: "16", md: "24" }}
       >
-        {FEATURES.map(({ icon: Icon, title, body }) => (
+        {FEATURES.map(({ icon, title, body }) => (
           <VStack
             key={title}
             layerStyle="card"
@@ -97,7 +98,7 @@ export function Landing() {
               bg="primary.subtle"
               color="primary.solid"
             >
-              <Icon size={20} />
+              <Icon icon={icon} boxSize="5" />
             </Flex>
             <Text textStyle="heading-h4" color="fg">
               {t(title)}

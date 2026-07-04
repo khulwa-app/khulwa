@@ -1,7 +1,8 @@
 "use client";
 
 import { Button, Text, VStack } from "@chakra-ui/react";
-import { LogOut } from "lucide-react";
+import { Logout2 } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { signOut, useSession } from "@/services/auth";
@@ -29,7 +30,7 @@ export function AccountSection() {
         </Text>
       </VStack>
       <Button variant="outline" size="sm" alignSelf="start" onClick={onSignOut}>
-        <LogOut size={14} />
+        <Icon icon={Logout2} boxSize="3.5" />
         {t("signOut")}
       </Button>
     </VStack>

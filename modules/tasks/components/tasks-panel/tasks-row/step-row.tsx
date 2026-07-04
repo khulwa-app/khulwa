@@ -1,7 +1,8 @@
 "use client";
 
 import { Checkbox } from "@chakra-ui/react";
-import { Trash2 } from "lucide-react";
+import { TrashBinMinimalistic } from "@solar-icons/react";
+import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { useDeleteStep, useUpdateStep, type TaskStep } from "@/services/tasks";
 import { TaskList } from "../task-list";
@@ -32,7 +33,7 @@ export function StepRow({ step }: { step: TaskStep }) {
       />
 
       <TaskList.Action data-danger aria-label={t("aria.deleteStep")} onClick={() => deleteStep.mutate(step.id)}>
-        <Trash2 size={14} />
+        <Icon icon={TrashBinMinimalistic} boxSize="3.5" />
       </TaskList.Action>
     </TaskList.StepRow>
   );

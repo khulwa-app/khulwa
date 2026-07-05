@@ -1,0 +1,26 @@
+import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { fontVariables } from "./fonts";
+import { Locale } from "@/i18n/config";
+import { AppProvider } from "@/components/providers";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("home.metadata");
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang={Locale.EN} dir="ltr" className={fontVariables} suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <NextIntlClientProvider>
+          <AppProvider>{children}</AppProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}

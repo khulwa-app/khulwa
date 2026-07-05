@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none" role="img" aria-label="khulwa">
+  <defs>
+    <linearGradient id="aurora" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6C4CE0"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <radialGradient id="tilewash" cx="74%" cy="80%" r="62%">
+      <stop offset="0%" stop-color="#2A1D3A"/>
+      <stop offset="100%" stop-color="#14121A"/>
+    </radialGradient>
+  </defs>
+  <rect width="180" height="180" rx="40" fill="url(#tilewash)"/>
+  <g transform="translate(27.44,2.29) scale(0.880)">
+    <path d="M12 161V47.4H28.96V117.96L67.2 75.88H88.64L55.36 111.72L89.92 161H70.4L44 122.28L28.96 138.28V161H12Z" fill="#FAF7F2"/>
+  </g>
+  <circle cx="130" cy="131" r="14" fill="url(#aurora)"/>
+</svg>

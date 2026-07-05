@@ -42,9 +42,6 @@
     "logo": {
       "ariaLabel": "Khulwa logo"
     },
-    "navbar": {
-      "quote": "“Slow is smooth, smooth is fast.”"
-    },
     "badge": {
       "streak": "{count, plural, one {# day streak} other {# days streak}}",
       "round": "Round {current} of {total}",
@@ -134,10 +131,10 @@
     "guest": "friend",
     "subtitle": "Pick one thing. Stay with it.",
     "headline": {
-      "morning": "Morning, {name}.",
-      "afternoon": "Afternoon, {name}.",
-      "evening": "Evening, {name}.",
-      "night": "Night, {name}."
+      "morning": "Good morning, {name}",
+      "afternoon": "Good afternoon, {name}",
+      "evening": "Good evening, {name}",
+      "night": "Up late, {name}?"
     },
     "doingNow": {
       "eyebrow": "Your one thing",
@@ -192,7 +189,6 @@
     "label": "Command palette",
     "search": "Type a command…",
     "empty": "No matching commands",
-    "hint": "Press ⌘K for commands",
     "groups": {
       "session": "Session",
       "navigate": "Navigate",

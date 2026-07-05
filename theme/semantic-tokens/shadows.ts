@@ -14,4 +14,10 @@ export const semanticShadows = defineSemanticTokens.shadows({
     value:
       "0 1px 2px rgba(10, 16, 20, 0.12), 0 4px 10px -1px rgba(10, 16, 20, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.30), inset 0 -1px 0 rgba(255, 255, 255, 0.05)",
   },
+  "hero-text": {
+    value: "0 2px 4px rgba(26,24,20,0.06), 0 8px 24px rgba(26,24,20,0.08)",
+  },
+  "hero-meta-text": {
+    value: "0 1px 2px rgba(26,24,20,0.05), 0 2px 6px rgba(26,24,20,0.06)",
+  },
 });

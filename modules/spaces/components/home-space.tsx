@@ -1,6 +1,6 @@
 "use client";
 
-import { Text, VStack } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useUser } from "@/components/providers/session-provider";
 import { Home } from "@/theme/slot-recipes/home-space";
@@ -11,8 +11,6 @@ import {
   getWeekdayName,
   useClock,
 } from "@/modules/clock";
-import { TodayProgress } from "@/modules/progress";
-import { DoingNowCard } from "@/modules/tasks/components/doing-now/doing-now-card";
 import { useMounted } from "@/hooks/use-mounted";
 import { SpaceBackground } from "./space-background";
 
@@ -27,7 +25,7 @@ export function HomeSpace() {
   const band = getTimeBand(now);
   const mounted = useMounted();
 
-  const time = mounted ? formatClock(now, { hour12: true, locale }) : NBSP;
+  const time = mounted ? formatClock(now, { hour12: true, meridiem: false, locale }) : NBSP;
   const dateLine = mounted
     ? [getWeekdayName(now, locale), formatGregorianDate(now, locale)]
         .filter(Boolean)
@@ -53,27 +51,28 @@ export function HomeSpace() {
 
       <Home.Stage>
         <Home.Intro>
-          <Home.Clock {...entrance(250)}>
-            <Text textStyle="clock-display" color="fg.onMesh" suppressHydrationWarning>
-              {time}
-            </Text>
-            <Text textStyle="hero-meta" color="fg.onMesh.muted" suppressHydrationWarning>
-              {dateLine}
-            </Text>
-          </Home.Clock>
-
-          <Text textStyle="greeting" color="fg.onMesh" suppressHydrationWarning {...entrance(350)}>
+          <Text textStyle="hero-greeting" color="fg.onMesh" suppressHydrationWarning {...entrance(250)}>
             {greeting}
           </Text>
+
+          <Text
+            textStyle="clock-display"
+            color="fg.onMesh"
+            suppressHydrationWarning
+            {...entrance(350)}
+          >
+            {time}
+          </Text>
+
+          <Text
+            textStyle="hero-date"
+            color="fg.onMesh.muted"
+            suppressHydrationWarning
+            {...entrance(450)}
+          >
+            {dateLine}
+          </Text>
         </Home.Intro>
-
-        <VStack w="full" gap="6" {...entrance(450)}>
-          <DoingNowCard />
-        </VStack>
-
-        {/* <Box {...entrance(150)}>
-          <TodayProgress />
-        </Box> */}
       </Home.Stage>
     </Home.Root>
   );

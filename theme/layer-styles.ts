@@ -13,10 +13,15 @@ export const layerStyles = defineLayerStyles({
     value: {
       backgroundColor: "{colors.mesh.floor}",
       backgroundImage:
-        "radial-gradient(55% 55% at 20% 16%, {colors.mesh.glowHaze} 0%, transparent 48%)," +
-        "radial-gradient(75% 70% at 8% 22%, {colors.mesh.glowSage} 0%, transparent 52%)," +
-        "radial-gradient(80% 75% at 90% 85%, {colors.mesh.glowGreen} 0%, transparent 55%)," +
-        "radial-gradient(70% 65% at 70% 55%, {colors.mesh.glowTeal} 0%, transparent 58%)",
+        "radial-gradient(35.6% 42.0% at 50.0% 46.7%, {colors.mesh.coreBloom} 0%, {colors.mesh.coreBloom} 20%, transparent 70%)," +
+        "radial-gradient(35.6% 57.0% at 50.0% 37.8%, {colors.mesh.glowGreen} 0%, {colors.mesh.glowGreen} 20%, transparent 70%)," +
+        "radial-gradient(29.0% 46.5% at 52.8% 33.3%, {colors.mesh.glowJade} 0%, {colors.mesh.glowJade} 20%, transparent 70%)," +
+        "radial-gradient(21.6% 34.5% at 62.5% 20.0%, {colors.mesh.glowSage} 0%, {colors.mesh.glowSage} 20%, transparent 70%)," +
+        "radial-gradient(29.0% 46.5% at 33.3% 84.4%, {colors.mesh.glowEmerald} 0%, {colors.mesh.glowEmerald} 20%, transparent 70%)," +
+        "radial-gradient(24.4% 39.0% at 81.9% 84.4%, {colors.mesh.glowMint} 0%, {colors.mesh.glowMint} 20%, transparent 70%)," +
+        "radial-gradient(30.0% 48.0% at 52.8% 80.0%, {colors.mesh.glowTeal} 0%, {colors.mesh.glowTeal} 20%, transparent 70%)," +
+        "radial-gradient(35.6% 57.0% at 77.8% 35.6%, {colors.mesh.glowGreen} 0%, {colors.mesh.glowGreen} 20%, transparent 70%)," +
+        "radial-gradient(33.8% 54.0% at 20.8% 28.9%, {colors.mesh.glowSage} 0%, {colors.mesh.glowSage} 20%, transparent 70%)",
       filter: "saturate(1.05)",
       transition: "filter {durations.mood} {easings.standard}",
       "&[data-phase=shortBreak]": { filter: "saturate(0.95) hue-rotate(-20deg)" },

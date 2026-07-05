@@ -25,10 +25,13 @@ export const colors = defineTokens.colors({
 
   mesh: {
     floor: { value: "#12946E" },
-    glowHaze: { value: "rgba(255, 255, 255, 0.65)" },
-    glowSage: { value: "rgba(54, 196, 150, 0.62)" },
-    glowTeal: { value: "rgba(38, 186, 171, 0.55)" },
-    glowGreen: { value: "rgba(13, 122, 96, 0.48)" },
+    glowSage: { value: "rgba(54, 196, 150, 0.82)" },
+    glowTeal: { value: "rgba(38, 186, 171, 0.78)" },
+    glowGreen: { value: "rgba(13, 122, 96, 0.85)" },
+    glowMint: { value: "rgba(120, 214, 164, 0.72)" },
+    glowEmerald: { value: "rgba(16, 136, 104, 0.80)" },
+    glowJade: { value: "rgba(30, 168, 140, 0.78)" },
+    coreBloom: { value: "rgba(16, 158, 118, 0.55)" },
   },
 
   indigo: {

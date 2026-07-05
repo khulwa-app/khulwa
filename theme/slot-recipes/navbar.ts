@@ -7,7 +7,7 @@ import {
 
 export const navbarSlotRecipe = defineSlotRecipe({
   className: "khulwa-navbar",
-  slots: ["root", "brand", "actions", "quote"],
+  slots: ["root", "brand", "actions"],
   base: {
     root: {
       position: "absolute",
@@ -30,18 +30,6 @@ export const navbarSlotRecipe = defineSlotRecipe({
       gap: "2",
       minW: "0",
     },
-    quote: {
-      maxW: "16rem",
-      textAlign: "end",
-      textWrap: "balance",
-      fontFamily: "body",
-      fontStyle: "italic",
-      fontSize: { base: "xs", md: "sm" },
-      fontWeight: "medium",
-      lineHeight: "1.4",
-      color: "fg.onMesh.muted",
-      display: { base: "none", sm: "block" },
-    },
   },
 });
 
@@ -53,5 +41,4 @@ export const Nav = {
   Root: ctx.withProvider<HTMLElement, RootProps>("header", "root"),
   Brand: ctx.withContext<HTMLDivElement, DivProps>("div", "brand"),
   Actions: ctx.withContext<HTMLDivElement, DivProps>("div", "actions"),
-  Quote: ctx.withContext<HTMLParagraphElement, HTMLChakraProps<"p">>("p", "quote"),
 };

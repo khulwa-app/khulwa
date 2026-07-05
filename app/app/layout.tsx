@@ -6,7 +6,7 @@ import { QueryProvider, SessionProvider } from "@/components/providers";
 import { getServerSession } from "@/lib/api/auth";
 import { Navbar } from "@/components/ui";
 import { StreakBadge } from "@/modules/progress";
-import { CommandHint, CommandPalette } from "@/modules/command-palette";
+import { CommandPalette } from "@/modules/command-palette";
 import { Dock } from "@/modules/dock";
 import { FloatingTimer } from "@/modules/pomodoro";
 import { GlobalShortcuts } from "@/modules/shortcuts";
@@ -36,7 +36,6 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
             {children}
             <GlobalShortcuts />
             <CommandPalette />
-            <CommandHint />
             <Dock />
             <FloatingTimer />
             <SoundsEngine />

@@ -22,6 +22,7 @@ export const fontSizes = defineTokens.fontSizes({
   "6xl": { value: "3.75rem" },
   "7xl": { value: "4.75rem" },
   "8xl": { value: "6rem" },
+  clock: { value: "10.25rem" },
   timer: { value: "9rem" },
   "numeric-display": { value: "3.5rem" },
   logo: { value: "1.6875rem" },

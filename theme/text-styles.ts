@@ -196,11 +196,33 @@ export const textStyles = defineTextStyles({
   "clock-display": {
     value: {
       fontFamily: "display",
-      fontSize: { base: "6xl", md: "8xl" },
+      fontSize: { base: "7xl", md: "8xl", xl: "clock" },
       fontWeight: "extrabold",
       lineHeight: "1",
       letterSpacing: "-0.03em",
       fontVariantNumeric: "tabular-nums",
+      textShadow: "{shadows.hero-text}",
+    },
+  },
+  "hero-greeting": {
+    value: {
+      fontFamily: "display",
+      fontSize: { base: "2xl", md: "3xl" },
+      fontWeight: "extrabold",
+      lineHeight: "1.1",
+      letterSpacing: "-0.005em",
+      textShadow: "{shadows.hero-text}",
+    },
+  },
+  "hero-date": {
+    value: {
+      fontFamily: "body",
+      fontSize: { base: "sm", md: "md" },
+      fontWeight: "medium",
+      lineHeight: "1.4",
+      letterSpacing: "0.08em",
+      textTransform: "uppercase",
+      textShadow: "{shadows.hero-meta-text}",
     },
   },
   "numeric-timer": {

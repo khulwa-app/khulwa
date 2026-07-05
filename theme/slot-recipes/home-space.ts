@@ -7,7 +7,7 @@ import {
 
 export const homeSpaceSlotRecipe = defineSlotRecipe({
   className: "khulwa-home",
-  slots: ["root", "corner", "stage", "intro", "clock"],
+  slots: ["root", "corner", "stage", "intro"],
   base: {
     root: {
       position: "relative",
@@ -33,7 +33,7 @@ export const homeSpaceSlotRecipe = defineSlotRecipe({
       w: "full",
       justifyContent: "center",
       alignItems: "center",
-      gap: { base: "8", md: "10" },
+      gap: { base: "10", md: "13" },
       paddingInline: "6",
       paddingBlock: { base: "16", md: "20" },
     },
@@ -41,14 +41,8 @@ export const homeSpaceSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      gap: { base: "5", md: "6" },
+      gap: { base: "4", md: "4.5" },
       textAlign: "center",
-    },
-    clock: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      gap: "1.5",
     },
   },
 });
@@ -62,5 +56,4 @@ export const Home = {
   Corner: ctx.withContext<HTMLDivElement, DivProps>("div", "corner"),
   Stage: ctx.withContext<HTMLDivElement, DivProps>("div", "stage"),
   Intro: ctx.withContext<HTMLDivElement, DivProps>("div", "intro"),
-  Clock: ctx.withContext<HTMLDivElement, DivProps>("div", "clock"),
 };

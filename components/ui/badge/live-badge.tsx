@@ -2,7 +2,7 @@
 
 import { Box } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
-import { Badge } from "./badge";
+import { Badge } from "@/theme/slot-recipes/badge";
 
 export function LiveBadge() {
   const t = useTranslations("components.badge");

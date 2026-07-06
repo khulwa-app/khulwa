@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Badge } from "./badge";
+import { Badge } from "@/theme/slot-recipes/badge";
 
 interface TagBadgeProps {
   children: ReactNode;

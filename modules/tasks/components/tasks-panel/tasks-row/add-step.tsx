@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useAddStep } from "@/services/tasks";
-import { TaskList } from "../task-list";
+import { TaskList } from "@/theme/slot-recipes/task-list";
 
 export function AddStep({ taskId }: { taskId: string }) {
   const t = useTranslations("tasks");

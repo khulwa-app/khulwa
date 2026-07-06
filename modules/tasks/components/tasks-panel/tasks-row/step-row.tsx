@@ -5,7 +5,7 @@ import { TrashBinMinimalistic } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { useDeleteStep, useUpdateStep, type TaskStep } from "@/services/tasks";
-import { TaskList } from "../task-list";
+import { TaskList } from "@/theme/slot-recipes/task-list";
 
 export function StepRow({ step }: { step: TaskStep }) {
   const t = useTranslations("tasks");

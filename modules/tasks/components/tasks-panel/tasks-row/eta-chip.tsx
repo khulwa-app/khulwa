@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useUpdateTask, type Task } from "@/services/tasks";
-import { TaskList } from "../task-list";
+import { TaskList } from "@/theme/slot-recipes/task-list";
 
 export function EtaChip({ task }: { task: Task }) {
   const t = useTranslations("tasks");

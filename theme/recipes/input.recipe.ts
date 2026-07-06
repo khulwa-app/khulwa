@@ -26,12 +26,6 @@ export const khulwaInputRecipe = defineRecipe({
         _hover: { bg: "bg.emphasized", borderColor: "border.emphasized" },
         _focus: { borderColor: "border.focus", bg: "bg.muted" },
       },
-      filled: {
-        bg: "bg.muted",
-        borderColor: "transparent",
-        _hover: { bg: "bg.emphasized" },
-        _focus: { borderColor: "border.focus", bg: "bg.muted" },
-      },
       plain: {
         bg: "transparent",
         borderColor: "transparent",

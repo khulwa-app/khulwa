@@ -1,4 +1,4 @@
-import { defineSlotRecipe } from "@chakra-ui/react";
+import { createSlotRecipeContext, defineSlotRecipe, type HTMLChakraProps, type SlotRecipeProps } from "@chakra-ui/react";
 
 export const badgeSlotRecipe = defineSlotRecipe({
   slots: ["root", "icon", "label"],
@@ -53,3 +53,14 @@ export const badgeSlotRecipe = defineSlotRecipe({
   ],
   defaultVariants: { tone: "neutral", emphasis: "subtle", size: "md" },
 });
+
+const ctx = createSlotRecipeContext({ key: "badge" });
+
+type RootProps = HTMLChakraProps<"span", SlotRecipeProps<"badge">>;
+type SpanProps = HTMLChakraProps<"span">;
+
+export const Badge = {
+  Root: ctx.withProvider<HTMLSpanElement, RootProps>("span", "root"),
+  Icon: ctx.withContext<HTMLSpanElement, SpanProps>("span", "icon"),
+  Label: ctx.withContext<HTMLSpanElement, SpanProps>("span", "label"),
+};

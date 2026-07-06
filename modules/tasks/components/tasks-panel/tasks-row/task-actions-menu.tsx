@@ -5,7 +5,7 @@ import { MenuDots, Moon, StarsMinimalistic, Sun, Target, TrashBinMinimalistic } 
 import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { useDeleteTask, useUpdateTask, type Task } from "@/services/tasks";
-import { TaskList } from "../task-list";
+import { TaskList } from "@/theme/slot-recipes/task-list";
 
 interface TaskActionsMenuProps {
   task: Task;

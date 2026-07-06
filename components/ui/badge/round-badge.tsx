@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Badge } from "./badge";
+import { Badge } from "@/theme/slot-recipes/badge";
 
 interface RoundBadgeProps {
   current: number;

@@ -14,8 +14,6 @@ export function InlineEdit({ value, onCommit, parse, ...textProps }: InlineEditP
     <Text
       contentEditable="plaintext-only"
       suppressContentEditableWarning
-      cursor="text"
-      _focus={{ boxShadow: "none" }}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           e.preventDefault();

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Checkbox } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 import { useUpdateTask, type Task } from "@/services/tasks";
-import { TaskList } from "../task-list";
+import { TaskList } from "@/theme/slot-recipes/task-list";
 import { EditableBody } from "./editable-body";
 import { EtaChip } from "./eta-chip";
 import { StepRow } from "./step-row";

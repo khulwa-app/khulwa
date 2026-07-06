@@ -4,7 +4,7 @@ import { CloudRain, CloudWaterdrops, CupHot, Fire, Keyboard, Soundwave } from "@
 import { Icon, type Glyph } from "@/components/ui/icon";
 import { type SoundDef } from "../catalog";
 import { useSounds } from "../hooks/use-sounds-store.hook";
-import { SoundGrid } from "./sound-grid";
+import { SoundGrid } from "@/theme/slot-recipes/sounds";
 import { VolumeSlider } from "./volume-slider";
 
 const ICONS: Record<string, Glyph> = {

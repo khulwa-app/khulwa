@@ -70,14 +70,6 @@ export const khulwaButtonRecipe = defineRecipe({
         _active: { transform: "scale(0.97)" },
       },
 
-      // @deprecated transitional — primary-tinted ghost for quick-add; folds into the P2 Field rework
-      "ghost.primary": {
-        bg: "transparent",
-        color: "primary.solid",
-        _hover: { bg: "glass.subtle", color: "teal.emphasized" },
-        _active: { bg: "glass.muted", transform: "scale(0.97)" },
-      },
-
       // @deprecated transitional light-panel variants — delete with each screen's redesign chunk
       "ghost.panel": {
         bg: "transparent",

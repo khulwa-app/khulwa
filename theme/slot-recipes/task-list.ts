@@ -1,4 +1,13 @@
-import { defineSlotRecipe } from "@chakra-ui/react";
+import {
+  createSlotRecipeContext,
+  defineSlotRecipe,
+  Input,
+  Text,
+  type HTMLChakraProps,
+  type InputProps,
+  type TextProps,
+} from "@chakra-ui/react";
+import { InlineEdit, type InlineEditProps } from "@/components/ui/inline-edit";
 
 export const taskListSlotRecipe = defineSlotRecipe({
   slots: [
@@ -15,6 +24,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
     "eta",
     "etaValue",
     "etaUnit",
+    "addAction",
     "addStep",
     "addStepRow",
     "sectionTrigger",
@@ -108,6 +118,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       color: "fg.onMesh",
       cursor: "text",
       outline: "none",
+      _focus: { boxShadow: "none" },
       "&[data-tone=muted]": { color: "fg.onMesh.muted" },
       "&[data-completed]": { color: "fg.onMesh.subtle", textDecoration: "line-through" },
       "&[data-completed]:focus": { textDecoration: "none", color: "fg.onMesh" },
@@ -191,11 +202,32 @@ export const taskListSlotRecipe = defineSlotRecipe({
       color: "inherit",
       cursor: "text",
       outline: "none",
+      _focus: { boxShadow: "none" },
       "&[data-tone=muted]": { color: "fg.onMesh.muted" },
     },
     etaUnit: {
       textStyle: "xs",
       color: "fg.onMesh.muted",
+    },
+    addAction: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: "0",
+      boxSize: "8",
+      rounded: "full",
+      border: "0",
+      bg: "transparent",
+      color: "primary.solid",
+      cursor: "pointer",
+      transitionProperty: "background-color, color, transform",
+      transitionDuration: "enter",
+      transitionTimingFunction: "enter",
+      "& svg": { boxSize: "5" },
+      _hover: { bg: "glass.subtle", color: "teal.emphasized" },
+      _active: { bg: "glass.muted", transform: "scale(0.97)", transitionDuration: "instant" },
+      _motionReduce: { _active: { transform: "none" } },
+      _disabled: { opacity: 0.5, cursor: "not-allowed" },
     },
     addStep: {
       flex: "1",
@@ -243,3 +275,46 @@ export const taskListSlotRecipe = defineSlotRecipe({
     },
   },
 });
+
+const ctx = createSlotRecipeContext({ key: "taskList" });
+
+type DivProps = HTMLChakraProps<"div">;
+type ButtonProps = HTMLChakraProps<"button">;
+
+export const TaskList = {
+  Root: ctx.withProvider<HTMLDivElement, DivProps>("div", "list"),
+  Item: ctx.withContext<HTMLDivElement, DivProps>("div", "item"),
+  Row: ctx.withContext<HTMLDivElement, DivProps>("div", "row"),
+
+  Meta: ctx.withContext<HTMLDivElement, DivProps>("div", "meta"),
+
+  Actions: ctx.withContext<HTMLDivElement, DivProps>("div", "actions"),
+  Steps: ctx.withContext<HTMLDivElement, DivProps>("div", "steps"),
+  StepRow: ctx.withContext<HTMLDivElement, DivProps>("div", "stepRow"),
+  AddStepRow: ctx.withContext<HTMLDivElement, DivProps>("div", "addStepRow"),
+
+  Action: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "action", {
+    defaultProps: { type: "button" },
+  }),
+  AddAction: ctx.withProvider<HTMLButtonElement, ButtonProps>("button", "addAction", {
+    defaultProps: { type: "button" },
+  }),
+
+  Editable: ctx.withContext<HTMLParagraphElement, InlineEditProps>(InlineEdit, "editable"),
+  Eta: ctx.withContext<HTMLParagraphElement, TextProps>(Text, "eta"),
+  EtaValue: ctx.withContext<HTMLSpanElement, InlineEditProps>(InlineEdit, "etaValue", {
+    defaultProps: { as: "span" },
+  }),
+  EtaUnit: ctx.withContext<HTMLSpanElement, TextProps>(Text, "etaUnit", {
+    defaultProps: { as: "span" },
+  }),
+  Counter: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "counter", {
+    defaultProps: { type: "button" },
+  }),
+  AddStepInput: ctx.withContext<HTMLInputElement, InputProps>(Input, "addStep", {
+    defaultProps: { variant: "plain", size: "sm" },
+  }),
+  SectionTrigger: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "sectionTrigger"),
+  SectionContent: ctx.withContext<HTMLDivElement, DivProps>("div", "sectionContent"),
+  Empty: ctx.withContext<HTMLParagraphElement, TextProps>(Text, "empty"),
+};

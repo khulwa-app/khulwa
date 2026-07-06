@@ -7,7 +7,7 @@ import { ScrollArea } from "@/components/ui";
 import { Panel, SidePanel, usePanels } from "../panels";
 import { SOUNDS } from "./catalog";
 import { useSounds } from "./hooks/use-sounds-store.hook";
-import { SoundGrid } from "./components/sound-grid";
+import { SoundGrid } from "@/theme/slot-recipes/sounds";
 import { SoundTile } from "./components/sound-tile";
 import { VolumeSlider } from "./components/volume-slider";
 

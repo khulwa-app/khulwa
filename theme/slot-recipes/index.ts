@@ -17,6 +17,7 @@ import { activeTaskSlotRecipe } from "./active-task";
 import { homeSpaceSlotRecipe } from "./home-space";
 import { drawerSlotRecipe } from "./drawer";
 import { settingsSlotRecipe } from "./settings";
+import { fieldSlotRecipe } from "./field";
 
 export const slotRecipes = {
   dock: dockSlotRecipe,
@@ -38,4 +39,5 @@ export const slotRecipes = {
   homeSpace: homeSpaceSlotRecipe,
   drawer: drawerSlotRecipe,
   settings: settingsSlotRecipe,
+  field: fieldSlotRecipe,
 };

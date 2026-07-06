@@ -4,7 +4,7 @@ import { AltArrowRight } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { Collapsible } from "@/components/ui";
 import type { Task } from "@/services/tasks";
-import { TaskList } from "./task-list";
+import { TaskList } from "@/theme/slot-recipes/task-list";
 import { TaskRow } from "./tasks-row";
 
 export function FoldedSection({ label, tasks }: { label: string; tasks: Task[] }) {

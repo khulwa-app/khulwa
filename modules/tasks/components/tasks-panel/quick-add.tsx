@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { IconButton, Input, InputGroup } from "@chakra-ui/react";
+import { Input, InputGroup } from "@chakra-ui/react";
 import { AddCircle } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { estimateEta } from "@/modules/ai";
 import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
+import { TaskList } from "@/theme/slot-recipes/task-list";
 
 export function QuickAdd() {
   const t = useTranslations("tasks");
@@ -35,15 +36,9 @@ export function QuickAdd() {
     <InputGroup
       flexShrink="0"
       endElement={
-        <IconButton
-          variant="ghost.primary"
-          size="sm"
-          aria-label={t("addTask")}
-          disabled={draft.trim() === ""}
-          onClick={submit}
-        >
+        <TaskList.AddAction aria-label={t("addTask")} disabled={draft.trim() === ""} onClick={submit}>
           <Icon icon={AddCircle} />
-        </IconButton>
+        </TaskList.AddAction>
       }
       endElementProps={{ paddingInline: "1" }}
     >

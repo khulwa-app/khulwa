@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui";
 import { SidePanel, usePanels, Panel } from "@/modules/panels";
 import { useTasks } from "@/services/tasks";
 import { QuickAdd } from "./quick-add";
-import { TaskList } from "./task-list";
+import { TaskList } from "@/theme/slot-recipes/task-list";
 import { TaskRow } from "./tasks-row";
 import { FoldedSection } from "./folded-section";
 

@@ -19,7 +19,7 @@ function PhaseTabsComponent({ phase, currentRound, totalRounds, onPhaseChange }:
     ({
       role: "tab",
       "aria-selected": phase === target,
-      variant: phase === target ? "primary" : "outline",
+      variant: phase === target ? "solid" : "outline.panel",
       size: "sm",
       onClick: () => onPhaseChange(target),
     }) as const;

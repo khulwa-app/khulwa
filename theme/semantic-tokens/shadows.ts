@@ -1,7 +1,10 @@
 import { defineSemanticTokens } from "@chakra-ui/react";
 
 export const semanticShadows = defineSemanticTokens.shadows({
-  focus: { value: "0 0 0 2px {colors.bg.panel}, 0 0 0 4px {colors.primary.focusRing}" },
+  focusRing: {
+    DEFAULT: { value: "0 0 0 2px {colors.bg.panel}, 0 0 0 4px {colors.primary.focusRing}" },
+    glass: { value: "0 0 0 2px {colors.glass.panel}, 0 0 0 4px {colors.primary.focusRing}" },
+  },
 
   dock: {
     value: "0 1px 2px rgba(10, 16, 20, 0.12), 0 3px 7px -1px rgba(10, 16, 20, 0.10)",

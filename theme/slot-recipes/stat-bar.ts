@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const statBarSlotRecipe = defineSlotRecipe({
-  className: "khulwa-stat-bar",
   slots: ["root", "dot", "label", "track", "range", "value"],
   base: {
     root: { display: "flex", alignItems: "center", gap: "3", width: "full" },

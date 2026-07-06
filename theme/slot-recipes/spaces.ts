@@ -1,7 +1,6 @@
 import { defineSlotRecipe } from "@chakra-ui/react";
 
 export const spacesSlotRecipe = defineSlotRecipe({
-  className: "khulwa-spaces",
   slots: ["shell", "layer"],
   base: {
     shell: {

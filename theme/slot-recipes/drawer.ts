@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const drawerSlotRecipe = defineSlotRecipe({
-  className: "khulwa-drawer",
   slots: ["backdrop", "content", "header", "title", "body"],
   base: {
     backdrop: {

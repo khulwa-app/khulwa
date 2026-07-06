@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const navbarSlotRecipe = defineSlotRecipe({
-  className: "khulwa-navbar",
   slots: ["root", "brand", "actions"],
   base: {
     root: {

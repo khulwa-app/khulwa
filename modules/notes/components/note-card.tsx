@@ -34,7 +34,7 @@ export function NoteCard({ note }: { note: Note }) {
           onBlur={(e) => saveTitle(e.target.value)}
         />
         <IconButton
-          variant="ghost"
+          variant="ghost.panel"
           size="sm"
           color="fg.disabled"
           aria-label={t("delete")}

@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const cardSlotRecipe = defineSlotRecipe({
-  className: "khulwa-card",
   slots: ["root", "header", "title", "meta", "body"],
   base: {
     root: {

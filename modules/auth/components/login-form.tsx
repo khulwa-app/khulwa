@@ -57,7 +57,7 @@ export function LoginForm() {
         </Text>
       </VStack>
 
-      <Button variant="secondary" size="lg" onClick={onGoogle} w="full">
+      <Button variant="surface.panel" size="lg" onClick={onGoogle} w="full">
         {t("continueWithGoogle")}
       </Button>
 
@@ -104,7 +104,7 @@ export function LoginForm() {
             </Text>
           )}
 
-          <Button type="submit" variant="primary" size="lg" w="full" loading={loading} loadingText={t("submitting")}>
+          <Button type="submit" variant="solid" size="lg" w="full" loading={loading} loadingText={t("submitting")}>
             {mode === "signin" ? t("submit") : t("signupSubmit")}
           </Button>
         </VStack>

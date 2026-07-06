@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const activeTaskSlotRecipe = defineSlotRecipe({
-  className: "khulwa-active-task",
   slots: ["root", "empty", "bar", "mark", "dot", "task", "eta", "hint"],
   base: {
     root: {

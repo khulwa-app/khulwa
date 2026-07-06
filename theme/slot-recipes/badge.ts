@@ -1,7 +1,6 @@
 import { defineSlotRecipe } from "@chakra-ui/react";
 
 export const badgeSlotRecipe = defineSlotRecipe({
-  className: "khulwa-badge",
   slots: ["root", "icon", "label"],
   base: {
     root: {

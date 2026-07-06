@@ -88,24 +88,14 @@ export function FocusSpace() {
             <CategoryChip />
 
             <HStack gap="6" align="center">
-              <IconButton onClick={reset} variant="ghost" boxSize="12" rounded="full" aria-label={t("actions.reset")}>
-                <Icon icon={Restart} boxSize="5" />
+              <IconButton onClick={reset} variant="ghost.panel" size="lg" aria-label={t("actions.reset")}>
+                <Icon icon={Restart} />
               </IconButton>
-              <IconButton
-                onClick={isRunning ? pause : start}
-                variant="primary"
-                boxSize="16"
-                rounded="full"
-                aria-label={primaryLabel}
-              >
-                {isRunning ? (
-                  <Icon icon={Pause} weight="Bold" boxSize="6.5" />
-                ) : (
-                  <Icon icon={Play} weight="Bold" boxSize="6.5" />
-                )}
+              <IconButton onClick={isRunning ? pause : start} variant="solid" size="xl" aria-label={primaryLabel}>
+                {isRunning ? <Icon icon={Pause} weight="Bold" /> : <Icon icon={Play} weight="Bold" />}
               </IconButton>
-              <IconButton onClick={skip} variant="ghost" boxSize="12" rounded="full" aria-label={t("actions.skip")}>
-                <Icon icon={SkipNext} boxSize="5" />
+              <IconButton onClick={skip} variant="ghost.panel" size="lg" aria-label={t("actions.skip")}>
+                <Icon icon={SkipNext} />
               </IconButton>
             </HStack>
             </VStack>

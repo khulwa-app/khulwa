@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const settingsSlotRecipe = defineSlotRecipe({
-  className: "khulwa-settings",
   slots: ["layout", "nav", "navItem", "pane", "paneTitle"],
   base: {
     layout: {

@@ -1,7 +1,6 @@
 import { defineSlotRecipe } from "@chakra-ui/react";
 
 export const soundsSlotRecipe = defineSlotRecipe({
-  className: "khulwa-sounds",
   slots: ["grid", "tile", "toggle", "iconWrap", "title"],
   base: {
     grid: {

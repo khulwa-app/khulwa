@@ -1,6 +1,7 @@
 import { dockSlotRecipe } from "./dock";
 import { badgeSlotRecipe } from "./badge";
 import { menuSlotRecipe } from "./menu";
+import { checkboxSlotRecipe } from "./checkbox";
 import { cardSlotRecipe } from "./card";
 import { statBarSlotRecipe } from "./stat-bar";
 import { rhythmListSlotRecipe } from "./rhythm-list";
@@ -21,6 +22,7 @@ export const slotRecipes = {
   dock: dockSlotRecipe,
   badge: badgeSlotRecipe,
   menu: menuSlotRecipe,
+  checkbox: checkboxSlotRecipe,
   card: cardSlotRecipe,
   statBar: statBarSlotRecipe,
   rhythmList: rhythmListSlotRecipe,

@@ -19,7 +19,7 @@ const config = defineConfig({
     html: { scrollBehavior: "auto" },
     "[data-numeric]": { fontVariantNumeric: "tabular-nums" },
     "*:focus": { outline: "none" },
-    "*:focus-visible": { outline: "none", boxShadow: "focus" },
+    "*:focus-visible": { outline: "none", boxShadow: "focusRing" },
   },
   theme: {
     breakpoints: { sm: "30em", md: "48em", lg: "62em", xl: "80em", "2xl": "96em" },

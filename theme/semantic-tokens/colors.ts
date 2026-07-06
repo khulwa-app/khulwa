@@ -56,6 +56,8 @@ export const semanticColors = defineSemanticTokens.colors({
   },
 
   glass: {
+    subtle: one("whiteA.faint"),
+    muted: one("whiteA.dim"),
     sheet: one("whiteA.sheet"),
     chrome: one("inkA.chip"),
     chromeHover: one("inkA.lift"),
@@ -64,7 +66,6 @@ export const semanticColors = defineSemanticTokens.colors({
     clear: one("inkA.clear"),
     divider: one("whiteA.dim"),
     border: { value: "rgba(255, 255, 255, 0.16)" },
-    borderLit: { value: "rgba(255, 255, 255, 0.16)" },
     borderFocus: { value: "rgba(255, 255, 255, 0.40)" },
   },
 });

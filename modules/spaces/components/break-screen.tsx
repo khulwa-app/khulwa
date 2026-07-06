@@ -41,21 +41,21 @@ export function BreakScreen({ phase, minutes, seconds, isRunning, onToggle, onSk
         {t(`break.${key}.subtitle`)}
       </Text>
 
-      <Box w="24" h="1px" bg="glass.borderLit" rounded="full" />
+      <Box w="24" h="1px" bg="glass.border" rounded="full" />
 
       <Text textStyle="numeric-display" data-numeric color="fg.onMesh.subtle" suppressHydrationWarning>
         {formatPomodoro(minutes, seconds)}
       </Text>
 
       <HStack gap="3" pt="1">
-        <Button variant="onGlass.outline" size="lg" onClick={onToggle}>
+        <Button variant="outline" size="lg" onClick={onToggle}>
           {isRunning ? t("actions.pause") : t("actions.resume")}
         </Button>
-        <Button variant="onGlass.ghost" size="lg" onClick={onSkip}>
+        <Button variant="ghost" size="lg" onClick={onSkip}>
           <Icon icon={SkipNext} boxSize="4" />
           {t("actions.skip")}
         </Button>
-        <Button variant="onGlass.ghost" size="lg" onClick={lockScreen}>
+        <Button variant="ghost" size="lg" onClick={lockScreen}>
           <Icon icon={LockKeyholeMinimalistic} boxSize="4" />
           {t("break.lockScreen")}
         </Button>

@@ -162,6 +162,12 @@
     "breakIntoSteps": "Break into steps",
     "breaking": "Breaking down…",
     "minutesShort": "m",
+    "menu": {
+      "doNow": "Do now",
+      "doToday": "Do today",
+      "moveToLater": "Move to later",
+      "delete": "Delete"
+    },
     "aria": {
       "complete": "Mark as completed",
       "doingNow": "Focus on this task",
@@ -171,6 +177,7 @@
       "expand": "Toggle steps",
       "defer": "Move to later",
       "doToday": "Do today",
+      "more": "More actions",
       "completeStep": "Mark step as completed",
       "deleteStep": "Delete step",
       "editStep": "Edit step",

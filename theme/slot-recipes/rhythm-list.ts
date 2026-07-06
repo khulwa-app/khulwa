@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const rhythmListSlotRecipe = defineSlotRecipe({
-  className: "khulwa-rhythm-list",
   slots: ["root", "item", "check", "label"],
   base: {
     root: { display: "flex", flexDirection: "column", gap: "1.5", width: "full" },

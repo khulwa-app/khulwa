@@ -15,13 +15,14 @@ export function InlineEdit({ value, onCommit, parse, ...textProps }: InlineEditP
       contentEditable="plaintext-only"
       suppressContentEditableWarning
       cursor="text"
-      _focus={{ outline: "none", boxShadow: "none" }}
+      _focus={{ boxShadow: "none" }}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           e.preventDefault();
           e.currentTarget.blur();
         }
         if (e.key === "Escape") {
+          e.preventDefault();
           e.currentTarget.textContent = value;
           e.currentTarget.blur();
         }

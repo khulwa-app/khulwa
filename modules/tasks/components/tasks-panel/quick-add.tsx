@@ -35,15 +35,21 @@ export function QuickAdd() {
     <InputGroup
       flexShrink="0"
       endElement={
-        <IconButton variant="ghost" size="sm" aria-label={t("addTask")} disabled={draft.trim() === ""} onClick={submit}>
-          <Icon icon={AddCircle} boxSize="4" />
+        <IconButton
+          variant="ghost.primary"
+          size="sm"
+          aria-label={t("addTask")}
+          disabled={draft.trim() === ""}
+          onClick={submit}
+        >
+          <Icon icon={AddCircle} />
         </IconButton>
       }
       endElementProps={{ paddingInline: "1" }}
     >
       <Input
-        variant="filled"
-        size="md"
+        variant="glass"
+        size="lg"
         value={draft}
         placeholder={t("placeholder")}
         autoFocus

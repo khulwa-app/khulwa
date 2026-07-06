@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const timerPillSlotRecipe = defineSlotRecipe({
-  className: "khulwa-timer-pill",
   slots: ["positioner", "root", "dot"],
   base: {
     positioner: {

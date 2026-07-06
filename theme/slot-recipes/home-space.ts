@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const homeSpaceSlotRecipe = defineSlotRecipe({
-  className: "khulwa-home",
   slots: ["root", "corner", "stage", "intro"],
   base: {
     root: {

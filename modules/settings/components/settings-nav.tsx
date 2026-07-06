@@ -19,7 +19,7 @@ export function SettingsNav({ active, onSelect, onClose }: SettingsNavProps) {
 
   return (
     <Settings.Nav role="tablist" aria-orientation="vertical" aria-label={t("title")}>
-      <IconButton variant="ghost" size="sm" aria-label={tAria("close")} alignSelf="start" mb="1" onClick={onClose}>
+      <IconButton variant="ghost.panel" size="sm" aria-label={tAria("close")} alignSelf="start" mb="1" onClick={onClose}>
         <Icon icon={CloseCircle} boxSize="4" />
       </IconButton>
       {SETTINGS_TABS.map(({ id, icon }) => (

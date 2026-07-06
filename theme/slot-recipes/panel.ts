@@ -6,20 +6,19 @@ import {
 } from "@chakra-ui/react";
 
 export const panelSlotRecipe = defineSlotRecipe({
-  className: "khulwa-panel",
   slots: ["root", "header", "title", "body"],
   base: {
     root: {
       position: "fixed",
-      insetInlineStart: { base: "3", md: "5" },
+      insetInlineStart: { base: "4", md: "12" },
 
-      bottom: { base: "16", md: "20" },
+      bottom: { base: "20", md: "30" },
       zIndex: "panel",
       display: "flex",
       flexDirection: "column",
-      w: "22rem",
+      w: "md",
       maxW: "calc(100vw - 1.5rem)",
-      maxH: "min(70vh, 34rem)",
+      maxH: "min(72vh, 37.5rem)",
       overflow: "hidden",
       rounded: "3xl",
 
@@ -34,15 +33,16 @@ export const panelSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "space-between",
       flexShrink: "0",
-      paddingInline: "4",
-      paddingBlock: "2.5",
+      paddingInline: "5",
+      paddingTop: "4.5",
+      paddingBottom: "3.5",
+      minH: "16",
       borderBottomWidth: "1px",
-      borderColor: "border.subtle",
+      borderColor: "glass.divider",
     },
     title: {
-      textStyle: "label-md",
-      fontWeight: "medium",
-      color: "fg",
+      textStyle: "heading-h4",
+      color: "fg.onMesh",
     },
     body: {
       display: "flex",

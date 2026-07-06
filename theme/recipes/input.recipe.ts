@@ -1,7 +1,6 @@
 import { defineRecipe } from "@chakra-ui/react";
 
 export const khulwaInputRecipe = defineRecipe({
-  className: "khulwa-input",
   base: {
     width: "full",
     minWidth: "0",
@@ -37,6 +36,14 @@ export const khulwaInputRecipe = defineRecipe({
         bg: "transparent",
         borderColor: "transparent",
         paddingInline: "0",
+      },
+      glass: {
+        bg: "glass.subtle",
+        borderColor: "transparent",
+        color: "fg.onMesh",
+        _hover: { bg: "glass.muted" },
+        _focusVisible: { boxShadow: "focusRing.glass" },
+        _placeholder: { color: "fg.onMesh.subtle" },
       },
     },
     size: {

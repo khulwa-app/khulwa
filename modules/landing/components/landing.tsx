@@ -32,10 +32,10 @@ export function Landing() {
       >
         <Logo size="7" href={Routes.Landing} />
         <HStack gap="2">
-          <Button asChild variant="ghost" size="sm">
+          <Button asChild variant="ghost.panel" size="sm">
             <NextLink href={Routes.Login}>{t("nav.signIn")}</NextLink>
           </Button>
-          <Button asChild variant="primary" size="sm">
+          <Button asChild variant="solid" size="sm">
             <NextLink href={Routes.Login}>{t("nav.getStarted")}</NextLink>
           </Button>
         </HStack>
@@ -63,7 +63,7 @@ export function Landing() {
           </Text>
         </VStack>
 
-        <Button asChild variant="primary" size="lg">
+        <Button asChild variant="solid" size="lg">
           <NextLink href={Routes.Login}>
             {t("hero.cta")}
             <Icon icon={ArrowRight} boxSize="4.5" />

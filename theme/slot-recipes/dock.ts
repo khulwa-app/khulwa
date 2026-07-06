@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const dockSlotRecipe = defineSlotRecipe({
-  className: "khulwa-dock",
   slots: ["root", "item", "itemIcon", "group", "separator", "streak"],
   base: {
     root: {
@@ -44,7 +43,7 @@ export const dockSlotRecipe = defineSlotRecipe({
         transitionDuration: "instant",
       },
       _motionReduce: { _active: { transform: "none" } },
-      _focusVisible: { boxShadow: "focus" },
+      _focusVisible: { boxShadow: "focusRing.glass" },
       "&[aria-pressed='true'], &[aria-current='page']": {
         bg: "primary.solid",
         color: "primary.contrast",

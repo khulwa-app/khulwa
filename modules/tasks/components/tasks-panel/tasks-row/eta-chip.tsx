@@ -10,8 +10,7 @@ export function EtaChip({ task }: { task: Task }) {
 
   return (
     <TaskList.Eta>
-      <TaskList.Editable
-        as="span"
+      <TaskList.EtaValue
         data-tone="muted"
         value={String(task.eta)}
         parse={(raw) => {
@@ -22,7 +21,7 @@ export function EtaChip({ task }: { task: Task }) {
         inputMode="numeric"
         aria-label={t("aria.eta")}
       />
-      {t("minutesShort")}
+      <TaskList.EtaUnit>{t("minutesShort")}</TaskList.EtaUnit>
     </TaskList.Eta>
   );
 }

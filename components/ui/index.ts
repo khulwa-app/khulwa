@@ -1,5 +1,7 @@
 export * from "./badge";
+export * from "./button";
 export * from "./collapsible";
+export * from "./icon";
 export * from "./inline-edit";
 export * from "./logo";
 export * from "./navbar";

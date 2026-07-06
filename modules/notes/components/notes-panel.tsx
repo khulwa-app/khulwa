@@ -20,7 +20,7 @@ export function NotesPanel() {
     <SidePanel open={open} title={t("title")} onClose={close}>
       <VStack h="full" w="full" gap="3" align="stretch">
         <Button
-          variant="secondary"
+          variant="surface.panel"
           size="sm"
           flexShrink="0"
           loading={create.isPending}

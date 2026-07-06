@@ -55,7 +55,7 @@ export function DoingNowEmpty() {
               if (e.key === "Enter") begin();
             }}
           />
-          <Button variant="primary" size="sm" flexShrink="0" onClick={begin}>
+          <Button variant="solid" size="sm" flexShrink="0" onClick={begin}>
             {t("enterFocus")}
             <Icon icon={ArrowRight} boxSize="3.5" />
           </Button>

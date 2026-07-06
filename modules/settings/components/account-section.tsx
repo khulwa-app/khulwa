@@ -29,7 +29,7 @@ export function AccountSection() {
           {user?.email ?? ""}
         </Text>
       </VStack>
-      <Button variant="outline" size="sm" alignSelf="start" onClick={onSignOut}>
+      <Button variant="outline.panel" size="sm" alignSelf="start" onClick={onSignOut}>
         <Icon icon={Logout2} boxSize="3.5" />
         {t("signOut")}
       </Button>

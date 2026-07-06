@@ -31,12 +31,17 @@ export const TaskList = {
     defaultProps: { type: "button" },
   }),
 
-  AiAction: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "aiAction", {
-    defaultProps: { type: "button" },
-  }),
   Editable: ctx.withContext<HTMLParagraphElement, InlineEditProps>(InlineEdit, "editable"),
   Eta: ctx.withContext<HTMLParagraphElement, TextProps>(Text, "eta"),
-  Counter: ctx.withContext<HTMLParagraphElement, TextProps>(Text, "counter"),
+  EtaValue: ctx.withContext<HTMLSpanElement, InlineEditProps>(InlineEdit, "etaValue", {
+    defaultProps: { as: "span" },
+  }),
+  EtaUnit: ctx.withContext<HTMLSpanElement, TextProps>(Text, "etaUnit", {
+    defaultProps: { as: "span" },
+  }),
+  Counter: ctx.withContext<HTMLButtonElement, ButtonProps>("button", "counter", {
+    defaultProps: { type: "button" },
+  }),
   AddStepInput: ctx.withContext<HTMLInputElement, InputProps>(Input, "addStep", {
     defaultProps: { variant: "plain", size: "sm" },
   }),

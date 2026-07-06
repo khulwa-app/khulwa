@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/react";
 
 export const commandPaletteSlotRecipe = defineSlotRecipe({
-  className: "khulwa-command-palette",
   slots: ["positioner", "content", "kbd"],
   base: {
     positioner: {

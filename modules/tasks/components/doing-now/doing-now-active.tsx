@@ -28,19 +28,18 @@ export function DoingNowActive({ task }: { task: Task }) {
           {task.body}
         </ActiveTask.Task>
         <ActiveTask.Eta>{t("etaShort", { eta: task.eta })}</ActiveTask.Eta>
-        <Button variant="primary" size="sm" flexShrink="0" onClick={() => changeSpace(Space.Focus)}>
+        <Button variant="solid" size="sm" flexShrink="0" onClick={() => changeSpace(Space.Focus)}>
           {t("enterFocus")}
           <Icon icon={ArrowRight} boxSize="3.5" />
         </Button>
         <IconButton
-          variant="ghost"
+          variant="subtle"
           size="sm"
-          color="fg.onMesh.muted"
           flexShrink="0"
           aria-label={t("changeTask")}
           onClick={openTasksPanel}
         >
-          <Icon icon={Repeat} boxSize="3.75" />
+          <Icon icon={Repeat} />
         </IconButton>
       </ActiveTask.Root>
     </Presence>

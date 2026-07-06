@@ -20,7 +20,9 @@ export function SidePanel({ open, onClose, title, children }: SidePanelProps) {
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      // A layered dismissable (e.g. an open Menu) preventDefaults Escape in the
+      // capture phase before this bubble listener; skip so it closes, not the panel.
+      if (e.key === "Escape" && !e.defaultPrevented) onClose();
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
@@ -31,8 +33,8 @@ export function SidePanel({ open, onClose, title, children }: SidePanelProps) {
       <Panel.Root role="dialog" aria-label={title}>
         <Panel.Header>
           <Panel.Title>{title}</Panel.Title>
-          <IconButton variant="ghost" size="sm" aria-label={tAria("close")} onClick={onClose}>
-            <Icon icon={CloseCircle} boxSize="4" />
+          <IconButton variant="subtle" size="sm" aria-label={tAria("close")} onClick={onClose}>
+            <Icon icon={CloseCircle} />
           </IconButton>
         </Panel.Header>
         <Panel.Body>{children}</Panel.Body>

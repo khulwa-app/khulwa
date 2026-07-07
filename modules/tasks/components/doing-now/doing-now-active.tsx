@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, IconButton, Presence } from "@chakra-ui/react";
+import { Presence } from "@chakra-ui/react";
+import { Button, IconButton } from "@/components/ui";
 import { ArrowRight, Repeat } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";

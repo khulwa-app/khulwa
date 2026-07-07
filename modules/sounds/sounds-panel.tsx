@@ -1,6 +1,7 @@
 "use client";
 
-import { HStack, IconButton, VStack } from "@chakra-ui/react";
+import { HStack, VStack } from "@chakra-ui/react";
+import { IconButton } from "@/components/ui";
 import { VolumeCross, VolumeLoud } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { ScrollArea } from "@/components/ui";

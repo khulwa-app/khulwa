@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Text, VStack } from "@chakra-ui/react";
+import { Text, VStack } from "@chakra-ui/react";
+import { Button } from "@/components/ui";
 import { Logout2 } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { useRouter } from "next/navigation";

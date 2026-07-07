@@ -61,16 +61,6 @@ export const layerStyles = defineLayerStyles({
       boxShadow: "glass-sm",
     },
   },
-  "card-anchor": {
-    description: "frosted dark glass anchor card — roundest tier (doing-now, resume)",
-    value: {
-      background: "glass.panel",
-      color: "fg.onMesh",
-      borderRadius: "3xl",
-      backdropFilter: "blur(24px) saturate(1.6)",
-      boxShadow: "glass-sm",
-    },
-  },
   raised: {
     description: "frosted dark glass chrome (dock, timer pill, badges) — borderless, graduated rim + lift",
     value: {

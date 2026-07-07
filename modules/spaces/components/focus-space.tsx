@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Box, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Text, VStack } from "@chakra-ui/react";
+import { IconButton } from "@/components/ui";
 import { useTranslations } from "next-intl";
 import { Pause, Play, Restart, SkipNext } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";

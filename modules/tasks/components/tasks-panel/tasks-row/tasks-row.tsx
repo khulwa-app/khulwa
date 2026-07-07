@@ -26,7 +26,7 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
   const delay = `${Math.min(index, STAGGER_CAP) * STAGGER_MS}ms`;
 
   return (
-    <TaskList.Item data-active={task.isDoingNow || undefined} style={{ animationDelay: delay }}>
+    <TaskList.Item data-active={task.isDoingNow || undefined} style={{ animationDelay: delay } /* theme-lint-allow */}>
       <TaskList.Row>
         <Checkbox.Root
           size="md"

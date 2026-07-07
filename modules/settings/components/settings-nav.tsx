@@ -1,6 +1,6 @@
 "use client";
 
-import { IconButton } from "@chakra-ui/react";
+import { IconButton } from "@/components/ui";
 import { CloseCircle } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";

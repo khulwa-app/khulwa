@@ -47,22 +47,39 @@ Keep a clean line between server and UI — never let a UI interaction trigger s
 
 ## Chakra UI v3 — styling lives in the THEME only
 
-This is the rule we care about most.
+This is the rule we care about most. TSX carries structure and tokens, never raw looks.
 
-- **No inline styling. No `style={}`, no `sx`, no Tailwind, no hardcoded hex/px.** Style only via the theme:
-  **tokens, `textStyle`, `layerStyle`, recipes, slot-recipes**, and Chakra style props that resolve tokens.
-- **Primitives → recipes; compound components → slot-recipes** (`Component.Root` / `Component.Body` pattern,
-  via `createSlotRecipeContext`). Put shared visual logic in the recipe, not the TSX.
-- **Run `yarn typegen` after EVERY theme change** (tokens/recipes/text-styles) or types go stale.
+- **No inline styling.** No `style={}`, no `sx`, no Tailwind, no hardcoded hex/px/rgba. Raw values live in
+  exactly one place: `theme/tokens/**` (+ `semantic-tokens/shadows.ts`). Semantic tokens reference primitives;
+  recipes/layer-styles reference tokens — never raw values. The *only* sanctioned `style={}` is a genuinely
+  dynamic runtime value (e.g. per-index `animationDelay`), annotated on the line with `theme-lint-allow`.
+- **Components consume semantic tokens, never primitive ramps.** Use `primary.solid`, `fg.onMesh`,
+  `glass.subtle` — not `teal.500`, `whiteA.strong`. Documented exceptions need a terse comment on the line.
+- **No visual overrides at call sites.** No `boxSize`/`rounded`/`size`/`color` for *chrome* on primitives
+  (esp. `IconButton`/`Button`, panel/card surfaces) — encode it in the recipe/slot/variant. Glyph `boxSize`
+  on `<Icon>` is content sizing and is fine.
+- **Primitives → recipes; compound components → slot-recipes.** The styled slot map
+  (`createSlotRecipeContext` + `withProvider`/`withContext`, rendering nothing) lives beside its recipe in
+  `theme/slot-recipes/<key>.ts` (see `panel.ts`); components rendering real markup live in `components/ui/**`.
+  Import slot compounds via their deep path (`@/theme/slot-recipes/task-list`), never a barrel. Every
+  `components/ui/**` folder ships a complete `index.ts` barrel.
+- **Recipe hygiene:** no `className` field in recipes; don't re-declare Chakra's built-in `base` defaults
+  (the config deep-merges with `defaultConfig` — only overrides); **never `focusRing: 'none'`**. Focus is
+  global-fallback + recipe-owned (see the comment in `theme/system.ts`); **do not set `disableLayers`** —
+  recipes intentionally beat the global `*:focus-visible` via `@layer recipes`.
+- **Button variants are the native set** — `solid · subtle · surface · outline · ghost` (glass treatments)
+  + `link`. `*.panel` variants are `@deprecated` transitional light-panel looks; delete each with its
+  screen's redesign chunk. `Button`/`IconButton` import from `@/components/ui`, never `@chakra-ui/react`.
+- **Menus** come from `@/components/ui/menu` (`Menu.Content` bundles Portal + Positioner) — never
+  hand-assemble `Menu.Positioner`/`Portal` at call sites. Panels/drawers use the `panel`/`drawer` recipes.
+- **Every new scroll region uses `ScrollArea`** (`@/components/ui`). Existing native/slot overflow migrates
+  with its redesign chunk, not as silent parity edits.
+- **Run `yarn typegen` after EVERY theme change** (tokens/recipes/text-styles/layer-styles/slot-recipes);
+  run `yarn lint:theme` before handing off (greppable guardrails for all of the above).
 - **When you don't know a Chakra v3 API, READ THE DOCS** — v3 differs heavily from v2 and from training data.
   Check `node_modules/@chakra-ui/react` types / the Chakra v3 docs before guessing. Same for **Next 16**:
   read `node_modules/next/dist/docs/` before writing framework code (APIs have breaking changes).
-- **Recipe hygiene:** no `className` field in recipes; don't re-declare Chakra's built-in defaults in `base`
-  (only overrides); **never `focusRing: 'none'`** (kills keyboard a11y — suppress mouse rings in `globalCss`
-  with `disableLayers`, see `theme/system.ts`); variant names use dot-notation for UI context.
 - **Container sizes:** `container.*` is dead in v3 — use the T-shirt scale (`maxW="7xl"` ≈ 1280px).
-- **Menus:** Chakra `<Menu.Root>/<Menu.Item>` for menus; `SidePanel`/drawer recipe for panels. Don't hand-roll
-  menus from `Button unstyled` (strips focus handling).
 
 ## Components — clean, small, professional
 

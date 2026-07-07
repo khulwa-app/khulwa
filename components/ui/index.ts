@@ -5,6 +5,7 @@ export * from "./field";
 export * from "./icon";
 export * from "./inline-edit";
 export * from "./logo";
+export * from "./menu";
 export * from "./navbar";
 export * from "./number-field";
 export * from "./scroll-area";

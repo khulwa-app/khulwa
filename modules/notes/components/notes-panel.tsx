@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Text, VStack } from "@chakra-ui/react";
+import { Text, VStack } from "@chakra-ui/react";
+import { Button } from "@/components/ui";
 import { AddCircle } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";

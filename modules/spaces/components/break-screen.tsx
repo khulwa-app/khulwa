@@ -1,6 +1,7 @@
 "use client";
 
-import { Box, Button, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Text, VStack } from "@chakra-ui/react";
+import { Button } from "@/components/ui";
 import { useTranslations } from "next-intl";
 import { LockKeyholeMinimalistic, SkipNext } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";

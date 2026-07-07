@@ -156,6 +156,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       "&[data-overflow]": {
         position: "relative",
         boxSize: "6",
+        "& svg": { boxSize: "4" },
         "&::after": {
           content: '""',
           position: "absolute",

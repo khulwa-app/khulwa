@@ -1,6 +1,7 @@
 "use client";
 
-import { Box, HStack, IconButton, Input, Textarea } from "@chakra-ui/react";
+import { Box, HStack, Input, Textarea } from "@chakra-ui/react";
+import { IconButton } from "@/components/ui";
 import { TrashBinMinimalistic } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";

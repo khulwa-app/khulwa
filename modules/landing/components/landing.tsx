@@ -2,7 +2,8 @@
 
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
-import { Box, Button, Flex, HStack, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { Button } from "@/components/ui";
 import { ArrowRight, Fire, HeadphonesRound, Target } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { Logo } from "@/components/ui";

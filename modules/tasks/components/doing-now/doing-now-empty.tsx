@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Input, Presence } from "@chakra-ui/react";
+import { Input, Presence } from "@chakra-ui/react";
+import { Button } from "@/components/ui";
 import { ArrowRight } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";

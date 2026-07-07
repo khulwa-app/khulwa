@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Box, Menu, Portal, chakra } from "@chakra-ui/react";
+import { Box, chakra } from "@chakra-ui/react";
 import { AltArrowDown } from "@solar-icons/react";
 import { Icon } from "@/components/ui/icon";
+import { Menu } from "@/components/ui/menu";
 import { useTranslations } from "next-intl";
 import { CATEGORIES, type CategoryId } from "../categories";
 import { useProgressHydrated, useProgressStore } from "../hooks";
@@ -51,21 +52,17 @@ export function CategoryChip() {
           <Icon icon={AltArrowDown} boxSize="3.5" />
         </chakra.button>
       </Menu.Trigger>
-      <Portal>
-        <Menu.Positioner>
-          <Menu.Content>
-            {CATEGORIES.map((c) => (
-              <Menu.Item key={c.id} value={c.id}>
-                <Box boxSize="2" rounded="full" bg={c.color} />
-                {t(c.id)}
-              </Menu.Item>
-            ))}
-            <Menu.Item value="none" color="fg.muted">
-              {t("none")}
-            </Menu.Item>
-          </Menu.Content>
-        </Menu.Positioner>
-      </Portal>
+      <Menu.Content>
+        {CATEGORIES.map((c) => (
+          <Menu.Item key={c.id} value={c.id}>
+            <Box boxSize="2" rounded="full" bg={c.color} />
+            {t(c.id)}
+          </Menu.Item>
+        ))}
+        <Menu.Item value="none" color="fg.muted">
+          {t("none")}
+        </Menu.Item>
+      </Menu.Content>
     </Menu.Root>
   );
 }

@@ -3,7 +3,8 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Box, Button, HStack, Input, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Input, Text, VStack } from "@chakra-ui/react";
+import { Button } from "@/components/ui";
 import { signIn, signUp } from "@/services/auth";
 
 type Mode = "signin" | "signup";

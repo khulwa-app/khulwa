@@ -33,6 +33,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       transitionProperty: "background-color, color",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
+      "& svg": { boxSize: "4" },
       _disabled: { opacity: 0.5, cursor: "not-allowed", _hover: { bg: "transparent" } },
     },
     itemText: { flex: "1" },

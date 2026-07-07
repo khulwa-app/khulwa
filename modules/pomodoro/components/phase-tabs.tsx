@@ -1,7 +1,8 @@
 "use client";
 
 import { memo } from "react";
-import { Box, Button, HStack, VStack } from "@chakra-ui/react";
+import { Box, HStack, VStack } from "@chakra-ui/react";
+import { Button } from "@/components/ui";
 import { useTranslations } from "next-intl";
 import { PomodoroPhase } from "../types";
 

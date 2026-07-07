@@ -10,7 +10,6 @@ export const cardSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       layerStyle: "card",
-      rounded: "3xl",
       width: "full",
       maxW: "sm",
       padding: "4",

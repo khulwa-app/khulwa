@@ -3,72 +3,72 @@
   <desc id="desc">A comparison of two proposed typography systems across display, body, controls, timer numerals, and statistics.</desc>
   <defs>
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="20" stdDeviation="34" flood-color="#000" flood-opacity=".34"/>
+      <feDropShadow dx="0" dy="20" stdDeviation="34" flood-color="#42392c" flood-opacity=".14"/>
     </filter>
   </defs>
 
-  <rect width="1600" height="1000" fill="#090a0c"/>
+  <rect width="1600" height="1000" fill="#e8e5df"/>
 
-  <text x="88" y="86" fill="#f4f5f8" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">KHULWA · TYPOGRAPHY STUDY</text>
-  <text x="88" y="128" fill="#8e96a8" font-family="Arial, sans-serif" font-size="18">The final webfonts will be loaded through next/font after direction approval.</text>
+  <text x="88" y="86" fill="#24231f" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">KHULWA · TYPOGRAPHY STUDY</text>
+  <text x="88" y="128" fill="#5f5b54" font-family="Arial, sans-serif" font-size="18">The final webfonts will be loaded through next/font after direction approval.</text>
 
   <g transform="translate(88 180)" filter="url(#shadow)">
-    <rect width="684" height="736" rx="28" fill="#111622" stroke="#252d3e"/>
-    <rect x="30" y="30" width="174" height="36" rx="18" fill="#e9e6df"/>
-    <text x="117" y="54" text-anchor="middle" fill="#101114" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.6">RECOMMENDED</text>
+    <rect width="684" height="736" rx="28" fill="#faf8f3" stroke="#d9d4c9"/>
+    <rect x="30" y="30" width="174" height="36" rx="18" fill="#24231f"/>
+    <text x="117" y="54" text-anchor="middle" fill="#f8f5ee" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.6">RECOMMENDED</text>
 
-    <text x="40" y="124" fill="#8e96a8" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">OPTION 01</text>
-    <text x="40" y="175" fill="#f7f8fb" font-family="Arial, sans-serif" font-size="35" font-weight="700">Instrument Sans + Geist Mono</text>
-    <text x="40" y="211" fill="#a6adbd" font-family="Arial, sans-serif" font-size="17">Precise, contemporary, quiet. Strongest match for a focus instrument.</text>
+    <text x="40" y="124" fill="#8b6f47" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">OPTION 01</text>
+    <text x="40" y="175" fill="#1c1b18" font-family="Arial, sans-serif" font-size="35" font-weight="700">Instrument Sans + Geist Mono</text>
+    <text x="40" y="211" fill="#5f5b54" font-family="Arial, sans-serif" font-size="17">Precise, contemporary, quiet. Strongest match for a focus instrument.</text>
 
-    <text x="40" y="290" fill="#f7f8fb" font-family="Arial, sans-serif" font-size="66" font-weight="600" letter-spacing="-2.4">Protect the hour.</text>
-    <text x="40" y="334" fill="#aeb5c3" font-family="Arial, sans-serif" font-size="20">One task, one calm environment, no visual interruption.</text>
-    <text x="40" y="368" fill="#aeb5c3" font-family="Arial, sans-serif" font-size="20">Your session remains present while the space changes.</text>
+    <text x="40" y="290" fill="#1c1b18" font-family="Arial, sans-serif" font-size="66" font-weight="600" letter-spacing="-2.4">Protect the hour.</text>
+    <text x="40" y="334" fill="#5f5b54" font-family="Arial, sans-serif" font-size="20">One task, one calm environment, no visual interruption.</text>
+    <text x="40" y="368" fill="#5f5b54" font-family="Arial, sans-serif" font-size="20">Your session remains present while the space changes.</text>
 
-    <rect x="40" y="416" width="604" height="158" rx="22" fill="#0b0f18" stroke="#293145"/>
-    <text x="72" y="454" fill="#7f889c" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">FOCUS SESSION</text>
-    <text x="70" y="535" fill="#f7f8fb" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="72" font-weight="500" letter-spacing="-4">24:58</text>
-    <text x="456" y="526" fill="#aeb5c3" font-family="Arial, sans-serif" font-size="16">Deep work</text>
-    <text x="456" y="550" fill="#727c90" font-family="Arial, sans-serif" font-size="14">Round 2 of 4</text>
+    <rect x="40" y="416" width="604" height="158" rx="22" fill="#ffffff" stroke="#d9d4c9"/>
+    <text x="72" y="454" fill="#8b6f47" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">FOCUS SESSION</text>
+    <text x="70" y="535" fill="#1c1b18" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="72" font-weight="500" letter-spacing="-4">24:58</text>
+    <text x="456" y="526" fill="#5f5b54" font-family="Arial, sans-serif" font-size="16">Deep work</text>
+    <text x="456" y="550" fill="#706b63" font-family="Arial, sans-serif" font-size="14">Round 2 of 4</text>
 
-    <rect x="40" y="610" width="222" height="56" rx="16" fill="#e9e6df"/>
-    <text x="151" y="646" text-anchor="middle" fill="#101114" font-family="Arial, sans-serif" font-size="16" font-weight="700">Begin focus</text>
-    <rect x="278" y="610" width="160" height="56" rx="16" fill="#181e2b" stroke="#30394d"/>
-    <text x="358" y="646" text-anchor="middle" fill="#d7dbe4" font-family="Arial, sans-serif" font-size="16" font-weight="600">Edit task</text>
+    <rect x="40" y="610" width="222" height="56" rx="16" fill="#24231f"/>
+    <text x="151" y="646" text-anchor="middle" fill="#f8f5ee" font-family="Arial, sans-serif" font-size="16" font-weight="700">Begin focus</text>
+    <rect x="278" y="610" width="160" height="56" rx="16" fill="#ffffff" stroke="#d9d4c9"/>
+    <text x="358" y="646" text-anchor="middle" fill="#1c1b18" font-family="Arial, sans-serif" font-size="16" font-weight="600">Edit task</text>
 
-    <text x="40" y="710" fill="#697388" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.6">WEEKLY RHYTHM</text>
-    <text x="40" y="756" fill="#f7f8fb" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="34" font-weight="600">08h 42m</text>
-    <text x="222" y="754" fill="#b9bbc0" font-family="Arial, sans-serif" font-size="15" font-weight="700">+18%</text>
+    <text x="40" y="710" fill="#706b63" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.6">WEEKLY RHYTHM</text>
+    <text x="40" y="756" fill="#1c1b18" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="34" font-weight="600">08h 42m</text>
+    <text x="222" y="754" fill="#8b6f47" font-family="Arial, sans-serif" font-size="15" font-weight="700">+18%</text>
   </g>
 
   <g transform="translate(828 180)" filter="url(#shadow)">
-    <rect width="684" height="736" rx="28" fill="#17140f" stroke="#393024"/>
-    <rect x="30" y="30" width="146" height="36" rx="18" fill="#e8dfd2"/>
-    <text x="103" y="54" text-anchor="middle" fill="#17130f" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.6">ALTERNATIVE</text>
+    <rect width="684" height="736" rx="28" fill="#f8faf9" stroke="#d3dad8"/>
+    <rect x="30" y="30" width="146" height="36" rx="18" fill="#18252c"/>
+    <text x="103" y="54" text-anchor="middle" fill="#f7f9f8" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.6">ALTERNATIVE</text>
 
-    <text x="40" y="124" fill="#a59683" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">OPTION 02</text>
-    <text x="40" y="175" fill="#fbf4e8" font-family="Arial, sans-serif" font-size="35" font-weight="700">DM Sans + Instrument Serif</text>
-    <text x="40" y="211" fill="#b7aa98" font-family="Arial, sans-serif" font-size="17">Warm, reflective, ownable. Best when editorial accents stay rare.</text>
+    <text x="40" y="124" fill="#627a72" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">OPTION 02</text>
+    <text x="40" y="175" fill="#172126" font-family="Arial, sans-serif" font-size="35" font-weight="700">DM Sans + Instrument Serif</text>
+    <text x="40" y="211" fill="#536168" font-family="Arial, sans-serif" font-size="17">Warm, reflective, ownable. Best when editorial accents stay rare.</text>
 
-    <text x="40" y="290" fill="#fbf4e8" font-family="Georgia, serif" font-size="67" font-weight="400" letter-spacing="-2.2">Protect the hour.</text>
-    <text x="40" y="334" fill="#c7baa8" font-family="Arial, sans-serif" font-size="20">One task, one calm environment, no visual interruption.</text>
-    <text x="40" y="368" fill="#c7baa8" font-family="Arial, sans-serif" font-size="20">Your session remains present while the space changes.</text>
+    <text x="40" y="290" fill="#172126" font-family="Georgia, serif" font-size="67" font-weight="400" letter-spacing="-2.2">Protect the hour.</text>
+    <text x="40" y="334" fill="#536168" font-family="Arial, sans-serif" font-size="20">One task, one calm environment, no visual interruption.</text>
+    <text x="40" y="368" fill="#536168" font-family="Arial, sans-serif" font-size="20">Your session remains present while the space changes.</text>
 
-    <rect x="40" y="416" width="604" height="158" rx="22" fill="#0f0d0a" stroke="#42382c"/>
-    <text x="72" y="454" fill="#998b79" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">FOCUS SESSION</text>
-    <text x="70" y="535" fill="#fbf4e8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="72" font-weight="500" letter-spacing="-4">24:58</text>
-    <text x="456" y="526" fill="#c7baa8" font-family="Arial, sans-serif" font-size="16">Deep work</text>
-    <text x="456" y="550" fill="#8f826f" font-family="Arial, sans-serif" font-size="14">Round 2 of 4</text>
+    <rect x="40" y="416" width="604" height="158" rx="22" fill="#ffffff" stroke="#d3dad8"/>
+    <text x="72" y="454" fill="#627a72" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">FOCUS SESSION</text>
+    <text x="70" y="535" fill="#172126" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="72" font-weight="500" letter-spacing="-4">24:58</text>
+    <text x="456" y="526" fill="#536168" font-family="Arial, sans-serif" font-size="16">Deep work</text>
+    <text x="456" y="550" fill="#68757a" font-family="Arial, sans-serif" font-size="14">Round 2 of 4</text>
 
-    <rect x="40" y="610" width="222" height="56" rx="16" fill="#e8dfd2"/>
-    <text x="151" y="646" text-anchor="middle" fill="#17130f" font-family="Arial, sans-serif" font-size="16" font-weight="700">Begin focus</text>
-    <rect x="278" y="610" width="160" height="56" rx="16" fill="#231e17" stroke="#493d30"/>
-    <text x="358" y="646" text-anchor="middle" fill="#eee3d4" font-family="Arial, sans-serif" font-size="16" font-weight="600">Edit task</text>
+    <rect x="40" y="610" width="222" height="56" rx="16" fill="#18252c"/>
+    <text x="151" y="646" text-anchor="middle" fill="#f7f9f8" font-family="Arial, sans-serif" font-size="16" font-weight="700">Begin focus</text>
+    <rect x="278" y="610" width="160" height="56" rx="16" fill="#ffffff" stroke="#d3dad8"/>
+    <text x="358" y="646" text-anchor="middle" fill="#172126" font-family="Arial, sans-serif" font-size="16" font-weight="600">Edit task</text>
 
-    <text x="40" y="710" fill="#8f826f" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.6">WEEKLY RHYTHM</text>
-    <text x="40" y="756" fill="#fbf4e8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="34" font-weight="600">08h 42m</text>
-    <text x="222" y="754" fill="#c2b8aa" font-family="Arial, sans-serif" font-size="15" font-weight="700">+18%</text>
+    <text x="40" y="710" fill="#68757a" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.6">WEEKLY RHYTHM</text>
+    <text x="40" y="756" fill="#172126" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="34" font-weight="600">08h 42m</text>
+    <text x="222" y="754" fill="#627a72" font-family="Arial, sans-serif" font-size="15" font-weight="700">+18%</text>
   </g>
 
-  <text x="800" y="968" text-anchor="middle" fill="#6f788a" font-family="Arial, sans-serif" font-size="15">Body · display · controls · timer numerals · statistics</text>
+  <text x="800" y="968" text-anchor="middle" fill="#68645d" font-family="Arial, sans-serif" font-size="15">Body · display · controls · timer numerals · statistics</text>
 </svg>

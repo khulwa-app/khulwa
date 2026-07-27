@@ -21,8 +21,8 @@ The redesign must achieve:
 - Strong desktop composition and a deliberately redesigned mobile experience.
 - Fast perceived performance; premium must come from hierarchy, restraint, and
   response quality rather than expensive effects.
-- A disciplined monochrome interface; gradients are excluded and color is
-  reserved for semantic meaning or optional environment art.
+- A disciplined, light-first, near-monochrome interface; gradients are excluded
+  and color is reserved for semantic meaning or optional environment art.
 
 ### Quality bar
 
@@ -53,7 +53,7 @@ The redesign must achieve:
 
 - [ ] Approve the visual references and overall art direction.
 - [ ] Approve the primary typeface and timer/numeric typeface.
-- [ ] Decide whether Khulwa is dark-only or supports light and dark themes.
+- [ ] Confirm light-first launch and whether a dark companion theme is future scope.
 - [ ] Approve the information architecture for desktop and mobile navigation.
 - [ ] Decide whether Home, Focus, and Ambient remain state-driven spaces or become routes.
 - [ ] Approve motion direction using a small interactive prototype.
@@ -88,7 +88,7 @@ The redesign must achieve:
 - [ ] Add the modern browser target recommended for DaisyUI with Next.js Turbopack.
 - [ ] Define semantic theme variables for background, surfaces, text, borders,
       primary action, secondary action, status colors, and radii.
-- [ ] Encode the approved graphite or warm-obsidian palette without gradients.
+- [ ] Encode the approved alabaster or pearl palette without gradients.
 - [ ] Install and configure the approved fonts through `next/font`.
 - [ ] Define a small typography scale and tabular numeric treatment.
 

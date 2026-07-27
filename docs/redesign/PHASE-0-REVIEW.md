@@ -130,73 +130,80 @@ visible and connected rather than living in separate panels.
 - Tasks, sound, progress, and settings open as purposeful sheets or routes.
 - No desktop dock compressed into a mobile toolbar.
 
-## Direction A — Graphite Precision
+## Direction A — Alabaster and Ink
 
-Professional, immersive, precise, and dark-first. This is the recommended
-direction.
+Warm, light, precise, and quietly luxurious. This is the recommended direction.
 
-- Flat graphite environment with no gradients.
+- Warm alabaster canvas with porcelain-white working surfaces.
 - Neutral sans typography: Inter, Geist, or Instrument Sans.
 - Mono or tabular companion for timer and statistics.
-- Near-white primary action against a carbon canvas.
+- Graphite primary action and typography.
+- Aged-brass detail reserved for focus, selection, and status.
 - Solid utility surfaces separated by tone, border, and shadow.
 - Crisp controls and lower corner radius than the current system.
 - Best fit for a premium focus instrument and closest to the desired Flocus-level
   polish without copying Flocus.
 
-Risk: insufficient tonal separation would make the interface feel flat rather
-than intentionally minimal.
+Risk: excessive beige or brass would make the product feel like hospitality or
+luxury retail instead of a professional focus tool.
 
-## Direction B — Warm Obsidian
+## Direction B — Pearl and Midnight
 
-Warm, contemplative, and more connected to Khulwa's name while remaining
-monochrome.
+Cooler, airy, architectural, and slightly more technical.
 
-- Flat warm-black environment with bone and stone neutrals.
-- Instrument Sans or DM Sans for the interface.
-- A restrained editorial serif only for reflection or quote moments.
+- Pearl canvas with clean white working surfaces.
+- Midnight blue-black typography and primary controls.
+- Mineral-sage detail reserved for focus, selection, and status.
+- Instrument Sans or Geist Sans for the interface.
 - Solid, tactile utility surfaces with subtle depth.
 - No gradients, colored glow, or ornamental color washes.
-- More human and ownable than a conventional productivity dashboard.
+- Feels brighter and more contemporary than a conventional productivity
+  dashboard without becoming clinical.
 
-Risk: warm neutrals and serif use must remain restrained or it will feel like a
-wellness editorial product instead of a professional tool.
+Risk: cool neutrals need enough warmth in photography, copy, and interaction to
+avoid feeling like enterprise software.
 
 ## Premium color decision
 
-The base product is monochrome. Color is not decoration and must never be used
-as a substitute for hierarchy.
+The base product is near-monochrome and light-first. Color is not decoration and
+must never be used as a substitute for hierarchy.
 
-### Recommended graphite palette
+### Recommended Alabaster and Ink palette
 
 | Role | Value | Use |
 | --- | --- | --- |
-| Canvas | `#090A0C` | Full workspace background |
-| Surface | `#111316` | Panels and persistent navigation |
-| Elevated | `#181A1E` | Menus, sheets, and selected containers |
-| Border | `#292C31` | Quiet structure |
-| Primary text | `#F4F2ED` | Headings, timer, primary content |
-| Secondary text | `#A5A7AD` | Supporting copy |
-| Muted text | `#74777F` | Metadata only |
-| Primary action | `#E9E6DF` | One dominant action per view |
-| Action text | `#101114` | Text on the primary action |
+| Canvas | `#F3F0E9` | Full workspace background |
+| Surface | `#FAF8F3` | Main experience surface |
+| Elevated | `#FFFFFF` | Panels, cards, and persistent navigation |
+| Border | `#D9D4C9` | Quiet structure |
+| Primary text | `#1C1B18` | Headings, timer, primary content |
+| Secondary text | `#5F5B54` | Supporting copy |
+| Muted text | `#706B63` | Metadata only |
+| Primary action | `#24231F` | One dominant action per view |
+| Action text | `#F8F5EE` | Text on the primary action |
+| Focus detail | `#8B6F47` | Focus rings and meaningful active state |
 
-### Warm-obsidian alternative
+### Pearl and Midnight alternative
 
 | Role | Value |
 | --- | --- |
-| Canvas | `#0D0C0B` |
-| Surface | `#161412` |
-| Elevated | `#1E1B18` |
-| Border | `#312D28` |
-| Primary text | `#F3EEE5` |
-| Secondary text | `#AAA197` |
-| Primary action | `#E8DFD2` |
+| Canvas | `#F1F4F3` |
+| Surface | `#F8FAF9` |
+| Elevated | `#FFFFFF` |
+| Border | `#D3DAD8` |
+| Primary text | `#172126` |
+| Secondary text | `#536168` |
+| Muted text | `#68757A` |
+| Primary action | `#18252C` |
+| Focus detail | `#627A72` |
+
+Primary, secondary, muted, action, and focus-detail text combinations all meet
+at least 4.5:1 contrast on their intended surfaces.
 
 Success, warning, danger, and active audio/focus signals may use one muted
 semantic color each, only where meaning cannot be carried by text and icon.
 Environmental scene art can introduce color later, but the interface chrome
-remains monochrome. Gradients are excluded from the design system.
+remains near-monochrome. Gradients are excluded from the design system.
 
 ## Typography shortlist
 
@@ -249,8 +256,8 @@ An interactive comparison is available at
 
 ## Phase 0 review decisions
 
-1. Choose cool Graphite Precision or warm Warm Obsidian.
+1. Choose warm Alabaster and Ink or cool Pearl and Midnight.
 2. Choose the typography direction.
-3. Confirm dark-only or request a second theme.
+3. Confirm light-first or request a future dark companion theme.
 4. Confirm the desktop and mobile information architecture.
 5. Confirm the motion contract.

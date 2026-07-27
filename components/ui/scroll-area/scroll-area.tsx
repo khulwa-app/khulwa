@@ -1,20 +1,11 @@
-"use client";
+import type { HTMLAttributes, ReactNode } from "react";
+import { NativeScrollArea } from "@/components/ui/primitives";
 
-import { ScrollArea as ChakraScrollArea } from "@chakra-ui/react";
-
-interface ScrollAreaProps extends ChakraScrollArea.RootProps {
-  children: React.ReactNode;
+interface ScrollAreaProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
 }
 
-export function ScrollArea({ children, ...rootProps }: ScrollAreaProps) {
-  return (
-    <ChakraScrollArea.Root {...rootProps}>
-      <ChakraScrollArea.Viewport>
-        <ChakraScrollArea.Content style={{ minWidth: "100%" }}>{children}</ChakraScrollArea.Content>
-      </ChakraScrollArea.Viewport>
-      <ChakraScrollArea.Scrollbar>
-        <ChakraScrollArea.Thumb />
-      </ChakraScrollArea.Scrollbar>
-    </ChakraScrollArea.Root>
-  );
+/** Native overflow area; themed scrollbars are intentionally left to the browser. */
+export function ScrollArea({ children, ...props }: ScrollAreaProps) {
+  return <NativeScrollArea {...props}>{children}</NativeScrollArea>;
 }

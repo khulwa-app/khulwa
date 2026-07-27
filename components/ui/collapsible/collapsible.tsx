@@ -1,15 +1,29 @@
-import { Collapsible as ChakraCollapsible, CollapsibleRootProps } from "@chakra-ui/react";
+"use client";
 
-interface Props extends Omit<CollapsibleRootProps, "children"> {
-  trigger: React.ReactNode;
+import { cloneElement, isValidElement, useState, type MouseEvent, type ReactElement } from "react";
+
+interface Props {
+  trigger: ReactElement<{ onClick?: (event: MouseEvent<HTMLElement>) => void; "aria-expanded"?: boolean }>;
   children: React.ReactNode;
+  defaultOpen?: boolean;
 }
 
-export const Collapsible = ({ trigger, children, ...props }: Props) => {
+export const Collapsible = ({ trigger, children, defaultOpen = false }: Props) => {
+  const [open, setOpen] = useState(defaultOpen);
+  const enhancedTrigger = isValidElement(trigger)
+    ? cloneElement(trigger, {
+        "aria-expanded": open,
+        onClick: (event: MouseEvent<HTMLElement>) => {
+          trigger.props.onClick?.(event);
+          if (!event.defaultPrevented) setOpen((value) => !value);
+        },
+      })
+    : trigger;
+
   return (
-    <ChakraCollapsible.Root {...props}>
-      <ChakraCollapsible.Trigger asChild>{trigger}</ChakraCollapsible.Trigger>
-      <ChakraCollapsible.Content>{children}</ChakraCollapsible.Content>
-    </ChakraCollapsible.Root>
+    <section>
+      {enhancedTrigger}
+      <div hidden={!open}>{children}</div>
+    </section>
   );
 };

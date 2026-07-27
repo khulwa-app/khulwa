@@ -101,13 +101,13 @@ The redesign must achieve:
 
 ## Phase 2 — Framework-neutral UI boundary
 
-- [ ] Rebuild `Button` and `IconButton`.
-- [ ] Rebuild text, number, checkbox, select, and textarea fields.
-- [ ] Rebuild menu, tooltip, modal, drawer, and panel primitives.
-- [ ] Rebuild tabs, cards, badges, progress indicators, and empty states.
-- [ ] Rebuild scroll-area behavior with native CSS where possible.
-- [ ] Add a `cn` utility for conditional class composition.
-- [ ] Keep accessibility behavior inside primitives: focus-visible, labels,
+- [x] Rebuild `Button` and `IconButton`.
+- [x] Rebuild text, number, checkbox, select, and textarea fields.
+- [x] Rebuild menu, tooltip, modal, drawer, and panel primitives.
+- [x] Rebuild tabs, cards, badges, progress indicators, and empty states.
+- [x] Rebuild scroll-area behavior with native CSS where possible.
+- [x] Add a `cn` utility for conditional class composition.
+- [x] Keep accessibility behavior inside primitives: focus-visible, labels,
       descriptions, Escape handling, and minimum touch targets.
 
 ### Acceptance

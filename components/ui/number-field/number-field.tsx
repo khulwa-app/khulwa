@@ -1,8 +1,9 @@
 "use client";
 
-import { HStack, Input, Text, type InputProps } from "@chakra-ui/react";
+import type { InputHTMLAttributes } from "react";
+import { Input } from "@/components/ui/primitives";
 
-interface NumberFieldProps extends Omit<InputProps, "value" | "onChange" | "type"> {
+interface NumberFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "type"> {
   label: string;
   value: number;
   min?: number;
@@ -13,19 +14,17 @@ interface NumberFieldProps extends Omit<InputProps, "value" | "onChange" | "type
 
 export function NumberField({ label, value, min, max, unit, onValueChange, ...rest }: NumberFieldProps) {
   return (
-    <HStack justify="space-between" align="center">
-      <Text textStyle="body-sm" color="fg">
+    <div className="flex items-center justify-between gap-4">
+      <label className="text-sm text-sage-900">
         {label}
-      </Text>
-      <HStack gap="2.5" align="center">
+      </label>
+      <div className="flex items-center gap-3">
         <Input
-          variant="outline"
-          size="sm"
+          className="min-h-10 w-16 px-2 text-center"
           type="number"
           min={min}
           max={max}
-          w="16"
-          textAlign="center"
+          inputMode="numeric"
           value={value}
           aria-label={label}
           onChange={(e) => {
@@ -39,11 +38,9 @@ export function NumberField({ label, value, min, max, unit, onValueChange, ...re
           {...rest}
         />
         {unit ? (
-          <Text textStyle="body-sm" color="fg.muted" minW="3.25rem">
-            {unit}
-          </Text>
+          <span className="min-w-13 text-sm text-sage-700">{unit}</span>
         ) : null}
-      </HStack>
-    </HStack>
+      </div>
+    </div>
   );
 }

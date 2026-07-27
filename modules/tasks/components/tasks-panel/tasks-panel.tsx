@@ -26,7 +26,7 @@ export function TasksPanel() {
         <QuickAdd />
 
         {!isPending && (
-          <ScrollArea flex="1" minH="0" w="full">
+          <ScrollArea className="min-h-0 w-full flex-1">
             <TaskList.Root>
               <Show when={hasTasks} fallback={<TaskList.Empty>{t("empty")}</TaskList.Empty>}>
                 <>

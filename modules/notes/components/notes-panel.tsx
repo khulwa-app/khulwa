@@ -30,7 +30,7 @@ export function NotesPanel() {
           {t("newNote")}
         </Button>
 
-        <ScrollArea flex="1" minH="0" w="full">
+        <ScrollArea className="min-h-0 w-full flex-1">
           <VStack gap="2" align="stretch">
             {notes === undefined ? null : notes.length === 0 ? (
               <Text textStyle="body-sm" color="fg.muted" textAlign="center" paddingBlock="6">

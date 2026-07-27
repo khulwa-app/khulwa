@@ -31,7 +31,7 @@ export function RhythmPanel() {
           {t("progress", { done: doneCount, total: RHYTHMS.length })}
         </Text>
 
-        <ScrollArea flex="1" minH="0" w="full">
+        <ScrollArea className="min-h-0 w-full flex-1">
           <RhythmList.Root>
             {RHYTHMS.map((r) => {
               const done = hydrated && !!today[r.id];

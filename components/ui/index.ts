@@ -5,3 +5,4 @@ export * from "./logo";
 export * from "./navbar";
 export * from "./number-field";
 export * from "./scroll-area";
+export * from "./primitives";

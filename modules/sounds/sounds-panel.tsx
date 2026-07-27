@@ -22,7 +22,7 @@ export default function SoundsPanel() {
   return (
     <SidePanel open={open} title="Ambient" onClose={close}>
       <VStack h="full" w="full" gap="3" align="stretch">
-        <ScrollArea flex="1" minH="0" w="full">
+        <ScrollArea className="min-h-0 w-full flex-1">
           <SoundGrid.Root>
             {SOUNDS.map((def) => (
               <SoundTile key={def.id} def={def} />

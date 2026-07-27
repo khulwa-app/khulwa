@@ -53,8 +53,8 @@ This is the rule we care about most. TSX carries structure and tokens, never raw
   exactly one place: `theme/tokens/**` (+ `semantic-tokens/shadows.ts`). Semantic tokens reference primitives;
   recipes/layer-styles reference tokens — never raw values. The *only* sanctioned `style={}` is a genuinely
   dynamic runtime value (e.g. per-index `animationDelay`), annotated on the line with `theme-lint-allow`.
-- **Components consume semantic tokens, never primitive ramps.** Use `primary.solid`, `fg.onMesh`,
-  `glass.subtle` — not `teal.500`, `whiteA.strong`. Documented exceptions need a terse comment on the line.
+- **Components consume semantic tokens, never primitive ramps.** Use `primary.solid`, `fg.muted`,
+  `bg.subtle` — not `peach.500`, `whiteA.strong`; interaction veils reference `whiteA.faint/dim` directly (documented exception: alphas compose over the gradient). Documented exceptions need a terse comment on the line.
 - **No visual overrides at call sites.** No `boxSize`/`rounded`/`size`/`color` for *chrome* on primitives
   (esp. `IconButton`/`Button`, panel/card surfaces) — encode it in the recipe/slot/variant. Glyph `boxSize`
   on `<Icon>` is content sizing and is fine.
@@ -67,9 +67,11 @@ This is the rule we care about most. TSX carries structure and tokens, never raw
   (the config deep-merges with `defaultConfig` — only overrides); **never `focusRing: 'none'`**. Focus is
   global-fallback + recipe-owned (see the comment in `theme/system.ts`); **do not set `disableLayers`** —
   recipes intentionally beat the global `*:focus-visible` via `@layer recipes`.
-- **Button variants are the native set** — `solid · subtle · surface · outline · ghost` (glass treatments)
-  + `link`. `*.panel` variants are `@deprecated` transitional light-panel looks; delete each with its
-  screen's redesign chunk. `Button`/`IconButton` import from `@/components/ui`, never `@chakra-ui/react`.
+- **Button variants are the native set** — `solid · subtle · surface · ghost` (flat deep-space treatments;
+  no `outline` — nothing in the flat language has a border) + `link`. `*.panel` variants are `@deprecated`
+  transitional light-panel looks; delete each with its screen's redesign chunk. `Button`/`IconButton`
+  import from `@/components/ui`, never `@chakra-ui/react`. The glass/onMesh vocabularies are retired — surfaces are
+  solid on the dark-first native scale (`bg` = jet.950 … `bg.emphasized` = jet.700) — the flip is DONE; light legacy screens render wrong until their redesigns (accepted).
 - **Menus** come from `@/components/ui/menu` (`Menu.Content` bundles Portal + Positioner) — never
   hand-assemble `Menu.Positioner`/`Portal` at call sites. Panels/drawers use the `panel`/`drawer` recipes.
 - **Every new scroll region uses `ScrollArea`** (`@/components/ui`). Existing native/slot overflow migrates
@@ -105,7 +107,7 @@ This is the rule we care about most. TSX carries structure and tokens, never raw
 ## Design system (source of truth)
 
 Canonical: **`design-system/khulwa/DESIGN-SYSTEM.md`** — the single design-system reference (clear "liquid
-glass" identity: light-veil glass over a living indigo→violet mesh, bright specular rim, pill-first radii,
+deep space" identity: flat solid navies over a 204° gradient field, azure accent, pill-first radii,
 Nunito, dark-first). The implemented theme lives in `theme/` and is the ultimate source of truth; the doc
 mirrors it. **Read it before any space/chrome/type/token work.**
 

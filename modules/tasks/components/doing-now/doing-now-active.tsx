@@ -34,7 +34,7 @@ export function DoingNowActive({ task }: { task: Task }) {
           <Icon icon={ArrowRight} boxSize="3.5" />
         </Button>
         <IconButton
-          variant="subtle"
+          variant="ghost"
           size="sm"
           flexShrink="0"
           aria-label={t("changeTask")}

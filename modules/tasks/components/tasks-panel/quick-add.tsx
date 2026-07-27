@@ -43,7 +43,7 @@ export function QuickAdd() {
       endElementProps={{ paddingInline: "1" }}
     >
       <Input
-        variant="glass"
+        variant="subtle"
         size="lg"
         value={draft}
         placeholder={t("placeholder")}

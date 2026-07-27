@@ -19,7 +19,7 @@ const config = defineConfig({
     html: { scrollBehavior: "auto" },
     "[data-numeric]": { fontVariantNumeric: "tabular-nums" },
     // Focus model: `*:focus-visible` is the FALLBACK ring for elements with no recipe focus treatment.
-    // Recipes in @layer recipes intentionally own their own focus (input glass, dock, buttons) and win
+    // Recipes in @layer recipes intentionally own their own focus (inputs, dock, buttons) and win
     // by both layer and specificity. `*:focus` only strips the browser's mouse outline — keyboard
     // :focus-visible always keeps a ring. Do NOT set disableLayers (un-layers Chakra's reset/defaults).
     "*:focus": { outline: "none" },

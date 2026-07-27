@@ -5,67 +5,52 @@ const one = (token: string) => ({ value: c(token) });
 
 export const semanticColors = defineSemanticTokens.colors({
   bg: {
-    DEFAULT: one("sage.50"),
-    subtle: one("sage.100"),
-    muted: one("sage.100"),
-    emphasized: one("sage.200"),
-    panel: one("white"),
+    DEFAULT: one("jet.950"),
+    subtle: one("jet.900"),
+    muted: one("jet.800"),
+    emphasized: one("jet.700"),
+    panel: one("jet.900"),
+    raised: one("inkA.chip"),
+    raisedHover: one("inkA.lift"),
+    raisedActive: one("inkA.press"),
+    // @deprecated light-legacy status washes — die with the auth/settings redesigns
     error: one("red.100"),
     success: one("green.100"),
     scrim: one("scrim"),
   },
 
   fg: {
-    DEFAULT: one("sand.950"),
-    muted: one("sand.700"),
-    subtle: one("sand.600"),
-    disabled: one("sand.500"),
-    inverted: one("sand.100"),
+    DEFAULT: one("whiteA.strong"),
+    muted: one("whiteA.mid"),
+    subtle: one("whiteA.soft"),
+    disabled: one("whiteA.soft"),
+    inverted: one("jet.950"),
     error: one("red.500"),
     success: one("green.500"),
-
-    onMesh: {
-      DEFAULT: one("whiteA.strong"),
-      muted: one("whiteA.mid"),
-      subtle: one("whiteA.soft"),
-    },
   },
 
   border: {
-    DEFAULT: one("sage.300"),
-    subtle: one("sage.200"),
-    emphasized: one("sage.400"),
-    focus: one("sage.600"),
+    DEFAULT: one("whiteA.dim"),
+    subtle: one("whiteA.faint"),
+    emphasized: one("whiteA.dim"),
+    focus: one("peach.500"),
   },
 
   primary: {
-    solid: one("teal.500"),
+    solid: one("peach.600"),
     contrast: one("white"),
-    fg: one("teal.700"),
-    muted: one("teal.200"),
-    subtle: one("teal.100"),
-    emphasized: one("teal.600"),
-    focusRing: one("teal.500"),
+    fg: one("peach.700"),
+    muted: one("peach.200"),
+    subtle: one("peach.100"),
+    // on the dark field a solid accent brightens on hover: 600 -> 500
+    emphasized: one("peach.500"),
+    focusRing: one("peach.500"),
   },
 
   category: {
-    deepWork: one("indigo.500"),
-    learning: one("cyan.500"),
-    reading: one("teal.500"),
-    dhikr: one("amber.500"),
-  },
-
-  glass: {
-    subtle: one("whiteA.faint"),
-    muted: one("whiteA.dim"),
-    sheet: one("whiteA.sheet"),
-    chrome: one("inkA.chip"),
-    chromeHover: one("inkA.lift"),
-    chromePressed: one("inkA.press"),
-    panel: one("inkA.veil"),
-    clear: one("inkA.clear"),
-    divider: one("whiteA.dim"),
-    border: { value: "rgba(255, 255, 255, 0.16)" },
-    borderFocus: { value: "rgba(255, 255, 255, 0.40)" },
+    deepWork: one("jet.400"),
+    learning: one("dust.400"),
+    reading: one("desert.400"),
+    dhikr: one("peach.300"),
   },
 });

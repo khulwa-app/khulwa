@@ -7,22 +7,13 @@ export interface TextFieldProps extends InputProps {
   label?: React.ReactNode;
   error?: React.ReactNode;
   helperText?: React.ReactNode;
-  surface?: "panel" | "glass";
-  fieldProps?: Omit<FieldProps, "label" | "error" | "helperText" | "surface" | "required">;
+  fieldProps?: Omit<FieldProps, "label" | "error" | "helperText" | "required">;
 }
 
-export function TextField({
-  label,
-  error,
-  helperText,
-  surface = "panel",
-  required,
-  fieldProps,
-  ...inputProps
-}: TextFieldProps) {
+export function TextField({ label, error, helperText, required, fieldProps, ...inputProps }: TextFieldProps) {
   return (
-    <Field label={label} error={error} helperText={helperText} surface={surface} required={required} {...fieldProps}>
-      <Input variant={surface === "glass" ? "glass" : "outline"} {...inputProps} />
+    <Field label={label} error={error} helperText={helperText} required={required} {...fieldProps}>
+      <Input variant="subtle" {...inputProps} />
     </Field>
   );
 }

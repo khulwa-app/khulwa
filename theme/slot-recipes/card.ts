@@ -16,13 +16,13 @@ export const cardSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       gap: "3",
-      transitionProperty: "box-shadow, transform, border-color",
+      transitionProperty: "transform",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
       "&[data-interactive]": {
         cursor: "pointer",
         "@media (hover: hover)": {
-          _hover: { transform: "translateY(-1px)", borderColor: "glass.borderFocus" },
+          _hover: { transform: "translateY(-1px)" },
         },
         _active: { transform: "scale(0.99)", transitionDuration: "instant" },
       },

@@ -8,20 +8,18 @@ interface NumberFieldProps extends Omit<InputProps, "value" | "onChange" | "type
   min?: number;
   max?: number;
   unit?: string;
-  surface?: "panel" | "glass";
   onValueChange: (value: number) => void;
 }
 
-export function NumberField({ label, value, min, max, unit, surface = "panel", onValueChange, ...rest }: NumberFieldProps) {
-  const onGlass = surface === "glass";
+export function NumberField({ label, value, min, max, unit, onValueChange, ...rest }: NumberFieldProps) {
   return (
     <HStack justify="space-between" align="center">
-      <Text textStyle="body-sm" color={onGlass ? "fg.onMesh" : "fg"}>
+      <Text textStyle="body-sm" color="fg">
         {label}
       </Text>
       <HStack gap="2.5" align="center">
         <Input
-          variant={onGlass ? "glass" : "outline"}
+          variant="subtle"
           size="sm"
           type="number"
           min={min}
@@ -41,7 +39,7 @@ export function NumberField({ label, value, min, max, unit, surface = "panel", o
           {...rest}
         />
         {unit ? (
-          <Text textStyle="body-sm" color={onGlass ? "fg.onMesh.muted" : "fg.muted"} minW="3.25rem">
+          <Text textStyle="body-sm" color="fg.muted" minW="3.25rem">
             {unit}
           </Text>
         ) : null}

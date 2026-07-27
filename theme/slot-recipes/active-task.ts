@@ -33,10 +33,10 @@ export const activeTaskSlotRecipe = defineSlotRecipe({
       paddingInlineStart: "5",
       paddingInlineEnd: "2",
       paddingBlock: "2",
-      transitionProperty: "border-color",
+      transitionProperty: "box-shadow",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
-      _focusWithin: { borderColor: "glass.borderFocus" },
+      _focusWithin: { boxShadow: "focusRing" },
     },
     mark: {
       boxSize: "2",
@@ -48,22 +48,22 @@ export const activeTaskSlotRecipe = defineSlotRecipe({
     dot: {
       boxSize: "1.5",
       rounded: "full",
-      bg: "fg.onMesh",
+      bg: "fg",
       flexShrink: "0",
     },
     task: {
       textStyle: "body-md",
-      color: "fg.onMesh.muted",
+      color: "fg.muted",
       lineClamp: 1,
       minW: "0",
     },
     eta: {
       textStyle: "label-lg",
-      color: "fg.onMesh.subtle",
+      color: "fg.subtle",
       flexShrink: "0",
       whiteSpace: "nowrap",
     },
-    hint: { textStyle: "label-lg", color: "fg.onMesh.subtle" },
+    hint: { textStyle: "label-lg", color: "fg.subtle" },
   },
 });
 

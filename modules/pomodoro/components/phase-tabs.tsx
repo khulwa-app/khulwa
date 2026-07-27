@@ -44,7 +44,7 @@ function PhaseTabsComponent({ phase, currentRound, totalRounds, onPhaseChange }:
               aria-hidden
               boxSize="2"
               rounded="full"
-              bg={index < currentRound ? "primary.solid" : "fg.onMesh.subtle"}
+              bg={index < currentRound ? "primary.solid" : "fg.subtle"}
             />
           ))}
         </HStack>

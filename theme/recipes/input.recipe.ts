@@ -31,13 +31,13 @@ export const khulwaInputRecipe = defineRecipe({
         borderColor: "transparent",
         paddingInline: "0",
       },
-      glass: {
-        bg: "glass.subtle",
+      subtle: {
+        bg: "whiteA.faint",
         borderColor: "transparent",
-        color: "fg.onMesh",
-        _hover: { bg: "glass.muted" },
-        _focusVisible: { boxShadow: "focusRing.glass" },
-        _placeholder: { color: "fg.onMesh.subtle" },
+        color: "fg",
+        _hover: { bg: "whiteA.dim" },
+        _focusVisible: { boxShadow: "focusRing" },
+        _placeholder: { color: "fg.subtle" },
       },
     },
     size: {

@@ -28,22 +28,21 @@ export const dockSlotRecipe = defineSlotRecipe({
       cursor: "pointer",
       flexShrink: "0",
       layerStyle: "raised",
-      backdropFilter: "none",
       boxShadow: "dock",
-      color: "fg.onMesh",
+      color: "fg",
       transitionProperty: "background-color, border-color, color, transform, box-shadow",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
       _hover: {
-        bg: "glass.chromeHover",
+        bg: "bg.raisedHover",
       },
       _active: {
         transform: "scale(0.96)",
-        bg: "glass.chromePressed",
+        bg: "bg.raisedActive",
         transitionDuration: "instant",
       },
       _motionReduce: { _active: { transform: "none" } },
-      _focusVisible: { boxShadow: "focusRing.glass" },
+      _focusVisible: { boxShadow: "focusRing" },
       "&[aria-pressed='true'], &[aria-current='page']": {
         bg: "primary.solid",
         color: "primary.contrast",
@@ -90,7 +89,7 @@ export const dockSlotRecipe = defineSlotRecipe({
       width: "hairline",
       height: "divider",
       rounded: "full",
-      bg: "glass.divider",
+      bg: "border",
     },
 
     streak: {

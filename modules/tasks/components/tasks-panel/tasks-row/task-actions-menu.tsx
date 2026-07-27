@@ -35,7 +35,7 @@ export function TaskActionsMenu({ task, onBreakIntoSteps }: TaskActionsMenuProps
   };
 
   return (
-    <Menu.Root surface="bright" onSelect={onSelect} positioning={{ placement: "bottom-end" }}>
+    <Menu.Root onSelect={onSelect} positioning={{ placement: "bottom-end" }}>
       <Menu.Trigger asChild>
         <TaskList.Action data-overflow aria-label={t("aria.more")}>
           <Icon icon={MenuDots} />

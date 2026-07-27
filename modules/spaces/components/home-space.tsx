@@ -51,13 +51,13 @@ export function HomeSpace() {
 
       <Home.Stage>
         <Home.Intro>
-          <Text textStyle="hero-greeting" color="fg.onMesh" suppressHydrationWarning {...entrance(250)}>
+          <Text textStyle="hero-greeting" color="fg" suppressHydrationWarning {...entrance(250)}>
             {greeting}
           </Text>
 
           <Text
             textStyle="clock-display"
-            color="fg.onMesh"
+            color="fg"
             suppressHydrationWarning
             {...entrance(350)}
           >
@@ -66,7 +66,7 @@ export function HomeSpace() {
 
           <Text
             textStyle="hero-date"
-            color="fg.onMesh.muted"
+            color="fg.muted"
             suppressHydrationWarning
             {...entrance(450)}
           >

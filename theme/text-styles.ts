@@ -32,17 +32,6 @@ export const textStyles = defineTextStyles({
     },
   },
 
-  "hero-meta": {
-    value: {
-      fontFamily: "body",
-      fontSize: { base: "sm", md: "md" },
-      fontWeight: "medium",
-      lineHeight: "1.4",
-      letterSpacing: "0.08em",
-      textTransform: "uppercase",
-    },
-  },
-
   "display-xl": {
     value: {
       fontFamily: "display",
@@ -184,15 +173,6 @@ export const textStyles = defineTextStyles({
     },
   },
 
-  greeting: {
-    value: {
-      fontFamily: "display",
-      fontSize: { base: "4xl", md: "6xl" },
-      fontWeight: "extrabold",
-      lineHeight: "1.1",
-      letterSpacing: "-0.005em",
-    },
-  },
   "clock-display": {
     value: {
       fontFamily: "display",

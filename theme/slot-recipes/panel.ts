@@ -38,11 +38,11 @@ export const panelSlotRecipe = defineSlotRecipe({
       paddingBottom: "3.5",
       minH: "16",
       borderBottomWidth: "1px",
-      borderColor: "glass.divider",
+      borderColor: "border",
     },
     title: {
       textStyle: "heading-h4",
-      color: "fg.onMesh",
+      color: "fg",
     },
     body: {
       display: "flex",

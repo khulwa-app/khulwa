@@ -72,7 +72,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       transitionProperty: "background-color",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
-      _hover: { bg: "glass.subtle" },
+      _hover: { bg: "whiteA.faint" },
     },
 
     meta: {
@@ -81,7 +81,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       gap: "2",
       flexShrink: "0",
       textStyle: "xs",
-      color: "fg.onMesh.subtle",
+      color: "fg.subtle",
       fontVariantNumeric: "tabular-nums",
     },
 
@@ -97,7 +97,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       gap: "2",
       paddingInline: "2",
       rounded: "md",
-      _hover: { bg: "glass.subtle" },
+      _hover: { bg: "whiteA.faint" },
     },
     steps: {
       display: "flex",
@@ -115,13 +115,13 @@ export const taskListSlotRecipe = defineSlotRecipe({
       overflowX: "auto",
       scrollbarWidth: "none",
       "&::-webkit-scrollbar": { display: "none" },
-      color: "fg.onMesh",
+      color: "fg",
       cursor: "text",
       outline: "none",
       _focus: { boxShadow: "none" },
-      "&[data-tone=muted]": { color: "fg.onMesh.muted" },
-      "&[data-completed]": { color: "fg.onMesh.subtle", textDecoration: "line-through" },
-      "&[data-completed]:focus": { textDecoration: "none", color: "fg.onMesh" },
+      "&[data-tone=muted]": { color: "fg.muted" },
+      "&[data-completed]": { color: "fg.subtle", textDecoration: "line-through" },
+      "&[data-completed]:focus": { textDecoration: "none", color: "fg" },
     },
 
     action: {
@@ -133,12 +133,12 @@ export const taskListSlotRecipe = defineSlotRecipe({
       rounded: "xs",
       border: "0",
       bg: "transparent",
-      color: "fg.onMesh.subtle",
+      color: "fg.subtle",
       cursor: "pointer",
       transitionProperty: "background-color, color, transform",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
-      _hover: { bg: "glass.muted", color: "fg.onMesh" },
+      _hover: { color: "fg" },
       _active: { transform: "scale(0.94)", transitionDuration: "instant" },
       _motionReduce: { _active: { transform: "none" } },
       _disabled: { opacity: 0.5, cursor: "not-allowed" },
@@ -176,16 +176,16 @@ export const taskListSlotRecipe = defineSlotRecipe({
       padding: "0",
       fontFamily: "inherit",
       textStyle: "xs",
-      color: "fg.onMesh.subtle",
+      color: "fg.subtle",
       fontVariantNumeric: "tabular-nums",
       transitionProperty: "color",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
       "&[data-toggle]": {
-        // teal.400 sits off the native slot scale; documented exception until the P2 Field rework
-        color: "teal.400",
+        // peach.400/300 sit off the semantic scale: on-mesh foregrounds must brighten on hover
+        color: "peach.400",
         cursor: "pointer",
-        _hover: { color: "teal.emphasized" },
+        _hover: { color: "peach.300" },
       },
     },
     eta: {
@@ -204,11 +204,11 @@ export const taskListSlotRecipe = defineSlotRecipe({
       cursor: "text",
       outline: "none",
       _focus: { boxShadow: "none" },
-      "&[data-tone=muted]": { color: "fg.onMesh.muted" },
+      "&[data-tone=muted]": { color: "fg.muted" },
     },
     etaUnit: {
       textStyle: "xs",
-      color: "fg.onMesh.muted",
+      color: "fg.muted",
     },
     addAction: {
       display: "inline-flex",
@@ -225,17 +225,18 @@ export const taskListSlotRecipe = defineSlotRecipe({
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
       "& svg": { boxSize: "5" },
-      _hover: { bg: "glass.subtle", color: "teal.emphasized" },
-      _active: { bg: "glass.muted", transform: "scale(0.97)", transitionDuration: "instant" },
+      // peach.300 off the semantic scale: on-mesh foreground must brighten on hover
+      _hover: { color: "peach.300" },
+      _active: { transform: "scale(0.97)", transitionDuration: "instant" },
       _motionReduce: { _active: { transform: "none" } },
       _disabled: { opacity: 0.5, cursor: "not-allowed" },
     },
     addStep: {
       flex: "1",
       marginInlineStart: "1",
-      color: "fg.onMesh.muted",
-      _placeholder: { color: "fg.onMesh.subtle" },
-      _focusVisible: { boxShadow: "focusRing.glass" },
+      color: "fg.muted",
+      _placeholder: { color: "fg.subtle" },
+      _focusVisible: { boxShadow: "focusRing" },
     },
     addStepRow: {
       display: "flex",
@@ -252,7 +253,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
       paddingInline: "2",
       paddingBlock: "1",
       cursor: "pointer",
-      color: "fg.onMesh.muted",
+      color: "fg.muted",
       textStyle: "label-md",
       "& svg": {
         transitionProperty: "transform",
@@ -270,7 +271,7 @@ export const taskListSlotRecipe = defineSlotRecipe({
     },
     empty: {
       textStyle: "sm",
-      color: "fg.onMesh.muted",
+      color: "fg.muted",
       textAlign: "center",
       paddingBlock: "8",
     },

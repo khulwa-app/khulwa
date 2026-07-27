@@ -43,7 +43,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
       paddingInline: "5",
       paddingBlock: "4",
       borderBottomWidth: "1px",
-      borderColor: "glass.border",
+      borderColor: "border",
     },
     title: {
       textStyle: "heading-h4",

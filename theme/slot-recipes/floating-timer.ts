@@ -32,7 +32,7 @@ export const timerPillSlotRecipe = defineSlotRecipe({
       transitionProperty: "background-color, box-shadow, opacity, transform",
       transitionDuration: "enter",
       transitionTimingFunction: "enter",
-      _hover: { bg: "bg.emphasized", boxShadow: "glass-sm" },
+      _hover: { bg: "bg.raisedHover" },
       _active: { transform: "scale(0.98)", transitionDuration: "instant" },
       _motionReduce: { _active: { transform: "none" } },
       "&[data-paused]": { opacity: 0.6 },

@@ -22,7 +22,7 @@ export const settingsSlotRecipe = defineSlotRecipe({
       gap: "1",
       padding: "3",
       borderInlineEndWidth: "1px",
-      borderColor: "glass.border",
+      borderColor: "border.subtle",
       overflowY: "auto",
     },
     navItem: {

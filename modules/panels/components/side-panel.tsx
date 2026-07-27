@@ -34,7 +34,7 @@ export function SidePanel({ open, onClose, title, children }: SidePanelProps) {
       <Panel.Root role="dialog" aria-label={title}>
         <Panel.Header>
           <Panel.Title>{title}</Panel.Title>
-          <IconButton variant="subtle" size="sm" aria-label={tAria("close")} onClick={onClose}>
+          <IconButton variant="ghost" size="sm" aria-label={tAria("close")} onClick={onClose}>
             <Icon icon={CloseCircle} />
           </IconButton>
         </Panel.Header>

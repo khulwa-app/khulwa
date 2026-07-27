@@ -5,36 +5,20 @@ export const layerStyles = defineLayerStyles({
     description: "modal backdrop",
     value: {
       bg: "bg.scrim",
-      backdropFilter: "blur(2px)",
+      
     },
   },
   "space-backdrop": {
-    description: "bright sage-aurora bloom — pale field, sage/teal/green glows, data-phase hue-shift, crossfade",
+    description: "jet linear field — the dark ramp, dark at the top for the hero, data-phase hue-shift",
     value: {
-      backgroundColor: "{colors.mesh.floor}",
+      backgroundColor: "{colors.jet.950}",
       backgroundImage:
-        "radial-gradient(35.6% 42.0% at 50.0% 46.7%, {colors.mesh.coreBloom} 0%, {colors.mesh.coreBloom} 20%, transparent 70%)," +
-        "radial-gradient(35.6% 57.0% at 50.0% 37.8%, {colors.mesh.glowGreen} 0%, {colors.mesh.glowGreen} 20%, transparent 70%)," +
-        "radial-gradient(29.0% 46.5% at 52.8% 33.3%, {colors.mesh.glowJade} 0%, {colors.mesh.glowJade} 20%, transparent 70%)," +
-        "radial-gradient(21.6% 34.5% at 62.5% 20.0%, {colors.mesh.glowSage} 0%, {colors.mesh.glowSage} 20%, transparent 70%)," +
-        "radial-gradient(29.0% 46.5% at 33.3% 84.4%, {colors.mesh.glowEmerald} 0%, {colors.mesh.glowEmerald} 20%, transparent 70%)," +
-        "radial-gradient(24.4% 39.0% at 81.9% 84.4%, {colors.mesh.glowMint} 0%, {colors.mesh.glowMint} 20%, transparent 70%)," +
-        "radial-gradient(30.0% 48.0% at 52.8% 80.0%, {colors.mesh.glowTeal} 0%, {colors.mesh.glowTeal} 20%, transparent 70%)," +
-        "radial-gradient(35.6% 57.0% at 77.8% 35.6%, {colors.mesh.glowGreen} 0%, {colors.mesh.glowGreen} 20%, transparent 70%)," +
-        "radial-gradient(33.8% 54.0% at 20.8% 28.9%, {colors.mesh.glowSage} 0%, {colors.mesh.glowSage} 20%, transparent 70%)",
-      filter: "saturate(1.05)",
+        "linear-gradient(180deg, {colors.jet.950}, {colors.jet.900}, {colors.jet.800}, {colors.jet.700})",
       transition: "filter {durations.mood} {easings.standard}",
-      "&[data-phase=shortBreak]": { filter: "saturate(0.95) hue-rotate(-20deg)" },
-      "&[data-phase=longBreak]": { filter: "hue-rotate(40deg)" },
+      "&[data-phase=shortBreak]": { filter: "saturate(0.95) hue-rotate(-24deg)" },
+      "&[data-phase=longBreak]": { filter: "hue-rotate(46deg)" },
       "&[data-phase=micro]": { filter: "saturate(0.70) brightness(0.96)" },
-      "&[data-phase=alert]": { filter: "saturate(1.15) hue-rotate(160deg)" },
-      _after: {
-        content: '""',
-        position: "absolute",
-        inset: 0,
-        bg: "glass.sheet",
-        pointerEvents: "none",
-      },
+      "&[data-phase=alert]": { filter: "saturate(1.25) hue-rotate(172deg)" },
       _motionReduce: { transition: "none" },
     },
   },
@@ -46,38 +30,31 @@ export const layerStyles = defineLayerStyles({
       "& [data-part=thumb]": {
         bg: "primary.solid",
         borderColor: "bg.panel",
-        boxShadow: "glass-sm",
       },
     },
   },
 
   card: {
-    description: "frosted dark glass card — borderless, graduated rim + light lift, white text",
+    description: "solid deep-space card",
     value: {
-      background: "glass.panel",
-      color: "fg.onMesh",
+      background: "bg.panel",
+      color: "fg",
       borderRadius: "3xl",
-      backdropFilter: "blur(24px) saturate(1.6)",
-      boxShadow: "glass-sm",
     },
   },
   raised: {
-    description: "frosted dark glass chrome (dock, timer pill, badges) — borderless, graduated rim + lift",
+    description: "translucent ink chrome (dock, timer pill, badges)",
     value: {
-      background: "glass.chrome",
-      color: "fg.onMesh",
-      backdropFilter: "blur(24px) saturate(1.75)",
-      boxShadow: "glass-sm",
+      background: "bg.raised",
+      color: "fg",
     },
   },
   overlay: {
-    description: "frosted dark glass panel — modals / palette / sheets / tool panel / menus",
+    description: "solid deep-space panel — modals / palette / sheets / tool panel",
     value: {
-      background: "glass.panel",
-      color: "fg.onMesh",
+      background: "bg.panel",
+      color: "fg",
       borderRadius: "3xl",
-      backdropFilter: "blur(30px) saturate(1.8)",
-      boxShadow: "glass",
     },
   },
 });

@@ -20,7 +20,7 @@ export function DoingNowCaption() {
           key={currentTask.id}
           as="button"
           textStyle="sm"
-          color="fg.onMesh.muted"
+          color="fg.muted"
           maxW="md"
           lineClamp={1}
           cursor="pointer"
@@ -28,7 +28,7 @@ export function DoingNowCaption() {
           aria-label={t("changeTask")}
           transitionProperty="color"
           transitionDuration="fast"
-          _hover={{ color: "fg.onMesh" }}
+          _hover={{ color: "fg" }}
           animationName="fade-in"
           animationDuration="moderate"
           animationTimingFunction="ease-out"

@@ -38,35 +38,24 @@ export const khulwaButtonRecipe = defineRecipe({
 
       ghost: {
         bg: "transparent",
-        color: "fg.onMesh",
-        _hover: { bg: "glass.subtle" },
-        _active: { bg: "glass.muted", transform: "scale(0.97)" },
+        color: "fg.muted",
+        // bg:transparent in each state neutralizes Chakra's default ghost hover/expanded fills (deep merge)
+        _hover: { bg: "transparent", color: "fg" },
+        _active: { bg: "transparent", color: "fg", transform: "scale(0.97)" },
+        _expanded: { bg: "transparent" },
       },
 
       subtle: {
-        bg: "transparent",
-        color: "fg.onMesh.subtle",
-        _hover: { bg: "glass.subtle", color: "fg.onMesh" },
-        _active: { bg: "glass.muted", transform: "scale(0.97)" },
-      },
-
-      outline: {
-        bg: "glass.subtle",
-        borderWidth: "1px",
-        borderStyle: "solid",
-        borderColor: "glass.border",
-        color: "fg.onMesh",
-        backdropFilter: "blur(12px) saturate(1.4)",
-        _hover: { bg: "glass.muted" },
-        _active: { bg: "glass.muted", transform: "scale(0.97)" },
+        bg: "whiteA.faint",
+        color: "fg",
+        _hover: { bg: "whiteA.dim" },
+        _active: { bg: "whiteA.dim", transform: "scale(0.97)" },
       },
 
       surface: {
-        bg: "glass.panel",
-        color: "fg.onMesh",
-        boxShadow: "glass-sm",
-        backdropFilter: "blur(16px) saturate(1.5)",
-        _hover: { bg: "glass.muted" },
+        bg: "bg.panel",
+        color: "fg",
+        _hover: { bg: "whiteA.dim" },
         _active: { transform: "scale(0.97)" },
       },
 

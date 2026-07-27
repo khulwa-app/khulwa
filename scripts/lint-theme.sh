@@ -25,5 +25,15 @@ h=$(grep -rn --include='*.tsx' 'variant="onGlass' modules components 2>/dev/null
 h=$(grep -rn --include='*.ts' 'className: "' theme 2>/dev/null || true)
 [ -n "$h" ] && report "className: in theme — recipes must not declare className" "$h"
 
+h=$(grep -rni --include='*.ts' --include='*.tsx' 'glass' theme modules components 2>/dev/null || true)
+[ -n "$h" ] && report "glass vocabulary is retired — use native bg/fg/border/focusRing tokens" "$h"
+
+
+h=$(grep -rn --include='*.ts' --include='*.tsx' 'onMesh' theme modules components 2>/dev/null || true)
+[ -n "$h" ] && report "onMesh naming is retired — use native tokens (bg/fg/border/bg.raised*/focusRing)" "$h"
+
+h=$(grep -rEn --include='*.ts' --include='*.tsx' '"(sand|sage)\.' theme modules components 2>/dev/null || true)
+[ -n "$h" ] && report "sand/sage ramps were deleted in the deep-space flip" "$h"
+
 if [ "$fail" -ne 0 ]; then echo "lint:theme FAILED"; exit 1; fi
 echo "lint:theme passed"

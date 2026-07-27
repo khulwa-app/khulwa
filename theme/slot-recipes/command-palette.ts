@@ -63,9 +63,9 @@ export const commandPaletteSlotRecipe = defineSlotRecipe({
         transitionTimingFunction: "enter",
       },
       "@media (hover: hover)": {
-        "& [cmdk-item]:hover": { bg: "bg.muted", color: "fg" },
+        "& [cmdk-item]:hover": { bg: "whiteA.faint", color: "fg" },
       },
-      "& [cmdk-item][data-selected='true']": { bg: "bg.emphasized", color: "fg" },
+      "& [cmdk-item][data-selected='true']": { bg: "whiteA.dim", color: "fg" },
     },
     kbd: {
       display: "inline-flex",
@@ -75,9 +75,9 @@ export const commandPaletteSlotRecipe = defineSlotRecipe({
       height: "6",
       paddingInline: "1.5",
       rounded: "xs",
-      bg: "bg.subtle",
+      bg: "whiteA.faint",
       borderWidth: "1px",
-      borderColor: "border.subtle",
+      borderColor: "border",
       color: "fg.subtle",
       fontFamily: "mono",
       fontSize: "2xs",

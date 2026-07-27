@@ -1,13 +1,13 @@
 import { defineSlotRecipe } from "@chakra-ui/react";
 
 // Deep-merges onto Chakra's built-in checkbox slot recipe; only overrides the
-// control surface + sizes. Consumed solely by tasks / steps (dark-glass panel).
+// control surface + sizes. Consumed solely by tasks / steps (deep-space panel).
 export const checkboxSlotRecipe = defineSlotRecipe({
   slots: ["root", "label", "control", "indicator", "group"],
   base: {
     control: {
       borderRadius: "xs",
-      borderColor: "glass.border",
+      borderColor: "border",
     },
   },
   variants: {

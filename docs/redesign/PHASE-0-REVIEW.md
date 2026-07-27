@@ -130,72 +130,82 @@ visible and connected rather than living in separate panels.
 - Tasks, sound, progress, and settings open as purposeful sheets or routes.
 - No desktop dock compressed into a mobile toolbar.
 
-## Direction A — Alabaster and Ink
+## Direction A — Sage Serenity
 
-Warm, light, precise, and quietly luxurious. This is the recommended direction.
+Comfortable, restorative, recognizable, and still professional. This is the
+recommended direction after the sage reference review.
 
-- Warm alabaster canvas with porcelain-white working surfaces.
+- A light sage experience field surrounded by quieter tinted whitespace.
+- The supplied ten-step sage scale is used across structure, selection, focus,
+  text, and primary action rather than as a decorative accent.
 - Neutral sans typography: Inter, Geist, or Instrument Sans.
 - Mono or tabular companion for timer and statistics.
-- Graphite primary action and typography.
-- Aged-brass detail reserved for focus, selection, and status.
-- Solid utility surfaces separated by tone, border, and shadow.
+- Deep forest-green primary action and typography.
+- White utility surfaces provide breathing room inside the green environment.
+- Solid tonal blocks create visual interest without gradients or glow.
 - Crisp controls and lower corner radius than the current system.
 - Best fit for a premium focus instrument and closest to the desired Flocus-level
   polish without copying Flocus.
 
-Risk: excessive beige or brass would make the product feel like hospitality or
-luxury retail instead of a professional focus tool.
+Risk: too much pale green would feel medicinal, while too much dark green would
+feel heavy. White elevated surfaces and the full tonal scale keep it balanced.
 
-## Direction B — Pearl and Midnight
+## Direction B — Alabaster and Ink
 
-Cooler, airy, architectural, and slightly more technical.
+Warm, light, precise, and quietly luxurious. This remains available as a neutral
+comparison.
 
-- Pearl canvas with clean white working surfaces.
-- Midnight blue-black typography and primary controls.
-- Mineral-sage detail reserved for focus, selection, and status.
-- Instrument Sans or Geist Sans for the interface.
+- Warm alabaster canvas with porcelain-white working surfaces.
+- Graphite primary action and typography.
+- Aged-brass detail reserved for focus, selection, and status.
 - Solid, tactile utility surfaces with subtle depth.
 - No gradients, colored glow, or ornamental color washes.
-- Feels brighter and more contemporary than a conventional productivity
-  dashboard without becoming clinical.
+- Elegant and quiet, but less ownable than the sage direction.
 
-Risk: cool neutrals need enough warmth in photography, copy, and interaction to
-avoid feeling like enterprise software.
+Risk: without environmental color, it can return to the neutral minimalism that
+felt too restrained.
 
 ## Premium color decision
 
 The base product is near-monochrome and light-first. Color is not decoration and
 must never be used as a substitute for hierarchy.
 
-### Recommended Alabaster and Ink palette
+### Recommended Sage Serenity palette
 
 | Role | Value | Use |
 | --- | --- | --- |
-| Canvas | `#F3F0E9` | Full workspace background |
-| Surface | `#FAF8F3` | Main experience surface |
-| Elevated | `#FFFFFF` | Panels, cards, and persistent navigation |
-| Border | `#D9D4C9` | Quiet structure |
-| Primary text | `#1C1B18` | Headings, timer, primary content |
-| Secondary text | `#5F5B54` | Supporting copy |
-| Muted text | `#706B63` | Metadata only |
-| Primary action | `#24231F` | One dominant action per view |
-| Action text | `#F8F5EE` | Text on the primary action |
-| Focus detail | `#8B6F47` | Focus rings and meaningful active state |
+| Canvas | `#EDF3EB` | Tinted workspace whitespace |
+| Experience field | `#D5E3D5` | Home, Focus, and Ambient canvas |
+| Selected | `#B7D1B1` | Active navigation and selected containers |
+| Border | `#9BC09A` | Quiet structure |
+| Supporting field | `#7DA87A` | Progress and secondary visualization |
+| Focus state | `#5A8F5B` | Focus borders and meaningful active state |
+| Support tone | `#4E7D4F` | Charts and non-text semantic fills |
+| Supporting text | `#3C6B3E` | Metadata and labels |
+| Secondary text | `#2B5930` | Supporting copy |
+| Primary text | `#1A4722` | Headings, timer, and primary content |
+| Primary action | `#0B3515` | One dominant action per view |
+| Elevated | `#FBFDF9` | Panels, cards, and persistent navigation |
+| Action text | `#F7FBF5` | Text on the primary action |
 
-### Pearl and Midnight alternative
+Target proportion: 55–65% pale sage environment, 20–30% near-white elevated
+surfaces, and 10–15% deep forest structure and action. Mid-sage tones are
+reserved for selection, progress, and focus state so the interface feels alive
+without becoming visually busy.
+
+### Alabaster and Ink alternative
 
 | Role | Value |
 | --- | --- |
-| Canvas | `#F1F4F3` |
-| Surface | `#F8FAF9` |
+| Canvas | `#F3F0E9` |
+| Surface | `#FAF8F3` |
 | Elevated | `#FFFFFF` |
-| Border | `#D3DAD8` |
-| Primary text | `#172126` |
-| Secondary text | `#536168` |
-| Muted text | `#68757A` |
-| Primary action | `#18252C` |
-| Focus detail | `#627A72` |
+| Border | `#D9D4C9` |
+| Primary text | `#1C1B18` |
+| Secondary text | `#5F5B54` |
+| Muted text | `#706B63` |
+| Primary action | `#24231F` |
+| Focus detail | `#8B6F47` |
 
 Primary, secondary, muted, action, and focus-detail text combinations all meet
 at least 4.5:1 contrast on their intended surfaces.
@@ -256,7 +266,7 @@ An interactive comparison is available at
 
 ## Phase 0 review decisions
 
-1. Choose warm Alabaster and Ink or cool Pearl and Midnight.
+1. Confirm Sage Serenity or return to Alabaster and Ink.
 2. Choose the typography direction.
 3. Confirm light-first or request a future dark companion theme.
 4. Confirm the desktop and mobile information architecture.

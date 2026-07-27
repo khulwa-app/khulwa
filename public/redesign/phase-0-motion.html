@@ -8,8 +8,33 @@
       :root {
         color-scheme: light;
         font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-        background: #f3f0e9;
-        color: #1c1b18;
+        background: #edf3eb;
+        color: #1a4722;
+        --sage-100: #d5e3d5;
+        --sage-200: #b7d1b1;
+        --sage-300: #9bc09a;
+        --sage-400: #7da87a;
+        --sage-500: #5a8f5b;
+        --sage-600: #4e7d4f;
+        --sage-700: #3c6b3e;
+        --sage-800: #2b5930;
+        --sage-900: #1a4722;
+        --sage-1000: #0b3515;
+        --canvas: #edf3eb;
+        --surface: var(--sage-100);
+        --elevated: #fbfdf9;
+        --border: var(--sage-300);
+        --ink: var(--sage-1000);
+        --on-ink: #f7fbf5;
+        --text: var(--sage-900);
+        --text-secondary: var(--sage-800);
+        --text-muted: var(--sage-700);
+        --selected: var(--sage-200);
+        --accent: var(--sage-700);
+        --focus: var(--sage-500);
+        --shadow: rgb(11 53 21 / 13%);
+      }
+      body[data-palette="alabaster"] {
         --canvas: #f3f0e9;
         --surface: #faf8f3;
         --elevated: #ffffff;
@@ -21,21 +46,8 @@
         --text-muted: #706b63;
         --selected: #e9e4d9;
         --accent: #8b6f47;
+        --focus: #8b6f47;
         --shadow: rgb(63 55 43 / 13%);
-      }
-      body[data-palette="pearl"] {
-        --canvas: #f1f4f3;
-        --surface: #f8faf9;
-        --elevated: #ffffff;
-        --border: #d3dad8;
-        --ink: #18252c;
-        --on-ink: #f7f9f8;
-        --text: #172126;
-        --text-secondary: #536168;
-        --text-muted: #68757a;
-        --selected: #e2e8e6;
-        --accent: #627a72;
-        --shadow: rgb(40 57 62 / 12%);
       }
       * { box-sizing: border-box; }
       body {
@@ -142,6 +154,7 @@
         font-weight: 700;
         letter-spacing: .06em;
       }
+      .mode[data-mode="focus"] .task { border-color: var(--focus); }
       .timer {
         color: var(--text);
         font-size: clamp(86px, 14vw, 148px);
@@ -222,7 +235,7 @@
       }
     </style>
   </head>
-  <body data-palette="alabaster">
+  <body data-palette="sage">
     <main>
       <header>
         <div>
@@ -230,11 +243,11 @@
           <p>Compare Home and Focus without exposing a blank document frame.</p>
         </div>
         <div class="palette-switcher" aria-label="Color direction">
-          <button type="button" data-palette-target="alabaster" aria-pressed="true">
-            Alabaster
+          <button type="button" data-palette-target="sage" aria-pressed="true">
+            Sage
           </button>
-          <button type="button" data-palette-target="pearl" aria-pressed="false">
-            Pearl
+          <button type="button" data-palette-target="alabaster" aria-pressed="false">
+            Alabaster
           </button>
         </div>
       </header>

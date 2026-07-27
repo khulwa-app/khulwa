@@ -88,7 +88,7 @@ The redesign must achieve:
 - [ ] Add the modern browser target recommended for DaisyUI with Next.js Turbopack.
 - [ ] Define semantic theme variables for background, surfaces, text, borders,
       primary action, secondary action, status colors, and radii.
-- [ ] Encode the approved alabaster or pearl palette without gradients.
+- [ ] Encode the approved sage or alabaster palette without gradients.
 - [ ] Install and configure the approved fonts through `next/font`.
 - [ ] Define a small typography scale and tabular numeric treatment.
 

@@ -9,51 +9,51 @@
   <text x="80" y="72" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#242424">KHU LWA · PHASE 0 VISUAL DIRECTIONS</text>
 
   <g transform="translate(80 110)">
-    <rect width="690" height="790" rx="28" fill="#f3f0e9" stroke="#d9d4c9" filter="url(#shadow)"/>
-    <text x="40" y="58" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#8b6f47" letter-spacing="2">DIRECTION A · RECOMMENDED</text>
-    <text x="40" y="100" font-family="Arial, sans-serif" font-size="34" font-weight="600" fill="#1c1b18">Alabaster and Ink</text>
-    <text x="40" y="132" font-family="Arial, sans-serif" font-size="16" fill="#5f5b54">Warm · light · quietly luxurious</text>
+    <rect width="690" height="790" rx="28" fill="#d5e3d5" stroke="#9bc09a" filter="url(#shadow)"/>
+    <text x="40" y="58" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#3c6b3e" letter-spacing="2">DIRECTION A · RECOMMENDED</text>
+    <text x="40" y="100" font-family="Arial, sans-serif" font-size="34" font-weight="600" fill="#1a4722">Sage Serenity</text>
+    <text x="40" y="132" font-family="Arial, sans-serif" font-size="16" fill="#2b5930">Comfortable · restorative · recognizable</text>
 
-    <text x="345" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="500" fill="#5f5b54">Good evening, Saif</text>
-    <text x="345" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="112" font-weight="600" fill="#1c1b18" letter-spacing="-5">8:30</text>
-    <text x="345" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#706b63" letter-spacing="3">MONDAY · JULY 27</text>
+    <text x="345" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="500" fill="#2b5930">Good evening, Saif</text>
+    <text x="345" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="112" font-weight="600" fill="#1a4722" letter-spacing="-5">8:30</text>
+    <text x="345" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#3c6b3e" letter-spacing="3">MONDAY · JULY 27</text>
 
-    <rect x="190" y="455" width="310" height="74" rx="18" fill="#ffffff" stroke="#d9d4c9"/>
-    <circle cx="225" cy="492" r="6" fill="#8b6f47"/>
-    <text x="244" y="487" font-family="Arial, sans-serif" font-size="12" fill="#8b6f47">YOUR ONE THING</text>
-    <text x="244" y="510" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#1c1b18">Finish the redesign brief</text>
+    <rect x="190" y="455" width="310" height="74" rx="18" fill="#fbfdf9" stroke="#9bc09a"/>
+    <circle cx="225" cy="492" r="6" fill="#5a8f5b"/>
+    <text x="244" y="487" font-family="Arial, sans-serif" font-size="12" fill="#3c6b3e">YOUR ONE THING</text>
+    <text x="244" y="510" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#1a4722">Finish the redesign brief</text>
 
-    <rect x="124" y="690" width="442" height="64" rx="22" fill="#ffffff" stroke="#d9d4c9"/>
-    <rect x="350" y="700" width="84" height="44" rx="14" fill="#e9e4d9"/>
-    <g fill="#706b63" font-family="Arial, sans-serif" font-size="13">
+    <rect x="124" y="690" width="442" height="64" rx="22" fill="#fbfdf9" stroke="#9bc09a"/>
+    <rect x="350" y="700" width="84" height="44" rx="14" fill="#b7d1b1"/>
+    <g fill="#3c6b3e" font-family="Arial, sans-serif" font-size="13">
       <text x="168" y="728">Tasks</text>
       <text x="282" y="728">Home</text>
-      <text x="376" y="728" fill="#1c1b18" font-weight="700">Focus</text>
+      <text x="376" y="728" fill="#1a4722" font-weight="700">Focus</text>
       <text x="474" y="728">Ambient</text>
     </g>
   </g>
 
   <g transform="translate(830 110)">
-    <rect width="690" height="790" rx="28" fill="#f1f4f3" stroke="#d3dad8" filter="url(#shadow)"/>
-    <text x="40" y="58" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#627a72" letter-spacing="2">DIRECTION B</text>
-    <text x="40" y="100" font-family="Arial, sans-serif" font-size="38" font-weight="600" fill="#172126">Pearl and Midnight</text>
-    <text x="40" y="132" font-family="Arial, sans-serif" font-size="16" fill="#536168">Cool · airy · architectural</text>
+    <rect width="690" height="790" rx="28" fill="#f3f0e9" stroke="#d9d4c9" filter="url(#shadow)"/>
+    <text x="40" y="58" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#8b6f47" letter-spacing="2">DIRECTION B</text>
+    <text x="40" y="100" font-family="Arial, sans-serif" font-size="38" font-weight="600" fill="#1c1b18">Alabaster and Ink</text>
+    <text x="40" y="132" font-family="Arial, sans-serif" font-size="16" fill="#5f5b54">Warm · light · quietly luxurious</text>
 
-    <text x="345" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#536168">A quiet hour for what matters.</text>
-    <text x="345" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="108" font-weight="600" fill="#172126" letter-spacing="-5">8:30</text>
-    <text x="345" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#68757a" letter-spacing="3">MONDAY · JULY 27</text>
+    <text x="345" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#5f5b54">A quiet hour for what matters.</text>
+    <text x="345" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="108" font-weight="600" fill="#1c1b18" letter-spacing="-5">8:30</text>
+    <text x="345" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#706b63" letter-spacing="3">MONDAY · JULY 27</text>
 
-    <rect x="190" y="455" width="310" height="74" rx="14" fill="#ffffff" stroke="#d3dad8"/>
-    <rect x="213" y="477" width="3" height="31" rx="2" fill="#627a72"/>
-    <text x="236" y="487" font-family="Arial, sans-serif" font-size="12" fill="#627a72">CURRENT INTENTION</text>
-    <text x="236" y="510" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#172126">Finish the redesign brief</text>
+    <rect x="190" y="455" width="310" height="74" rx="14" fill="#ffffff" stroke="#d9d4c9"/>
+    <rect x="213" y="477" width="3" height="31" rx="2" fill="#8b6f47"/>
+    <text x="236" y="487" font-family="Arial, sans-serif" font-size="12" fill="#8b6f47">CURRENT INTENTION</text>
+    <text x="236" y="510" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#1c1b18">Finish the redesign brief</text>
 
-    <rect x="124" y="690" width="442" height="64" rx="18" fill="#ffffff" stroke="#d3dad8"/>
-    <rect x="350" y="700" width="84" height="44" rx="13" fill="#e2e8e6"/>
-    <g fill="#68757a" font-family="Arial, sans-serif" font-size="13">
+    <rect x="124" y="690" width="442" height="64" rx="18" fill="#ffffff" stroke="#d9d4c9"/>
+    <rect x="350" y="700" width="84" height="44" rx="13" fill="#e9e4d9"/>
+    <g fill="#706b63" font-family="Arial, sans-serif" font-size="13">
       <text x="168" y="728">Tasks</text>
       <text x="282" y="728">Home</text>
-      <text x="376" y="728" fill="#172126" font-weight="700">Focus</text>
+      <text x="376" y="728" fill="#1c1b18" font-weight="700">Focus</text>
       <text x="474" y="728">Ambient</text>
     </g>
   </g>

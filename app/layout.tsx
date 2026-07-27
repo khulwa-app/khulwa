@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import "./globals.css";
 import { fontVariables } from "./fonts";
 import { Locale } from "@/i18n/config";
 import { AppProvider } from "@/components/providers";

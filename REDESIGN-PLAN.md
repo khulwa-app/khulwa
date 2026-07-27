@@ -82,15 +82,15 @@ The redesign must achieve:
 
 ## Phase 1 — New styling foundation
 
-- [ ] Install Tailwind CSS 4, `@tailwindcss/postcss`, PostCSS, and DaisyUI 5.
-- [ ] Add the Tailwind PostCSS configuration and global stylesheet.
-- [ ] Configure DaisyUI through CSS and enable only the Khulwa custom theme.
-- [ ] Add the modern browser target recommended for DaisyUI with Next.js Turbopack.
-- [ ] Define semantic theme variables for background, surfaces, text, borders,
+- [x] Install Tailwind CSS 4, `@tailwindcss/postcss`, PostCSS, and DaisyUI 5.
+- [x] Add the Tailwind PostCSS configuration and global stylesheet.
+- [x] Configure DaisyUI through CSS and enable only the Khulwa custom theme.
+- [x] Add the modern browser target recommended for DaisyUI with Next.js Turbopack.
+- [x] Define semantic theme variables for background, surfaces, text, borders,
       primary action, secondary action, status colors, and radii.
-- [ ] Encode the approved sage or alabaster palette without gradients.
-- [ ] Install and configure the approved fonts through `next/font`.
-- [ ] Define a small typography scale and tabular numeric treatment.
+- [x] Encode the approved sage palette without gradients.
+- [x] Install and configure Instrument Sans and Geist Mono through `next/font`.
+- [x] Define a small typography scale and tabular numeric treatment.
 
 ### Acceptance
 

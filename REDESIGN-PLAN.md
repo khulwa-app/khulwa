@@ -21,6 +21,8 @@ The redesign must achieve:
 - Strong desktop composition and a deliberately redesigned mobile experience.
 - Fast perceived performance; premium must come from hierarchy, restraint, and
   response quality rather than expensive effects.
+- A disciplined monochrome interface; gradients are excluded and color is
+  reserved for semantic meaning or optional environment art.
 
 ### Quality bar
 
@@ -62,15 +64,15 @@ The redesign must achieve:
 - [x] Preserve the previous Chakra direction in its original branch.
 - [x] Promote the layered Escape behavior fix to `main`.
 - [x] Create a fresh redesign branch from updated `main`.
-- [ ] Capture baseline screenshots of every current route and major panel state.
-- [ ] Document the current end-to-end Home → task → Focus → completion journey.
-- [ ] Identify every current source of visual jank, layout shift, delayed response,
+- [x] Capture baseline screenshots of every current route and major panel state.
+- [x] Document the current end-to-end Home → task → Focus → completion journey.
+- [x] Identify every current source of visual jank, layout shift, delayed response,
       inconsistent dismissal, and interrupted focus continuity.
-- [ ] Create low-fidelity desktop and mobile experience maps before styling.
-- [ ] Produce two visual directions using the same wireframes.
-- [ ] Produce type specimens for body, display, controls, and timer numerals.
-- [ ] Prototype space, panel, and timer transitions before selecting motion tokens.
-- [ ] Add a lightweight critical-flow verification checklist.
+- [x] Create low-fidelity desktop and mobile experience maps before styling.
+- [x] Produce two visual directions using the same wireframes.
+- [x] Produce type specimens for body, display, controls, and timer numerals.
+- [x] Prototype space, panel, and timer transitions before selecting motion tokens.
+- [x] Add a lightweight critical-flow verification checklist.
 
 ### Acceptance
 
@@ -86,6 +88,7 @@ The redesign must achieve:
 - [ ] Add the modern browser target recommended for DaisyUI with Next.js Turbopack.
 - [ ] Define semantic theme variables for background, surfaces, text, borders,
       primary action, secondary action, status colors, and radii.
+- [ ] Encode the approved graphite or warm-obsidian palette without gradients.
 - [ ] Install and configure the approved fonts through `next/font`.
 - [ ] Define a small typography scale and tabular numeric treatment.
 

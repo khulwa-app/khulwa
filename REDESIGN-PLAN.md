@@ -4,6 +4,37 @@ This plan replaces the current Chakra UI visual system without rewriting Khulwa'
 working product logic. Each phase should leave the application runnable and is
 independently reviewable.
 
+## Experience goal
+
+Khulwa should feel like a premium personal focus environment, not a collection
+of dashboard widgets. Flocus is a quality reference for immersion, clarity, and
+the way timer, priorities, sound, themes, and progress feel like one workspace.
+Khulwa must develop its own identity and should not copy Flocus layouts or assets.
+
+The redesign must achieve:
+
+- One clear focal point per mode, with secondary tools progressively disclosed.
+- Professional typography with a restrained scale and excellent numeric rhythm.
+- Calm spatial continuity between Home, Focus, Break, and Ambient.
+- Consistent interaction feedback without visual noise or layout shifts.
+- A workspace that feels personal immediately through time, name, task, and mood.
+- Strong desktop composition and a deliberately redesigned mobile experience.
+- Fast perceived performance; premium must come from hierarchy, restraint, and
+  response quality rather than expensive effects.
+
+### Quality bar
+
+- Primary actions and current context are recognizable within one second.
+- Space changes never flash blank, jump, or reset persistent context.
+- Common interactions respond within 100 ms; visual transitions generally finish
+  within 150–300 ms and always support reduced motion.
+- Timer numerals never change width or jitter.
+- Panels and overlays preserve spatial origin and close in the reverse direction.
+- Loading and hydration do not move already-visible content.
+- Hover is enhancement only; every action works with keyboard and touch.
+- Body copy is at least 16 px by default, with WCAG AA contrast.
+- Every screen is verified at 375, 768, 1024, and 1440 px widths.
+
 ## Product behavior to preserve
 
 - Authentication and server-seeded session data.
@@ -23,6 +54,7 @@ independently reviewable.
 - [ ] Decide whether Khulwa is dark-only or supports light and dark themes.
 - [ ] Approve the information architecture for desktop and mobile navigation.
 - [ ] Decide whether Home, Focus, and Ambient remain state-driven spaces or become routes.
+- [ ] Approve motion direction using a small interactive prototype.
 
 ## Phase 0 — Baseline and safety
 
@@ -31,6 +63,13 @@ independently reviewable.
 - [x] Promote the layered Escape behavior fix to `main`.
 - [x] Create a fresh redesign branch from updated `main`.
 - [ ] Capture baseline screenshots of every current route and major panel state.
+- [ ] Document the current end-to-end Home → task → Focus → completion journey.
+- [ ] Identify every current source of visual jank, layout shift, delayed response,
+      inconsistent dismissal, and interrupted focus continuity.
+- [ ] Create low-fidelity desktop and mobile experience maps before styling.
+- [ ] Produce two visual directions using the same wireframes.
+- [ ] Produce type specimens for body, display, controls, and timer numerals.
+- [ ] Prototype space, panel, and timer transitions before selecting motion tokens.
 - [ ] Add a lightweight critical-flow verification checklist.
 
 ### Acceptance

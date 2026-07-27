@@ -22,6 +22,7 @@ export function InlineEdit({ value, onCommit, parse, ...textProps }: InlineEditP
           e.currentTarget.blur();
         }
         if (e.key === "Escape") {
+          e.preventDefault();
           e.currentTarget.textContent = value;
           e.currentTarget.blur();
         }

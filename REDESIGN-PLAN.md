@@ -119,12 +119,12 @@ The redesign must achieve:
 
 ## Phase 3 — Application shell and navigation
 
-- [ ] Redesign the authenticated application shell.
-- [ ] Redesign desktop navigation.
-- [ ] Design and implement the mobile navigation model.
-- [ ] Rebuild the command palette.
-- [ ] Rebuild persistent timer and sound indicators.
-- [ ] Establish responsive page widths, safe areas, and overlay stacking.
+- [x] Redesign the authenticated application shell.
+- [x] Redesign desktop navigation.
+- [x] Design and implement the mobile navigation model.
+- [x] Rebuild the command palette.
+- [x] Rebuild persistent timer and sound indicators.
+- [x] Establish responsive page widths, safe areas, and overlay stacking.
 
 ### Acceptance
 

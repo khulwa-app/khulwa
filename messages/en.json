@@ -260,7 +260,8 @@
     },
     "chrome": {
       "settings": "Settings",
-      "fullscreen": "Fullscreen"
+      "fullscreen": "Fullscreen",
+      "more": "More tools"
     }
   },
   "rhythm": {

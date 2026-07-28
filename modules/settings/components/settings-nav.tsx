@@ -1,41 +1,12 @@
 "use client";
 
-import { IconButton } from "@chakra-ui/react";
-import { CloseCircle } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
-import { Settings } from "@/theme/slot-recipes/settings";
+import { cn } from "@/lib/cn";
 import { SETTINGS_TABS, type SettingsTab } from "../constants";
 
-interface SettingsNavProps {
-  active: SettingsTab;
-  onSelect: (id: SettingsTab) => void;
-  onClose: () => void;
-}
+interface SettingsNavProps { active: SettingsTab; onSelect: (id: SettingsTab) => void; }
 
-export function SettingsNav({ active, onSelect, onClose }: SettingsNavProps) {
+export function SettingsNav({ active, onSelect }: SettingsNavProps) {
   const t = useTranslations("settings");
-  const tAria = useTranslations("panels.aria");
-
-  return (
-    <Settings.Nav role="tablist" aria-orientation="vertical" aria-label={t("title")}>
-      <IconButton variant="ghost" size="sm" aria-label={tAria("close")} alignSelf="start" mb="1" onClick={onClose}>
-        <Icon icon={CloseCircle} boxSize="4" />
-      </IconButton>
-      {SETTINGS_TABS.map(({ id, icon }) => (
-        <Settings.NavItem
-          key={id}
-          type="button"
-          role="tab"
-          id={`settings-tab-${id}`}
-          aria-selected={active === id}
-          aria-controls={`settings-pane-${id}`}
-          onClick={() => onSelect(id)}
-        >
-          <Icon icon={icon} boxSize="4" />
-          {t(`tabs.${id}`)}
-        </Settings.NavItem>
-      ))}
-    </Settings.Nav>
-  );
+  return <nav aria-label={t("title")} className="flex gap-1 overflow-x-auto border-b border-sage-300 p-3 md:w-44 md:flex-col md:border-r md:border-b-0 md:p-4" role="tablist">{SETTINGS_TABS.map(({ id, icon: Glyph }) => <button aria-controls={`settings-pane-${id}`} aria-selected={active === id} className={cn("flex min-h-10 shrink-0 items-center gap-2 rounded-control px-3 text-sm font-semibold transition-colors", active === id ? "bg-sage-800 text-sage-100" : "text-sage-700 hover:bg-sage-100 hover:text-sage-900")} id={`settings-tab-${id}`} key={id} onClick={() => onSelect(id)} role="tab" type="button"><Glyph className="size-4" weight={active === id ? "Bold" : "Linear"} />{t(`tabs.${id}`)}</button>)}</nav>;
 }

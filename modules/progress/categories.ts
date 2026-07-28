@@ -1,10 +1,10 @@
 export type { CategoryId } from "@/services/progress";
 
 export const CATEGORIES = [
-  { id: "deepWork", color: "category.deepWork" },
-  { id: "learning", color: "category.learning" },
-  { id: "reading", color: "category.reading" },
-  { id: "dhikr", color: "category.dhikr" },
+  { id: "deepWork", color: "#24473F" },
+  { id: "learning", color: "#7FA08D" },
+  { id: "reading", color: "#C97952" },
+  { id: "dhikr", color: "#8A7350" },
 ] as const;
 
 export function dayKey(d: Date = new Date()): string {

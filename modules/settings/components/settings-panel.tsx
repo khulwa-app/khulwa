@@ -1,64 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Presence } from "@chakra-ui/react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Drawer } from "@/theme/slot-recipes/drawer";
-import { Settings } from "@/theme/slot-recipes/settings";
+import { Drawer } from "@/components/ui/primitives";
 import { Panel, usePanels } from "@/modules/panels";
 import { SETTINGS_TABS, type SettingsTab } from "../constants";
 import { SettingsNav } from "./settings-nav";
 
 export function SettingsPanel() {
   const t = useTranslations("settings");
-  const open = usePanels((s) => s.open === Panel.Settings);
-  const close = usePanels((s) => s.close);
+  const open = usePanels((state) => state.open === Panel.Settings);
+  const close = usePanels((state) => state.close);
   const [active, setActive] = useState<SettingsTab>(SETTINGS_TABS[0].id);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [open, close]);
-
   const tab = SETTINGS_TABS.find((entry) => entry.id === active) ?? SETTINGS_TABS[0];
   const Content = tab.content;
 
-  return (
-    <>
-      <Presence present={open} lazyMount unmountOnExit>
-        <Drawer.Backdrop onClick={close} aria-hidden />
-      </Presence>
-      <Presence present={open} lazyMount unmountOnExit>
-        <Drawer.Content
-          role="dialog"
-          aria-modal="true"
-          aria-label={t("title")}
-          w={{ base: "100dvw", md: "min(48rem, 94dvw)" }}
-          maxW="100dvw"
-        >
-          <Settings.Layout>
-            <SettingsNav active={active} onSelect={setActive} onClose={close} />
-            <Settings.Pane
-              id={`settings-pane-${tab.id}`}
-              role="tabpanel"
-              aria-labelledby={`settings-tab-${tab.id}`}
-              minW="0"
-              flex="1"
-            >
-              <Settings.PaneTitle>{t(`tabs.${tab.id}`)}</Settings.PaneTitle>
-              <Content />
-            </Settings.Pane>
-          </Settings.Layout>
-        </Drawer.Content>
-      </Presence>
-    </>
-  );
+  return <Drawer onOpenChange={(next) => { if (!next) close(); }} open={open} title={t("title")}><div className="-m-5 flex min-h-full flex-col md:flex-row"><SettingsNav active={active} onSelect={setActive} /><section aria-labelledby={`settings-tab-${tab.id}`} className="min-w-0 flex-1 p-5 md:p-7" id={`settings-pane-${tab.id}`} role="tabpanel"><p className="mb-6 text-xs font-semibold uppercase tracking-[0.16em] text-sage-700">{t("tabs." + tab.id)}</p><Content /></section></div></Drawer>;
 }

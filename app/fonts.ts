@@ -1,16 +1,9 @@
-import { Geist_Mono, Instrument_Sans, Nunito } from "next/font/google";
+import { Geist_Mono, Nunito } from "next/font/google";
 
 export const nunito = Nunito({
   subsets: ["latin"],
   style: ["normal", "italic"],
   variable: "--font-nunito",
-  display: "swap",
-  preload: true,
-});
-
-export const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument-sans",
   display: "swap",
   preload: true,
 });
@@ -22,4 +15,4 @@ export const geistMono = Geist_Mono({
   preload: true,
 });
 
-export const fontVariables = `${nunito.variable} ${instrumentSans.variable} ${geistMono.variable}`;
+export const fontVariables = `${nunito.variable} ${geistMono.variable}`;

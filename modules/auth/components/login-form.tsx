@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Box, Button, HStack, Input, Text, VStack } from "@chakra-ui/react";
+import { Button, Field, FieldError, FieldLabel, Input } from "@/components/ui";
 import { signIn, signUp } from "@/services/auth";
 
 type Mode = "signin" | "signup";
@@ -17,112 +17,21 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const enter = () => { router.push("/app"); router.refresh(); };
 
-  const enter = () => {
-    router.push("/app");
-    router.refresh();
-  };
-
-  const onGoogle = async () => {
-    setError(null);
-    await signIn.social({ provider: "google", callbackURL: "/app" });
-  };
-
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
+  const onGoogle = async () => { setError(null); await signIn.social({ provider: "google", callbackURL: "/app" }); };
+  const onSubmit = async (event: FormEvent) => {
+    event.preventDefault(); setError(null); setLoading(true);
     try {
-      const res =
-        mode === "signin"
-          ? await signIn.email({ email, password })
-          : await signUp.email({ email, password, name: name || email.split("@")[0] });
-      if (res.error) setError(t("errors.generic"));
-      else enter();
-    } catch {
-      setError(t("errors.network"));
-    } finally {
-      setLoading(false);
-    }
+      const result = mode === "signin" ? await signIn.email({ email, password }) : await signUp.email({ email, password, name: name || email.split("@")[0] });
+      if (result.error) setError(t("errors.generic")); else enter();
+    } catch { setError(t("errors.network")); } finally { setLoading(false); }
   };
 
-  return (
-    <VStack w="full" mx="auto" align="stretch" gap="5">
-      <VStack align="center" textAlign="center" gap="1">
-        <Text textStyle="heading-h3" color="fg">
-          {mode === "signin" ? t("title") : t("signupTitle")}
-        </Text>
-        <Text textStyle="body-sm" color="fg.muted">
-          {mode === "signin" ? t("subtitle") : t("signupSubtitle")}
-        </Text>
-      </VStack>
-
-      <Button variant="secondary" size="lg" onClick={onGoogle} w="full">
-        {t("continueWithGoogle")}
-      </Button>
-
-      <HStack gap="3" color="fg.disabled">
-        <Box flex="1" h="1px" bg="border.subtle" />
-        <Text textStyle="overline">{t("divider")}</Text>
-        <Box flex="1" h="1px" bg="border.subtle" />
-      </HStack>
-
-      <form onSubmit={onSubmit}>
-        <VStack align="stretch" gap="3">
-          {mode === "signup" && (
-            <Input
-              size="lg"
-              placeholder={t("fields.name")}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              autoComplete="name"
-            />
-          )}
-          <Input
-            size="lg"
-            type="email"
-            placeholder={t("fields.email")}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email"
-            required
-          />
-          <Input
-            size="lg"
-            type="password"
-            placeholder={t("fields.password")}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete={mode === "signin" ? "current-password" : "new-password"}
-            minLength={8}
-            required
-          />
-
-          {error && (
-            <Text textStyle="body-sm" color="fg.error">
-              {error}
-            </Text>
-          )}
-
-          <Button type="submit" variant="primary" size="lg" w="full" loading={loading} loadingText={t("submitting")}>
-            {mode === "signin" ? t("submit") : t("signupSubmit")}
-          </Button>
-        </VStack>
-      </form>
-
-      <Text textStyle="body-sm" color="fg.muted" textAlign="center">
-        {mode === "signin" ? `${t("noAccount")} ` : `${t("haveAccount")} `}
-        <Button
-          type="button"
-          variant="link"
-          onClick={() => {
-            setError(null);
-            setMode(mode === "signin" ? "signup" : "signin");
-          }}
-        >
-          {mode === "signin" ? t("createOne") : t("submit")}
-        </Button>
-      </Text>
-    </VStack>
-  );
+  return <div className="grid gap-6"><div className="text-center"><h1 className="text-3xl font-semibold tracking-[-0.05em] text-sage-1000">{mode === "signin" ? t("title") : t("signupTitle")}</h1><p className="mt-3 text-base leading-7 text-sage-700">{mode === "signin" ? t("subtitle") : t("signupSubtitle")}</p></div>
+    <Button onClick={onGoogle} size="lg" tone="secondary" type="button">{t("continueWithGoogle")}</Button>
+    <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.14em] text-sage-600"><span className="h-px flex-1 bg-sage-300" />{t("divider")}<span className="h-px flex-1 bg-sage-300" /></div>
+    <form className="grid gap-4" onSubmit={onSubmit}>{mode === "signup" ? <Field><FieldLabel htmlFor="name">{t("fields.name")}</FieldLabel><Input autoComplete="name" id="name" onChange={(event) => setName(event.target.value)} value={name} /></Field> : null}<Field><FieldLabel htmlFor="email">{t("fields.email")}</FieldLabel><Input autoComplete="email" id="email" onChange={(event) => setEmail(event.target.value)} required type="email" value={email} /></Field><Field><FieldLabel htmlFor="password">{t("fields.password")}</FieldLabel><Input autoComplete={mode === "signin" ? "current-password" : "new-password"} id="password" minLength={8} onChange={(event) => setPassword(event.target.value)} required type="password" value={password} /></Field>{error ? <FieldError>{error}</FieldError> : null}<Button loading={loading} size="lg" type="submit">{mode === "signin" ? t("submit") : t("signupSubmit")}</Button></form>
+    <p className="text-center text-sm text-sage-700">{mode === "signin" ? `${t("noAccount")} ` : `${t("haveAccount")} `}<button className="font-semibold text-sage-1000 underline decoration-sage-400 underline-offset-4" onClick={() => { setError(null); setMode(mode === "signin" ? "signup" : "signin"); }} type="button">{mode === "signin" ? t("createOne") : t("submit")}</button></p>
+  </div>;
 }

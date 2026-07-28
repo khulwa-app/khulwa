@@ -1,16 +1,13 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Nav } from "@/theme/slot-recipes/navbar";
 import { Logo } from "@/components/ui";
 
 export function Navbar({ children }: { children?: ReactNode }) {
   return (
-    <Nav.Root>
-      <Nav.Brand>
-        <Logo size="12" variant="white" />
-      </Nav.Brand>
-      <Nav.Actions>{children}</Nav.Actions>
-    </Nav.Root>
+    <header className="pointer-events-none absolute inset-x-0 top-0 z-30 flex items-start justify-between gap-4 px-4 py-4 sm:px-6 sm:py-5">
+      <div className="pointer-events-auto"><Logo size="8" /></div>
+      {children ? <div className="pointer-events-auto flex min-w-0 flex-col items-end gap-2">{children}</div> : null}
+    </header>
   );
 }

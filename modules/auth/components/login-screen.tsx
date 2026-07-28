@@ -1,18 +1,15 @@
 "use client";
 
-import { Box, Flex, VStack } from "@chakra-ui/react";
 import { Logo } from "@/components/ui";
 import { LoginForm } from "./login-form";
 
 export function LoginScreen() {
   return (
-    <Flex minH="100vh" align="center" justify="center" position="relative" overflow="hidden" bg="bg" px="6">
-      <Box position="absolute" inset={0} layerStyle="space-backdrop" pointerEvents="none" aria-hidden />
-
-      <VStack position="relative" zIndex={1} w="full" maxW="sm" gap="9">
-        <Logo size="10" href={null} />
-        <LoginForm />
-      </VStack>
-    </Flex>
+    <main className="khulwa-foundation grid min-h-dvh place-items-center bg-base-200 px-4 py-8" data-theme="khulwa">
+      <section className="w-full max-w-md rounded-shell border border-sage-300 bg-base-100 p-6 sm:p-10">
+        <div className="flex justify-center"><Logo href={null} size="9" /></div>
+        <div className="mt-10"><LoginForm /></div>
+      </section>
+    </main>
   );
 }

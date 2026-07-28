@@ -10,6 +10,7 @@ export function EditableBody({ task }: { task: Task }) {
 
   return (
     <TaskList.Editable
+      as="span"
       value={task.body}
       onCommit={(body) => updateTask.mutate({ id: task.id, patch: { body } })}
       data-completed={task.completed || undefined}

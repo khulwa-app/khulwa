@@ -12,9 +12,10 @@ export function StepRow({ step }: { step: TaskStep }) {
 
   return (
     <TaskList.StepRow>
-      <input aria-label={t("aria.completeStep")} checked={step.completed} className="checkbox checkbox-sm mt-1 rounded border-sage-500 [--chkbg:theme(colors.sage.800)] [--chkfg:theme(colors.sage.100)]" onChange={() => updateStep.mutate({ id: step.id, patch: { completed: !step.completed } })} type="checkbox" />
+      <input aria-label={t("aria.completeStep")} checked={step.completed} className="checkbox checkbox-sm shrink-0 rounded border-sage-500 [--chkbg:theme(colors.sage.800)] [--chkfg:theme(colors.sage.100)]" onChange={() => updateStep.mutate({ id: step.id, patch: { completed: !step.completed } })} type="checkbox" />
 
       <TaskList.Editable
+        as="span"
         value={step.body}
         onCommit={(body) => updateStep.mutate({ id: step.id, patch: { body } })}
         data-tone="muted"

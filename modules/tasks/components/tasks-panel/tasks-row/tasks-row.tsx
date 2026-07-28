@@ -26,7 +26,7 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
   return (
     <TaskList.Item data-active={task.isDoingNow || undefined} style={{ animationDelay: delay }}>
       <TaskList.Row>
-        <input aria-label={t("aria.complete")} checked={task.completed} className="checkbox checkbox-sm mt-1 rounded border-sage-500 [--chkbg:theme(colors.sage.800)] [--chkfg:theme(colors.sage.100)]" onChange={() => updateTask.mutate({ id: task.id, patch: { completed: !task.completed } })} type="checkbox" />
+        <input aria-label={t("aria.complete")} checked={task.completed} className="checkbox checkbox-sm shrink-0 rounded border-sage-500 [--chkbg:theme(colors.sage.800)] [--chkfg:theme(colors.sage.100)]" onChange={() => updateTask.mutate({ id: task.id, patch: { completed: !task.completed } })} type="checkbox" />
 
         <EditableBody task={task} />
 

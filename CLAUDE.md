@@ -1,6 +1,6 @@
-# Khulwa — CLAUDE.md
+# Riwaq — CLAUDE.md
 
-Khulwa is a calm **focus / deep-work "new tab" dashboard** — pomodoro, ambient sounds, local tasks &
+Riwaq is a calm **focus / deep-work "new tab" dashboard** — pomodoro, ambient sounds, local tasks &
 notes, streak/progress tracking. **One Next.js 16 app at the repo root** (no `client/`, no separate server).
 
 > ⚠️ Heads-up: an earlier version of this file was copied from a different app (a GraphQL/Apollo storefront).
@@ -12,12 +12,12 @@ notes, streak/progress tracking. **One Next.js 16 app at the repo root** (no `cl
 | Aspect | Value |
 | --- | --- |
 | Framework | **Next.js 16** (App Router, Turbopack), React 19, Node ≥ 22 |
-| UI | **Chakra UI v3** (`@chakra-ui/react`) — token/recipe driven |
+| UI | **Tailwind CSS v4 + DaisyUI v5** — semantic theme tokens and component utilities |
 | State | **Zustand** (local/ephemeral) · **TanStack Query** (server data) |
 | Auth | **better-auth** (email + Google), route handlers in `app/api/auth/**` |
 | DB | **Drizzle ORM** + **Neon Postgres** (server-backed: focus-sessions, streak, progress) |
 | i18n | **next-intl** (`en` + `ar`, RTL-aware) |
-| Other | next-themes (dual theme), lucide-react (icons), `@google/genai` (AI), react-howler (sounds) |
+| Other | next-themes, Solar icons, `@google/genai` (AI), react-howler (sounds) |
 | Dev port | **3000** · Path alias | `@/* → ./*` (repo root) |
 
 No Apollo/GraphQL. No Sentry. No yup. No `src/` dir.
@@ -28,7 +28,6 @@ No Apollo/GraphQL. No Sentry. No yup. No `src/` dir.
 yarn dev          # Turbopack on :3000
 yarn build
 yarn lint         # eslint
-yarn typegen      # chakra typegen — RUN AFTER ANY theme change
 yarn db:push      # apply Drizzle schema to Neon   ·   yarn db:studio
 ```
 
@@ -45,24 +44,12 @@ Keep a clean line between server and UI — never let a UI interaction trigger s
 - Route pattern: `app/**/page.tsx` is a thin server component that imports the module component directly
   (`return <HomePage />`). No `client.page.tsx` shims.
 
-## Chakra UI v3 — styling lives in the THEME only
+## UI styling — Tailwind and DaisyUI only
 
-This is the rule we care about most.
-
-- **No inline styling. No `style={}`, no `sx`, no Tailwind, no hardcoded hex/px.** Style only via the theme:
-  **tokens, `textStyle`, `layerStyle`, recipes, slot-recipes**, and Chakra style props that resolve tokens.
-- **Primitives → recipes; compound components → slot-recipes** (`Component.Root` / `Component.Body` pattern,
-  via `createSlotRecipeContext`). Put shared visual logic in the recipe, not the TSX.
-- **Run `yarn typegen` after EVERY theme change** (tokens/recipes/text-styles) or types go stale.
-- **When you don't know a Chakra v3 API, READ THE DOCS** — v3 differs heavily from v2 and from training data.
-  Check `node_modules/@chakra-ui/react` types / the Chakra v3 docs before guessing. Same for **Next 16**:
-  read `node_modules/next/dist/docs/` before writing framework code (APIs have breaking changes).
-- **Recipe hygiene:** no `className` field in recipes; don't re-declare Chakra's built-in defaults in `base`
-  (only overrides); **never `focusRing: 'none'`** (kills keyboard a11y — suppress mouse rings in `globalCss`
-  with `disableLayers`, see `theme/system.ts`); variant names use dot-notation for UI context.
-- **Container sizes:** `container.*` is dead in v3 — use the T-shirt scale (`maxW="7xl"` ≈ 1280px).
-- **Menus:** Chakra `<Menu.Root>/<Menu.Item>` for menus; `SidePanel`/drawer recipe for panels. Don't hand-roll
-  menus from `Button unstyled` (strips focus handling).
+- Use Tailwind utilities and DaisyUI semantic classes only. Theme lives in `app/globals.css`.
+- Use shared primitives in `components/ui/primitives/` for buttons, fields, panels, overlays, menus, and tabs.
+- No gradients, glass, or blur-heavy UI. Sanctuary Dusk is light-first: Bone, Sand, Juniper, Sage, Copper.
+- Preserve visible keyboard focus and 44px touch targets. Read local Next 16 docs before framework changes.
 
 ## Components — clean, small, professional
 
@@ -87,15 +74,11 @@ This is the rule we care about most.
 
 ## Design system (source of truth)
 
-Canonical: **`design-system/khulwa/DESIGN-SYSTEM.md`** — the single design-system reference (clear "liquid
-glass" identity: light-veil glass over a living indigo→violet mesh, bright specular rim, pill-first radii,
-Nunito, dark-first). The implemented theme lives in `theme/` and is the ultimate source of truth; the doc
-mirrors it. **Read it before any space/chrome/type/token work.**
+Canonical: `app/globals.css` and `components/ui/primitives/`. Sanctuary Dusk: light Bone and Sand surfaces,
+Juniper primary actions, Sage support, Copper sparingly for warmth. Rounded, calm, no gradients.
 
 ## Definition of Done (every task)
 
 1. `yarn lint && npx tsc --noEmit` clean.
-2. Tokens/recipes only — no inline styles, no raw hex/px (see styling rules above).
-3. Both light & dark verified for any UI; `prefers-reduced-motion` respected.
-4. Every new user-facing string in `en.json` + `ar.json` via `useTranslations`.
-5. `yarn typegen` run if the theme changed.
+2. Tailwind/DaisyUI primitives used; `prefers-reduced-motion` respected.
+3. Every new user-facing string in `en.json` via `useTranslations`.

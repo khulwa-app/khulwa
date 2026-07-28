@@ -1,110 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Box } from "@chakra-ui/react";
 import { Command } from "cmdk";
 import { useTranslations } from "next-intl";
-import { Palette } from "@/theme/slot-recipes/command-palette";
 import { useHotkey } from "@/modules/shortcuts";
 import { useUiPrefsStore } from "@/modules/ui-prefs";
 import { CMD_PALETTE_HINT_ID } from "../constants";
 import { useCommands } from "../commands";
 
-export function CommandPalette() {
-  const t = useTranslations("palette");
-  const [open, setOpen] = useState(false);
-  const groups = useCommands();
-  const dismissHint = useUiPrefsStore((s) => s.dismissHint);
-
-  const restoreRef = useRef<HTMLElement | null>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  const openPalette = () => {
-    restoreRef.current = (document.activeElement as HTMLElement) ?? null;
-    setOpen(true);
-
-    dismissHint(CMD_PALETTE_HINT_ID);
-  };
-  const close = () => setOpen(false);
-
-  useEffect(() => {
-    if (open) return;
-    restoreRef.current?.focus?.();
-    restoreRef.current = null;
-  }, [open]);
-
-  useHotkey("mod+k", () => (open ? close() : openPalette()), { allowInInput: true });
-
-  const trapTab = (e: React.KeyboardEvent) => {
-    if (e.key !== "Tab") return;
-    const root = contentRef.current;
-    if (!root) return;
-    const focusables = Array.from(
-      root.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
-      ),
-    ).filter((el) => el.offsetParent !== null);
-    if (focusables.length === 0) {
-      e.preventDefault();
-      return;
-    }
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-    const active = document.activeElement;
-    if (e.shiftKey && active === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && active === last) {
-      e.preventDefault();
-      first.focus();
-    }
-  };
-
-  if (!open) return null;
-
-  return (
-    <Palette.Positioner onClick={close} role="presentation">
-      <Palette.Content
-        ref={contentRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label={t("label")}
-        onClick={(e) => e.stopPropagation()}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") {
-            e.stopPropagation();
-            close();
-            return;
-          }
-          trapTab(e);
-        }}
-      >
-        <Command label={t("label")} loop>
-          <Box borderBottomWidth="1px" borderColor="border.subtle">
-            <Command.Input autoFocus placeholder={t("search")} />
-          </Box>
-          <Command.List>
-            <Command.Empty>{t("empty")}</Command.Empty>
-            {groups.map((group) => (
-              <Command.Group key={group.id} heading={group.heading}>
-                {group.commands.map((command) => (
-                  <Command.Item
-                    key={command.id}
-                    value={command.label}
-                    onSelect={() => {
-                      command.run();
-                      close();
-                    }}
-                  >
-                    <span>{command.label}</span>
-                    {command.hint ? <Palette.Kbd>{command.hint}</Palette.Kbd> : null}
-                  </Command.Item>
-                ))}
-              </Command.Group>
-            ))}
-          </Command.List>
-        </Command>
-      </Palette.Content>
-    </Palette.Positioner>
-  );
-}
+export function CommandPalette() { const t = useTranslations("palette"); const [open, setOpen] = useState(false); const groups = useCommands(); const dismissHint = useUiPrefsStore((state) => state.dismissHint); const restoreRef = useRef<HTMLElement | null>(null); const contentRef = useRef<HTMLDivElement>(null); const openPalette = () => { restoreRef.current = document.activeElement as HTMLElement; setOpen(true); dismissHint(CMD_PALETTE_HINT_ID); }; const close = () => setOpen(false); useEffect(() => { if (!open) { restoreRef.current?.focus?.(); restoreRef.current = null; } }, [open]); useHotkey("mod+k", () => (open ? close() : openPalette()), { allowInInput: true }); const trapTab = (event: React.KeyboardEvent) => { if (event.key !== "Tab") return; const root = contentRef.current; if (!root) return; const focusables = Array.from(root.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter((element) => element.offsetParent !== null); if (!focusables.length) { event.preventDefault(); return; } const [first] = focusables; const last = focusables.at(-1)!; if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); } else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); } }; if (!open) return null; return <div className="fixed inset-0 z-50 grid place-items-start bg-sage-1000/45 px-4 pt-[min(16vh,8rem)]" onClick={close} role="presentation"><div aria-label={t("label")} aria-modal="true" className="w-full max-w-xl overflow-hidden rounded-panel border border-sage-300 bg-base-100 shadow-none" onClick={(event) => event.stopPropagation()} onKeyDown={(event) => { if (event.key === "Escape") { event.stopPropagation(); close(); return; } trapTab(event); }} ref={contentRef} role="dialog"><Command label={t("label")} loop><div className="border-b border-sage-300"><Command.Input autoFocus className="h-14 w-full bg-transparent px-5 text-sm text-sage-1000 outline-none placeholder:text-sage-600" placeholder={t("search")} /></div><Command.List className="max-h-[min(55vh,30rem)] overflow-y-auto p-2"><Command.Empty className="px-3 py-8 text-center text-sm text-sage-700">{t("empty")}</Command.Empty>{groups.map((group) => <Command.Group className="mb-2 last:mb-0" heading={group.heading} key={group.id}>{group.commands.map((command) => <Command.Item className="flex min-h-11 cursor-pointer items-center justify-between gap-4 rounded-control px-3 text-sm text-sage-800 aria-selected:bg-sage-100 aria-selected:text-sage-1000" key={command.id} onSelect={() => { command.run(); close(); }} value={command.label}><span>{command.label}</span>{command.hint ? <kbd className="rounded border border-sage-300 bg-base-200 px-1.5 py-0.5 font-mono text-xs text-sage-700">{command.hint}</kbd> : null}</Command.Item>)}</Command.Group>)}</Command.List></Command></div></div>; }

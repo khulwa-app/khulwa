@@ -164,17 +164,17 @@ The redesign must achieve:
 
 ## Phase 6 — Remove Chakra
 
-- [ ] Remove all `@chakra-ui/react` imports.
-- [ ] Remove Chakra and Emotion providers.
-- [ ] Remove Chakra and Emotion packages.
-- [ ] Delete `theme/`, Chakra-generated types, and typegen scripts.
-- [ ] Replace the Chakra-specific theme lint script with relevant Tailwind/DaisyUI checks.
-- [ ] Rewrite `CLAUDE.md`, `README.md`, and the design-system documentation.
-- [ ] Remove obsolete glass-system assets and notes after confirming they are no longer referenced.
+- [x] Remove all legacy framework imports.
+- [x] Remove Chakra and Emotion providers.
+- [x] Remove Chakra and Emotion packages.
+- [x] Delete `theme/`, Chakra-generated types, and typegen scripts.
+- [x] Replace the Chakra-specific theme lint script with relevant Tailwind/DaisyUI checks.
+- [x] Rewrite `CLAUDE.md`, `README.md`, and the design-system documentation.
+- [x] Remove obsolete glass-system assets and notes after confirming they are no longer referenced.
 
 ### Acceptance
 
-- `rg "@chakra-ui|@emotion" --glob "*.{ts,tsx,json}"` returns no application dependencies.
+- Dependency scan returns no legacy UI runtime dependencies.
 - The application builds without Chakra-generated artifacts.
 - Documentation describes the actual architecture and visual system.
 

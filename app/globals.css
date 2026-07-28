@@ -13,14 +13,14 @@
   prefersdark: false;
   color-scheme: light;
 
-  --color-base-100: #fffdf9;
-  --color-base-200: #f7f2e8;
-  --color-base-300: #e9ddc8;
-  --color-base-content: #182d29;
-  --color-primary: #24473f;
-  --color-primary-content: #f7f2e8;
-  --color-secondary: #7fa08d;
-  --color-secondary-content: #101a19;
+  --color-base-100: #182d29;
+  --color-base-200: #101a19;
+  --color-base-300: #24473f;
+  --color-base-content: #f7f2e8;
+  --color-primary: #7fa08d;
+  --color-primary-content: #101a19;
+  --color-secondary: #24473f;
+  --color-secondary-content: #f7f2e8;
   --color-accent: #c97952;
   --color-accent-content: #101a19;
   --color-neutral: #101a19;
@@ -79,9 +79,51 @@
 }
 
 @layer utilities {
+  .riwaq-dark {
+    background: #101a19;
+    color: #f7f2e8;
+  }
+
+  .riwaq-dark .text-sage-1000,
+  .riwaq-dark .text-sage-900 {
+    color: #f7f2e8;
+  }
+
+  .riwaq-dark .text-sage-800 {
+    color: #e9ddc8;
+  }
+
+  .riwaq-dark .text-sage-700 {
+    color: #b9c9bc;
+  }
+
+  .riwaq-dark .text-sage-600 {
+    color: #9eb4a6;
+  }
+
+  .riwaq-dark .bg-sage-100 {
+    background-color: #24473f;
+  }
+
+  .riwaq-dark .bg-sage-200 {
+    background-color: #2f5148;
+  }
+
+  .riwaq-dark .bg-sage-300 {
+    background-color: #3d5f53;
+  }
+
+  .riwaq-dark .border-sage-300 {
+    border-color: #3d5f53;
+  }
+
+  .riwaq-dark .border-sage-400 {
+    border-color: #5c7c6e;
+  }
+
   .khulwa-foundation {
-    background: var(--color-base-200);
-    color: var(--color-base-content);
+    background: #101a19;
+    color: #f7f2e8;
     font-family: var(--font-nunito), sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;

@@ -1,58 +1,16 @@
 "use client";
 
 import { memo } from "react";
-import { Box, Button, HStack, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/cn";
 import { PomodoroPhase } from "../types";
 
-type PhaseTabsProps = {
-  phase: PomodoroPhase;
-  currentRound: number;
-  totalRounds: number;
-  onPhaseChange: (phase: PomodoroPhase) => void;
-};
+type PhaseTabsProps = { phase: PomodoroPhase; currentRound: number; totalRounds: number; onPhaseChange: (phase: PomodoroPhase) => void };
 
 function PhaseTabsComponent({ phase, currentRound, totalRounds, onPhaseChange }: PhaseTabsProps) {
   const t = useTranslations("khulwa");
-
-  const tabProps = (target: PomodoroPhase) =>
-    ({
-      role: "tab",
-      "aria-selected": phase === target,
-      variant: phase === target ? "primary" : "outline",
-      size: "sm",
-      onClick: () => onPhaseChange(target),
-    }) as const;
-
-  return (
-    <HStack role="tablist" aria-label={t("aria.phaseTabs")} align="start" gap="2">
-      <VStack gap="2" align="center">
-        <Button {...tabProps(PomodoroPhase.Focus)}>{t("phase.focus")}</Button>
-
-        <HStack
-          role="progressbar"
-          aria-valuemin={1}
-          aria-valuemax={totalRounds}
-          aria-valuenow={currentRound}
-          aria-label={t("aria.roundProgress", { current: currentRound, total: totalRounds })}
-          gap="2"
-        >
-          {Array.from({ length: totalRounds }, (_, index) => (
-            <Box
-              key={index}
-              aria-hidden
-              boxSize="2"
-              rounded="full"
-              bg={index < currentRound ? "primary.solid" : "fg.onMesh.subtle"}
-            />
-          ))}
-        </HStack>
-      </VStack>
-
-      <Button {...tabProps(PomodoroPhase.ShortBreak)}>{t("phase.shortBreak")}</Button>
-      <Button {...tabProps(PomodoroPhase.LongBreak)}>{t("phase.longBreak")}</Button>
-    </HStack>
-  );
+  const phases = [PomodoroPhase.Focus, PomodoroPhase.ShortBreak, PomodoroPhase.LongBreak] as const;
+  return <div aria-label={t("aria.phaseTabs")} className="grid justify-items-center gap-3" role="tablist"><div className="tabs tabs-box rounded-control border border-sage-300 bg-base-100 p-1">{phases.map((target) => <button aria-selected={phase === target} className={cn("tab h-10 rounded-[0.65rem] px-3 text-sm font-semibold", phase === target ? "bg-sage-800 text-sage-100" : "text-sage-700")} key={target} onClick={() => onPhaseChange(target)} role="tab" type="button">{t(`phase.${target}`)}</button>)}</div><div aria-label={t("aria.roundProgress", { current: currentRound, total: totalRounds })} className="flex gap-2" role="progressbar">{Array.from({ length: totalRounds }, (_, index) => <span className={cn("size-2 rounded-full", index < currentRound ? "bg-sage-700" : "bg-sage-300")} key={index} />)}</div></div>;
 }
 
 export const PhaseTabs = memo(PhaseTabsComponent);

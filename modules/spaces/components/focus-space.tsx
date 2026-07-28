@@ -1,117 +1,32 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Box, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
-import { Pause, Play, Restart, SkipNext } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
 import { formatPomodoro } from "@/modules/clock";
-import { usePomodoro, usePomodoroHydrated, PhaseTabs, PomodoroPhase } from "@/modules/pomodoro";
 import { CategoryChip, useProgressStore } from "@/modules/progress";
 import { useLogFocusSession } from "@/services/progress";
 import { DoingNowCaption } from "@/modules/tasks/components/doing-now/doing-now-caption";
-import { SpaceBackground } from "./space-background";
+import { usePomodoro, usePomodoroHydrated, PhaseTabs, PomodoroPhase } from "@/modules/pomodoro";
 import { BreakScreen } from "./break-screen";
+import { SpaceBackground } from "./space-background";
+
+function ControlIcon({ kind }: { kind: "play" | "pause" | "reset" | "skip" }) {
+  if (kind === "play") return <svg aria-hidden className="size-6" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z" fill="currentColor" /></svg>;
+  if (kind === "pause") return <svg aria-hidden className="size-6" viewBox="0 0 24 24"><path d="M7 5h3v14H7zm7 0h3v14h-3z" fill="currentColor" /></svg>;
+  if (kind === "reset") return <svg aria-hidden className="size-5" fill="none" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" /></svg>;
+  return <svg aria-hidden className="size-5" fill="none" viewBox="0 0 24 24"><path d="m5 5 8 7-8 7V5Zm9 0 5 7-5 7V5Z" fill="currentColor" /></svg>;
+}
 
 export function FocusSpace() {
   const t = useTranslations("khulwa");
   const hydrated = usePomodoroHydrated();
-  const {
-    minutes,
-    seconds,
-    isRunning,
-    hasStarted,
-    phase,
-    currentRound,
-    totalRounds,
-    completionCount,
-    lastCompletedPhase,
-    focusMinutes,
-    start,
-    pause,
-    reset,
-    skip,
-    setPhase,
-  } = usePomodoro();
-  const primaryLabel = isRunning ? t("actions.pause") : hasStarted ? t("actions.resume") : t("actions.begin");
-
-  const selected = useProgressStore((s) => s.selected);
+  const timer = usePomodoro();
+  const selected = useProgressStore((state) => state.selected);
   const { mutate: logSession } = useLogFocusSession();
-  const loggedCompletion = useRef(completionCount);
-  useEffect(() => {
-    if (completionCount <= loggedCompletion.current) return;
-    loggedCompletion.current = completionCount;
-    if (lastCompletedPhase !== PomodoroPhase.Focus) return;
-    const endedAt = new Date();
-    const startedAt = new Date(endedAt.getTime() - focusMinutes * 60_000);
-    logSession({
-      category: selected,
-      durationSeconds: focusMinutes * 60,
-      startedAt: startedAt.toISOString(),
-      endedAt: endedAt.toISOString(),
-    });
-  }, [completionCount, lastCompletedPhase, focusMinutes, selected, logSession]);
+  const loggedCompletion = useRef(timer.completionCount);
+  useEffect(() => { if (timer.completionCount <= loggedCompletion.current) return; loggedCompletion.current = timer.completionCount; if (timer.lastCompletedPhase !== PomodoroPhase.Focus) return; const endedAt = new Date(); logSession({ category: selected, durationSeconds: timer.focusMinutes * 60, startedAt: new Date(endedAt.getTime() - timer.focusMinutes * 60_000).toISOString(), endedAt: endedAt.toISOString() }); }, [logSession, selected, timer.completionCount, timer.focusMinutes, timer.lastCompletedPhase]);
 
-  return (
-    <Box position="relative" minH="full" w="full" bg="bg" overflowX="hidden">
-      <SpaceBackground />
-      {hydrated && (
-        <VStack
-          position="relative"
-          zIndex={1}
-          minH="full"
-          w="full"
-          justify="center"
-          align="center"
-          paddingInline="6"
-          paddingBlock={{ base: "16", md: "20" }}
-        >
-          {phase === PomodoroPhase.ShortBreak || phase === PomodoroPhase.LongBreak ? (
-            <BreakScreen
-              phase={phase}
-              minutes={minutes}
-              seconds={seconds}
-              isRunning={isRunning}
-              onToggle={isRunning ? pause : start}
-              onSkip={skip}
-            />
-          ) : (
-            <VStack gap={{ base: "5", md: "7" }} align="center">
-            <PhaseTabs phase={phase} currentRound={currentRound} totalRounds={totalRounds} onPhaseChange={setPhase} />
-
-            <Text textStyle="numeric-display" data-numeric color="fg" suppressHydrationWarning>
-              {formatPomodoro(minutes, seconds)}
-            </Text>
-
-            <DoingNowCaption />
-
-            <CategoryChip />
-
-            <HStack gap="6" align="center">
-              <IconButton onClick={reset} variant="ghost" boxSize="12" rounded="full" aria-label={t("actions.reset")}>
-                <Icon icon={Restart} boxSize="5" />
-              </IconButton>
-              <IconButton
-                onClick={isRunning ? pause : start}
-                variant="primary"
-                boxSize="16"
-                rounded="full"
-                aria-label={primaryLabel}
-              >
-                {isRunning ? (
-                  <Icon icon={Pause} weight="Bold" boxSize="6.5" />
-                ) : (
-                  <Icon icon={Play} weight="Bold" boxSize="6.5" />
-                )}
-              </IconButton>
-              <IconButton onClick={skip} variant="ghost" boxSize="12" rounded="full" aria-label={t("actions.skip")}>
-                <Icon icon={SkipNext} boxSize="5" />
-              </IconButton>
-            </HStack>
-            </VStack>
-          )}
-        </VStack>
-      )}
-    </Box>
-  );
+  if (!hydrated) return <section className="min-h-dvh bg-base-200" />;
+  const breaking = timer.phase === PomodoroPhase.ShortBreak || timer.phase === PomodoroPhase.LongBreak;
+  return <section className="relative grid min-h-dvh place-items-center overflow-hidden bg-base-200 px-5 py-24"><SpaceBackground />{breaking ? <div className="relative"><BreakScreen isRunning={timer.isRunning} minutes={timer.minutes} onSkip={timer.skip} onToggle={timer.isRunning ? timer.pause : timer.start} phase={timer.phase} seconds={timer.seconds} /></div> : <div className="relative grid justify-items-center gap-7 text-center"><PhaseTabs currentRound={timer.currentRound} onPhaseChange={timer.setPhase} phase={timer.phase} totalRounds={timer.totalRounds} /><p className="khulwa-numeric text-[clamp(5rem,16vw,11rem)] font-medium leading-none tracking-[-0.1em] text-sage-1000">{formatPomodoro(timer.minutes, timer.seconds)}</p><DoingNowCaption /><CategoryChip /><div className="flex items-center gap-4"><button aria-label={t("actions.reset")} className="grid size-12 place-items-center rounded-full border border-sage-300 bg-base-100 text-sage-800 hover:border-sage-500" onClick={timer.reset} type="button"><ControlIcon kind="reset" /></button><button aria-label={timer.isRunning ? t("actions.pause") : timer.hasStarted ? t("actions.resume") : t("actions.begin")} className="grid size-16 place-items-center rounded-full bg-sage-800 text-sage-100 shadow-none transition-colors hover:bg-sage-700" onClick={timer.isRunning ? timer.pause : timer.start} type="button"><ControlIcon kind={timer.isRunning ? "pause" : "play"} /></button><button aria-label={t("actions.skip")} className="grid size-12 place-items-center rounded-full border border-sage-300 bg-base-100 text-sage-800 hover:border-sage-500" onClick={timer.skip} type="button"><ControlIcon kind="skip" /></button></div></div>}</section>;
 }

@@ -1,69 +1,14 @@
 "use client";
 
-import { Box, Button, HStack, Text, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
-import { LockKeyholeMinimalistic, SkipNext } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
+import { Button } from "@/components/ui";
 import { formatClock, formatPomodoro, useClock } from "@/modules/clock";
 import { PomodoroPhase } from "@/modules/pomodoro";
 
-interface BreakScreenProps {
-  phase: PomodoroPhase;
-  minutes: number;
-  seconds: number;
-  isRunning: boolean;
-  onToggle: () => void;
-  onSkip: () => void;
-}
+type BreakScreenProps = { phase: PomodoroPhase; minutes: number; seconds: number; isRunning: boolean; onToggle: () => void; onSkip: () => void };
 
 export function BreakScreen({ phase, minutes, seconds, isRunning, onToggle, onSkip }: BreakScreenProps) {
-  const t = useTranslations("khulwa");
-  const now = useClock();
-  const key = phase === PomodoroPhase.LongBreak ? "longBreak" : "shortBreak";
-
-  const lockScreen = () => {
-    if (typeof document === "undefined") return;
-    if (document.fullscreenElement) void document.exitFullscreen?.();
-    else void document.documentElement.requestFullscreen?.();
-  };
-
-  return (
-    <VStack gap={{ base: "5", md: "6" }} align="center" maxW="2xl" textAlign="center">
-      <Text textStyle="hero-meta" color="fg.onMesh.muted" suppressHydrationWarning>
-        {t("break.currentTime", { time: formatClock(now, { hour12: true }) })}
-      </Text>
-
-      <Text textStyle="greeting" color="fg.onMesh">
-        {t(`break.${key}.title`)}
-      </Text>
-
-      <Text textStyle="body-lg" color="fg.onMesh.muted" maxW="md">
-        {t(`break.${key}.subtitle`)}
-      </Text>
-
-      <Box w="24" h="1px" bg="glass.borderLit" rounded="full" />
-
-      <Text textStyle="numeric-display" data-numeric color="fg.onMesh.subtle" suppressHydrationWarning>
-        {formatPomodoro(minutes, seconds)}
-      </Text>
-
-      <HStack gap="3" pt="1">
-        <Button variant="onGlass.outline" size="lg" onClick={onToggle}>
-          {isRunning ? t("actions.pause") : t("actions.resume")}
-        </Button>
-        <Button variant="onGlass.ghost" size="lg" onClick={onSkip}>
-          <Icon icon={SkipNext} boxSize="4" />
-          {t("actions.skip")}
-        </Button>
-        <Button variant="onGlass.ghost" size="lg" onClick={lockScreen}>
-          <Icon icon={LockKeyholeMinimalistic} boxSize="4" />
-          {t("break.lockScreen")}
-        </Button>
-      </HStack>
-
-      <Text textStyle="label-md" color="fg.onMesh.subtle">
-        {t("break.footerHint")}
-      </Text>
-    </VStack>
-  );
+  const t = useTranslations("khulwa"); const now = useClock(); const key = phase === PomodoroPhase.LongBreak ? "longBreak" : "shortBreak";
+  const fullscreen = () => { if (document.fullscreenElement) void document.exitFullscreen(); else void document.documentElement.requestFullscreen?.(); };
+  return <div className="grid max-w-2xl justify-items-center gap-6 text-center"><p className="text-sm font-medium text-sage-700">{t("break.currentTime", { time: formatClock(now, { hour12: true }) })}</p><h1 className="text-4xl font-semibold tracking-[-0.06em] text-sage-1000 sm:text-6xl">{t(`break.${key}.title`)}</h1><p className="max-w-md text-base leading-7 text-sage-800">{t(`break.${key}.subtitle`)}</p><span className="h-px w-24 bg-sage-300" /><p className="khulwa-numeric text-6xl font-medium tracking-[-0.08em] text-sage-800 sm:text-8xl">{formatPomodoro(minutes, seconds)}</p><div className="flex flex-wrap justify-center gap-3"><Button onClick={onToggle} tone="secondary">{isRunning ? t("actions.pause") : t("actions.resume")}</Button><Button onClick={onSkip} tone="quiet">{t("actions.skip")}</Button><Button onClick={fullscreen} tone="quiet">{t("break.lockScreen")}</Button></div><p className="text-sm text-sage-700">{t("break.footerHint")}</p></div>;
 }

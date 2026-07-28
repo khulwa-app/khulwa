@@ -1,79 +1,20 @@
 "use client";
 
-import { Text } from "@chakra-ui/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useUser } from "@/components/providers/session-provider";
-import { Home } from "@/theme/slot-recipes/home-space";
-import {
-  formatClock,
-  formatGregorianDate,
-  getTimeBand,
-  getWeekdayName,
-  useClock,
-} from "@/modules/clock";
+import { formatClock, formatGregorianDate, getTimeBand, getWeekdayName, useClock } from "@/modules/clock";
 import { useMounted } from "@/hooks/use-mounted";
 import { SpaceBackground } from "./space-background";
-
-const NBSP = " ";
 
 export function HomeSpace() {
   const t = useTranslations("home");
   const locale = useLocale();
   const user = useUser();
-  const name = user?.name?.split(" ")[0]?.trim() || t("guest");
   const now = useClock({ intervalMs: 60_000 });
-  const band = getTimeBand(now);
   const mounted = useMounted();
+  const name = user?.name?.split(" ")[0]?.trim() || t("guest");
+  const time = mounted ? formatClock(now, { hour12: true, meridiem: false, locale }) : "";
+  const date = mounted ? [getWeekdayName(now, locale), formatGregorianDate(now, locale)].filter(Boolean).join(" · ") : "";
 
-  const time = mounted ? formatClock(now, { hour12: true, meridiem: false, locale }) : NBSP;
-  const dateLine = mounted
-    ? [getWeekdayName(now, locale), formatGregorianDate(now, locale)]
-        .filter(Boolean)
-        .join(" · ")
-    : NBSP;
-  const greeting = mounted ? t(`headline.${band}`, { name }) : NBSP;
-
-  const entrance = (delayMs: number) =>
-    mounted
-      ? {
-          animationName: "rise-in",
-          animationDuration: "slow",
-          animationDelay: `${delayMs}ms`,
-          animationTimingFunction: "enter",
-          animationFillMode: "backwards" as const,
-          _motionReduce: { animationName: "fade-in", animationDelay: "0ms" },
-        }
-      : { opacity: 0 };
-
-  return (
-    <Home.Root>
-      <SpaceBackground />
-
-      <Home.Stage>
-        <Home.Intro>
-          <Text textStyle="hero-greeting" color="fg.onMesh" suppressHydrationWarning {...entrance(250)}>
-            {greeting}
-          </Text>
-
-          <Text
-            textStyle="clock-display"
-            color="fg.onMesh"
-            suppressHydrationWarning
-            {...entrance(350)}
-          >
-            {time}
-          </Text>
-
-          <Text
-            textStyle="hero-date"
-            color="fg.onMesh.muted"
-            suppressHydrationWarning
-            {...entrance(450)}
-          >
-            {dateLine}
-          </Text>
-        </Home.Intro>
-      </Home.Stage>
-    </Home.Root>
-  );
+  return <section className="relative grid min-h-dvh place-items-center overflow-hidden bg-base-200 px-5 py-24 text-center"><SpaceBackground /><div className="relative max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.2em] text-sage-700">{date}</p><h1 className="mt-5 text-[clamp(2.75rem,8vw,6.75rem)] font-semibold leading-[0.9] tracking-[-0.07em] text-sage-1000">{mounted ? t(`headline.${getTimeBand(now)}`, { name }) : ""}</h1><p className="khulwa-numeric mt-8 text-[clamp(3rem,7vw,6rem)] font-medium tracking-[-0.09em] text-sage-800">{time}</p><p className="mt-5 text-base text-sage-700">{t("subtitle")}</p></div></section>;
 }

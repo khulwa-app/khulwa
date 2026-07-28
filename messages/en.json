@@ -107,13 +107,6 @@
     "resume": {
       "title": "Continue your session"
     },
-    "categories": {
-      "deepWork": "Deep Work",
-      "learning": "Learning",
-      "reading": "Reading",
-      "dhikr": "Dhikr",
-      "none": "No category"
-    },
     "progress": {
       "title": "Progress",
       "today": "Today's focus",

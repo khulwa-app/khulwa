@@ -1,7 +1,6 @@
 import { and, eq, gte } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { dailyCategoryTotal } from "@/lib/db/schema/focus";
-import type { Category } from "@/lib/services/tracking";
+import { dailyFocusTotal } from "@/lib/db/schema/focus";
 import { requireUser } from "@/lib/api/auth";
 import { json, route } from "@/lib/api/http";
 
@@ -22,25 +21,17 @@ export const GET = route(async (req) => {
 
   const rows = await db
     .select({
-      day: dailyCategoryTotal.day,
-      category: dailyCategoryTotal.category,
-      totalSeconds: dailyCategoryTotal.totalSeconds,
+      day: dailyFocusTotal.day,
+      totalSeconds: dailyFocusTotal.totalSeconds,
     })
-    .from(dailyCategoryTotal)
-    .where(and(eq(dailyCategoryTotal.userId, user.id), gte(dailyCategoryTotal.day, since)));
+    .from(dailyFocusTotal)
+    .where(and(eq(dailyFocusTotal.userId, user.id), gte(dailyFocusTotal.day, since)));
 
-  const totals: Partial<Record<Category, number>> = {};
-  const seriesMap = new Map<string, Partial<Record<Category, number>>>();
-  for (const r of rows) {
-    totals[r.category] = (totals[r.category] ?? 0) + r.totalSeconds;
-    const bucket = seriesMap.get(r.day) ?? {};
-    bucket[r.category] = r.totalSeconds;
-    seriesMap.set(r.day, bucket);
-  }
+  const totalSeconds = rows.reduce((sum, row) => sum + row.totalSeconds, 0);
 
-  const series = [...seriesMap.entries()]
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([day, cats]) => ({ day, ...cats }));
+  const series = rows
+    .map((row) => ({ day: row.day, totalSeconds: row.totalSeconds }))
+    .sort((a, b) => a.day.localeCompare(b.day));
 
-  return json({ range, totals, series });
+  return json({ range, totalSeconds, series });
 });

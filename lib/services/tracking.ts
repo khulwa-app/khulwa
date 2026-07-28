@@ -1,16 +1,11 @@
-import { and, eq, sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import type { DB } from "@/lib/db";
-import { dailyCategoryTotal, focusSession, streak } from "@/lib/db/schema/focus";
+import { dailyFocusTotal, focusSession, streak } from "@/lib/db/schema/focus";
 
 type Tx = Parameters<Parameters<DB["transaction"]>[0]>[0];
 
-export type Category = (typeof focusSession.category.enumValues)[number];
-
-export const CATEGORIES = focusSession.category.enumValues;
-
 export type FocusSessionInput = {
   userId: string;
-  category: Category | null;
   durationSeconds: number;
   startedAt: Date;
   endedAt: Date;
@@ -52,40 +47,29 @@ export async function recordFocusSession(db: DB, input: FocusSessionInput) {
   return db.transaction(async (tx) => {
     await tx.insert(focusSession).values({
       userId: input.userId,
-      category: input.category,
       durationSeconds: input.durationSeconds,
       startedAt: input.startedAt,
       endedAt: input.endedAt,
     });
 
-    if (input.category) {
-      await tx
-        .insert(dailyCategoryTotal)
-        .values({
-          userId: input.userId,
-          day,
-          category: input.category,
-          totalSeconds: input.durationSeconds,
-        })
-        .onConflictDoUpdate({
-          target: [dailyCategoryTotal.userId, dailyCategoryTotal.day, dailyCategoryTotal.category],
-          set: {
-            totalSeconds: sql`${dailyCategoryTotal.totalSeconds} + ${input.durationSeconds}`,
-            updatedAt: new Date(),
-          },
-        });
-    }
+    const [dailyTotal] = await tx
+      .insert(dailyFocusTotal)
+      .values({
+        userId: input.userId,
+        day,
+        totalSeconds: input.durationSeconds,
+      })
+      .onConflictDoUpdate({
+        target: [dailyFocusTotal.userId, dailyFocusTotal.day],
+        set: {
+          totalSeconds: sql`${dailyFocusTotal.totalSeconds} + ${input.durationSeconds}`,
+          updatedAt: new Date(),
+        },
+      })
+      .returning({ totalSeconds: dailyFocusTotal.totalSeconds });
 
     const streakRow = await recomputeStreak(tx, input.userId, day);
 
-    const rows = await tx
-      .select({ category: dailyCategoryTotal.category, totalSeconds: dailyCategoryTotal.totalSeconds })
-      .from(dailyCategoryTotal)
-      .where(and(eq(dailyCategoryTotal.userId, input.userId), eq(dailyCategoryTotal.day, day)));
-
-    const todayTotals: Partial<Record<Category, number>> = {};
-    for (const r of rows) todayTotals[r.category] = r.totalSeconds;
-
-    return { streak: streakRow, todayTotals };
+    return { streak: streakRow, totalSeconds: dailyTotal.totalSeconds };
   });
 }

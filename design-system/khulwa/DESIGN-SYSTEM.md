@@ -131,6 +131,6 @@ Motion is minimal and functional.
 - Contrast is readable in dark mode.
 - All interactive controls have labels and keyboard focus.
 - No clipped text in panels or buttons.
-- No random hex colors in feature code unless they are chart/category swatches.
+- No random hex colors in feature code unless they are chart swatches.
 - No new component invents its own radius, border, or hover treatment.
 - The screen should still look premium with all ambient artwork disabled.

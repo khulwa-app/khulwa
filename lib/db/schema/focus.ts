@@ -1,8 +1,6 @@
 import { randomUUID } from "node:crypto";
-import { pgTable, pgEnum, text, integer, timestamp, date, unique } from "drizzle-orm/pg-core";
+import { pgTable, text, integer, timestamp, date, unique } from "drizzle-orm/pg-core";
 import { user } from "./auth";
-
-export const category = pgEnum("category", ["deepWork", "learning", "reading", "dhikr"]);
 
 export const focusSession = pgTable("focus_session", {
   id: text("id")
@@ -12,15 +10,14 @@ export const focusSession = pgTable("focus_session", {
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
 
-  category: category("category"),
   durationSeconds: integer("duration_seconds").notNull(),
   startedAt: timestamp("started_at", { withTimezone: true }).notNull(),
   endedAt: timestamp("ended_at", { withTimezone: true }).notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
-export const dailyCategoryTotal = pgTable(
-  "daily_category_total",
+export const dailyFocusTotal = pgTable(
+  "daily_focus_total",
   {
     id: text("id")
       .primaryKey()
@@ -29,11 +26,10 @@ export const dailyCategoryTotal = pgTable(
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
     day: date("day").notNull(),
-    category: category("category").notNull(),
     totalSeconds: integer("total_seconds").notNull().default(0),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (t) => [unique("daily_category_total_user_day_category").on(t.userId, t.day, t.category)],
+  (t) => [unique("daily_focus_total_user_day").on(t.userId, t.day)],
 );
 
 export const streak = pgTable("streak", {

@@ -1,32 +1,6 @@
 "use client";
 
-import { Box, Slider, type BoxProps } from "@chakra-ui/react";
+import { cn } from "@/lib/cn";
 
-interface VolumeSliderProps extends Omit<BoxProps, "onChange"> {
-  value: number;
-  onChange: (value: number) => void;
-  label: string;
-}
-
-export function VolumeSlider({ value, onChange, label, ...boxProps }: VolumeSliderProps) {
-  return (
-    <Box layerStyle="sliderAccent" paddingInline="1" {...boxProps}>
-      <Slider.Root
-        size="sm"
-        min={0}
-        max={100}
-        step={5}
-        value={[Math.round(value * 100)]}
-        onValueChange={(details) => onChange(details.value[0] / 100)}
-        aria-label={[label]}
-      >
-        <Slider.Control>
-          <Slider.Track>
-            <Slider.Range />
-          </Slider.Track>
-          <Slider.Thumbs />
-        </Slider.Control>
-      </Slider.Root>
-    </Box>
-  );
-}
+interface VolumeSliderProps { value: number; onChange: (value: number) => void; label: string; className?: string; }
+export function VolumeSlider({ value, onChange, label, className }: VolumeSliderProps) { return <input aria-label={label} className={cn("range range-xs accent-[#24473F]", className)} max="100" min="0" onChange={(event) => onChange(Number(event.target.value) / 100)} step="5" type="range" value={Math.round(value * 100)} />; }

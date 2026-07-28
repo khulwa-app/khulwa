@@ -1,9 +1,7 @@
 "use client";
 
-import { HStack, IconButton, VStack } from "@chakra-ui/react";
 import { VolumeCross, VolumeLoud } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
-import { ScrollArea } from "@/components/ui";
+import { IconButton, ScrollArea } from "@/components/ui";
 import { Panel, SidePanel, usePanels } from "../panels";
 import { SOUNDS } from "./catalog";
 import { useSounds } from "./hooks/use-sounds-store.hook";
@@ -21,7 +19,7 @@ export default function SoundsPanel() {
 
   return (
     <SidePanel open={open} title="Ambient" onClose={close}>
-      <VStack h="full" w="full" gap="3" align="stretch">
+      <div className="flex h-full w-full flex-col gap-3">
         <ScrollArea className="min-h-0 w-full flex-1">
           <SoundGrid.Root>
             {SOUNDS.map((def) => (
@@ -30,13 +28,13 @@ export default function SoundsPanel() {
           </SoundGrid.Root>
         </ScrollArea>
 
-        <HStack flexShrink="0" gap="2" align="center">
-          <IconButton variant="ghost" size="sm" aria-label={master ? "Mute" : "Unmute"} onClick={toggleMaster}>
-            {master ? <Icon icon={VolumeLoud} boxSize="4.5" /> : <Icon icon={VolumeCross} boxSize="4.5" />}
+        <div className="flex shrink-0 items-center gap-2">
+          <IconButton aria-label={master ? "Mute" : "Unmute"} onClick={toggleMaster} size="sm">
+            {master ? <VolumeLoud className="size-5" /> : <VolumeCross className="size-5" />}
           </IconButton>
-          <VolumeSlider flex="1" value={master} onChange={setMaster} label="Master volume" />
-        </HStack>
-      </VStack>
+          <VolumeSlider className="flex-1" value={master} onChange={setMaster} label="Master volume" />
+        </div>
+      </div>
     </SidePanel>
   );
 }

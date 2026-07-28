@@ -21,8 +21,12 @@ authenticated layout.
 
 ## Design decisions
 
-- Sage remains structural, not decorative: pale sage defines background and
-  quiet active surfaces; forest identifies current focus and primary action.
+- Bone and sand create the light workspace; sage defines quiet active surfaces;
+  juniper identifies current focus and primary action. Copper is reserved for a
+  rare, meaningful highlight rather than decorative colour.
+- The rounded DaisyUI convention is deliberate: 14px fields, 20px panels, 28px
+  outer shells, and pill-shaped compact controls preserve warmth without a
+  playful or inflated appearance.
 - There are no gradients, glass effects, elevated shadows, or colour accents
   outside semantic status.
 - Instrument Sans carries interface copy; Geist Mono keeps timer numerals

@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Khulwa — Sage Foundation",
+  title: "Khulwa — Sanctuary Dusk Foundation",
   description: "Phase 1 review surface for the Khulwa design foundation.",
 };
 
-const sageScale = [
-  ["100", "#D5E3D5", "bg-sage-100"],
-  ["200", "#B7D1B1", "bg-sage-200"],
-  ["300", "#9BC09A", "bg-sage-300"],
-  ["400", "#7DA87A", "bg-sage-400"],
-  ["500", "#5A8F5B", "bg-sage-500"],
-  ["600", "#4E7D4F", "bg-sage-600"],
-  ["700", "#3C6B3E", "bg-sage-700"],
-  ["800", "#2B5930", "bg-sage-800"],
-  ["900", "#1A4722", "bg-sage-900"],
-  ["1000", "#0B3515", "bg-sage-1000"],
+const sanctuaryScale = [
+  ["Bone", "#F7F2E8", "bg-sage-100"],
+  ["Sand", "#E9DDC8", "bg-sage-200"],
+  ["Field", "#D7C7B0", "bg-sage-300"],
+  ["Mist", "#A7B7A1", "bg-sage-400"],
+  ["Sage", "#7FA08D", "bg-sage-500"],
+  ["Deep sage", "#5C7C6E", "bg-sage-600"],
+  ["Canopy", "#3D5F53", "bg-sage-700"],
+  ["Juniper", "#24473F", "bg-sage-800"],
+  ["Deep juniper", "#182D29", "bg-sage-900"],
+  ["Night", "#101A19", "bg-sage-1000"],
 ] as const;
 
 function LeafMark() {
@@ -55,12 +55,12 @@ export default function FoundationPage() {
             <div>
               <p className="text-sm font-semibold tracking-[-0.01em]">Khulwa</p>
               <p className="whitespace-nowrap text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-sage-700 sm:tracking-[0.16em]">
-                Foundation 01
+                Sanctuary Dusk
               </p>
             </div>
           </div>
           <span className="badge border-sage-300 bg-sage-100 px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-sage-800">
-            <span className="hidden sm:inline">Sage&nbsp;</span>approved
+            <span className="hidden sm:inline">Dusk&nbsp;</span>approved
           </span>
         </header>
 
@@ -74,8 +74,8 @@ export default function FoundationPage() {
                 Make space for meaningful work.
               </h1>
               <p className="mt-7 max-w-xl text-base leading-7 text-sage-800 sm:text-lg sm:leading-8">
-                A quieter visual system for focus, reflection, and progress. Soft sage creates
-                comfort; deep forest gives every action clarity.
+                A quieter visual system for focus, reflection, and progress. Bone and sand make
+                room to breathe; juniper gives every action clarity.
               </p>
             </div>
 
@@ -155,18 +155,18 @@ export default function FoundationPage() {
 
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-sage-700">
-                Serenity scale
+                Sanctuary scale
               </p>
               <div className="grid grid-cols-2 overflow-hidden rounded-panel border border-sage-300 sm:grid-cols-5">
-                {sageScale.map(([step, hex, colorClass]) => (
+                {sanctuaryScale.map(([step, hex, colorClass]) => (
                   <div className={`${colorClass} min-h-24 p-3`} key={step}>
                     <p
-                      className={`text-xs font-semibold ${Number(step) >= 700 ? "text-sage-100" : "text-sage-1000"}`}
+                      className={`text-xs font-semibold ${["Canopy", "Juniper", "Deep juniper", "Night"].includes(step) ? "text-sage-100" : "text-sage-1000"}`}
                     >
                       {step}
                     </p>
                     <p
-                      className={`khulwa-numeric mt-1 text-[0.6875rem] ${Number(step) >= 700 ? "text-sage-200" : "text-sage-800"}`}
+                      className={`khulwa-numeric mt-1 text-[0.6875rem] ${["Canopy", "Juniper", "Deep juniper", "Night"].includes(step) ? "text-sage-200" : "text-sage-800"}`}
                     >
                       {hex}
                     </p>

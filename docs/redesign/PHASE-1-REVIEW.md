@@ -1,4 +1,4 @@
-# Phase 1 Review — Sage Foundation
+# Phase 1 Review — Sanctuary Dusk Foundation
 
 ## Review gate
 
@@ -23,39 +23,40 @@ types, packages, and scripts will be removed in the final cleanup phase.
 
 ## Approved color direction
 
-The foundation uses the supplied Sage Green Serenity scale exactly:
+The foundation now uses Sanctuary Dusk. Legacy `sage-*` Tailwind utility names
+remain only as a migration-safe implementation detail; their semantic values
+are mapped to the approved palette below.
 
 | Step | Value |
 | --- | --- |
-| 100 | `#D5E3D5` |
-| 200 | `#B7D1B1` |
-| 300 | `#9BC09A` |
-| 400 | `#7DA87A` |
-| 500 | `#5A8F5B` |
-| 600 | `#4E7D4F` |
-| 700 | `#3C6B3E` |
-| 800 | `#2B5930` |
-| 900 | `#1A4722` |
-| 1000 | `#0B3515` |
+| Bone | `#F7F2E8` |
+| Sand | `#E9DDC8` |
+| Field | `#D7C7B0` |
+| Mist | `#A7B7A1` |
+| Sage | `#7FA08D` |
+| Deep sage | `#5C7C6E` |
+| Canopy | `#3D5F53` |
+| Juniper | `#24473F` |
+| Deep juniper | `#182D29` |
+| Night | `#101A19` |
 
 The interface is light-first and flat. Gradients, colored glows, blur-heavy
 glass effects, texture noise, and simulated component depth are disabled.
 
 ### Semantic roles
 
-- Canvas: pale sage `#EDF3EB`
-- Main environment: sage 100 `#D5E3D5`
-- Elevated surface: near-white `#FBFDF9`
-- Quiet border: sage 300 `#9BC09A`
-- Primary text: sage 900 `#1A4722`
-- Secondary text: sage 800 `#2B5930`
-- Supporting text: sage 700 `#3C6B3E`
-- Focus and accent: sage 500 `#5A8F5B`
-- Primary action: sage 1000 `#0B3515`
-- Primary action text: `#F7FBF5`
+- Canvas: bone `#F7F2E8`
+- Main environment: warm near-white `#FFFDF9`
+- Elevated surface: warm near-white `#FFFDF9`
+- Quiet border and field: sand `#E9DDC8`
+- Primary text and action: juniper `#24473F`
+- Strongest text: night `#101A19`
+- Supporting text: canopy `#3D5F53`
+- Selected and calm progress: sage `#7FA08D`
+- Rare meaningful highlight: copper `#C97952`
 
-Muted ochre and brick are reserved for warning and error semantics. They are not
-decorative brand colors.
+Copper is not a decorative brand colour. It remains reserved for a meaningful,
+rare highlight; warning and error semantics retain their dedicated tones.
 
 ## Typography
 
@@ -91,7 +92,7 @@ screen.
 ## Review decisions
 
 1. Approve or revise Instrument Sans + Geist Mono.
-2. Approve or revise the sage color proportions and deep-forest action weight.
-3. Approve or revise the 12 px control radius, 16 px panel radius, and 24 px
+2. Approve or revise the Sanctuary Dusk color proportions and juniper action weight.
+3. Approve or revise the 14 px control radius, 20 px panel radius, and 28 px
    outer shell radius.
 4. Confirm the light-first direction; a dark companion theme is not included.

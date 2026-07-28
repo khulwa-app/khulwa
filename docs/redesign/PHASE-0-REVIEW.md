@@ -130,7 +130,7 @@ visible and connected rather than living in separate panels.
 - Tasks, sound, progress, and settings open as purposeful sheets or routes.
 - No desktop dock compressed into a mobile toolbar.
 
-## Direction A — Sage Serenity
+## Direction A — Sage Serenity (superseded)
 
 Comfortable, restorative, recognizable, and still professional. This is the
 recommended direction after the sage reference review.
@@ -170,7 +170,29 @@ felt too restrained.
 The base product is near-monochrome and light-first. Color is not decoration and
 must never be used as a substitute for hierarchy.
 
-### Recommended Sage Serenity palette
+### Approved Sanctuary Dusk palette
+
+Sanctuary Dusk replaces Sage Serenity as the approved direction. It keeps the
+comfort of green, but makes Khulwa warmer and more ownable through bone, sand,
+juniper, and a tightly controlled copper detail. The interface remains
+light-first, flat, and gradient-free.
+
+| Role | Value | Use |
+| --- | --- | --- |
+| Canvas | `#F7F2E8` | Bone workspace field |
+| Elevated surface | `#FFFDF9` | Cards, menus, dialogs, and persistent navigation |
+| Quiet field | `#E9DDC8` | Secondary surfaces and separation |
+| Selected | `#7FA08D` | Active navigation, progress, and calm selection |
+| Primary structure | `#24473F` | Juniper headings, navigation, and primary action |
+| Maximum contrast | `#101A19` | Rare high-emphasis content and neutral treatment |
+| Meaningful highlight | `#C97952` | Completion, streak, or one rare attention signal |
+
+Target proportion: 55–65% bone and warm near-white workspace, 20–30% sand and
+sage fields, 10–15% juniper structure, and under 3% copper. The rounded system
+uses 14px fields, 20px panels, 28px outer shells, and pill-shaped compact
+controls.
+
+### Superseded Sage Serenity palette
 
 | Role | Value | Use |
 | --- | --- | --- |

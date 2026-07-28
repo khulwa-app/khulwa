@@ -48,7 +48,7 @@ approved in Phase 3.
 
 - Only primitives contain DaisyUI component class names.
 - Feature code should import the application primitives, not DaisyUI directly.
-- All visual values use the Sage Serenity semantic tokens from Phase 1.
+- All visual values use the Sanctuary Dusk semantic tokens from Phase 1.
 - No gradients, glass blur, noise, or ornamental shadows are introduced.
 - Controls use 12 px corners, panels use 16 px corners, and the outer shell
   remains at 24 px.

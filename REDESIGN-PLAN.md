@@ -88,7 +88,7 @@ The redesign must achieve:
 - [x] Add the modern browser target recommended for DaisyUI with Next.js Turbopack.
 - [x] Define semantic theme variables for background, surfaces, text, borders,
       primary action, secondary action, status colors, and radii.
-- [x] Encode the approved sage palette without gradients.
+- [x] Encode the approved Sanctuary Dusk palette without gradients.
 - [x] Install and configure Instrument Sans and Geist Mono through `next/font`.
 - [x] Define a small typography scale and tabular numeric treatment.
 

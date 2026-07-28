@@ -1,17 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none" role="img" aria-label="khulwa">
-  <defs>
-    <linearGradient id="aurora" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6C4CE0"/>
-      <stop offset="100%" stop-color="#EC4899"/>
-    </linearGradient>
-    <radialGradient id="tilewash" cx="74%" cy="80%" r="62%">
-      <stop offset="0%" stop-color="#2A1D3A"/>
-      <stop offset="100%" stop-color="#14121A"/>
-    </radialGradient>
-  </defs>
-  <rect width="180" height="180" rx="40" fill="url(#tilewash)"/>
-  <g transform="translate(27.44,2.29) scale(0.880)">
-    <path d="M12 161V47.4H28.96V117.96L67.2 75.88H88.64L55.36 111.72L89.92 161H70.4L44 122.28L28.96 138.28V161H12Z" fill="#FAF7F2"/>
-  </g>
-  <circle cx="130" cy="131" r="14" fill="url(#aurora)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none" role="img" aria-label="riwaq">
+  <rect width="180" height="180" rx="42" fill="#F7F2E8"/>
+  <path d="M36 137V74c0-29 22.5-52 51-52 15.8 0 30.2 7.1 39.8 18.4C136 49 144 60.7 144 74v63h-21V74c0-19.7-15.4-35.7-35-35.7S53 54.3 53 74v63H36Z" fill="#24473F"/>
+  <path d="M69 137V97c0-14.6 11.5-26.5 26-26.5s26 11.9 26 26.5v40h-18V97c0-4.7-3.6-8.5-8-8.5s-8 3.8-8 8.5v40H69Z" fill="#7FA08D"/>
+  <path d="M36 148h108" stroke="#24473F" stroke-linecap="round" stroke-width="10"/>
 </svg>

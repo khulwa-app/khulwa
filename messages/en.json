@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Khulwa",
+    "appName": "Riwaq",
     "tagline": "A retreat for deep work",
     "loading": "Loading…"
   },
@@ -40,7 +40,7 @@
       "en": "English"
     },
     "logo": {
-      "ariaLabel": "Khulwa logo"
+      "ariaLabel": "Riwaq logo"
     },
     "badge": {
       "streak": "{count, plural, one {# day streak} other {# days streak}}",
@@ -56,8 +56,8 @@
   },
   "khulwa": {
     "metadata": {
-      "title": "Khulwa",
-      "description": "Khulwa — a retreat for deep work"
+      "title": "Riwaq",
+      "description": "Riwaq — a sheltered passage for deep work"
     },
     "greeting": {
       "morning": "GOOD MORNING",
@@ -68,17 +68,17 @@
     "ownership": "You're owning this {day}, {name}.",
     "guest": "friend",
     "phase": {
-      "focus": "Khulwa",
+      "focus": "Focus",
       "shortBreak": "Waqfa",
       "longBreak": "Raha"
     },
     "eyebrow": {
-      "focus": "DEEP KHULWA",
+      "focus": "DEEP FOCUS",
       "shortBreak": "WAQFA",
       "longBreak": "RAHA"
     },
     "actions": {
-      "begin": "Begin Khulwa",
+      "begin": "Begin focus",
       "pause": "Pause",
       "resume": "Resume",
       "reset": "Reset",
@@ -92,13 +92,13 @@
       },
       "longBreak": {
         "title": "A well-deserved retreat",
-        "subtitle": "You've earned this pause — rest deeply before the next Khulwa."
+        "subtitle": "You've earned this pause — rest deeply before the next focus session."
       },
       "lockScreen": "Lock screen",
-      "footerHint": "Your next Khulwa begins when the timer ends."
+      "footerHint": "Your next focus session begins when the timer ends."
     },
     "aria": {
-      "phaseTabs": "Khulwa phase",
+      "phaseTabs": "Focus phase",
       "roundProgress": "Round {current} of {total}"
     },
     "ambient": {
@@ -125,8 +125,8 @@
   },
   "home": {
     "metadata": {
-      "title": "Khulwa",
-      "description": "Khulwa — for deep work"
+      "title": "Riwaq",
+      "description": "Riwaq — for deep work"
     },
     "guest": "friend",
     "subtitle": "Pick one thing. Stay with it.",
@@ -282,13 +282,13 @@
     "hero": {
       "eyebrow": "Sacred solitude",
       "headline": "A retreat for your deep work.",
-      "subcopy": "Quiet by design. Inspired by the Sufi خلوة — a private chamber to focus on one thing at a time.",
+      "subcopy": "Quiet by design. Riwaq is a sheltered passage for one thing at a time.",
       "cta": "Start focusing"
     },
     "features": {
       "0": {
         "title": "One intention",
-        "body": "Name your one thing and step into a single, undistracted khulwa."
+        "body": "Name your one thing and step into a single, undistracted passage."
       },
       "1": {
         "title": "Ambient focus",
@@ -300,20 +300,20 @@
       }
     },
     "quote": {
-      "text": "“In khulwa, the soul finds its measure.”",
-      "attribution": "— Ibn Arabi"
+      "text": "“Make room for what matters.”",
+      "attribution": "— Riwaq"
     }
   },
   "login": {
     "metadata": {
-      "title": "Sign in · Khulwa",
+      "title": "Sign in · Riwaq",
       "description": "Enter your retreat"
     },
     "form": {
       "title": "Welcome back",
       "subtitle": "Sign in to continue your focus.",
-      "signupTitle": "Create your khulwa",
-      "signupSubtitle": "One account, all your khulwas.",
+      "signupTitle": "Create your Riwaq",
+      "signupSubtitle": "One account, a quieter place to focus.",
       "continueWithGoogle": "Continue with Google",
       "divider": "or",
       "fields": {
@@ -335,7 +335,7 @@
   },
   "signUp": {
     "metadata": {
-      "title": "Sign up · Khulwa",
+      "title": "Sign up · Riwaq",
       "description": "Begin your retreat"
     },
     "form": {
@@ -353,7 +353,7 @@
   },
   "forgotPassword": {
     "metadata": {
-      "title": "Reset password · Khulwa",
+      "title": "Reset password · Riwaq",
       "description": "Restore access to your retreat"
     },
     "form": {

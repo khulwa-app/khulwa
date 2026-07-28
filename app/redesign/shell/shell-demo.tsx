@@ -76,7 +76,7 @@ export function ShellDemo() {
         <aside className="hidden w-[264px] shrink-0 flex-col border-r border-sage-300 bg-sage-100/55 p-5 lg:flex">
           <div className="flex items-center gap-3 px-2">
             <Mark />
-            <span className="text-lg font-semibold tracking-[-0.04em] text-sage-1000">khulwa</span>
+            <span className="text-lg font-semibold tracking-[-0.04em] text-sage-1000">riwaq</span>
           </div>
           <nav aria-label="Workspace destinations" className="mt-10 grid gap-1">
             {destinations.map((destination) => <NavigationItem active={active === destination.id} destination={destination} key={destination.id} onClick={() => chooseDestination(destination.id)} />)}
@@ -94,7 +94,7 @@ export function ShellDemo() {
 
         <div className="flex min-w-0 flex-1 flex-col">
           <header className="flex min-h-[76px] items-center justify-between gap-3 border-b border-sage-300 px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3 lg:hidden"><Mark /><span className="text-lg font-semibold tracking-[-0.04em] text-sage-1000">khulwa</span></div>
+            <div className="flex items-center gap-3 lg:hidden"><Mark /><span className="text-lg font-semibold tracking-[-0.04em] text-sage-1000">riwaq</span></div>
             <p className="hidden text-sm font-medium text-sage-700 lg:block">Tuesday, 28 July</p>
             <div className="ml-auto flex items-center gap-2">
               <button aria-label="Open command palette" className="hidden min-h-11 items-center gap-3 rounded-control border border-sage-300 bg-base-100 px-3 text-sm text-sage-700 transition-colors duration-200 hover:border-sage-500 hover:text-sage-1000 sm:flex motion-reduce:transition-none" onClick={() => setCommandOpen(true)} type="button">

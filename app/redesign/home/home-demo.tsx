@@ -38,7 +38,7 @@ export function HomeDemo() {
 
   return <main className="khulwa-foundation min-h-dvh bg-base-200 px-3 py-3 sm:px-5 sm:py-5 lg:px-6 lg:py-6" data-theme="khulwa">
     <div className="mx-auto min-h-[calc(100dvh-1.5rem)] max-w-[1320px] overflow-hidden rounded-shell border border-sage-300 bg-base-100 sm:min-h-[calc(100dvh-2.5rem)]">
-      <header className="flex min-h-[76px] items-center justify-between gap-4 border-b border-sage-300 px-5 sm:px-8"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-sage-700">Phase 4 · Home workspace</p><p className="mt-1 text-sm font-semibold text-sage-1000">khulwa</p></div><Pill tone="success">Tuesday · 28 July</Pill></header>
+      <header className="flex min-h-[76px] items-center justify-between gap-4 border-b border-sage-300 px-5 sm:px-8"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-sage-700">Phase 4 · Home workspace</p><p className="mt-1 text-sm font-semibold text-sage-1000">riwaq</p></div><Pill tone="success">Tuesday · 28 July</Pill></header>
       <div className="grid min-h-[calc(100dvh-6.25rem)] lg:grid-cols-[minmax(0,1fr)_360px]">
         <section className="p-5 sm:p-8 lg:p-12">
           <p className="text-sm font-medium text-sage-700">Good afternoon, Mohamed</p>

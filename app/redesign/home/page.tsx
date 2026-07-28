@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { HomeDemo } from "./home-demo";
 
 export const metadata: Metadata = {
-  title: "Khulwa — Home workspace",
+  title: "Riwaq — Home workspace",
   description: "Phase 4 review surface for the redesigned Home workspace.",
 };
 

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Khulwa — Sanctuary Dusk Foundation",
-  description: "Phase 1 review surface for the Khulwa design foundation.",
+  title: "Riwaq — Sanctuary Dusk Foundation",
+  description: "Phase 1 review surface for the Riwaq design foundation.",
 };
 
 const sanctuaryScale = [
@@ -53,7 +53,7 @@ export default function FoundationPage() {
               <LeafMark />
             </span>
             <div>
-              <p className="text-sm font-semibold tracking-[-0.01em]">Khulwa</p>
+              <p className="text-sm font-semibold tracking-[-0.01em]">Riwaq</p>
               <p className="whitespace-nowrap text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-sage-700 sm:tracking-[0.16em]">
                 Sanctuary Dusk
               </p>

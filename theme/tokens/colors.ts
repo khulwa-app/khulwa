@@ -1,10 +1,10 @@
 import { defineTokens } from "@chakra-ui/react";
 
 export const colors = defineTokens.colors({
-  white: { value: "#FFFFFF" },
-  black: { value: "#000000" },
+  white: { value: "#FFFDF9" },
+  black: { value: "#101A19" },
 
-  scrim: { value: "rgba(20, 18, 28, 0.55)" },
+  scrim: { value: "rgba(16, 26, 25, 0.52)" },
 
   whiteA: {
     faint: { value: "rgba(255, 255, 255, 0.08)" },
@@ -61,17 +61,17 @@ export const colors = defineTokens.colors({
   },
 
   sand: {
-    50: { value: "#FBFAF7" },
-    100: { value: "#F7F5F0" },
-    200: { value: "#F1EDE4" },
-    300: { value: "#E7E2D6" },
-    400: { value: "#DDD7CA" },
-    500: { value: "#C9C2B2" },
-    600: { value: "#ADA694" },
-    700: { value: "#6B6B6B" },
-    800: { value: "#444038" },
-    900: { value: "#2B2823" },
-    950: { value: "#1C1C1C" },
+    50: { value: "#FFFDF9" },
+    100: { value: "#F7F2E8" },
+    200: { value: "#E9DDC8" },
+    300: { value: "#D7C7B0" },
+    400: { value: "#C5B59F" },
+    500: { value: "#A99B89" },
+    600: { value: "#756A5D" },
+    700: { value: "#575047" },
+    800: { value: "#3A3732" },
+    900: { value: "#262522" },
+    950: { value: "#101A19" },
   },
 
   teal: {
@@ -101,29 +101,29 @@ export const colors = defineTokens.colors({
   },
 
   green: {
-    50: { value: "#EAF8F1" },
-    100: { value: "#DBF1E7" },
-    200: { value: "#B3E2CC" },
-    300: { value: "#7FCFA8" },
-    400: { value: "#48B987" },
-    500: { value: "#1F9D6B" },
-    600: { value: "#198057" },
-    700: { value: "#146646" },
-    800: { value: "#0F4E35" },
-    900: { value: "#0B3A28" },
+    50: { value: "#EEF3EA" },
+    100: { value: "#DCE7D9" },
+    200: { value: "#BDD0B9" },
+    300: { value: "#9AB79A" },
+    400: { value: "#7FA08D" },
+    500: { value: "#5C7C6E" },
+    600: { value: "#3D5F53" },
+    700: { value: "#24473F" },
+    800: { value: "#182D29" },
+    900: { value: "#101A19" },
   },
 
   sage: {
-    50: { value: "#F1F4F0" },
-    100: { value: "#E3E8E1" },
-    200: { value: "#C7D0C4" },
-    300: { value: "#A4B0A0" },
-    400: { value: "#7E8C7A" },
-    500: { value: "#5E6B5A" },
-    600: { value: "#4A5547" },
-    700: { value: "#3A4338" },
-    800: { value: "#2C332B" },
-    900: { value: "#1E241D" },
+    50: { value: "#F7F2E8" },
+    100: { value: "#EFE8DA" },
+    200: { value: "#E9DDC8" },
+    300: { value: "#D7C7B0" },
+    400: { value: "#A7B7A1" },
+    500: { value: "#7FA08D" },
+    600: { value: "#5C7C6E" },
+    700: { value: "#3D5F53" },
+    800: { value: "#24473F" },
+    900: { value: "#101A19" },
   },
 
   red: {

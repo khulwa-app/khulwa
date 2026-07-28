@@ -63,7 +63,7 @@ export function Dialog({
     >
       <section className={cn("p-5", className)}>
         <div className="flex items-start justify-between gap-4">
-          <h2 className="text-xl font-semibold tracking-[-0.03em] text-sage-1000" id={titleId}>{title}</h2>
+          <h2 className="text-xl font-semibold tracking-normal text-sage-1000" id={titleId}>{title}</h2>
           <IconButton aria-label="Close dialog" onClick={() => onOpenChange(false)} size="sm">
             <CloseMark />
           </IconButton>
@@ -99,7 +99,7 @@ export function Drawer({
     >
       <aside className="flex h-full flex-col">
         <header className="flex items-center justify-between gap-4 border-b border-sage-300 px-5 py-4">
-          <h2 className="text-xl font-semibold tracking-[-0.03em] text-sage-1000" id={titleId}>{title}</h2>
+          <h2 className="text-xl font-semibold tracking-normal text-sage-1000" id={titleId}>{title}</h2>
           <IconButton aria-label="Close panel" onClick={() => onOpenChange(false)} size="sm">
             <CloseMark />
           </IconButton>
@@ -137,7 +137,7 @@ export function FloatingPanel({
     >
       <aside className="flex h-full flex-col">
         <header className="flex items-center justify-between gap-4 border-b border-sage-300 px-5 py-3">
-          <h2 className="text-base font-semibold tracking-[-0.025em] text-sage-1000" id={titleId}>{title}</h2>
+          <h2 className="text-base font-semibold tracking-normal text-sage-1000" id={titleId}>{title}</h2>
           <IconButton aria-label="Close panel" onClick={() => onOpenChange(false)} size="sm"><CloseMark /></IconButton>
         </header>
         <div className="min-h-0 flex-1 overflow-y-auto p-5">{children}</div>

@@ -10,29 +10,29 @@
 @plugin "daisyui/theme" {
   name: "khulwa";
   default: true;
-  prefersdark: false;
-  color-scheme: light;
+  prefersdark: true;
+  color-scheme: dark;
 
-  --color-base-100: #182d29;
-  --color-base-200: #101a19;
-  --color-base-300: #24473f;
-  --color-base-content: #f7f2e8;
-  --color-primary: #7fa08d;
-  --color-primary-content: #101a19;
-  --color-secondary: #24473f;
-  --color-secondary-content: #f7f2e8;
-  --color-accent: #c97952;
-  --color-accent-content: #101a19;
-  --color-neutral: #101a19;
-  --color-neutral-content: #f7f2e8;
-  --color-info: #5c7c6e;
-  --color-info-content: #fffdf9;
-  --color-success: #3d5f53;
-  --color-success-content: #fffdf9;
-  --color-warning: #956d32;
-  --color-warning-content: #fffaf0;
-  --color-error: #934a43;
-  --color-error-content: #fff8f6;
+  --color-base-100: #20112b;
+  --color-base-200: #100817;
+  --color-base-300: #2d1740;
+  --color-base-content: #f7f2ff;
+  --color-primary: #6d28d9;
+  --color-primary-content: #f7f2ff;
+  --color-secondary: #2d1740;
+  --color-secondary-content: #f7f2ff;
+  --color-accent: #c56bff;
+  --color-accent-content: #100817;
+  --color-neutral: #100817;
+  --color-neutral-content: #f7f2ff;
+  --color-info: #d9b6ff;
+  --color-info-content: #100817;
+  --color-success: #9f7aea;
+  --color-success-content: #100817;
+  --color-warning: #d69e6f;
+  --color-warning-content: #100817;
+  --color-error: #e06c78;
+  --color-error-content: #100817;
 
   --radius-selector: 999px;
   --radius-field: 0.875rem;
@@ -48,24 +48,24 @@
   --font-sans: var(--font-nunito);
   --font-mono: var(--font-geist-mono);
 
-  /* Legacy utility names retain stable component APIs during the migration. */
-  --color-sage-100: #f7f2e8;
-  --color-sage-200: #e9ddc8;
-  --color-sage-300: #d7c7b0;
-  --color-sage-400: #a7b7a1;
-  --color-sage-500: #7fa08d;
-  --color-sage-600: #5c7c6e;
-  --color-sage-700: #3d5f53;
-  --color-sage-800: #24473f;
-  --color-sage-900: #182d29;
-  --color-sage-1000: #101a19;
+  /* Legacy sage utility names now map to the aubergine Riwaq system. */
+  --color-sage-100: #f7f2ff;
+  --color-sage-200: #d9b6ff;
+  --color-sage-300: #a99bb7;
+  --color-sage-400: #8f42ec;
+  --color-sage-500: #6d28d9;
+  --color-sage-600: #5e22c2;
+  --color-sage-700: #4b1c8f;
+  --color-sage-800: #2d1740;
+  --color-sage-900: #20112b;
+  --color-sage-1000: #100817;
 
-  --color-canvas: #f7f2e8;
-  --color-surface: #fffdf9;
-  --color-border-subtle: #e9ddc8;
-  --color-text-primary: #182d29;
-  --color-text-secondary: #24473f;
-  --color-text-supporting: #3d5f53;
+  --color-canvas: #100817;
+  --color-surface: #20112b;
+  --color-border-subtle: #2d1740;
+  --color-text-primary: #f7f2ff;
+  --color-text-secondary: #d9b6ff;
+  --color-text-supporting: #a99bb7;
 
   --radius-control: 0.875rem;
   --radius-panel: 1.25rem;
@@ -80,57 +80,74 @@
 
 @layer utilities {
   .riwaq-dark {
-    background: #101a19;
-    color: #f7f2e8;
+    background: #100817;
+    color: #f7f2ff;
   }
 
   .riwaq-dark .text-sage-1000,
   .riwaq-dark .text-sage-900 {
-    color: #f7f2e8;
+    color: #f7f2ff;
   }
 
   .riwaq-dark .text-sage-800 {
-    color: #e9ddc8;
+    color: #d9b6ff;
   }
 
   .riwaq-dark .text-sage-700 {
-    color: #b9c9bc;
+    color: #a99bb7;
   }
 
   .riwaq-dark .text-sage-600 {
-    color: #9eb4a6;
+    color: #8f7a9d;
   }
 
   .riwaq-dark .bg-sage-100 {
-    background-color: #24473f;
+    background-color: #20112b;
   }
 
   .riwaq-dark .bg-sage-200 {
-    background-color: #2f5148;
+    background-color: #2d1740;
   }
 
   .riwaq-dark .bg-sage-300 {
-    background-color: #3d5f53;
+    background-color: #3a1c54;
   }
 
   .riwaq-dark .border-sage-300 {
-    border-color: #3d5f53;
+    border-color: #3a1c54;
   }
 
   .riwaq-dark .border-sage-400 {
-    border-color: #5c7c6e;
+    border-color: #5a3674;
+  }
+
+  .riwaq-dark .hover\:bg-sage-100:hover {
+    background-color: #2d1740;
+  }
+
+  .riwaq-dark .hover\:bg-sage-200:hover,
+  .riwaq-dark .hover\:bg-sage-800:hover {
+    background-color: #3a1c54;
+  }
+
+  .riwaq-dark .hover\:border-sage-500:hover {
+    border-color: #6d28d9;
+  }
+
+  .riwaq-dark .hover\:text-sage-1000:hover {
+    color: #f7f2ff;
   }
 
   .khulwa-foundation {
-    background: #101a19;
-    color: #f7f2e8;
+    background: #100817;
+    color: #f7f2ff;
     font-family: var(--font-nunito), sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
   }
 
   .khulwa-foundation :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid #c56bff;
     outline-offset: 3px;
   }
 

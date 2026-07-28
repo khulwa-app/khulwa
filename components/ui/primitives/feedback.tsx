@@ -37,7 +37,7 @@ export function EmptyState({
   return (
     <section className={cn("grid justify-items-start gap-3 rounded-panel border border-dashed border-sage-300 bg-sage-100/50 p-6", className)}>
       <div>
-        <h2 className="text-lg font-semibold tracking-[-0.02em] text-sage-1000">{title}</h2>
+        <h2 className="text-lg font-semibold tracking-normal text-sage-1000">{title}</h2>
         <p className="mt-1 max-w-prose leading-6 text-sage-700">{description}</p>
       </div>
       {action}

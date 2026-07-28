@@ -10,7 +10,7 @@ interface LogoProps {
   variant?: "white" | "dark";
 }
 
-/** Original Sanctuary Dusk mark: a small riwaq, or sheltered passage. */
+/** Riwaq mark: a small sheltered passage. */
 export function Logo({ href = Routes.Home, size = "10", variant = "dark" }: LogoProps) {
   const t = useTranslations("components.logo");
   const dimension = Number(size) * 4;
@@ -22,7 +22,7 @@ export function Logo({ href = Routes.Home, size = "10", variant = "dark" }: Logo
         <path d="M12 29V18c0-3.1 1.8-5 4-5s4 1.9 4 5v11h-3V18c0-1.2-.4-2-1-2s-1 .8-1 2v11h-3Z" fill="currentColor" opacity="0.5" />
         <path d="M7 30h18" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" />
       </svg>
-      <span className="font-semibold tracking-[-0.05em]">riwaq</span>
+      <span className="font-semibold tracking-normal">riwaq</span>
     </span>
   );
 

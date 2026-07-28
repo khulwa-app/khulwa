@@ -25,12 +25,13 @@ export function SoundTile({ def }: { def: SoundDef }) {
   const active = playing || undefined;
 
   return (
-    <SoundGrid.Tile>
+    <SoundGrid.Tile data-active={active}>
       <SoundGrid.Toggle data-active={active} aria-pressed={playing} onClick={() => toggle(def.id)}>
         <SoundGrid.Icon data-active={active}>
           <Glyph className="size-5" />
         </SoundGrid.Icon>
         <SoundGrid.Title data-active={active}>{def.label}</SoundGrid.Title>
+        {playing ? <span className="ml-auto size-2 rounded-full bg-sage-500" aria-hidden /> : null}
       </SoundGrid.Toggle>
       {playing && <VolumeSlider value={volume} onChange={(v) => setVolume(def.id, v)} label={`${def.label} volume`} />}
     </SoundGrid.Tile>

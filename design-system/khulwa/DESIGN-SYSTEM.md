@@ -1,22 +1,30 @@
 # Riwaq design system
 
-Riwaq is a calm focus workspace: durable, private-feeling, warm, and clear. It uses **Tailwind CSS v4** and
-**DaisyUI v5** only. Product logic and Solar icons remain independent of the visual system.
+Riwaq is a focus-performance workspace: dark, private-feeling, crisp, and calm under pressure. It uses
+**Tailwind CSS v4** and **DaisyUI v5** only. Product logic and Solar icons remain independent of the
+visual system.
 
-## Sanctuary Dusk
+## Aubergine Performance
 
-Light-first surfaces create room to think. `Bone #F7F2E8` is the canvas, `Sand #E9DDC8` defines quiet edges,
-`Juniper #24473F` carries primary actions, `Sage #7FA08D` supports selection and calm status, and
-`Copper #C97952` is reserved for warmth and attention. Night `#101A19` supplies strong text and dark contrast.
+The app uses approximately 70% dark aubergine, 20% plum surfaces, and 10% vibrant amethyst.
+`#100817` is the app background, `#20112B` is the main surface, `#2D1740` is elevated surface,
+`#6D28D9` is the solid primary action color, `#C56BFF` is the electric amethyst state/accent,
+`#D9B6FF` is lilac support, `#A99BB7` is muted text, and `#F7F2FF` is primary text.
 
-No gradients. No glass or blur-heavy layers. No decorative shadows.
+Keep gradients confined to artwork, waveforms, and ambient affordances only. Avoid blur-heavy glows,
+glass effects, decorative shadows, and anything that makes the app feel visually heavy or choppy.
+Primary buttons stay solid `#6D28D9` with accessible light text.
+
+Brain.fm influence is limited to product behavior patterns: selectable mental states, intensity
+controls, stronger play-state feedback, and bold but simple session artwork. Do not copy Brain.fm's
+identity, layout, or brand language.
 
 ## Type and shape
 
-- Instrument Sans for interface type; Geist Mono for timers and numeric data.
+- Nunito for interface type and numeric data; Geist Mono remains available only for technical monospace use.
 - Dense but breathable: 8px rhythm, 44px minimum controls.
 - Controls use `rounded-control`; panels use `rounded-panel`; application shells use `rounded-shell`.
-- Strong headings use tight tracking; supporting copy remains high-contrast and unhurried.
+- Strong headings use normal tracking and high contrast. Avoid squeezed negative tracking.
 
 ## Implementation rules
 

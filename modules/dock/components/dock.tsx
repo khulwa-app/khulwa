@@ -1,22 +1,10 @@
 "use client";
 
-import {
-  Calendar,
-  ChecklistMinimalistic,
-  FullScreen,
-  HomeSmile,
-  Moon,
-  PenNewSquare,
-  Settings,
-  Soundwave,
-  Target,
-} from "@solar-icons/react";
-import { Icon, type Glyph } from "@/components/ui/icon";
+import { Calendar, ChecklistMinimalistic, FullScreen, HomeSmile, Moon, PenNewSquare, Settings, Soundwave, Target } from "@solar-icons/react";
 import { useTranslations } from "next-intl";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
 import { usePanels, Panel } from "@/modules/panels";
-import { Dock } from "@/theme/slot-recipes/dock";
 import { TasksPanel } from "@/modules/tasks/components/tasks-panel";
 import SoundsPanel from "@/modules/sounds/sounds-panel";
 import { useSounds } from "@/modules/sounds";
@@ -24,98 +12,18 @@ import { RhythmPanel } from "@/modules/rhythm";
 import { ProgressPanel } from "@/modules/progress";
 import { SettingsPanel } from "@/modules/settings";
 import { NotesPanel } from "@/modules/notes";
+import { cn } from "@/lib/cn";
+import type { Glyph } from "@/components/ui/icon";
+
+function DockButton({ icon: Glyph, label, active, playing, onClick }: { icon: Glyph; label: string; active?: boolean; playing?: boolean; onClick: () => void }) {
+  return <button aria-current={active ? "page" : undefined} aria-label={label} aria-pressed={active} className={cn("relative grid size-11 place-items-center rounded-control border transition-colors duration-200 motion-reduce:transition-none", active ? "border-sage-800 bg-sage-800 text-sage-100" : "border-sage-300 bg-base-100 text-sage-800 hover:border-sage-500 hover:bg-sage-100")} onClick={onClick} title={label} type="button"><Glyph className="size-5" weight={active ? "Bold" : "Linear"} />{playing ? <span className="absolute right-2 top-2 size-1.5 rounded-full bg-sage-600" /> : null}</button>;
+}
 
 export function DockNav() {
-  const tDest = useTranslations("dock.destinations");
-  const tTools = useTranslations("dock.tools");
-  const tChrome = useTranslations("dock.chrome");
-  const tAria = useTranslations("dock.aria");
-  const activeSpace = useSpace((s) => s.activeSpace);
-  const changeSpace = useSpace((s) => s.changeSpace);
-  const openPanel = usePanels((s) => s.open);
-  const togglePanel = usePanels((s) => s.toggle);
-  const ambientPlaying = useSounds((s) => Object.values(s.playing).some(Boolean));
-
-  const navItem = (space: Space, icon: Glyph, label: string) => {
-    const isActive = activeSpace === space;
-    return (
-      <Dock.Item
-        key={space}
-        type="button"
-        aria-label={label}
-        title={label}
-        aria-current={isActive ? "page" : undefined}
-        onClick={() => changeSpace(space)}
-      >
-        <Dock.ItemIcon>
-          <Icon icon={icon} weight={isActive ? "Bold" : "Linear"} />
-        </Dock.ItemIcon>
-      </Dock.Item>
-    );
-  };
-
-  const toggleItem = (panel: Panel, icon: Glyph, label: string, playing?: boolean) => {
-    const isActive = openPanel === panel;
-    return (
-      <Dock.Item
-        key={panel}
-        type="button"
-        aria-label={label}
-        title={label}
-        aria-pressed={isActive}
-        data-playing={playing || undefined}
-        onClick={() => togglePanel(panel)}
-      >
-        <Dock.ItemIcon>
-          <Icon icon={icon} weight={isActive ? "Bold" : "Linear"} />
-        </Dock.ItemIcon>
-      </Dock.Item>
-    );
-  };
-
-  const toggleFullscreen = () => {
-    if (typeof document === "undefined") return;
-    if (document.fullscreenElement) document.exitFullscreen();
-    else document.documentElement.requestFullscreen?.();
-  };
-
-  return (
-    <>
-      <Dock.Root side="start" role="toolbar" aria-label={tAria("tools")}>
-        {toggleItem(Panel.Tasks, ChecklistMinimalistic, tTools("tasks"))}
-        {toggleItem(Panel.Notes, PenNewSquare, tTools("notes"))}
-        {toggleItem(Panel.Music, Soundwave, tTools("music"), ambientPlaying)}
-        {toggleItem(Panel.Rhythm, Calendar, tTools("rhythm"))}
-      </Dock.Root>
-
-      <TasksPanel />
-      <NotesPanel />
-      <RhythmPanel />
-      <ProgressPanel />
-      <SoundsPanel />
-      <SettingsPanel />
-
-      <Dock.Root side="end" role="toolbar" aria-label={tAria("controls")}>
-        <Dock.Group as="nav" aria-label={tAria("nav")}>
-          {navItem(Space.Ambient, Moon, tDest("ambient"))}
-          {navItem(Space.Home, HomeSmile, tDest("home"))}
-          {navItem(Space.Focus, Target, tDest("focus"))}
-        </Dock.Group>
-
-        <Dock.Separator role="separator" aria-orientation="vertical" />
-
-        {toggleItem(Panel.Settings, Settings, tChrome("settings"))}
-        <Dock.Item
-          type="button"
-          aria-label={tChrome("fullscreen")}
-          title={tChrome("fullscreen")}
-          onClick={toggleFullscreen}
-        >
-          <Dock.ItemIcon>
-            <Icon icon={FullScreen} />
-          </Dock.ItemIcon>
-        </Dock.Item>
-      </Dock.Root>
-    </>
-  );
+  const tDest = useTranslations("dock.destinations"); const tTools = useTranslations("dock.tools"); const tChrome = useTranslations("dock.chrome"); const tAria = useTranslations("dock.aria");
+  const active = useSpace((state) => state.activeSpace); const changeSpace = useSpace((state) => state.changeSpace); const open = usePanels((state) => state.open); const toggle = usePanels((state) => state.toggle); const playing = useSounds((state) => Object.values(state.playing).some(Boolean));
+  const fullscreen = () => { if (document.fullscreenElement) void document.exitFullscreen(); else void document.documentElement.requestFullscreen?.(); };
+  const tools = [[Panel.Tasks, ChecklistMinimalistic, tTools("tasks")], [Panel.Notes, PenNewSquare, tTools("notes")], [Panel.Music, Soundwave, tTools("music")], [Panel.Rhythm, Calendar, tTools("rhythm")]] as const;
+  const spaces = [[Space.Ambient, Moon, tDest("ambient")], [Space.Home, HomeSmile, tDest("home")], [Space.Focus, Target, tDest("focus")]] as const;
+  return <><div aria-label={tAria("tools")} className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] left-4 z-20 flex gap-2 sm:left-6 lg:left-10" role="toolbar">{tools.map(([panel, icon, label]) => <DockButton active={open === panel} icon={icon} key={panel} label={label} onClick={() => toggle(panel)} playing={panel === Panel.Music && playing} />)}</div><div aria-label={tAria("controls")} className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-20 flex gap-2 sm:right-6 lg:right-10" role="toolbar"><nav className="flex gap-2" aria-label={tAria("nav")}>{spaces.map(([space, icon, label]) => <DockButton active={active === space} icon={icon} key={space} label={label} onClick={() => changeSpace(space)} />)}</nav><span className="mx-1 hidden h-8 self-center border-l border-sage-300 sm:block" /><DockButton active={open === Panel.Settings} icon={Settings} label={tChrome("settings")} onClick={() => toggle(Panel.Settings)} /><DockButton icon={FullScreen} label={tChrome("fullscreen")} onClick={fullscreen} /></div><TasksPanel /><NotesPanel /><RhythmPanel /><ProgressPanel /><SoundsPanel /><SettingsPanel /></>;
 }

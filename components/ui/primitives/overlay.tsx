@@ -109,3 +109,37 @@ export function Drawer({
     </dialog>
   );
 }
+
+export function FloatingPanel({
+  open,
+  onOpenChange,
+  title,
+  children,
+  className,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  title: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  const ref = useDialogState(open, onOpenChange);
+  const titleId = useId();
+  return (
+    <dialog
+      aria-labelledby={titleId}
+      className={cn("fixed bottom-[calc(env(safe-area-inset-bottom)+5.25rem)] left-4 m-0 h-[min(36rem,calc(100dvh-8rem))] w-[min(28rem,calc(100vw-2rem))] max-w-none rounded-panel border border-sage-300 bg-base-100 p-0 text-sage-900 shadow-none backdrop:bg-sage-1000/35 sm:left-6 lg:left-10", className)}
+      onCancel={(event) => { event.preventDefault(); onOpenChange(false); }}
+      onClick={(event) => { if (event.target === event.currentTarget) onOpenChange(false); }}
+      ref={ref}
+    >
+      <aside className="flex h-full flex-col">
+        <header className="flex items-center justify-between gap-4 border-b border-sage-300 px-5 py-3">
+          <h2 className="text-base font-semibold tracking-[-0.025em] text-sage-1000" id={titleId}>{title}</h2>
+          <IconButton aria-label="Close panel" onClick={() => onOpenChange(false)} size="sm"><CloseMark /></IconButton>
+        </header>
+        <div className="min-h-0 flex-1 overflow-y-auto p-5">{children}</div>
+      </aside>
+    </dialog>
+  );
+}

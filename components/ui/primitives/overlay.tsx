@@ -51,7 +51,7 @@ export function Dialog({
   return (
     <dialog
       aria-labelledby={titleId}
-      className="m-auto w-[min(32rem,calc(100vw-2rem))] rounded-panel border border-sage-300 bg-base-100 p-0 text-sage-900 shadow-none backdrop:bg-sage-1000/45"
+      className="m-auto w-[min(32rem,calc(100vw-2rem))] rounded-panel border border-riwaq-border-strong bg-riwaq-surface p-0 text-riwaq-text shadow-none backdrop:bg-sage-1000/55"
       onCancel={(event) => {
         event.preventDefault();
         onOpenChange(false);
@@ -90,7 +90,7 @@ export function Drawer({
   return (
     <dialog
       aria-labelledby={titleId}
-      className="m-0 ml-auto h-dvh w-[min(32rem,calc(100vw-1rem))] max-w-none border-y-0 border-r-0 border-l border-sage-300 bg-base-100 p-0 text-sage-900 shadow-none backdrop:bg-sage-1000/45"
+      className="m-0 ml-auto h-dvh w-[min(32rem,calc(100vw-1rem))] max-w-none border-y-0 border-r-0 border-l border-riwaq-border-strong bg-riwaq-surface p-0 text-riwaq-text shadow-none backdrop:bg-sage-1000/55"
       onCancel={(event) => {
         event.preventDefault();
         onOpenChange(false);
@@ -98,7 +98,7 @@ export function Drawer({
       ref={ref}
     >
       <aside className="flex h-full flex-col">
-        <header className="flex items-center justify-between gap-4 border-b border-sage-300 px-5 py-4">
+        <header className="flex items-center justify-between gap-4 border-b border-riwaq-border px-5 py-4">
           <h2 className="text-xl font-semibold tracking-normal text-sage-1000" id={titleId}>{title}</h2>
           <IconButton aria-label="Close panel" onClick={() => onOpenChange(false)} size="sm">
             <CloseMark />
@@ -130,13 +130,13 @@ export function FloatingPanel({
   return (
     <dialog
       aria-labelledby={titleId}
-      className={cn("fixed bottom-[calc(env(safe-area-inset-bottom)+4.25rem)] m-0 h-[min(36rem,calc(100dvh-7rem))] w-[min(28rem,calc(100vw-2rem))] max-w-none rounded-panel border border-sage-300 bg-base-100 p-0 text-sage-900 shadow-none backdrop:bg-transparent", anchor === "start" ? "left-4 sm:left-6 lg:left-10" : "right-4 sm:right-6 lg:right-10", className)}
+      className={cn("fixed bottom-[calc(env(safe-area-inset-bottom)+4.25rem)] m-0 h-[min(36rem,calc(100dvh-7rem))] w-[min(28rem,calc(100vw-2rem))] max-w-none rounded-panel border border-riwaq-border-strong bg-riwaq-surface p-0 text-riwaq-text shadow-none backdrop:bg-transparent", anchor === "start" ? "left-4 sm:left-6 lg:left-10" : "right-4 sm:right-6 lg:right-10", className)}
       onCancel={(event) => { event.preventDefault(); onOpenChange(false); }}
       onClick={(event) => { if (event.target === event.currentTarget) onOpenChange(false); }}
       ref={ref}
     >
       <aside className="flex h-full flex-col">
-        <header className="flex items-center justify-between gap-4 border-b border-sage-300 px-5 py-3">
+        <header className="flex items-center justify-between gap-4 border-b border-riwaq-border px-5 py-3">
           <h2 className="text-base font-semibold tracking-normal text-sage-1000" id={titleId}>{title}</h2>
           <IconButton aria-label="Close panel" onClick={() => onOpenChange(false)} size="sm"><CloseMark /></IconButton>
         </header>

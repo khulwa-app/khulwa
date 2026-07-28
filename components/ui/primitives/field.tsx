@@ -7,7 +7,7 @@ export function Field({ children, className }: { children: ReactNode; className?
 
 export function FieldLabel({ children, htmlFor, required }: { children: ReactNode; htmlFor?: string; required?: boolean }) {
   return (
-    <label className="text-sm font-medium text-sage-900" htmlFor={htmlFor}>
+    <label className="text-sm font-bold text-riwaq-text" htmlFor={htmlFor}>
       {children}
       {required ? <span aria-hidden className="ml-1 text-error">*</span> : null}
     </label>
@@ -23,7 +23,7 @@ export function FieldError({ children }: { children: ReactNode }) {
 }
 
 const controlClassName =
-  "w-full border-sage-300 bg-base-100 text-sage-900 shadow-none placeholder:text-sage-600 disabled:cursor-not-allowed disabled:border-sage-200 disabled:bg-sage-100 disabled:text-sage-700";
+  "w-full border-riwaq-border bg-riwaq-surface text-riwaq-text shadow-none placeholder:text-riwaq-muted disabled:cursor-not-allowed disabled:border-riwaq-border disabled:bg-riwaq-elevated disabled:text-riwaq-muted focus:border-riwaq-primary";
 
 export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(function Input(
   { className, ...props },
@@ -50,5 +50,5 @@ export const Checkbox = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInp
   { className, ...props },
   ref,
 ) {
-  return <input className={cn("checkbox checkbox-primary size-5 rounded-sm", className)} ref={ref} type="checkbox" {...props} />;
+  return <input className={cn("checkbox checkbox-primary size-5 rounded-sm border-riwaq-border-strong", className)} ref={ref} type="checkbox" {...props} />;
 });

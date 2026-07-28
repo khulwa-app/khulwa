@@ -7,14 +7,14 @@ type ButtonTone = "primary" | "secondary" | "quiet" | "danger";
 type ButtonSize = "sm" | "md" | "lg";
 
 const toneClasses: Record<ButtonTone, string> = {
-  primary: "btn-primary",
-  secondary: "border-sage-400 bg-sage-100 text-sage-900 hover:border-sage-600 hover:bg-sage-200",
-  quiet: "border-transparent bg-transparent text-sage-800 hover:bg-sage-100 hover:text-sage-1000",
+  primary: "border-riwaq-primary bg-riwaq-primary text-riwaq-text hover:border-riwaq-primary-hover hover:bg-riwaq-primary-hover",
+  secondary: "border-riwaq-border-strong bg-riwaq-elevated text-riwaq-text hover:border-riwaq-primary hover:bg-sage-700",
+  quiet: "border-transparent bg-transparent text-riwaq-muted hover:border-riwaq-border hover:bg-riwaq-elevated hover:text-riwaq-text",
   danger: "border-error bg-error text-error-content hover:brightness-95",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: "min-h-10 h-10 px-3 text-sm",
+  sm: "min-h-11 h-11 px-3 text-sm",
   md: "min-h-12 h-12 px-5 text-sm",
   lg: "min-h-14 h-14 px-6 text-base",
 };
@@ -33,7 +33,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   return (
     <button
       className={cn(
-        "btn rounded-control border shadow-none transition-colors duration-200 motion-reduce:transition-none",
+        "btn rounded-control border font-bold shadow-none transition-colors duration-200 disabled:opacity-45 motion-reduce:transition-none",
         toneClasses[tone],
         sizeClasses[size],
         className,
@@ -63,7 +63,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
   return (
     <button
       className={cn(
-        "btn btn-square rounded-control border shadow-none transition-colors duration-200 motion-reduce:transition-none",
+        "btn btn-square rounded-control border shadow-none transition-colors duration-200 disabled:opacity-45 motion-reduce:transition-none",
         toneClasses[tone],
         sizeClasses[size],
         className,

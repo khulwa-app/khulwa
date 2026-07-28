@@ -18,14 +18,14 @@ export function Tabs({ items, defaultValue, label }: { items: TabItem[]; default
 
   return (
     <div>
-      <div aria-label={label} className="tabs tabs-box w-fit rounded-control border border-sage-300 bg-sage-100 p-1" role="tablist">
+      <div aria-label={label} className="tabs tabs-box w-fit rounded-control border border-riwaq-border bg-riwaq-surface p-1" role="tablist">
         {items.map((item) => {
           const active = item.value === selected.value;
           return (
             <button
               aria-controls={`${id}-${item.value}`}
               aria-selected={active}
-              className={cn("tab h-9 rounded-[0.5rem] px-3 text-sm font-medium text-sage-700", active && "bg-base-100 text-sage-1000")}
+              className={cn("tab h-9 rounded-[0.5rem] px-3 text-sm font-bold text-riwaq-muted", active && "bg-riwaq-primary text-riwaq-text")}
               id={`${id}-${item.value}-tab`}
               key={item.value}
               onClick={() => setValue(item.value)}

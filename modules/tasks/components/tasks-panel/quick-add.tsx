@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { IconButton, Input, InputGroup } from "@chakra-ui/react";
 import { AddCircle } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
+import { IconButton, Input } from "@/components/ui/primitives";
 import { useTranslations } from "next-intl";
 import { estimateEta } from "@/modules/ai";
 import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
@@ -32,18 +31,8 @@ export function QuickAdd() {
   };
 
   return (
-    <InputGroup
-      flexShrink="0"
-      endElement={
-        <IconButton variant="ghost" size="sm" aria-label={t("addTask")} disabled={draft.trim() === ""} onClick={submit}>
-          <Icon icon={AddCircle} boxSize="4" />
-        </IconButton>
-      }
-      endElementProps={{ paddingInline: "1" }}
-    >
-      <Input
-        variant="filled"
-        size="md"
+    <div className="relative shrink-0">
+      <Input className="pr-12"
         value={draft}
         placeholder={t("placeholder")}
         autoFocus
@@ -51,7 +40,7 @@ export function QuickAdd() {
         onKeyDown={(e) => {
           if (e.key === "Enter") submit();
         }}
-      />
-    </InputGroup>
+      /><IconButton aria-label={t("addTask")} className="absolute right-1 top-1" disabled={draft.trim() === ""} onClick={submit} size="sm"><AddCircle className="size-4" /></IconButton>
+    </div>
   );
 }

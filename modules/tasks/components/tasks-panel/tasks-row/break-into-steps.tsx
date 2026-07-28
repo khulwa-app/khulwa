@@ -1,9 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { Spinner } from "@chakra-ui/react";
 import { StarsMinimalistic } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { splitTask } from "@/modules/ai";
 import { useAddStep, type Task } from "@/services/tasks";
@@ -26,7 +24,7 @@ export function BreakIntoSteps({ task }: { task: Task }) {
         })
       }
     >
-      {pending ? <Spinner size="xs" /> : <Icon icon={StarsMinimalistic} boxSize="3.5" />}
+      {pending ? <span aria-hidden className="loading loading-spinner loading-xs" /> : <StarsMinimalistic className="size-4" />}
       {pending ? t("breaking") : t("breakIntoSteps")}
     </TaskList.AiAction>
   );

@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Checkbox } from "@chakra-ui/react";
 import { AltArrowRight, Moon, Sun, Target, TrashBinMinimalistic } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
 import { useTranslations } from "next-intl";
 import { useDeleteTask, useUpdateTask, type Task } from "@/services/tasks";
 import { TaskList } from "../task-list";
@@ -28,15 +26,7 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
   return (
     <TaskList.Item data-active={task.isDoingNow || undefined} style={{ animationDelay: delay }}>
       <TaskList.Row>
-        <Checkbox.Root
-          size="sm"
-          checked={task.completed}
-          onCheckedChange={() => updateTask.mutate({ id: task.id, patch: { completed: !task.completed } })}
-          aria-label={t("aria.complete")}
-        >
-          <Checkbox.HiddenInput />
-          <Checkbox.Control />
-        </Checkbox.Root>
+        <input aria-label={t("aria.complete")} checked={task.completed} className="checkbox checkbox-sm mt-1 rounded border-sage-500 [--chkbg:theme(colors.sage.800)] [--chkfg:theme(colors.sage.100)]" onChange={() => updateTask.mutate({ id: task.id, patch: { completed: !task.completed } })} type="checkbox" />
 
         <EditableBody task={task} />
 
@@ -51,14 +41,14 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
             aria-expanded={expanded}
             onClick={() => setExpanded((value) => !value)}
           >
-            <Icon icon={AltArrowRight} boxSize="3.5" />
+            <AltArrowRight className="size-4" />
           </TaskList.Action>
 
           <TaskList.Action
             aria-label={task.today ? t("aria.defer") : t("aria.doToday")}
             onClick={() => updateTask.mutate({ id: task.id, patch: { today: !task.today } })}
           >
-            {task.today ? <Icon icon={Moon} boxSize="3.75" /> : <Icon icon={Sun} boxSize="3.75" />}
+            {task.today ? <Moon className="size-4" /> : <Sun className="size-4" />}
           </TaskList.Action>
 
           <TaskList.Action
@@ -66,11 +56,11 @@ export function TaskRow({ task, index = 0 }: { task: Task; index?: number }) {
             aria-pressed={task.isDoingNow}
             onClick={() => updateTask.mutate({ id: task.id, patch: { isDoingNow: !task.isDoingNow } })}
           >
-            <Icon icon={Target} boxSize="3.75" />
+            <Target className="size-4" />
           </TaskList.Action>
 
           <TaskList.Action data-danger aria-label={t("aria.delete")} onClick={() => deleteTask.mutate(task.id)}>
-            <Icon icon={TrashBinMinimalistic} boxSize="3.75" />
+            <TrashBinMinimalistic className="size-4" />
           </TaskList.Action>
         </TaskList.Actions>
       </TaskList.Row>

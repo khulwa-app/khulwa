@@ -1,7 +1,6 @@
 "use client";
 
 import { AltArrowRight } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
 import { Collapsible } from "@/components/ui";
 import type { Task } from "@/services/tasks";
 import { TaskList } from "./task-list";
@@ -13,7 +12,7 @@ export function FoldedSection({ label, tasks }: { label: string; tasks: Task[] }
     <Collapsible
       trigger={
         <TaskList.SectionTrigger>
-          <Icon icon={AltArrowRight} boxSize="3.5" />
+          <AltArrowRight className="size-4" />
           {`${label} (${tasks.length})`}
         </TaskList.SectionTrigger>
       }

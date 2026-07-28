@@ -1,6 +1,5 @@
 "use client";
 
-import { Show, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 import { ScrollArea } from "@/components/ui";
 import { SidePanel, usePanels, Panel } from "@/modules/panels";
@@ -22,26 +21,24 @@ export function TasksPanel() {
   const done = tasks.filter((task) => task.completed);
   return (
     <SidePanel open={open} onClose={close} title={t("title")}>
-      <VStack h="full" w="full" gap="3" align="stretch">
+      <div className="flex h-full w-full flex-col gap-3">
         <QuickAdd />
 
         {!isPending && (
           <ScrollArea className="min-h-0 w-full flex-1">
             <TaskList.Root>
-              <Show when={hasTasks} fallback={<TaskList.Empty>{t("empty")}</TaskList.Empty>}>
-                <>
+              {hasTasks ? <>
                   {today.map((task, index) => (
                     <TaskRow key={task.id} task={task} index={index} />
                   ))}
 
                   <FoldedSection label={t("later")} tasks={later} />
                   <FoldedSection label={t("done")} tasks={done} />
-                </>
-              </Show>
+                </> : <TaskList.Empty>{t("empty")}</TaskList.Empty>}
             </TaskList.Root>
           </ScrollArea>
         )}
-      </VStack>
+      </div>
     </SidePanel>
   );
 }

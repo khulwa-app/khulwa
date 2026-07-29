@@ -1,14 +1,24 @@
 # Khulwa Beta — Technical Build Plan
 
+> [!WARNING]
+> **SUPERSEDED — HISTORICAL RECORD ONLY. DO NOT USE THIS FILE FOR IMPLEMENTATION.**
+>
+> The approved and authoritative implementation direction is
+> [`docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md`](docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md). Every task card,
+> checklist, status, convention, definition of done, file path, palette, and execution order below is a
+> snapshot of earlier work, not current guidance. References to Chakra UI, Arabic/RTL, focus categories,
+> legacy indigo/violet, saffron/sage, or “Forest bright” palettes, and `client/` or separate `server/` paths
+> are historical. Do not implement or revive them.
+
 Execution plan for the rest of the beta roadmap (Phases 1–3 + post-beta), written to be handed to
 Claude Code one task card at a time. Mirrors the Apple Note *"Khulwa — Beta Roadmap & Todo (live)"*.
 
-**Source of truth:** the code. This plan references real files/paths as of 26 Jun 2026.
+**Historical basis:** the code and file layout as they existed on 26 Jun 2026.
 Tasks are ordered; later cards assume earlier ones. Each card is independently shippable.
 
 ---
 
-## 0. Conventions & ground rules (read first, every task)
+## 0. Historical conventions and ground rules — do not use
 
 > **Full engineering conventions live in `CLAUDE.md`** (auto-loaded every session — the source of truth):
 > Chakra v3 **styling = theme/recipes only, never inline**; read Chakra/Next docs when unsure; clean small
@@ -47,7 +57,7 @@ needed for Phase 1** unless a card says so.
 
 ---
 
-## FOUNDATION — do before Phase 1 (prerequisite plumbing)
+## HISTORICAL FOUNDATION — superseded prerequisite plumbing
 
 ### F1 — Server: `requireAuth` middleware + route scaffolding — ✅ DONE
 **Goal.** A reusable auth guard that resolves the better-auth session and attaches `req.user`, plus a
@@ -74,7 +84,7 @@ provider mounted in `client/app/app/layout.tsx` (or a client providers wrapper).
 
 ---
 
-## PHASE 1 — Backend logic (P1)  *(note items, in order)*
+## HISTORICAL PHASE 1 — Backend logic snapshot
 
 > The 4 note checkboxes: streak logic BE, streak API + replace localStorage, category % tracking BE,
 > tracking API to feed charts. Built on the `focusSession` → `dailyCategoryTotal` → `streak` model.
@@ -140,7 +150,7 @@ migrate `use-tasks-store.hook.ts` from `persist` localStorage to TanStack mutati
 
 ---
 
-## PHASE 2 — Core UI / UX (P1)
+## HISTORICAL PHASE 2 — Core UI/UX snapshot
 
 ### P2.1 — Progress: its own page + charts
 **Goal.** A dedicated `/app/progress` route with category-% + weekly/daily charts (not just the side panel).
@@ -210,7 +220,7 @@ light/dark variant switching. Verify against the workspace logo explorations if 
 
 ---
 
-## PHASE 3 — Cleanup / polish (P2)
+## HISTORICAL PHASE 3 — Cleanup/polish snapshot
 
 ### P3.1 — Move `buildDateLine` to clock utils — ✅ DONE (helper no longer exists; date line uses `@/modules/clock`)
 **Files.** find `buildDateLine` (greeting/clock area) → move to the clock utils module; update imports.
@@ -248,7 +258,7 @@ DevTools "Rendering → Paint flashing" that the orb doesn't trigger repaints. R
 
 ---
 
-## POST-BETA
+## HISTORICAL POST-BETA IDEAS
 
 ### PB.1 — Companion chat with avatar (Gemini)
 **Goal.** Conversational companion using `@google/genai` (already a client dep) + `NoorOrb` as the avatar.
@@ -258,7 +268,7 @@ DevTools "Rendering → Paint flashing" that the orb doesn't trigger repaints. R
 
 ---
 
-## Suggested execution order (one Claude Code session each)
+## Historical suggested execution order — do not execute
 
 1. **F1 → F2** (foundation) → 2. **P1.1 → P1.2 → P1.3 → P1.4** (tracking goes end-to-end) →
 3. **P1.R** (tasks/notes API, if keeping) → 4. **P2.3** (Settings: quick wins, theme+pomodoro) →

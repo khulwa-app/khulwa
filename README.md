@@ -8,200 +8,183 @@
 
 **A retreat for deep work.**
 
-A quiet room, a verse, a timer, one task — and nothing else.
+A quiet room, a timer, one task, and nothing else.
 
 <p>
   <a href="https://github.com/khulwa-app/khulwa/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/khulwa-app/khulwa?style=flat-square"></a>
   <img alt="License" src="https://img.shields.io/badge/license-private-lightgrey?style=flat-square">
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js">
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript">
-  <img alt="Chakra UI" src="https://img.shields.io/badge/Chakra%20UI-v3-319795?style=flat-square&logo=chakraui">
-  <img alt="AI" src="https://img.shields.io/badge/AI-Gemini-8E75B2?style=flat-square&logo=googlegemini">
+  <img alt="Design direction" src="https://img.shields.io/badge/design-Deep%20Juniper-071713?style=flat-square">
 </p>
 
 </div>
 
 ---
 
-## What is Khulwa
+## What is Khulwa?
 
-**Khulwa** (Arabic: خَلوة, *sacred solitude*) is a focus environment for deep work — built on the Pomodoro technique and the Sufi tradition of retreat. It is bilingual (Arabic / English, RTL-aware) and deliberately calm: a warm, single-light theme, soft glass chrome, and no clutter competing for your attention.
+Khulwa is a calm focus environment built around a Pomodoro rhythm, one active task, ambient sound, local
+notes and tasks, and server-backed progress. It is an English-only, single Next.js application at the
+repository root.
 
-You enter a **space**, set your **one thing**, start the **timer**, and let a quiet **ambient bed** hold the room. Everything else stays out of the way.
+You enter a space, choose your one thing, start the timer, and let a quiet ambient bed hold the room.
+Everything else stays close at hand without competing for attention.
 
----
+## Product
 
-## A look inside
+- **Home** provides a calm arrival, the current time, and a clear next action.
+- **Focus** keeps the selected task, timer, phase, and session controls together.
+- **Short and long breaks** are phases inside the Focus stage, not separate full-screen takeovers.
+- **Ambient** centers the current soundscape and playback state.
+- **Tasks, Notes, Sounds, Rhythm, and Settings** open in compact panels anchored to the dock on desktop.
+- **Progress** summarizes focus minutes, sessions, trends, and streaks.
+- **AI task assist** can estimate duration or break a task into steps, but the core product works without AI.
 
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <img src="docs/tasks.png" alt="Tasks panel with AI break-into-steps" width="100%" />
-      <br/>
-      <sub><b>Tasks, quietly.</b> Capture in one line, break a big task into steps — by hand or with one AI tap. Today / Later / Done, in-place editing, actions revealed on hover.</sub>
-    </td>
-    <td width="50%" valign="top">
-      <img src="docs/ambient.png" alt="Ambient sound mixer" width="100%" />
-      <br/>
-      <sub><b>An ambient bed.</b> Layer rain, fireplace, café and more — each with its own volume and a master, smooth fades, loudness-normalized loops that keep playing across spaces.</sub>
-    </td>
-  </tr>
-</table>
+Focus categories are being removed from the UI, session flow, API, stored records where migration permits,
+and statistics. Starting a focus session must not require a category.
 
-<div align="center">
-  <img src="docs/timer.png" alt="Floating focus timer over the dock" width="640" />
-  <br/>
-  <sub><b>The session follows you.</b> A quiet floating timer keeps a running Pomodoro in sight from any space.</sub>
-  <br/><br/>
-  <img src="docs/streak.png" alt="Focus streak and quiet-hours chrome" width="420" />
-  <br/>
-  <sub><b>Gentle chrome.</b> A focus streak and quiet hours rest at the edge of the screen — present, never nagging.</sub>
-</div>
+## Approved redesign direction
 
----
+The authoritative redesign specification is the
+[UI/UX Audit and Redesign Plan](docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md). It defines the decisions, sequence,
+review gates, accessibility targets, and acceptance criteria for the migration.
 
-## Features
+The approved system is:
 
-### Three spaces
-Photo-backed, URL-driven environments you move between — **Home** (arrival & intention), **Focus** (the timer), and **Ambient** (rest). The chrome floats over each scene as one cohesive glass family.
+- **Deep Juniper + Quiet Amethyst**: a calm dark juniper foundation with warm off-white text, quiet plum
+  depth, and amethyst reserved for action and focus.
+- **Manrope Variable** for marketing, UI, timer, and statistics, with restrained weights and tabular numerals.
+- **Lucide** as the only application icon family.
+- **shadcn native primitives + Tailwind composition**: preserve the native primitive geometry and compose
+  product-level components and layouts with Tailwind.
+- **No Chakra UI and no DaisyUI** in the redesigned implementation.
+- **Dark-only initial release** across every page and overlay; Light/System stay hidden until a complete
+  second palette is designed and verified.
+- **Compact dock and anchored panels**: desktop panels remain content-driven, non-modal, and spatially tied
+  to their dock trigger; mobile uses an appropriate sheet treatment.
+- **Separate Progress anchor**: the quick panel opens beneath the header streak badge on desktop/tablet and
+  as a top or bottom sheet on mobile; it is not a dock-capsule item.
+- **Integrated break phases**: Short Break and Long Break reuse the Focus stage.
+- **No focus categories** anywhere in the completed product.
+- **One visible-brand migration**: Khulwa remains the repository/project working identity; Riwaq is the
+  approved public product target and will replace the visible Khulwa brand once in a coordinated step.
+  Existing technical/package identifiers stay unchanged during visual migration, including the current
+  `package.json` name `focus-den`; the brand step does not approve their rename.
 
-### The home ritual
-A live clock and a **time-aware greeting** (*Morning / Evening, friend*), a **rotating Qur'anic āyah** drawn from a curated collection on knowledge and perseverance (with translation + citation, AR & EN), and a **"your one thing"** card — pick a task and step through to Focus.
+The checked-in application still contains legacy Chakra UI, Solar icons, Nunito, category, and standalone
+break code while the redesign is in progress. Those dependencies and components describe migration state,
+not an alternative design direction.
 
-### Focus & the Pomodoro
-Full Pomodoro flow — focus, short break, long break, rounds — with phase tabs and a large, calm timer. The task you're focused on is **whispered beneath the clock**, and a **floating timer pill** follows you to other spaces so a running session is never out of sight.
+Each implementation phase must pass its documented review gate before work expands to the next surface:
+source of truth and product decisions; foundations; dock and panel shell; individual panels; core pages;
+entry pages; and the final quality pass.
 
-### Tasks
-A store-driven, deliberately compact task panel: **one-line quick capture**, **subtasks (steps)**, a **Today / Later / Done** rhythm, in-place editing, and a single doing-now focus per the app's one-thing ethos. Rows stay calm at rest and reveal their actions on hover.
+## Current architecture
 
-### AI assist · *optional, quiet*
-Powered by **Gemini**, and built to work **fully with AI off**:
-- **ETA estimation** — a realistic time estimate is filled in the background as you capture a task (never overriding a value you set).
-- **Break into steps** — turn a vague, heavy task into 3–5 concrete steps with one tap.
+Khulwa is one Next.js 16 App Router application at the repository root. There is no `client/`, separate
+Express server, workspace configuration, or `src/` directory.
 
-### Ambient sounds
-A layered **soundscape mixer** — rain, rain & birds, fireplace, café, theta, keyboard — each with its own volume plus a master, **smooth fades** on play/pause, and loudness-normalized loops. Your levels persist; the audio keeps playing across spaces, and the dock shows a quiet dot while it's on.
-
-### Bilingual & calm by design
-Arabic and English, RTL-aware throughout. A token-driven **Chakra UI v3** design system — warm dark palette (saffron + sage), shared glass material, one source of visual truth in `client/theme/`.
-
----
-
-## Roadmap
-
-Building toward a focus companion that reflects with you, not at you.
-
-- **AI** — smart natural-language capture (*"read 20 pages before maghrib, high priority"* → fields), a calm **daily closing summary**, **weekly focus insight**, session intention phrasing, and verse rotation by theme.
-- **Sessions** — link the Pomodoro to the doing-now task, then turn session history into gentle reflections.
-- **Sounds** — seamless crossfade loops, saved **scenes/presets**, and resume-on-gesture after a refresh.
-- **Sync** — auth pages + persistence to the server, streaks, and quiet-hours scheduling.
-
----
-
-## Tech stack
-
-### Client (`client/`)
-
-| Concern | Library |
-|--------|--------|
-| Framework | Next.js 16 (App Router, Turbopack) |
-| UI | Chakra UI v3 — token-driven, recipe & slot-recipe based |
-| State | Zustand (persisted stores: tasks, pomodoro, sounds) |
-| Audio | react-howler / Howler.js (Web Audio, gapless loops) |
-| AI | `@google/genai` (Gemini) via server actions |
-| i18n | next-intl + JSON messages (cookie locale, AR default) |
-| Auth | `better-auth/react` — cookie sessions, email/password + Google |
-| Fonts | Reem Kufi (display) · IBM Plex Sans Arabic (body) · IBM Plex Sans (tabular numerics) |
-
-### Server (`server/`)
-
-| Concern | Library |
-|--------|--------|
-| Runtime | Node 20+ · Express 5 · TypeScript (NodeNext) |
-| DB | Postgres (Neon) · Drizzle ORM |
-| Auth | Better Auth — email/password + Google OAuth, sessions in DB |
-| Email | Resend |
-
----
-
-## Monorepo layout
-
-```
+```text
 khulwa/
-├── client/        Next.js 16 · Chakra UI v3 · Zustand · next-intl · Gemini
-│   ├── modules/   spaces · tasks · pomodoro · sounds · verses · ai · dock · panels
-│   ├── theme/     tokens · semantic-tokens · recipes · slot-recipes · layer-styles
-│   └── messages/  ar.json · en.json
-├── server/        Express 5 · Drizzle · Postgres · Better Auth · Resend
-└── docs/          screenshots for this README
+├── app/             routes, layouts, and API route handlers
+├── modules/         domain UI and ephemeral client behavior
+├── services/        HTTP/query hooks and local persisted stores
+├── lib/             auth, database, email, and server services
+├── components/      shared providers and UI components
+├── messages/        English UI copy
+├── public/          runtime images and sound assets
+├── assets/          source assets
+├── theme/           legacy Chakra theme during migration
+├── design-system/   redesign implementation reference
+└── docs/            product images and the authoritative redesign plan
 ```
 
-Each app is self-contained — no root `package.json`, no workspaces (yet).
+Data boundaries:
 
----
+- Tasks and notes are local Zustand-persisted data.
+- Pomodoro, panels, sounds, rhythm, UI preferences, and space state are client-side domain state.
+- Focus sessions, progress, and streaks are server-backed through `app/api/**`, Drizzle ORM, and Postgres.
+- Authentication uses Better Auth with email/password and Google support.
+- User-facing text lives in `messages/en.json` through `next-intl`.
 
-## Quick start
+## Technology
 
-**Prereqs:** Node ≥ 20.9 · Yarn (client) · npm (server) · Postgres (Neon free tier) · optional Google OAuth, Resend, and `GEMINI_API_KEY` for AI assist.
+| Concern | Current foundation / approved direction |
+| --- | --- |
+| Runtime | Node 22+ |
+| Framework | Next.js 16 App Router, React 19, TypeScript 5 |
+| Data | Zustand, TanStack Query, Drizzle ORM, Postgres |
+| Auth | Better Auth |
+| i18n | next-intl, English only |
+| Audio | Howler through react-howler |
+| AI | Gemini through `@google/genai`, optional |
+| Target UI | shadcn native primitives with Tailwind composition |
+| Target type/icons | Manrope Variable and Lucide |
+
+`package.json` is the dependency-level truth for the current migration state. The redesign plan is the
+product and visual truth for the completed migration.
+
+## Local development
+
+Prerequisites: Node 22+, Yarn, and Postgres for server-backed features. Google OAuth, Resend, and
+`GEMINI_API_KEY` are optional.
+
+### Required environment variables
+
+These are the only variables without defaults in `lib/env.ts`. Supply values through `.env.local` for local
+development or the deployment platform's secret store. Never commit their values.
+
+| Variable | Purpose |
+| --- | --- |
+| `DATABASE_URL` | Private Postgres connection URL used by Drizzle and the application database client |
+| `BETTER_AUTH_SECRET` | Private signing/encryption secret used by Better Auth |
+
+`BETTER_AUTH_URL` defaults to `http://localhost:3000`, and `EMAIL_FROM` defaults to
+`Khulwa <onboarding@resend.dev>`. Google credentials, `RESEND_API_KEY`, and `GEMINI_API_KEY` enable optional
+integrations and are not required for the base application to start.
 
 ```bash
-git clone git@github.com:khulwa-app/khulwa.git
-cd khulwa
-```
-
-**Server**
-```bash
-cd server
-npm install
-cp .env.example .env.local      # DATABASE_URL, BETTER_AUTH_SECRET, optional GOOGLE_*/RESEND_*
-npm run db:push                 # apply Drizzle schema
-npm run dev                     # http://localhost:4000
-```
-
-**Client**
-```bash
-cd client
 yarn install
-cp .env.example .env.local       # NEXT_PUBLIC_BACKEND_URL=http://localhost:4000
-# optional: GEMINI_API_KEY=...  (AI assist; the app runs fine without it)
-yarn dev                         # http://localhost:3001
+yarn dev
 ```
 
-### Ambient sound assets
-Processed loops live in `client/public/sounds/`. To re-encode from sources in `client/assets/sounds/` (two-pass EBU R128 loudness normalization → Opus), run:
+The development server runs at `http://localhost:3000`.
+Create `.env.local` with the database, auth, and optional integration variables needed for the features you
+intend to run.
+
+| Command | Purpose |
+| --- | --- |
+| `yarn dev` | Start the Next.js development server |
+| `yarn build` | Create a production build |
+| `yarn lint` | Run ESLint |
+| `npx tsc --noEmit` | Run TypeScript checks |
+| `yarn db:generate` | Generate Drizzle migrations |
+| `yarn db:migrate` | Apply Drizzle migrations |
+| `yarn db:push` | Push explicitly approved local schema work; never use for the category-removal rollout |
+| `yarn db:studio` | Open Drizzle Studio |
+
+Before changing Next.js code, read the relevant guide in `node_modules/next/dist/docs/`; this repository uses
+a version with breaking API and convention changes.
+
+## Ambient sound assets
+
+Processed loops live in `public/sounds/`. Source loops live in `assets/sounds/`. Re-encode them with:
 
 ```bash
-cd client && ./scripts/process-sounds.sh   # requires ffmpeg
+./scripts/process-sounds.sh
 ```
 
----
+This requires `ffmpeg`.
 
-## Design system
+## Design documentation
 
-`client/theme/` is the single source of visual truth — **tokens only**, no raw hex, no inline font stacks, no magic `px`.
-
-- **tokens / semantic-tokens** — palette (saffron, sage, sand, night), `bg.*` `fg.*` `border.*`, shadows, durations
-- **layer-styles** — the shared glass material (dock, pills, panels, cards)
-- **recipes / slot-recipes** — Button, plus compound components for the dock, panels, task list, sound grid, timer pill
-- **system.ts** — composed Chakra system, `cssVarsPrefix: "khulwa"`
-
-After any theme change: `yarn typegen`.
-
-### Commands
-
-| | Client (`yarn`) | Server (`npm`) |
-|---|---|---|
-| Dev | `yarn dev` | `npm run dev` |
-| Build | `yarn build` | `npm run build` |
-| Lint | `yarn lint` | — |
-| Types | `yarn typegen` | — |
-| DB | — | `npm run db:push` · `db:studio` |
-
----
+- [Authoritative UI/UX audit and redesign plan](docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md)
+- [Derived design-system implementation reference](design-system/khulwa/DESIGN-SYSTEM.md)
 
 ## License
 
-Private — see [LICENSE](LICENSE), or contact the org.
+Private — contact the organization for access and licensing information.
 
 <div align="center">
   <br/>

@@ -1,4 +1,16 @@
-## Tasks
+# Khulwa development notes — historical archive
+
+> [!WARNING]
+> **SUPERSEDED — HISTORICAL RECORD ONLY. DO NOT USE THIS FILE FOR IMPLEMENTATION.**
+>
+> The approved and authoritative implementation direction is
+> [`docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md`](docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md). Every task, todo,
+> implementation note, palette value, file path, and feature idea below records an earlier product state.
+> References to Chakra UI, Arabic/RTL, focus categories, legacy indigo/violet, saffron/sage, or “Forest
+> bright” palettes, and `client/` or separate `server/` paths are historical. Do not implement or revive
+> them.
+
+## Historical tasks snapshot
 
 User will write some tasks, user can select which one to work on now, user can toggle if this task done.
 I will need zustand store to handle tasks in general and read in the upnext card
@@ -16,7 +28,7 @@ eta: Date
 priority: high | mid | low
 }
 
-### Todos
+### Historical todos
 
 [✅] Scaffold tasks store
 [✅] persist store
@@ -24,7 +36,7 @@ priority: high | mid | low
 [✅] build change task feature for upnext card
 [✅] build panel for tasks ( side panel )
 
-## Floating pomodoro pill (before/alongside AI v1)
+## Historical floating Pomodoro pill notes
 
 Problem: leaving the Focus space (Home/Ambient) loses sight of a ticking
 session. Solution: a quiet floating pill — the "mini player" pattern.
@@ -46,12 +58,12 @@ session. Solution: a quiet floating pill — the "mini player" pattern.
 - **Code**: modules/pomodoro/components/floating-timer.tsx, mounted in the
   dashboard layout beside <Dock/>; reads usePomodoro + useSpace. z-index 900.
 
-## AI feature ideas (Gemini server action exists in modules/ai)
+## Historical AI feature ideas
 
 Filter every idea through Khulwa's ethos: AI works quietly at the edges
 (before/after/between sessions), never during. Everything must work with AI off.
 
-### Task intelligence (closest to what we have)
+### Historical task-intelligence ideas
 
 - **ETA estimation** — we already store `eta` per task; users guess badly.
   When a task is created in quick-add, ask the model for a realistic estimate
@@ -66,7 +78,7 @@ Filter every idea through Khulwa's ethos: AI works quietly at the edges
   "read 20 pages before maghrib, high priority" → body + eta + priority
   fields, no extra UI.
 
-### Session reflection (pairs with the pomodoro)
+### Historical session-reflection ideas
 
 - **Daily closing summary** — at day's end, turn completed tasks + focus
   minutes into two calm sentences ("You gave 3 hours to deep work today;
@@ -75,7 +87,7 @@ Filter every idea through Khulwa's ethos: AI works quietly at the edges
   sessions usually break early" from session history. Users feel this but
   never compute it.
 
-### Content that matches the soul of the app
+### Historical content ideas
 
 - **Intention phrasing** — when a session starts, a one-line intention
   generated from the task ("Twenty-five minutes for chapter four — nothing
@@ -84,7 +96,7 @@ Filter every idea through Khulwa's ethos: AI works quietly at the edges
   work theme with proper citation, AR + EN. Real differentiator for a
   bilingual app.
 
-### Implementation notes
+### Historical implementation notes
 
 - All single-prompt calls — typed wrappers over `generateText` (e.g.
   `estimateEta(task)`, `splitTask(task)`) with structured JSON output.
@@ -93,7 +105,7 @@ Filter every idea through Khulwa's ethos: AI works quietly at the edges
 - Privacy: task text leaves the device only if the user enables AI.
 - Prerequisite: grow the task model first (see task manager v2 plan).
 
-## Design / Figma todos
+## Historical design/Figma todos — do not implement
 
 - **Rename phase strings** — design locks the pomodoro tabs as **Focus / Short Break / Long Break**; update `messages/en.json` + `ar.json` `khulwa.phase.*` (currently Khulwa/Waqfa/Raha) to match when implementing the new Focus space.
 - **Field retarget: "Forest bright"** — the whole wallpaper = 5 `mesh.*` tokens (`theme/tokens/colors.ts:28-34`). New direction: floor → saturated emerald `#12946E`, glows → one emerald/teal family (bright spring green `#36C496`, deep emerald `#0D7A60`, aqua `#26BAAB`, pale mint `#78D6A4`), **no dark center scrim** (white hero text passes WCAG large-text 3:1 on the saturated core through the 0.20 frost — keep the core mid-lightness, never pale). Re-tune the `data-phase` hue-rotate deltas (`theme/layer-styles.ts:22-25`) for the emerald base + re-verify contrast at port time.

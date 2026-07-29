@@ -1,101 +1,102 @@
-# Khulwa — CLAUDE.md
+# Khulwa — repository guidance
 
-Khulwa is a calm **focus / deep-work "new tab" dashboard** — pomodoro, ambient sounds, local tasks &
-notes, streak/progress tracking. **One Next.js 16 app at the repo root** (no `client/`, no separate server).
+Khulwa is a calm focus and deep-work application: Pomodoro phases, ambient sounds, local tasks and notes,
+rhythm, and server-backed streak/progress tracking.
 
-> ⚠️ Heads-up: an earlier version of this file was copied from a different app (a GraphQL/Apollo storefront).
-> If you see references to `src/`, Apollo, Sentry, yup, or port 5019 anywhere, they are wrong — this is the
-> source of truth.
+It is one Next.js 16 application at the repository root. There is no `client/`, separate Express server,
+workspace configuration, `src/` directory, Apollo/GraphQL, Sentry, yup, Arabic locale, or RTL product mode.
 
-## Stack (accurate)
+## Sources of truth
+
+1. [`docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md`](docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md) is the approved,
+   authoritative redesign source. It controls visual direction, component boundaries, sequencing, review
+   gates, and acceptance criteria.
+2. [`design-system/khulwa/DESIGN-SYSTEM.md`](design-system/khulwa/DESIGN-SYSTEM.md) is a concise
+   implementation reference derived from that plan. It must not contradict the plan.
+3. `package.json` and the current source tree describe migration state. Legacy dependencies do not override
+   the approved target.
+
+Do not revive older indigo/violet liquid-glass, saffron/sage, Chakra recipe, Nunito, Solar, category, or
+standalone break-screen directions.
+
+## Stack and migration state
 
 | Aspect | Value |
 | --- | --- |
-| Framework | **Next.js 16** (App Router, Turbopack), React 19, Node ≥ 22 |
-| UI | **Chakra UI v3** (`@chakra-ui/react`) — token/recipe driven |
-| State | **Zustand** (local/ephemeral) · **TanStack Query** (server data) |
-| Auth | **better-auth** (email + Google), route handlers in `app/api/auth/**` |
-| DB | **Drizzle ORM** + **Neon Postgres** (server-backed: focus-sessions, streak, progress) |
-| i18n | **next-intl** (`en` + `ar`, RTL-aware) |
-| Other | next-themes (dual theme), lucide-react (icons), `@google/genai` (AI), react-howler (sounds) |
-| Dev port | **3000** · Path alias | `@/* → ./*` (repo root) |
+| Framework | Next.js 16 App Router, React 19, TypeScript 5, Node 22+ |
+| State | Zustand for local/ephemeral state; TanStack Query for server data |
+| Auth | Better Auth; route handlers under `app/api/auth/**` |
+| Data | Drizzle ORM + Postgres for focus sessions, streak, and progress |
+| i18n | next-intl; English only; user-facing text in `messages/en.json` |
+| Audio / AI | react-howler; optional Gemini through `@google/genai` |
+| Approved UI | shadcn native primitives with Tailwind composition |
+| Approved type / icons | Manrope Variable; Lucide only |
 
-No Apollo/GraphQL. No Sentry. No yup. No `src/` dir.
+Chakra UI, its `theme/` recipes, Solar icons, and Nunito are legacy migration state. Do not add new usage.
+DaisyUI is not part of the product and must not be introduced. Remove legacy UI infrastructure only in the
+phase assigned by the redesign plan and only after behavior parity is confirmed.
 
 ## Commands
 
 ```bash
-yarn dev          # Turbopack on :3000
+yarn dev
 yarn build
-yarn lint         # eslint
-yarn typegen      # chakra typegen — RUN AFTER ANY theme change
-yarn db:push      # apply Drizzle schema to Neon   ·   yarn db:studio
+yarn lint
+npx tsc --noEmit
+yarn db:generate
+yarn db:migrate
+yarn db:push        # explicitly approved local schema work only; never category removal
+yarn db:studio
 ```
 
-## Architecture & layering (hard rules)
+Before writing Next.js code, read the relevant guide under `node_modules/next/dist/docs/`. This installed
+version has breaking API, convention, and file-structure changes.
 
-Keep a clean line between server and UI — never let a UI interaction trigger server work.
+## Architecture and layering
 
-- **Server-side** (route handlers, SSR, session/DB) → `app/` (route handlers `app/api/**/route.ts`,
-  page server components) + `lib/` (db, schema, auth, email, services, validation).
-- **Client UI** → `modules/<domain>/**` (components + ephemeral client state).
-- **Server-data-access** (HTTP + TanStack hooks) → `services/<domain>/` (e.g. `services/progress`).
-- **Local / ephemeral state** → **Zustand**. **Tasks & notes are LOCAL Zustand-persist (localStorage), no
-  backend** — `services/{tasks,notes}` expose Zustand stores via thin hooks. Panels/spaces are Zustand too.
-- Route pattern: `app/**/page.tsx` is a thin server component that imports the module component directly
-  (`return <HomePage />`). No `client.page.tsx` shims.
+- **Routes and server boundaries:** `app/` contains layouts, thin page entry points, and route handlers.
+- **Server implementation:** `lib/` contains database, schema, auth, email, environment, and server services.
+- **Domain UI:** `modules/<domain>/**` contains components and ephemeral domain behavior.
+- **Data access:** `services/<domain>/**` contains HTTP/query hooks and local persisted stores.
+- **Shared UI:** `components/ui/**` contains reusable primitives and product-wide compositions.
+- **Local persistence:** tasks and notes remain Zustand-persisted in localStorage.
+- **Server-backed state:** focus sessions, progress, and streaks flow through `app/api/**`.
 
-## Chakra UI v3 — styling lives in the THEME only
+Keep `app/**/page.tsx` thin. Prefer one component per file, single responsibility, kebab-case filenames,
+`use-*.hook.ts` hooks, and folder barrels. Preserve stable product behavior during visual work.
 
-This is the rule we care about most.
+## Approved design constraints
 
-- **No inline styling. No `style={}`, no `sx`, no Tailwind, no hardcoded hex/px.** Style only via the theme:
-  **tokens, `textStyle`, `layerStyle`, recipes, slot-recipes**, and Chakra style props that resolve tokens.
-- **Primitives → recipes; compound components → slot-recipes** (`Component.Root` / `Component.Body` pattern,
-  via `createSlotRecipeContext`). Put shared visual logic in the recipe, not the TSX.
-- **Run `yarn typegen` after EVERY theme change** (tokens/recipes/text-styles) or types go stale.
-- **When you don't know a Chakra v3 API, READ THE DOCS** — v3 differs heavily from v2 and from training data.
-  Check `node_modules/@chakra-ui/react` types / the Chakra v3 docs before guessing. Same for **Next 16**:
-  read `node_modules/next/dist/docs/` before writing framework code (APIs have breaking changes).
-- **Recipe hygiene:** no `className` field in recipes; don't re-declare Chakra's built-in defaults in `base`
-  (only overrides); **never `focusRing: 'none'`** (kills keyboard a11y — suppress mouse rings in `globalCss`
-  with `disableLayers`, see `theme/system.ts`); variant names use dot-notation for UI context.
-- **Container sizes:** `container.*` is dead in v3 — use the T-shirt scale (`maxW="7xl"` ≈ 1280px).
-- **Menus:** Chakra `<Menu.Root>/<Menu.Item>` for menus; `SidePanel`/drawer recipe for panels. Don't hand-roll
-  menus from `Button unstyled` (strips focus handling).
+- Direction: **Deep Juniper + Quiet Amethyst**.
+- Typography: **Manrope Variable**, weights 400–700; application UI usually 400–600; timer numerals tabular.
+- Icons: **Lucide only**. Express active state through the control container rather than icon-family or
+  stroke-weight switching.
+- Components: keep **shadcn native primitives** at their native sizes and geometry. Use **Tailwind
+  composition** for product-level layout and styling. Do not fork primitives to solve page layout.
+- Framework exclusions: **no Chakra UI and no DaisyUI** in redesigned code.
+- Shell: use a **compact dock** and content-driven dock panels anchored near their dock trigger. Desktop dock
+  panels are non-modal; mobile may use sheets. Progress is the explicit exception: it is not a dock-capsule
+  panel, opens beneath the header streak badge on desktop/tablet, and uses a top or bottom sheet on mobile.
+- Focus flow: remove category selection and category statistics. Focus must start without a category.
+- Break flow: Short Break and Long Break are integrated states of the Focus stage. Do not create a separate
+  full-screen break takeover.
+- Atmosphere: static, restrained gradients; no continuous background animation, glow vocabulary, or large
+  repainting blur fields.
+- Accessibility: 44px minimum hit targets, visible focus, accessible names for icon-only controls, keyboard
+  operation and focus return, reduced-motion support, and WCAG AA contrast.
 
-## Components — clean, small, professional
+## Review gates
 
-- **One component per file, single responsibility.** Keep components small; extract sub-parts into their own
-  files. **Scope a parent's children under its folder** (e.g. `tasks-panel/`, `tasks-panel/tasks-row/`) unless
-  the piece is genuinely shared, then it lives in `components/ui` or the right general scope.
-- **kebab-case** filenames; hooks are `use-*.hook.ts`; each folder has an `index.ts` barrel.
-- **No inessential comments** — no narrative/decorative comments; only terse protective ones where logic is
-  non-obvious.
-- Prefer composition over props-explosions; lift shared types to a `*.types.ts` in the domain.
+Do not duplicate or abbreviate the gates here. Follow the exact
+[implementation sequence and review gates](docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md#12-implementation-sequence-and-review-gates)
+in the authoritative plan; the
+[concise design reference](design-system/khulwa/DESIGN-SYSTEM.md#review-gates) is only a navigation aid.
 
-## i18n (English-only)
+## Definition of done
 
-- **The app is English-only** (Arabic/RTL support was dropped 2026-07 — no `ar.json`, no `ar` locale, no RTL
-  handling). **Every user-facing string** still goes in `messages/en.json` via `useTranslations` — never hardcode.
-- Logical properties (`insetInlineStart/End`, `ms/me`, `paddingInline*`) remain the preferred style.
-
-## Accessibility
-
-- Decorative SVGs/icons get `aria-hidden`. Interactive elements keep keyboard focus-visible feedback (don't let
-  mouse-ring suppression leak onto keyboard focus). Touch targets ≥ 44px. Respect `prefers-reduced-motion`.
-
-## Design system (source of truth)
-
-Canonical: **`design-system/khulwa/DESIGN-SYSTEM.md`** — the single design-system reference (clear "liquid
-glass" identity: light-veil glass over a living indigo→violet mesh, bright specular rim, pill-first radii,
-Nunito, dark-first). The implemented theme lives in `theme/` and is the ultimate source of truth; the doc
-mirrors it. **Read it before any space/chrome/type/token work.**
-
-## Definition of Done (every task)
-
-1. `yarn lint && npx tsc --noEmit` clean.
-2. Tokens/recipes only — no inline styles, no raw hex/px (see styling rules above).
-3. Both light & dark verified for any UI; `prefers-reduced-motion` respected.
-4. Every new user-facing string in `en.json` + `ar.json` via `useTranslations`.
-5. `yarn typegen` run if the theme changed.
+1. Work stays inside its approved phase and preserves unrelated product behavior.
+2. The result follows the redesign plan and this derived reference.
+3. `yarn lint` and `npx tsc --noEmit` pass for implementation work.
+4. User-facing strings are added to `messages/en.json` through `next-intl`.
+5. Keyboard, reduced-motion, responsive, and contrast behavior is verified in proportion to the change.
+6. The phase review gate is recorded as approved before the next phase begins.

@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Input, Presence } from "@chakra-ui/react";
-import { ArrowRight } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { ActiveTask } from "@/theme/slot-recipes/active-task";
+import { Button } from "@/components/shadcn/button";
 import { estimateEta } from "@/modules/ai";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
@@ -38,30 +36,28 @@ export function DoingNowEmpty() {
   };
 
   return (
-    <Presence present animationName={{ _open: "fade-in" }} animationDuration="moderate">
-      <ActiveTask.Empty>
-        <ActiveTask.Bar>
-          <ActiveTask.Mark aria-hidden />
-          <Input
-            variant="plain"
-            flex="1"
-            minW="0"
-            height="9"
-            value={draft}
-            placeholder={t("intentionPlaceholder")}
-            autoFocus
-            onChange={(e) => setDraft(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") begin();
-            }}
-          />
-          <Button variant="primary" size="sm" flexShrink="0" onClick={begin}>
-            {t("enterFocus")}
-            <Icon icon={ArrowRight} boxSize="3.5" />
-          </Button>
-        </ActiveTask.Bar>
-        <ActiveTask.Hint>{t("beginHint")}</ActiveTask.Hint>
-      </ActiveTask.Empty>
-    </Presence>
+    <div className="flex w-full max-w-lg flex-col items-center gap-2">
+      <div className="flex w-full items-center gap-3 rounded-full border border-hairline bg-surface-veil p-2 pl-6 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
+        <span className="size-1.5 shrink-0 rounded-full bg-border" aria-hidden />
+
+        <input
+          value={draft}
+          placeholder={t("intentionPlaceholder")}
+          aria-label={t("intentionPlaceholder")}
+          onChange={(event) => setDraft(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") begin();
+          }}
+          className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-foreground-muted"
+        />
+
+        <Button size="sm" onClick={begin}>
+          {t("enterFocus")}
+          <ArrowRight />
+        </Button>
+      </div>
+
+      <p className="text-xs text-foreground-muted">{t("beginHint")}</p>
+    </div>
   );
 }

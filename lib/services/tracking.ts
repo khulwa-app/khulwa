@@ -1,6 +1,6 @@
-import { and, eq, sql } from "drizzle-orm";
-import type { DB } from "@/lib/db";
-import { dailyCategoryTotal, focusSession, streak } from "@/lib/db/schema/focus";
+import { eq, sql } from "drizzle-orm";
+import type { DB } from "../db";
+import { dailyCategoryTotal, focusSession, streak } from "../db/schema/focus";
 
 type Tx = Parameters<Parameters<DB["transaction"]>[0]>[0];
 
@@ -10,7 +10,7 @@ export const CATEGORIES = focusSession.category.enumValues;
 
 export type FocusSessionInput = {
   userId: string;
-  category: Category | null;
+  legacyCategory?: Category | null;
   durationSeconds: number;
   startedAt: Date;
   endedAt: Date;
@@ -52,19 +52,21 @@ export async function recordFocusSession(db: DB, input: FocusSessionInput) {
   return db.transaction(async (tx) => {
     await tx.insert(focusSession).values({
       userId: input.userId,
-      category: input.category,
+      category: input.legacyCategory ?? null,
       durationSeconds: input.durationSeconds,
       startedAt: input.startedAt,
       endedAt: input.endedAt,
     });
 
-    if (input.category) {
+    // Keep the legacy aggregate current for legacy writers during the expand
+    // window. New clients omit category and rely only on focus_session reads.
+    if (input.legacyCategory) {
       await tx
         .insert(dailyCategoryTotal)
         .values({
           userId: input.userId,
           day,
-          category: input.category,
+          category: input.legacyCategory,
           totalSeconds: input.durationSeconds,
         })
         .onConflictDoUpdate({
@@ -77,15 +79,6 @@ export async function recordFocusSession(db: DB, input: FocusSessionInput) {
     }
 
     const streakRow = await recomputeStreak(tx, input.userId, day);
-
-    const rows = await tx
-      .select({ category: dailyCategoryTotal.category, totalSeconds: dailyCategoryTotal.totalSeconds })
-      .from(dailyCategoryTotal)
-      .where(and(eq(dailyCategoryTotal.userId, input.userId), eq(dailyCategoryTotal.day, day)));
-
-    const todayTotals: Partial<Record<Category, number>> = {};
-    for (const r of rows) todayTotals[r.category] = r.totalSeconds;
-
-    return { streak: streakRow, todayTotals };
+    return { streak: streakRow };
   });
 }

@@ -1,17 +1,21 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Box, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
-import { Pause, Play, Restart, SkipNext } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
+import { Pause, Play, RotateCcw, SkipForward } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { formatPomodoro } from "@/modules/clock";
-import { usePomodoro, usePomodoroHydrated, PhaseTabs, PomodoroPhase } from "@/modules/pomodoro";
-import { CategoryChip, useProgressStore } from "@/modules/progress";
+import {
+  canResetPomodoro,
+  isFocusPhase,
+  shouldResumePomodoro,
+  usePomodoro,
+  usePomodoroHydrated,
+  PhaseTabs,
+} from "@/modules/pomodoro";
 import { useLogFocusSession } from "@/services/progress";
 import { DoingNowCaption } from "@/modules/tasks/components/doing-now/doing-now-caption";
 import { SpaceBackground } from "./space-background";
-import { BreakScreen } from "./break-screen";
 
 export function FocusSpace() {
   const t = useTranslations("khulwa");
@@ -33,85 +37,87 @@ export function FocusSpace() {
     skip,
     setPhase,
   } = usePomodoro();
-  const primaryLabel = isRunning ? t("actions.pause") : hasStarted ? t("actions.resume") : t("actions.begin");
+  const canReset = canResetPomodoro(phase);
+  const isResumable = shouldResumePomodoro(phase, hasStarted);
+  const primaryLabel = isRunning ? t("actions.pause") : isResumable ? t("actions.resume") : t("actions.begin");
+  const stateLabel = isRunning ? t("state.running") : hasStarted ? t("state.paused") : t("state.ready");
 
-  const selected = useProgressStore((s) => s.selected);
   const { mutate: logSession } = useLogFocusSession();
   const loggedCompletion = useRef(completionCount);
   useEffect(() => {
     if (completionCount <= loggedCompletion.current) return;
     loggedCompletion.current = completionCount;
-    if (lastCompletedPhase !== PomodoroPhase.Focus) return;
+    if (!isFocusPhase(lastCompletedPhase)) return;
     const endedAt = new Date();
     const startedAt = new Date(endedAt.getTime() - focusMinutes * 60_000);
     logSession({
-      category: selected,
       durationSeconds: focusMinutes * 60,
       startedAt: startedAt.toISOString(),
       endedAt: endedAt.toISOString(),
     });
-  }, [completionCount, lastCompletedPhase, focusMinutes, selected, logSession]);
+  }, [completionCount, lastCompletedPhase, focusMinutes, logSession]);
 
   return (
-    <Box position="relative" minH="full" w="full" bg="bg" overflowX="hidden">
+    <div className="relative flex min-h-full w-full flex-col overflow-x-hidden bg-canvas">
       <SpaceBackground />
-      {hydrated && (
-        <VStack
-          position="relative"
-          zIndex={1}
-          minH="full"
-          w="full"
-          justify="center"
-          align="center"
-          paddingInline="6"
-          paddingBlock={{ base: "16", md: "20" }}
-        >
-          {phase === PomodoroPhase.ShortBreak || phase === PomodoroPhase.LongBreak ? (
-            <BreakScreen
-              phase={phase}
-              minutes={minutes}
-              seconds={seconds}
-              isRunning={isRunning}
-              onToggle={isRunning ? pause : start}
-              onSkip={skip}
+      {hydrated ? (
+        <div className="relative z-1 flex flex-1 w-full flex-col items-center justify-center gap-6 px-6 py-16 md:gap-8 md:py-20">
+          <PhaseTabs phase={phase} currentRound={currentRound} totalRounds={totalRounds} onPhaseChange={setPhase} />
+
+          <DoingNowCaption />
+
+          <p
+            className="tabular text-[64px] leading-none font-semibold md:text-[104px]"
+            suppressHydrationWarning
+          >
+            {formatPomodoro(minutes, seconds)}
+          </p>
+
+          <p
+            aria-live="polite"
+            className={cn(
+              "flex items-center gap-2 text-xs font-medium",
+              isRunning ? "text-foreground-secondary" : "text-foreground-muted",
+            )}
+          >
+            <span
+              className={cn("size-1.5 rounded-full", isRunning ? "bg-success" : "bg-foreground-muted")}
+              aria-hidden
             />
-          ) : (
-            <VStack gap={{ base: "5", md: "7" }} align="center">
-            <PhaseTabs phase={phase} currentRound={currentRound} totalRounds={totalRounds} onPhaseChange={setPhase} />
+            {stateLabel}
+          </p>
 
-            <Text textStyle="numeric-display" data-numeric color="fg" suppressHydrationWarning>
-              {formatPomodoro(minutes, seconds)}
-            </Text>
+          <div className="flex items-center gap-6">
+            <button
+              type="button"
+              onClick={reset}
+              aria-label={t("actions.reset")}
+              disabled={!canReset}
+              className="flex size-11 items-center justify-center rounded-full text-foreground-secondary transition-colors hover:bg-surface-elevated hover:text-foreground disabled:pointer-events-none disabled:opacity-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              <RotateCcw className="size-5" />
+            </button>
 
-            <DoingNowCaption />
+            <button
+              type="button"
+              onClick={isRunning ? pause : start}
+              aria-label={primaryLabel}
+              className="flex size-15 items-center justify-center rounded-full bg-primary text-primary-foreground transition-[background-color,transform] duration-[var(--duration-press)] hover:bg-primary-hover active:scale-[0.97] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              {isRunning ? <Pause className="size-6 fill-current" /> : <Play className="size-6 fill-current" />}
+            </button>
 
-            <CategoryChip />
-
-            <HStack gap="6" align="center">
-              <IconButton onClick={reset} variant="ghost" boxSize="12" rounded="full" aria-label={t("actions.reset")}>
-                <Icon icon={Restart} boxSize="5" />
-              </IconButton>
-              <IconButton
-                onClick={isRunning ? pause : start}
-                variant="primary"
-                boxSize="16"
-                rounded="full"
-                aria-label={primaryLabel}
-              >
-                {isRunning ? (
-                  <Icon icon={Pause} weight="Bold" boxSize="6.5" />
-                ) : (
-                  <Icon icon={Play} weight="Bold" boxSize="6.5" />
-                )}
-              </IconButton>
-              <IconButton onClick={skip} variant="ghost" boxSize="12" rounded="full" aria-label={t("actions.skip")}>
-                <Icon icon={SkipNext} boxSize="5" />
-              </IconButton>
-            </HStack>
-            </VStack>
-          )}
-        </VStack>
-      )}
-    </Box>
+            <button
+              type="button"
+              onClick={skip}
+              aria-label={t("actions.skip")}
+              className="flex size-11 items-center justify-center rounded-full text-foreground-secondary transition-colors hover:bg-surface-elevated hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              <SkipForward className="size-5" />
+            </button>
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 }

@@ -12,8 +12,9 @@ const svgrOptions = {
 };
 
 const nextConfig: NextConfig = {
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   experimental: {
-    optimizePackageImports: ["@solar-icons/react"],
+    optimizePackageImports: ["lucide-react"],
   },
   turbopack: {
     rules: {

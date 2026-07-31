@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { IconButton, Input, InputGroup } from "@chakra-ui/react";
-import { AddCircle } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
+import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { estimateEta } from "@/modules/ai";
 import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
@@ -32,26 +30,26 @@ export function QuickAdd() {
   };
 
   return (
-    <InputGroup
-      flexShrink="0"
-      endElement={
-        <IconButton variant="ghost" size="sm" aria-label={t("addTask")} disabled={draft.trim() === ""} onClick={submit}>
-          <Icon icon={AddCircle} boxSize="4" />
-        </IconButton>
-      }
-      endElementProps={{ paddingInline: "1" }}
-    >
-      <Input
-        variant="filled"
-        size="md"
+    <div className="sticky top-0 z-1 flex h-11 shrink-0 items-center gap-2 rounded-lg border border-input bg-surface px-3 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
+      <input
         value={draft}
         placeholder={t("placeholder")}
-        autoFocus
-        onChange={(e) => setDraft(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") submit();
+        aria-label={t("addTask")}
+        onChange={(event) => setDraft(event.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") submit();
         }}
+        className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-foreground-muted"
       />
-    </InputGroup>
+      <button
+        type="button"
+        onClick={submit}
+        disabled={draft.trim() === ""}
+        aria-label={t("addTask")}
+        className="flex size-7 shrink-0 items-center justify-center rounded-full text-foreground-muted transition-colors hover:bg-surface-elevated hover:text-foreground disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      >
+        <Plus className="size-4" />
+      </button>
+    </div>
   );
 }

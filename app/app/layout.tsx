@@ -1,10 +1,9 @@
 import { Suspense } from "react";
-import { Box } from "@chakra-ui/react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { QueryProvider, SessionProvider } from "@/components/providers";
 import { getServerSession } from "@/lib/api/auth";
-import { Navbar } from "@/components/ui";
+import { Navbar } from "@/components/ui/navbar";
 import { StreakBadge } from "@/modules/progress";
 import { CommandPalette } from "@/modules/command-palette";
 import { Dock } from "@/modules/dock";
@@ -28,7 +27,7 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
   return (
     <QueryProvider>
       <SessionProvider user={user ? { id: user.id, name: user.name, email: user.email, image: user.image } : null}>
-        <Box position="relative" minHeight="100dvh" overflow="hidden">
+        <div className="relative min-h-dvh overflow-hidden">
           <Navbar>
             <StreakBadge />
           </Navbar>
@@ -40,7 +39,7 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
             <FloatingTimer />
             <SoundsEngine />
           </Suspense>
-        </Box>
+        </div>
       </SessionProvider>
     </QueryProvider>
   );

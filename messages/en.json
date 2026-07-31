@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Khulwa",
+    "appName": "Riwaq",
     "tagline": "A retreat for deep work",
     "loading": "Loading…"
   },
@@ -34,30 +34,20 @@
     "timer": {
       "ariaLabel": "Pomodoro timer"
     },
-    "localeToggle": {
-      "label": "Change language",
-      "ar": "العربية",
-      "en": "English"
-    },
     "logo": {
-      "ariaLabel": "Khulwa logo"
+      "ariaLabel": "Riwaq"
     },
     "badge": {
       "streak": "{count, plural, one {# day streak} other {# days streak}}",
       "round": "Round {current} of {total}",
       "onSchedule": "On schedule",
       "liveFocus": "Live focus"
-    },
-    "colorMode": {
-      "toLight": "Switch to light",
-      "toDark": "Switch to dark",
-      "ariaLabel": "Toggle color theme"
     }
   },
   "khulwa": {
     "metadata": {
-      "title": "Khulwa",
-      "description": "Khulwa — a retreat for deep work"
+      "title": "Riwaq",
+      "description": "Riwaq — a retreat for deep work"
     },
     "greeting": {
       "morning": "GOOD MORNING",
@@ -68,65 +58,57 @@
     "ownership": "You're owning this {day}, {name}.",
     "guest": "friend",
     "phase": {
-      "focus": "Khulwa",
-      "shortBreak": "Waqfa",
-      "longBreak": "Raha"
-    },
-    "eyebrow": {
-      "focus": "DEEP KHULWA",
-      "shortBreak": "WAQFA",
-      "longBreak": "RAHA"
+      "focus": "Focus",
+      "shortBreak": "Short Break",
+      "longBreak": "Long Break"
     },
     "actions": {
-      "begin": "Begin Khulwa",
+      "begin": "Begin focus",
       "pause": "Pause",
       "resume": "Resume",
       "reset": "Reset",
       "skip": "Skip"
     },
-    "break": {
-      "currentTime": "Current time is {time}",
-      "shortBreak": {
-        "title": "Catch a quick rest",
-        "subtitle": "Step back, breathe, and let your focus settle."
-      },
-      "longBreak": {
-        "title": "A well-deserved retreat",
-        "subtitle": "You've earned this pause — rest deeply before the next Khulwa."
-      },
-      "lockScreen": "Lock screen",
-      "footerHint": "Your next Khulwa begins when the timer ends."
-    },
     "aria": {
-      "phaseTabs": "Khulwa phase",
+      "phaseTabs": "Session phase",
       "roundProgress": "Round {current} of {total}"
     },
     "ambient": {
-      "title": "Desert dusk"
+      "title": "Ambient",
+      "nothingPlaying": "Nothing playing",
+      "playing": "{count, plural, one {# sound} other {# sounds}} playing",
+      "play": "Play ambience",
+      "pause": "Pause ambience",
+      "openSounds": "Choose sounds"
     },
     "resume": {
       "title": "Continue your session"
     },
-    "categories": {
-      "deepWork": "Deep Work",
-      "learning": "Learning",
-      "reading": "Reading",
-      "dhikr": "Dhikr",
-      "none": "No category"
-    },
     "progress": {
       "title": "Progress",
-      "today": "Today's focus",
       "subtitle": "Your focus over time",
       "last7Days": "Last 7 days",
+      "focusTime": "Focus time",
+      "sessions": "Sessions",
+      "averageSession": "Average session",
+      "streak": "Day streak",
+      "recentSessions": "Recent sessions",
+      "chartSummary": "Seven-day focus summary",
+      "chartDay": "{date}: {duration}, {count, plural, one {# session} other {# sessions}}",
+      "loadError": "Progress could not be loaded. Please try again.",
       "seeAll": "See all",
       "empty": "No focus logged yet. Complete a focus session to see it here."
+    },
+    "state": {
+      "ready": "Ready",
+      "running": "Running",
+      "paused": "Paused"
     }
   },
   "home": {
     "metadata": {
-      "title": "Khulwa",
-      "description": "Khulwa — for deep work"
+      "title": "Riwaq",
+      "description": "Riwaq — for deep work"
     },
     "guest": "friend",
     "subtitle": "Pick one thing. Stay with it.",
@@ -174,7 +156,8 @@
       "completeStep": "Mark step as completed",
       "deleteStep": "Delete step",
       "editStep": "Edit step",
-      "split": "Suggest steps"
+      "split": "Suggest steps",
+      "more": "More task actions"
     }
   },
   "panels": {
@@ -213,8 +196,7 @@
     "title": "Settings",
     "tabs": {
       "account": "Account",
-      "focus": "Focus",
-      "appearance": "Appearance"
+      "focus": "Focus"
     },
     "account": {
       "signOut": "Sign out"
@@ -227,9 +209,6 @@
       "autoStart": "Auto-start next",
       "minutes": "min",
       "roundsUnit": "rounds"
-    },
-    "theme": {
-      "darkMode": "Dark mode"
     }
   },
   "notes": {
@@ -238,7 +217,13 @@
     "titlePlaceholder": "Title",
     "contentPlaceholder": "Write something…",
     "empty": "No notes yet",
-    "delete": "Delete note"
+    "delete": "Delete note",
+    "back": "Back to notes",
+    "untitled": "Untitled note",
+    "saved": "Saved",
+    "saving": "Saving…",
+    "noPreview": "No content yet",
+    "more": "Note actions"
   },
   "dock": {
     "aria": {
@@ -255,12 +240,14 @@
       "tasks": "Tasks",
       "rhythm": "Rhythm",
       "progress": "Progress",
-      "music": "Music",
+      "music": "Sounds",
       "notes": "Notes"
     },
     "chrome": {
       "settings": "Settings",
-      "fullscreen": "Fullscreen"
+      "fullscreen": "Fullscreen",
+      "exitFullscreen": "Exit fullscreen",
+      "more": "More"
     }
   },
   "rhythm": {
@@ -280,15 +267,15 @@
       "getStarted": "Get started"
     },
     "hero": {
-      "eyebrow": "Sacred solitude",
+      "eyebrow": "Quiet by design",
       "headline": "A retreat for your deep work.",
-      "subcopy": "Quiet by design. Inspired by the Sufi خلوة — a private chamber to focus on one thing at a time.",
+      "subcopy": "Named for the riwaq — the calm arcade around a courtyard, built for walking with one thought at a time.",
       "cta": "Start focusing"
     },
     "features": {
       "0": {
         "title": "One intention",
-        "body": "Name your one thing and step into a single, undistracted khulwa."
+        "body": "Name your one thing and step into a single, undistracted session."
       },
       "1": {
         "title": "Ambient focus",
@@ -300,20 +287,20 @@
       }
     },
     "quote": {
-      "text": "“In khulwa, the soul finds its measure.”",
-      "attribution": "— Ibn Arabi"
+      "text": "“Stillness is not the absence of work. It is the shape of good work.”",
+      "attribution": ""
     }
   },
   "login": {
     "metadata": {
-      "title": "Sign in · Khulwa",
+      "title": "Sign in · Riwaq",
       "description": "Enter your retreat"
     },
     "form": {
       "title": "Welcome back",
       "subtitle": "Sign in to continue your focus.",
-      "signupTitle": "Create your khulwa",
-      "signupSubtitle": "One account, all your khulwas.",
+      "signupTitle": "Create your account",
+      "signupSubtitle": "One account for every session.",
       "continueWithGoogle": "Continue with Google",
       "divider": "or",
       "fields": {
@@ -330,12 +317,14 @@
       "errors": {
         "generic": "Something went wrong.",
         "network": "Could not reach the server. Is it running?"
-      }
+      },
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
     }
   },
   "signUp": {
     "metadata": {
-      "title": "Sign up · Khulwa",
+      "title": "Sign up · Riwaq",
       "description": "Begin your retreat"
     },
     "form": {
@@ -353,7 +342,7 @@
   },
   "forgotPassword": {
     "metadata": {
-      "title": "Reset password · Khulwa",
+      "title": "Reset password · Riwaq",
       "description": "Restore access to your retreat"
     },
     "form": {
@@ -365,6 +354,23 @@
       "submit": "Send link",
       "checkEmail": "Check your email",
       "backToSignIn": "Back to sign in"
+    }
+  },
+  "sounds": {
+    "title": "Sounds",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "master": "Master volume",
+    "volumeFor": "{name} volume",
+    "playing": "Playing",
+    "pickOne": "Choose a sound to set its level",
+    "items": {
+      "rain": "Rain",
+      "rain-birds": "Rain & Birds",
+      "fire": "Fireplace",
+      "cafe": "Café",
+      "theta": "Theta",
+      "typing": "Keyboard"
     }
   }
 }

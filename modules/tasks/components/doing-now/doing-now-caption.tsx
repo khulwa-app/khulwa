@@ -1,6 +1,5 @@
 "use client";
 
-import { Box, Text } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 import { usePanels, Panel } from "@/modules/panels";
 import { useTasks } from "@/services/tasks";
@@ -14,32 +13,20 @@ export function DoingNowCaption() {
   const currentTask = tasks?.find((task) => task.isDoingNow);
 
   return (
-    <Box minH="6" display="flex" alignItems="center" justifyContent="center" aria-live="polite">
-      {currentTask && (
-        <Text
-          key={currentTask.id}
-          as="button"
-          textStyle="sm"
-          color="fg.onMesh.muted"
-          maxW="md"
-          lineClamp={1}
-          cursor="pointer"
+    <div aria-live="polite" className="flex h-6 items-center justify-center">
+      {currentTask ? (
+        <button
+          type="button"
           title={currentTask.body}
           aria-label={t("changeTask")}
-          transitionProperty="color"
-          transitionDuration="fast"
-          _hover={{ color: "fg.onMesh" }}
-          animationName="fade-in"
-          animationDuration="moderate"
-          animationTimingFunction="ease-out"
-          _motionReduce={{ animationName: "none" }}
           onClick={() => {
             if (openPanel !== Panel.Tasks) togglePanel(Panel.Tasks);
           }}
+          className="relative max-w-md truncate rounded-full text-sm text-foreground-secondary transition-colors after:absolute after:-inset-x-2 after:-inset-y-2.5 after:content-[''] hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
           {currentTask.body}
-        </Text>
-      )}
-    </Box>
+        </button>
+      ) : null}
+    </div>
   );
 }

@@ -1,38 +1,52 @@
 "use client";
 
-import { CloudRain, CloudWaterdrops, CupHot, Fire, Keyboard, Soundwave } from "@solar-icons/react";
-import { Icon, type Glyph } from "@/components/ui/icon";
+import { Coffee, Cloud, CloudRain, Flame, Keyboard, AudioWaveform, type LucideIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 import { type SoundDef } from "../catalog";
 import { useSounds } from "../hooks/use-sounds-store.hook";
-import { SoundGrid } from "./sound-grid";
-import { VolumeSlider } from "./volume-slider";
 
-const ICONS: Record<string, Glyph> = {
+const ICONS: Record<string, LucideIcon> = {
   rain: CloudRain,
-  "rain-birds": CloudWaterdrops,
-  fire: Fire,
-  cafe: CupHot,
-  theta: Soundwave,
+  "rain-birds": Cloud,
+  fire: Flame,
+  cafe: Coffee,
+  theta: AudioWaveform,
   typing: Keyboard,
 };
 
-export function SoundTile({ def }: { def: SoundDef }) {
+export function SoundTile({ def, onSelect }: { def: SoundDef; onSelect: () => void }) {
+  const t = useTranslations("sounds");
   const playing = useSounds((s) => s.playing[def.id] ?? false);
-  const volume = useSounds((s) => s.volume[def.id] ?? 0.5);
   const toggle = useSounds((s) => s.toggle);
-  const setVolume = useSounds((s) => s.setVolume);
-  const glyph = ICONS[def.id] ?? Soundwave;
-  const active = playing || undefined;
+  const Icon = ICONS[def.id] ?? AudioWaveform;
+  const label = t(`items.${def.id}`);
 
   return (
-    <SoundGrid.Tile>
-      <SoundGrid.Toggle data-active={active} aria-pressed={playing} onClick={() => toggle(def.id)}>
-        <SoundGrid.Icon data-active={active}>
-          <Icon icon={glyph} boxSize="4.5" />
-        </SoundGrid.Icon>
-        <SoundGrid.Title data-active={active}>{def.label}</SoundGrid.Title>
-      </SoundGrid.Toggle>
-      {playing && <VolumeSlider value={volume} onChange={(v) => setVolume(def.id, v)} label={`${def.label} volume`} />}
-    </SoundGrid.Tile>
+    <button
+      type="button"
+      aria-pressed={playing}
+      data-playing={playing || undefined}
+      onClick={() => {
+        toggle(def.id);
+        onSelect();
+      }}
+      className={cn(
+        // Every tile carries its own surface at rest, so playing changes the fill rather than making
+        // a container appear out of nowhere.
+        "group relative flex h-[5.5rem] flex-col items-center justify-center gap-2 rounded-2xl border border-hairline bg-surface text-xs font-medium text-foreground-secondary transition-colors",
+        "hover:bg-surface-elevated hover:text-foreground",
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+        "data-[playing]:border-primary/45 data-[playing]:bg-primary/15 data-[playing]:text-foreground",
+      )}
+    >
+      <span className="flex size-9 items-center justify-center rounded-full bg-surface-elevated text-foreground-secondary transition-colors group-data-[playing]:bg-primary group-data-[playing]:text-primary-foreground">
+        <Icon className="size-[18px]" />
+      </span>
+      {label}
+      {playing ? (
+        <span title={t("playing")} className="absolute top-2 right-2 size-1.5 rounded-full bg-success" aria-hidden />
+      ) : null}
+    </button>
   );
 }

@@ -1,13 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Presence } from "@chakra-ui/react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Drawer } from "@/theme/slot-recipes/drawer";
-import { Settings } from "@/theme/slot-recipes/settings";
-import { Panel, usePanels } from "@/modules/panels";
+import { AnchoredPanel, usePanels, Panel } from "@/modules/panels";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/shadcn/tabs";
 import { SETTINGS_TABS, type SettingsTab } from "../constants";
-import { SettingsNav } from "./settings-nav";
 
 export function SettingsPanel() {
   const t = useTranslations("settings");
@@ -15,50 +12,31 @@ export function SettingsPanel() {
   const close = usePanels((s) => s.close);
   const [active, setActive] = useState<SettingsTab>(SETTINGS_TABS[0].id);
 
-  useEffect(() => {
-    if (!open) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [open, close]);
-
-  const tab = SETTINGS_TABS.find((entry) => entry.id === active) ?? SETTINGS_TABS[0];
-  const Content = tab.content;
-
   return (
-    <>
-      <Presence present={open} lazyMount unmountOnExit>
-        <Drawer.Backdrop onClick={close} aria-hidden />
-      </Presence>
-      <Presence present={open} lazyMount unmountOnExit>
-        <Drawer.Content
-          role="dialog"
-          aria-modal="true"
-          aria-label={t("title")}
-          w={{ base: "100dvw", md: "min(48rem, 94dvw)" }}
-          maxW="100dvw"
-        >
-          <Settings.Layout>
-            <SettingsNav active={active} onSelect={setActive} onClose={close} />
-            <Settings.Pane
-              id={`settings-pane-${tab.id}`}
-              role="tabpanel"
-              aria-labelledby={`settings-tab-${tab.id}`}
-              minW="0"
-              flex="1"
-            >
-              <Settings.PaneTitle>{t(`tabs.${tab.id}`)}</Settings.PaneTitle>
-              <Content />
-            </Settings.Pane>
-          </Settings.Layout>
-        </Drawer.Content>
-      </Presence>
-    </>
+    <AnchoredPanel
+      anchor="utility"
+      width={480}
+      maxHeight="min(70vh, 620px)"
+      open={open}
+      onClose={close}
+      title={t("title")}
+    >
+      <Tabs value={active} onValueChange={(value) => setActive(value as SettingsTab)}>
+        <TabsList className="w-full">
+          {SETTINGS_TABS.map(({ id, icon: Icon }) => (
+            <TabsTrigger key={id} value={id}>
+              <Icon className="size-4" />
+              {t(`tabs.${id}`)}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+
+        {SETTINGS_TABS.map(({ id, content: Content }) => (
+          <TabsContent key={id} value={id} className="pt-4">
+            <Content />
+          </TabsContent>
+        ))}
+      </Tabs>
+    </AnchoredPanel>
   );
 }

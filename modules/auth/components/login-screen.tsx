@@ -1,18 +1,15 @@
-"use client";
-
-import { Box, Flex, VStack } from "@chakra-ui/react";
-import { Logo } from "@/components/ui";
+import { Logo } from "@/components/ui/logo";
 import { LoginForm } from "./login-form";
 
 export function LoginScreen() {
   return (
-    <Flex minH="100vh" align="center" justify="center" position="relative" overflow="hidden" bg="bg" px="6">
-      <Box position="absolute" inset={0} layerStyle="space-backdrop" pointerEvents="none" aria-hidden />
-
-      <VStack position="relative" zIndex={1} w="full" maxW="sm" gap="9">
-        <Logo size="10" href={null} />
-        <LoginForm />
-      </VStack>
-    </Flex>
+    <div className="bg-environment relative flex min-h-dvh items-center justify-center overflow-hidden px-6">
+      <div className="relative z-1 flex w-full max-w-[420px] flex-col items-center gap-8">
+        <Logo href={null} className="text-lg" />
+        <div className="w-full rounded-xl border border-hairline bg-surface p-6 shadow-panel">
+          <LoginForm />
+        </div>
+      </div>
+    </div>
   );
 }

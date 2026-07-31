@@ -1,37 +1,34 @@
 import { db } from "@/lib/db";
 import { requireUser } from "@/lib/api/auth";
 import { HttpError, json, route } from "@/lib/api/http";
-import { CATEGORIES, recordFocusSession, type Category } from "@/lib/services/tracking";
+import { FocusSessionInputError, parseFocusSessionRequest } from "@/lib/services/focus-session-input";
+import { CATEGORIES, recordFocusSession } from "@/lib/services/tracking";
+import type { LogFocusResponse } from "@/services/progress/progress.types";
 
 export const POST = route(async (req) => {
   const user = await requireUser();
-  const body = (await req.json().catch(() => ({}))) as {
-    category?: unknown;
-    durationSeconds?: unknown;
-    startedAt?: unknown;
-    endedAt?: unknown;
-  };
-  const { category, durationSeconds, startedAt, endedAt } = body;
-
-  if (typeof durationSeconds !== "number" || !Number.isFinite(durationSeconds) || durationSeconds <= 0) {
-    throw new HttpError(400, { error: "invalid_duration" });
-  }
-  if (category != null && !CATEGORIES.includes(category as Category)) {
-    throw new HttpError(400, { error: "invalid_category" });
-  }
-  const started = new Date(startedAt as string);
-  const ended = new Date(endedAt as string);
-  if (Number.isNaN(started.getTime()) || Number.isNaN(ended.getTime())) {
-    throw new HttpError(400, { error: "invalid_dates" });
+  let input;
+  try {
+    input = await parseFocusSessionRequest(req, CATEGORIES);
+  } catch (error) {
+    if (error instanceof FocusSessionInputError) {
+      throw new HttpError(400, { error: error.code });
+    }
+    throw error;
   }
 
   const result = await recordFocusSession(db, {
     userId: user.id,
-    category: (category ?? null) as Category | null,
-    durationSeconds: Math.round(durationSeconds),
-    startedAt: started,
-    endedAt: ended,
+    ...input,
   });
 
-  return json(result, { status: 201 });
+  const response = {
+    streak: {
+      current: result.streak.current,
+      longest: result.streak.longest,
+      lastActiveDay: result.streak.lastActiveDay,
+    },
+  } satisfies LogFocusResponse;
+
+  return json(response, { status: 201 });
 });

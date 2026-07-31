@@ -1,8 +1,6 @@
 "use client";
 
-import { Fire } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
-import { HStack } from "@chakra-ui/react";
+import { Flame } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useStreak } from "@/services/progress";
 import { usePanels, Panel } from "@/modules/panels";
@@ -10,29 +8,25 @@ import { usePanels, Panel } from "@/modules/panels";
 export function StreakBadge() {
   const t = useTranslations("components.badge");
   const tTools = useTranslations("dock.tools");
-  const { data } = useStreak();
+  const { data, isPending } = useStreak();
   const togglePanel = usePanels((s) => s.toggle);
+  const open = usePanels((s) => s.open === Panel.Progress);
   const count = data?.current ?? 0;
-  if (count <= 0) return null;
+  if (isPending) return null;
+
+  const label = `${t("streak", { count })} · ${tTools("progress")}`;
 
   return (
-    <HStack
-      as="button"
-      gap="1.5"
-      h="7"
-      paddingInline="2.5"
-      rounded="full"
-      layerStyle="raised"
-      color="fg"
-      textStyle="label-md"
-      fontVariantNumeric="tabular-nums"
-      cursor="pointer"
+    <button
+      type="button"
       onClick={() => togglePanel(Panel.Progress)}
-      title={`${t("streak", { count })} · ${tTools("progress")}`}
-      aria-label={`${t("streak", { count })} · ${tTools("progress")}`}
+      title={label}
+      aria-label={label}
+      aria-expanded={open}
+      className="tabular relative flex h-8 items-center gap-1.5 rounded-full border border-hairline bg-surface px-2.5 text-xs font-medium text-foreground transition-colors after:absolute after:-inset-1.5 after:content-[''] hover:bg-surface-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
     >
-      <Icon icon={Fire} boxSize="3.25" color="primary.solid" />
+      <Flame className="size-3.5 text-primary" />
       {count}
-    </HStack>
+    </button>
   );
 }

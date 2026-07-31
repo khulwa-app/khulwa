@@ -1,10 +1,9 @@
 "use client";
 
-import { Button, Text, VStack } from "@chakra-ui/react";
-import { Logout2 } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
+import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { Button } from "@/components/shadcn/button";
 import { signOut, useSession } from "@/services/auth";
 
 export function AccountSection() {
@@ -20,19 +19,15 @@ export function AccountSection() {
   };
 
   return (
-    <VStack align="stretch" gap="4">
-      <VStack align="stretch" gap="0.5">
-        <Text textStyle="body-md" color="fg">
-          {user?.name ?? "—"}
-        </Text>
-        <Text textStyle="body-sm" color="fg.muted">
-          {user?.email ?? ""}
-        </Text>
-      </VStack>
-      <Button variant="outline" size="sm" alignSelf="start" onClick={onSignOut}>
-        <Icon icon={Logout2} boxSize="3.5" />
+    <div className="flex flex-col items-start gap-4">
+      <div className="flex flex-col gap-0.5">
+        <p className="text-sm">{user?.name ?? "—"}</p>
+        <p className="text-sm text-foreground-muted">{user?.email ?? ""}</p>
+      </div>
+      <Button variant="outline" size="sm" onClick={onSignOut}>
+        <LogOut />
         {t("signOut")}
       </Button>
-    </VStack>
+    </div>
   );
 }

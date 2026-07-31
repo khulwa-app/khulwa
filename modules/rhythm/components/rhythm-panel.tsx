@@ -1,11 +1,10 @@
 "use client";
 
-import { Text, VStack } from "@chakra-ui/react";
-import { Check, Icon } from "@/components/ui/icon";
+import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { ScrollArea } from "@/components/ui";
-import { RhythmList } from "@/theme/slot-recipes/rhythm-list";
-import { SidePanel, usePanels, Panel } from "@/modules/panels";
+import { cn } from "@/lib/utils";
+import { Progress } from "@/components/shadcn/progress";
+import { AnchoredPanel, usePanels, Panel } from "@/modules/panels";
 import { dayKey } from "@/modules/progress";
 import { RHYTHMS } from "../rhythms";
 import { useRhythmHydrated, useRhythmStore } from "../hooks";
@@ -25,29 +24,45 @@ export function RhythmPanel() {
   const doneCount = hydrated ? RHYTHMS.filter((r) => today[r.id]).length : 0;
 
   return (
-    <SidePanel open={open} onClose={close} title={t("title")}>
-      <VStack h="full" w="full" gap="3" align="stretch">
-        <Text textStyle="label-md" color="fg.subtle" suppressHydrationWarning>
-          {t("progress", { done: doneCount, total: RHYTHMS.length })}
-        </Text>
+    <AnchoredPanel anchor="tool" width={360} open={open} onClose={close} title={t("title")}>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <p className="text-xs text-foreground-muted" suppressHydrationWarning>
+            {t("progress", { done: doneCount, total: RHYTHMS.length })}
+          </p>
+          <Progress value={(doneCount / RHYTHMS.length) * 100} className="h-1" />
+        </div>
 
-        <ScrollArea flex="1" minH="0" w="full">
-          <RhythmList.Root>
-            {RHYTHMS.map((r) => {
-              const done = hydrated && !!today[r.id];
-              return (
-                <RhythmList.Item key={r.id} onClick={() => toggle(key, r.id)} aria-pressed={done}>
-                  <RhythmList.Check data-checked={done || undefined}>
-                    {done && <Icon icon={Check} boxSize="3" />}
-                  </RhythmList.Check>
-                  <Icon icon={r.icon} boxSize="4" />
-                  <RhythmList.Label data-checked={done || undefined}>{t(`items.${r.id}`)}</RhythmList.Label>
-                </RhythmList.Item>
-              );
-            })}
-          </RhythmList.Root>
-        </ScrollArea>
-      </VStack>
-    </SidePanel>
+        <ul className="flex flex-col">
+          {RHYTHMS.map(({ id, icon: Icon }) => {
+            const done = hydrated && !!today[id];
+            return (
+              <li key={id}>
+                <button
+                  type="button"
+                  aria-pressed={done}
+                  onClick={() => toggle(key, id)}
+                  className="-mx-4 flex h-11 w-[calc(100%+2rem)] items-center gap-3 px-4 text-left transition-colors hover:bg-surface-elevated focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring"
+                >
+                  <span
+                    data-checked={done || undefined}
+                    className="flex size-[18px] shrink-0 items-center justify-center rounded-[6px] border border-border text-transparent transition-colors data-[checked]:border-success data-[checked]:bg-success data-[checked]:text-canvas"
+                  >
+                    <Check className="size-3" />
+                  </span>
+                  <Icon
+                    className={cn("size-4 shrink-0", done ? "text-success" : "text-foreground-muted")}
+                    aria-hidden
+                  />
+                  <span className={cn("text-sm", done ? "text-foreground-muted line-through" : "text-foreground")}>
+                    {t(`items.${id}`)}
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </AnchoredPanel>
   );
 }

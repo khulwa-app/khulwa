@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { usePanels, Panel } from "@/modules/panels";
-import { usePomodoro } from "@/modules/pomodoro";
+import { canResetPomodoro, shouldResumePomodoro, usePomodoro } from "@/modules/pomodoro";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
 
@@ -22,24 +22,32 @@ export type CommandGroup = {
 
 export function useCommands(): CommandGroup[] {
   const t = useTranslations("palette");
-  const { isRunning, hasStarted, start, pause, reset, skip } = usePomodoro();
+  const { phase, isRunning, hasStarted, start, pause, reset, skip } = usePomodoro();
   const changeSpace = useSpace((s) => s.changeSpace);
   const togglePanel = usePanels((s) => s.toggle);
+  const sessionCommands: Command[] = [
+    {
+      id: "session-toggle",
+      label: isRunning
+        ? t("commands.pause")
+        : shouldResumePomodoro(phase, hasStarted)
+          ? t("commands.resume")
+          : t("commands.begin"),
+      hint: "Space",
+      run: () => (isRunning ? pause() : start()),
+    },
+    { id: "session-skip", label: t("commands.skip"), run: skip },
+  ];
+
+  if (canResetPomodoro(phase)) {
+    sessionCommands.splice(1, 0, { id: "session-reset", label: t("commands.reset"), run: reset });
+  }
 
   return [
     {
       id: "session",
       heading: t("groups.session"),
-      commands: [
-        {
-          id: "session-toggle",
-          label: isRunning ? t("commands.pause") : hasStarted ? t("commands.resume") : t("commands.begin"),
-          hint: "Space",
-          run: () => (isRunning ? pause() : start()),
-        },
-        { id: "session-reset", label: t("commands.reset"), run: reset },
-        { id: "session-skip", label: t("commands.skip"), run: skip },
-      ],
+      commands: sessionCommands,
     },
     {
       id: "navigate",

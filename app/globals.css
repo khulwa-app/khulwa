@@ -1,0 +1,240 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* The redesign ships dark-only, so `dark:` utilities always apply. When a reviewed second palette
+   exists, restore the standard selector variant instead of deleting the `dark:` usages. */
+@custom-variant dark (&);
+
+/* Nocturne — a near-achromatic dark field with a single sage accent.
+   The neutrals carry the whole interface; sage appears only where something is interactive, so
+   status colours still have room to read as exceptions. Dark-only. */
+:root {
+  --radius: 0.875rem;
+
+  --canvas: #080b0a;
+  --canvas-elevated: #101513;
+  /* Closing stop of the environment gradient — a degree warmer than the canvas, never another hue. */
+  --horizon: #121a16;
+  --surface: #101513;
+  /* Elevation steps are 1.15:1 and 1.28:1 against the surface — enough to read without a border. */
+  --surface-elevated: #1b2320;
+  --surface-interactive: #232c28;
+
+  --background: var(--canvas);
+  --foreground: #edf1ee;
+  --foreground-secondary: #c8d3cd;
+  --foreground-muted: #8e9993;
+
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+
+  /* Sage is the only hue in the system. It always carries dark text — light text on it is 2.65:1. */
+  --primary: #7fa08d;
+  --primary-hover: #90b19d;
+  --primary-foreground: #080b0a;
+
+  --secondary: var(--surface-elevated);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface-elevated);
+  --muted-foreground: var(--foreground-muted);
+  --accent: var(--surface-interactive);
+  --accent-foreground: var(--foreground);
+
+  --success: #6bc49a;
+  --warning: #d6b071;
+  --destructive: #d97a78;
+  --destructive-foreground: var(--canvas);
+
+  /* Quiet dividers and control outlines; --border-strong is for emphasis and focus. */
+  --border: #343c38;
+  --border-strong: #56615b;
+  --input: #56615b;
+  --ring: #90b19d;
+
+  /* Dock and panel shells: nearly opaque surface over a 1px light hairline. */
+  --surface-veil: rgb(16 21 19 / 0.94);
+  --hairline: rgb(237 241 238 / 0.09);
+
+  --duration-enter: 180ms;
+  --duration-exit: 130ms;
+  --duration-press: 90ms;
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: var(--canvas);
+  --color-canvas-elevated: var(--canvas-elevated);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-interactive: var(--surface-interactive);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface-veil: var(--surface-veil);
+  --color-hairline: var(--hairline);
+
+  /* Containers keep the radius scale; controls are pilled by the rule in @layer components. */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+
+  --shadow-panel: 0 18px 40px -24px rgb(0 0 0 / 0.7);
+  --shadow-dock: 0 12px 28px -18px rgb(0 0 0 / 0.65);
+}
+
+@layer components {
+  /* SHAPE LANGUAGE — a pill is only correct when all three hold:
+       1. the control is sized by its own content, not stretched to fill its container;
+       2. its content is a single line of fixed height;
+       3. it can afford `padding-inline >= height / 2`, because a stadium sets radius = height / 2
+          and any text closer than that runs into the corner arc and loses ink.
+     Clause 1 is not expressible in CSS — `w-full`, `flex-1`, and `align-items: stretch` are not
+     selectable — so a stretched control must opt OUT explicitly with `rounded-xl`. Icon buttons are
+     the one case that is content-sized by definition, so they are pilled here. */
+  [data-slot="button"] {
+    border-radius: calc(infinity * 1px);
+  }
+
+  /* Checkboxes stay square-ish on purpose: a round checkbox reads as a radio. */
+  [data-slot="checkbox"] {
+    border-radius: 0.375rem;
+  }
+}
+
+@layer base {
+  /* Tailwind's preflight sets `border: 0 solid` with no colour, so a bare `border` utility inherits
+     `currentColor` — on a dark popover that renders as a near-white outline. Default it to the
+     semantic border instead; utilities still win because they live in a later layer. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border);
+  }
+
+  :root {
+    color-scheme: dark;
+    background-color: var(--canvas);
+    color: var(--foreground);
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  /* One static composition for the whole environment — five stacked gradients and a grain layer,
+     no animation, no blur filters, nothing that repaints during a session. Top layer first.
+     Total lift over the canvas stays under 3% so text contrast is unaffected. */
+  .bg-environment {
+    background-color: var(--canvas);
+    background-image:
+      /* 1. Fine grain. Breaks the banding that a near-black gradient always shows on wide displays,
+            and is the difference between "flat dark" and "a surface with material". */
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E"),
+      /* 2. Light slices, raked across the field on one consistent angle. */
+      linear-gradient(
+        104deg,
+        transparent 26%,
+        rgb(237 241 238 / 0.028) 36%,
+        transparent 44%,
+        transparent 56%,
+        rgb(237 241 238 / 0.018) 64%,
+        transparent 71%,
+        transparent 82%,
+        rgb(237 241 238 / 0.01) 87%,
+        transparent 93%
+      ),
+      /* 3. Sage pool, upper left — the one place hue touches the environment. */
+      radial-gradient(70% 55% at 10% 4%, color-mix(in oklab, var(--primary) 9%, transparent) 0%, transparent 68%),
+      /* 4. Cool depth, lower right. */
+      radial-gradient(65% 60% at 92% 96%, color-mix(in oklab, var(--horizon) 85%, transparent) 0%, transparent 66%),
+      /* 5. Base diagonal. */
+      linear-gradient(135deg, var(--canvas) 0%, var(--canvas-elevated) 55%, var(--horizon) 100%);
+    background-size:
+      140px 140px,
+      cover,
+      cover,
+      cover,
+      cover;
+    background-blend-mode: soft-light, normal, normal, normal, normal;
+  }
+
+  /* The grain is the one layer that has to be dialled back for sensitive viewers, since fine
+     high-frequency texture is exactly what triggers visual discomfort. */
+  @media (prefers-reduced-motion: reduce) {
+    .bg-environment {
+      background-blend-mode: normal, normal, normal, normal, normal;
+      background-image:
+        linear-gradient(
+          104deg,
+          transparent 26%,
+          rgb(237 241 238 / 0.028) 36%,
+          transparent 44%,
+          transparent 56%,
+          rgb(237 241 238 / 0.018) 64%,
+          transparent 71%,
+          transparent 82%,
+          rgb(237 241 238 / 0.01) 87%,
+          transparent 93%
+        ),
+        radial-gradient(70% 55% at 10% 4%, color-mix(in oklab, var(--primary) 9%, transparent) 0%, transparent 68%),
+        radial-gradient(65% 60% at 92% 96%, color-mix(in oklab, var(--horizon) 85%, transparent) 0%, transparent 66%),
+        linear-gradient(135deg, var(--canvas) 0%, var(--canvas-elevated) 55%, var(--horizon) 100%);
+    }
+  }
+
+  [data-numeric],
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-enter: 0ms;
+    --duration-exit: 0ms;
+    --duration-press: 0ms;
+  }
+
+  /* `tw-animate-css` ships no reduced-motion handling, so the Radix enter/exit keyframes used by
+     tooltips and menus would still play at full motion. Neutralise them centrally. */
+  .animate-in,
+  .animate-out,
+  [data-slot="tooltip-content"],
+  [data-slot="dropdown-menu-content"] {
+    animation: none !important;
+  }
+}

@@ -1,9 +1,9 @@
 "use client";
 
 import type { ComponentType } from "react";
-import { useState, useEffect } from "react";
-import { chakra, Presence, useSlotRecipe } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
 import { usePomodoro, usePomodoroStore } from "@/modules/pomodoro";
@@ -17,11 +17,6 @@ const layers: { space: Space; Component: ComponentType }[] = [
   { space: Space.Focus, Component: FocusSpace },
   { space: Space.Ambient, Component: AmbientSpace },
 ];
-
-function useInitialActive(current: Space): Space {
-  const [initial] = useState<Space>(() => current);
-  return initial;
-}
 
 function usePageTitle() {
   const tKhulwa = useTranslations("khulwa.metadata");
@@ -45,28 +40,30 @@ export function Spaces() {
     usePomodoroStore.persist.rehydrate();
   }, []);
   const activeSpace = useSpace((s) => s.activeSpace);
-  const initialActive = useInitialActive(activeSpace);
-  const styles = useSlotRecipe({ key: "spaces" })();
 
   return (
-    <chakra.div css={styles.shell}>
+    <div className="relative h-dvh w-full overflow-hidden bg-canvas select-none">
       {layers.map(({ space, Component }) => {
         const isActive = activeSpace === space;
         return (
-          <Presence
+          <div
             key={space}
-            css={styles.layer}
-            present={isActive}
-            skipAnimationOnMount={initialActive === space}
-            unmountOnExit={false}
-            lazyMount={false}
-            pointerEvents={isActive ? "auto" : "none"}
+            // Inactive layers stay mounted to preserve state, so they need `inert` as well as
+            // `aria-hidden` — opacity alone would leave their controls in the tab order.
+            inert={!isActive}
             aria-hidden={!isActive}
+            data-state={isActive ? "open" : "closed"}
+            className={cn(
+              "absolute inset-0 overflow-x-hidden overflow-y-auto overscroll-contain",
+              "transition-opacity ease-out motion-reduce:transition-none",
+              "duration-[var(--duration-enter)] data-[state=closed]:duration-[var(--duration-exit)]",
+              isActive ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+            )}
           >
             <Component />
-          </Presence>
+          </div>
         );
       })}
-    </chakra.div>
+    </div>
   );
 }

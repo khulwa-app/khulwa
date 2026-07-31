@@ -1,13 +1,13 @@
 "use client";
 
-import { Button, Text, VStack } from "@chakra-ui/react";
-import { AddCircle } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
+import { useState } from "react";
+import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { ScrollArea } from "@/components/ui";
-import { Panel, SidePanel, usePanels } from "@/modules/panels";
+import { Button } from "@/components/shadcn/button";
+import { Panel, AnchoredPanel, usePanels } from "@/modules/panels";
 import { useCreateNote, useNotes } from "@/services/notes";
-import { NoteCard } from "./note-card";
+import { NoteEditor } from "./note-editor";
+import { NoteListItem } from "./note-list-item";
 
 export function NotesPanel() {
   const t = useTranslations("notes");
@@ -15,33 +15,44 @@ export function NotesPanel() {
   const close = usePanels((s) => s.close);
   const { data: notes } = useNotes();
   const create = useCreateNote();
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  // Closing the panel returns to the list so reopening never lands inside a stale editor.
+  const [wasOpen, setWasOpen] = useState(open);
+  if (wasOpen !== open) {
+    setWasOpen(open);
+    if (!open) setSelectedId(null);
+  }
+
+  const selected = notes?.find((note) => note.id === selectedId) ?? null;
 
   return (
-    <SidePanel open={open} title={t("title")} onClose={close}>
-      <VStack h="full" w="full" gap="3" align="stretch">
-        <Button
-          variant="secondary"
-          size="sm"
-          flexShrink="0"
-          loading={create.isPending}
-          onClick={() => create.mutate({})}
-        >
-          <Icon icon={AddCircle} boxSize="4" />
-          {t("newNote")}
-        </Button>
+    <AnchoredPanel anchor="tool" width={380} open={open} title={t("title")} onClose={close}>
+      {selected ? (
+        <NoteEditor note={selected} onBack={() => setSelectedId(null)} />
+      ) : (
+        <div className="flex flex-col gap-3">
+          <Button
+            variant="secondary"
+            className="w-full justify-start rounded-xl"
+            disabled={create.isPending}
+            onClick={() => setSelectedId(create.mutate({}).id)}
+          >
+            <Plus />
+            {t("newNote")}
+          </Button>
 
-        <ScrollArea flex="1" minH="0" w="full">
-          <VStack gap="2" align="stretch">
-            {notes === undefined ? null : notes.length === 0 ? (
-              <Text textStyle="body-sm" color="fg.muted" textAlign="center" paddingBlock="6">
-                {t("empty")}
-              </Text>
-            ) : (
-              notes.map((note) => <NoteCard key={note.id} note={note} />)
-            )}
-          </VStack>
-        </ScrollArea>
-      </VStack>
-    </SidePanel>
+          {notes === undefined ? null : notes.length === 0 ? (
+            <p className="py-6 text-center text-sm text-foreground-muted">{t("empty")}</p>
+          ) : (
+            <ul className="flex flex-col">
+              {notes.map((note) => (
+                <NoteListItem key={note.id} note={note} onOpen={() => setSelectedId(note.id)} />
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </AnchoredPanel>
   );
 }

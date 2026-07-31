@@ -1,7 +1,4 @@
-"use client";
-
-import { Box } from "@chakra-ui/react";
-
+/** Static Deep Juniper environment — no animated blur fields, nothing repainting during a session. */
 export function SpaceBackground() {
-  return <Box position="absolute" inset={0} zIndex={0} pointerEvents="none" aria-hidden layerStyle="space-backdrop" />;
+  return <div aria-hidden className="bg-environment pointer-events-none absolute inset-0 z-0" />;
 }

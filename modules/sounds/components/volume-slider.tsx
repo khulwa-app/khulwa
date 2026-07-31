@@ -1,32 +1,27 @@
 "use client";
 
-import { Box, Slider, type BoxProps } from "@chakra-ui/react";
+import { Slider } from "@/components/shadcn/slider";
+import { cn } from "@/lib/utils";
 
-interface VolumeSliderProps extends Omit<BoxProps, "onChange"> {
+interface VolumeSliderProps {
   value: number;
   onChange: (value: number) => void;
   label: string;
+  disabled?: boolean;
+  className?: string;
 }
 
-export function VolumeSlider({ value, onChange, label, ...boxProps }: VolumeSliderProps) {
+export function VolumeSlider({ value, onChange, label, disabled, className }: VolumeSliderProps) {
   return (
-    <Box layerStyle="sliderAccent" paddingInline="1" {...boxProps}>
-      <Slider.Root
-        size="sm"
-        min={0}
-        max={100}
-        step={5}
-        value={[Math.round(value * 100)]}
-        onValueChange={(details) => onChange(details.value[0] / 100)}
-        aria-label={[label]}
-      >
-        <Slider.Control>
-          <Slider.Track>
-            <Slider.Range />
-          </Slider.Track>
-          <Slider.Thumbs />
-        </Slider.Control>
-      </Slider.Root>
-    </Box>
+    <Slider
+      aria-label={label}
+      disabled={disabled}
+      min={0}
+      max={100}
+      step={5}
+      value={[Math.round(value * 100)]}
+      onValueChange={(next) => onChange(next[0] / 100)}
+      className={cn("flex-1", className)}
+    />
   );
 }

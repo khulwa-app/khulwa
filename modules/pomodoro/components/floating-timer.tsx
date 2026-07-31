@@ -1,15 +1,17 @@
 "use client";
 
-import { Presence } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 import { formatPomodoro } from "@/modules/clock";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
+import { usePresence } from "@/modules/panels";
 import { useTasks } from "@/services/tasks";
-import { TimerPill } from "@/theme/slot-recipes/floating-timer";
 import { usePomodoro } from "../hooks/use-pomodoro.hook";
 import { usePomodoroHydrated } from "../hooks/use-pomodoro-hydrated.hook";
 import { PomodoroPhase } from "../types";
+
+const EXIT_MS = 130;
 
 export function FloatingTimer() {
   const t = useTranslations("pomodoro");
@@ -21,27 +23,36 @@ export function FloatingTimer() {
   const currentTask = tasks?.find((task) => task.isDoingNow);
 
   const present = hydrated && hasStarted && activeSpace !== Space.Focus;
+  const { mounted, state } = usePresence(present, EXIT_MS);
+
+  if (!mounted) return null;
 
   return (
-    <TimerPill.Positioner>
-      <Presence
-        present={present}
-        lazyMount
-        unmountOnExit
-        animationName={{ _open: "panel-in", _closed: "panel-out" }}
-        animationDuration="fast"
+    <div className="pointer-events-none fixed inset-x-0 top-20 z-20 flex justify-center">
+      <button
+        type="button"
+        data-state={state}
+        // The countdown itself is the button's visible text, so it stays part of the accessible name.
+        aria-label={`${formatPomodoro(minutes, seconds)} · ${t("backToFocus")}`}
+        title={currentTask?.body ?? t("backToFocus")}
+        onClick={() => changeSpace(Space.Focus)}
+        className={cn(
+          "tabular pointer-events-auto flex h-9 items-center gap-2 rounded-full border border-hairline bg-surface-veil px-3.5 text-sm font-medium backdrop-blur-[10px]",
+          "transition-[opacity,transform] ease-out motion-reduce:transition-none",
+          "duration-[var(--duration-enter)] data-[state=closed]:duration-[var(--duration-exit)]",
+          "data-[state=open]:translate-y-0 data-[state=open]:opacity-100",
+          "data-[state=closed]:-translate-y-2 data-[state=closed]:opacity-0",
+        )}
       >
-        <TimerPill.Root
-          type="button"
-          data-paused={!isRunning || undefined}
-          aria-label={t("backToFocus")}
-          title={currentTask?.body ?? t("backToFocus")}
-          onClick={() => changeSpace(Space.Focus)}
-        >
-          <TimerPill.Dot data-phase={phase === PomodoroPhase.Focus ? "focus" : undefined} />
-          <span suppressHydrationWarning>{formatPomodoro(minutes, seconds)}</span>
-        </TimerPill.Root>
-      </Presence>
-    </TimerPill.Positioner>
+        <span
+          aria-hidden
+          className={cn(
+            "size-1.5 rounded-full",
+            !isRunning ? "bg-foreground-muted" : phase === PomodoroPhase.Focus ? "bg-primary" : "bg-success",
+          )}
+        />
+        <span suppressHydrationWarning>{formatPomodoro(minutes, seconds)}</span>
+      </button>
+    </div>
   );
 }

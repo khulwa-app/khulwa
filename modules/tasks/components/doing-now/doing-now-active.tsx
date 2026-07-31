@@ -1,10 +1,8 @@
 "use client";
 
-import { Button, IconButton, Presence } from "@chakra-ui/react";
-import { ArrowRight, Repeat } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
+import { ArrowRight, Repeat } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { ActiveTask } from "@/theme/slot-recipes/active-task";
+import { Button } from "@/components/shadcn/button";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
 import { usePanels, Panel } from "@/modules/panels";
@@ -21,28 +19,28 @@ export function DoingNowActive({ task }: { task: Task }) {
   };
 
   return (
-    <Presence present animationName={{ _open: "fade-in" }} animationDuration="moderate">
-      <ActiveTask.Root>
-        <ActiveTask.Dot aria-hidden />
-        <ActiveTask.Task aria-live="polite" title={task.body}>
-          {task.body}
-        </ActiveTask.Task>
-        <ActiveTask.Eta>{t("etaShort", { eta: task.eta })}</ActiveTask.Eta>
-        <Button variant="primary" size="sm" flexShrink="0" onClick={() => changeSpace(Space.Focus)}>
-          {t("enterFocus")}
-          <Icon icon={ArrowRight} boxSize="3.5" />
-        </Button>
-        <IconButton
-          variant="ghost"
-          size="sm"
-          color="fg.onMesh.muted"
-          flexShrink="0"
-          aria-label={t("changeTask")}
-          onClick={openTasksPanel}
-        >
-          <Icon icon={Repeat} boxSize="3.75" />
-        </IconButton>
-      </ActiveTask.Root>
-    </Presence>
+    <div className="flex w-full max-w-lg items-center gap-3 rounded-full border border-hairline bg-surface-veil p-2 pl-6">
+      <span className="size-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
+
+      <span aria-live="polite" title={task.body} className="min-w-0 flex-1 truncate text-sm">
+        {task.body}
+      </span>
+
+      <span className="tabular shrink-0 text-xs text-foreground-muted">{t("etaShort", { eta: task.eta })}</span>
+
+      <Button size="sm" onClick={() => changeSpace(Space.Focus)}>
+        {t("enterFocus")}
+        <ArrowRight />
+      </Button>
+
+      <button
+        type="button"
+        aria-label={t("changeTask")}
+        onClick={openTasksPanel}
+        className="relative flex size-8 shrink-0 items-center justify-center rounded-full text-foreground-muted transition-colors after:absolute after:-inset-1.5 after:content-[''] hover:bg-surface-elevated hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      >
+        <Repeat className="size-4" />
+      </button>
+    </div>
   );
 }

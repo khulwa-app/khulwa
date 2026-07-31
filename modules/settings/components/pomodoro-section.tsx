@@ -1,9 +1,56 @@
 "use client";
 
-import { HStack, Switch, Text, VStack } from "@chakra-ui/react";
+import { Minus, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { NumberField } from "@/components/ui";
+import { Switch } from "@/components/shadcn/switch";
 import { usePomodoroStore } from "@/modules/pomodoro";
+
+function Stepper({
+  label,
+  value,
+  unit,
+  min = 1,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  unit: string;
+  min?: number;
+  onChange: (value: number) => void;
+}) {
+  const step = (delta: number) => onChange(Math.max(min, value + delta));
+
+  return (
+    <div className="flex h-11 items-center justify-between gap-4">
+      <span className="text-sm">{label}</span>
+
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          aria-label={`${label} −`}
+          onClick={() => step(-1)}
+          disabled={value <= min}
+          className="flex size-8 items-center justify-center rounded-full text-foreground-secondary transition-colors hover:bg-surface-elevated hover:text-foreground disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        >
+          <Minus className="size-4" />
+        </button>
+
+        <span className="tabular min-w-16 text-center text-sm">
+          {value} {unit}
+        </span>
+
+        <button
+          type="button"
+          aria-label={`${label} +`}
+          onClick={() => step(1)}
+          className="flex size-8 items-center justify-center rounded-full text-foreground-secondary transition-colors hover:bg-surface-elevated hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        >
+          <Plus className="size-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function PomodoroSection() {
   const t = useTranslations("settings.pomodoro");
@@ -11,51 +58,40 @@ export function PomodoroSection() {
   const setOptions = usePomodoroStore((s) => s.setOptions);
 
   return (
-    <VStack align="stretch" gap="2.5">
-      <NumberField
+    <div className="flex flex-col">
+      <Stepper
         label={t("focus")}
         value={options.focusMinutes}
-        min={1}
         unit={t("minutes")}
-        onValueChange={(v) => setOptions({ focusMinutes: v })}
+        onChange={(focusMinutes) => setOptions({ focusMinutes })}
       />
-      <NumberField
+      <Stepper
         label={t("shortBreak")}
         value={options.shortBreakMinutes}
-        min={1}
         unit={t("minutes")}
-        onValueChange={(v) => setOptions({ shortBreakMinutes: v })}
+        onChange={(shortBreakMinutes) => setOptions({ shortBreakMinutes })}
       />
-      <NumberField
+      <Stepper
         label={t("longBreak")}
         value={options.longBreakMinutes}
-        min={1}
         unit={t("minutes")}
-        onValueChange={(v) => setOptions({ longBreakMinutes: v })}
+        onChange={(longBreakMinutes) => setOptions({ longBreakMinutes })}
       />
-      <NumberField
+      <Stepper
         label={t("rounds")}
         value={options.rounds}
-        min={1}
         unit={t("roundsUnit")}
-        onValueChange={(v) => setOptions({ rounds: v })}
+        onChange={(rounds) => setOptions({ rounds })}
       />
 
-      <HStack justify="space-between" align="center">
-        <Text textStyle="body-sm" color="fg">
-          {t("autoStart")}
-        </Text>
-        <Switch.Root
+      <div className="flex h-11 items-center justify-between gap-4">
+        <span className="text-sm">{t("autoStart")}</span>
+        <Switch
           checked={options.autoStart}
-          onCheckedChange={(e) => setOptions({ autoStart: e.checked })}
+          onCheckedChange={(autoStart) => setOptions({ autoStart })}
           aria-label={t("autoStart")}
-        >
-          <Switch.HiddenInput />
-          <Switch.Control>
-            <Switch.Thumb />
-          </Switch.Control>
-        </Switch.Root>
-      </HStack>
-    </VStack>
+        />
+      </div>
+    </div>
   );
 }

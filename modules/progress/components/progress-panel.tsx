@@ -1,53 +1,76 @@
 "use client";
 
 import NextLink from "next/link";
-import { HStack, Link, Text, VStack } from "@chakra-ui/react";
-import { ArrowRight } from "@solar-icons/react";
-import { Icon } from "@/components/ui/icon";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { SidePanel, usePanels, Panel } from "@/modules/panels";
+import { AnchoredPanel, usePanels, Panel } from "@/modules/panels";
 import { Routes } from "@/constants/routes";
-import { CATEGORIES, formatDuration, type CategoryId } from "../categories";
-import { useProgress } from "@/services/progress";
-import { CategoryBar } from "./category-bar";
+import { useProgress, useStreak } from "@/services/progress";
+import { formatDuration } from "../utils";
+import { WeeklyBars } from "./weekly-bars";
 
-const EMPTY: Partial<Record<CategoryId, number>> = {};
+function Metric({ value, label }: { value: string | number; label: string }) {
+  return (
+    <div className="flex flex-col gap-1">
+      <span className="tabular text-xl font-semibold">{value}</span>
+      <span className="text-xs text-foreground-muted">{label}</span>
+    </div>
+  );
+}
 
 export function ProgressPanel() {
   const t = useTranslations("khulwa.progress");
+  const tCommon = useTranslations("common");
   const open = usePanels((s) => s.open === Panel.Progress);
   const close = usePanels((s) => s.close);
-  const { data, isPending } = useProgress("day");
-
-  const today = data?.totals ?? EMPTY;
-  const total = Object.values(today).reduce((sum, v) => sum + (v ?? 0), 0);
-  const max = Math.max(...CATEGORIES.map((c) => today[c.id] ?? 0), 1);
+  const progress = useProgress("week");
+  const streak = useStreak();
+  const isPending = progress.isPending || streak.isPending;
+  const isError = progress.isError || streak.isError;
+  const data = progress.data;
+  const streakData = streak.data;
 
   return (
-    <SidePanel open={open} onClose={close} title={t("title")}>
-      <VStack h="full" w="full" gap="5" align="stretch">
-        <HStack justify="space-between" align="baseline">
-          <Text textStyle="label-md" color="fg.subtle">
-            {t("today")}
-          </Text>
-          <Text textStyle="heading-h4" color="fg" fontVariantNumeric="tabular-nums" suppressHydrationWarning>
-            {isPending ? "—" : formatDuration(total)}
-          </Text>
-        </HStack>
+    <AnchoredPanel
+      anchor="header"
+      width={360}
+      open={open}
+      onClose={close}
+      title={t("title")}
+      footer={
+        <NextLink
+          href={Routes.Progress}
+          onClick={close}
+          className="flex items-center justify-end gap-1 rounded-full text-xs text-foreground-secondary transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        >
+          {t("seeAll")}
+          <ArrowRight className="size-3.5" />
+        </NextLink>
+      }
+    >
+      {isPending ? (
+        <p className="text-sm text-foreground-muted">{tCommon("loading")}</p>
+      ) : isError || !data || !streakData ? (
+        <p role="alert" className="text-sm text-destructive">
+          {t("loadError")}
+        </p>
+      ) : (
+        <div className="flex flex-col gap-5">
+          <p className="text-xs text-foreground-muted">{t("last7Days")}</p>
 
-        <VStack align="stretch" gap="3.5">
-          {CATEGORIES.map((c) => (
-            <CategoryBar key={c.id} id={c.id} color={c.color} seconds={today[c.id] ?? 0} max={max} />
-          ))}
-        </VStack>
+          <div className="grid grid-cols-3 gap-3">
+            <Metric value={formatDuration(data.totals.focusSeconds)} label={t("focusTime")} />
+            <Metric value={data.totals.sessions} label={t("sessions")} />
+            <Metric value={streakData.current} label={t("streak")} />
+          </div>
 
-        <Link asChild textStyle="label-md" color="fg.muted" alignSelf="end" mt="auto">
-          <NextLink href={Routes.Progress} onClick={close}>
-            {t("seeAll")}
-            <Icon icon={ArrowRight} boxSize="3.5" />
-          </NextLink>
-        </Link>
-      </VStack>
-    </SidePanel>
+          {data.totals.sessions > 0 ? (
+            <WeeklyBars series={data.series} compact />
+          ) : (
+            <p className="text-sm text-foreground-muted">{t("empty")}</p>
+          )}
+        </div>
+      )}
+    </AnchoredPanel>
   );
 }

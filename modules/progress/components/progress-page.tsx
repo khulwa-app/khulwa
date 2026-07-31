@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import { apiErrorKey } from "@/services/http";
 import { useProgress, useStreak } from "@/services/progress";
 import { formatDuration } from "../utils";
 import { WeeklyBars } from "./weekly-bars";
@@ -33,6 +34,7 @@ function Notice({ children, isError = false }: { children: React.ReactNode; isEr
 export function ProgressPage() {
   const t = useTranslations("khulwa.progress");
   const tCommon = useTranslations("common");
+  const tApi = useTranslations("apiErrors");
   const locale = useLocale();
   const progress = useProgress("week");
   const streak = useStreak();
@@ -55,7 +57,7 @@ export function ProgressPage() {
         {isPending ? (
           <Notice>{tCommon("loading")}</Notice>
         ) : isError || !data || !streakData ? (
-          <Notice isError>{t("loadError")}</Notice>
+          <Notice isError>{tApi(apiErrorKey(progress.error ?? streak.error))}</Notice>
         ) : isEmpty ? (
           <Notice>{t("empty")}</Notice>
         ) : (

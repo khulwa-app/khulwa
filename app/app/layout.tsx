@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { Routes } from "@/constants";
 import { QueryProvider, SessionProvider } from "@/components/providers";
 import { getServerSession } from "@/lib/api/auth";
 import { Navbar } from "@/components/ui/navbar";
@@ -20,13 +22,16 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  // Server-side session read seeds the SessionProvider (real name in the greeting, no flash).
+  // This is the real gate for /app. `proxy.ts` only checks that a session cookie is present, which
+  // an expired or forged one also satisfies; this validates it. It also seeds the SessionProvider
+  // so the greeting renders the real name without a flash.
   const session = await getServerSession();
-  const user = session?.user ?? null;
+  if (!session) redirect(Routes.Login);
+  const user = session.user;
 
   return (
     <QueryProvider>
-      <SessionProvider user={user ? { id: user.id, name: user.name, email: user.email, image: user.image } : null}>
+      <SessionProvider user={{ id: user.id, name: user.name, email: user.email, image: user.image }}>
         <div className="relative min-h-dvh overflow-hidden">
           <Navbar>
             <StreakBadge />

@@ -14,11 +14,13 @@ import {
   PhaseTabs,
 } from "@/modules/pomodoro";
 import { useLogFocusSession } from "@/services/progress";
+import { toast } from "@/lib/toast";
 import { DoingNowCaption } from "@/modules/tasks/components/doing-now/doing-now-caption";
 import { SpaceBackground } from "./space-background";
 
 export function FocusSpace() {
   const t = useTranslations("khulwa");
+  const tErrors = useTranslations("errors");
   const hydrated = usePomodoroHydrated();
   const {
     minutes,
@@ -43,19 +45,33 @@ export function FocusSpace() {
   const stateLabel = isRunning ? t("state.running") : hasStarted ? t("state.paused") : t("state.ready");
 
   const { mutate: logSession } = useLogFocusSession();
-  const loggedCompletion = useRef(completionCount);
+  // Guards against re-sending the same completion, e.g. on a re-render or a Strict Mode double
+  // effect. It advances only once the request has actually resolved — advancing on dispatch meant
+  // a failed POST silently discarded a session the user cannot recreate.
+  const dispatchedCompletion = useRef(completionCount);
   useEffect(() => {
-    if (completionCount <= loggedCompletion.current) return;
-    loggedCompletion.current = completionCount;
+    if (completionCount <= dispatchedCompletion.current) return;
+    const attempted = completionCount;
+    dispatchedCompletion.current = attempted;
+
     if (!isFocusPhase(lastCompletedPhase)) return;
     const endedAt = new Date();
     const startedAt = new Date(endedAt.getTime() - focusMinutes * 60_000);
-    logSession({
-      durationSeconds: focusMinutes * 60,
-      startedAt: startedAt.toISOString(),
-      endedAt: endedAt.toISOString(),
-    });
-  }, [completionCount, lastCompletedPhase, focusMinutes, logSession]);
+    logSession(
+      {
+        durationSeconds: focusMinutes * 60,
+        startedAt: startedAt.toISOString(),
+        endedAt: endedAt.toISOString(),
+      },
+      {
+        onError: () => {
+          // Let the next render retry, and tell the user rather than losing it quietly.
+          dispatchedCompletion.current = attempted - 1;
+          toast.error(tErrors("sessionLost"));
+        },
+      },
+    );
+  }, [completionCount, lastCompletedPhase, focusMinutes, logSession, tErrors]);
 
   return (
     <div className="relative flex min-h-full w-full flex-col overflow-x-hidden bg-canvas">

@@ -1,8 +1,10 @@
 "use server";
 
 import { GoogleGenAI, Type } from "@google/genai";
+import { env } from "@/lib/env";
+import { Logger } from "@/lib/logger";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const ai = new GoogleGenAI({ apiKey: env.ai.geminiApiKey });
 const MODEL = "gemini-2.5-flash";
 
 export async function estimateEta(body: string): Promise<number | null> {
@@ -24,7 +26,7 @@ export async function estimateEta(body: string): Promise<number | null> {
     const minutes = JSON.parse(response.text ?? "{}").minutes;
     return Number.isFinite(minutes) && minutes > 0 ? Math.min(240, Math.round(minutes)) : null;
   } catch (error) {
-    console.warn("[ai] eta estimation failed", error);
+    Logger.error(error, { scope: "ai.estimateEta" });
     return null;
   }
 }
@@ -53,7 +55,7 @@ export async function splitTask(body: string, eta: number): Promise<string[] | n
       .slice(0, 5);
     return clean.length > 0 ? clean : null;
   } catch (error) {
-    console.warn("[ai] task split failed", error);
+    Logger.error(error, { scope: "ai.splitTask" });
     return null;
   }
 }

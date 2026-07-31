@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { estimateEta } from "@/modules/ai";
+import { estimateEta } from "@/lib/ai";
 import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
 
 export function QuickAdd() {

@@ -18,17 +18,14 @@
     "signOut": "Sign out",
     "continueWithGoogle": "Continue with Google"
   },
-  "validation": {
-    "required": "This field is required",
-    "email": "Invalid email address",
-    "minLength": "Minimum {min} characters",
-    "passwordMismatch": "Passwords do not match"
-  },
   "errors": {
-    "generic": "Something went wrong",
-    "network": "Network error",
-    "unauthorized": "Unauthorized",
-    "notFound": "Not found"
+    "title": "Something went wrong",
+    "body": "The page hit an unexpected error. You can try again.",
+    "retry": "Try again",
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "That page does not exist.",
+    "backHome": "Back to Riwaq",
+    "sessionLost": "That session could not be saved."
   },
   "components": {
     "timer": {
@@ -95,7 +92,6 @@
       "recentSessions": "Recent sessions",
       "chartSummary": "Seven-day focus summary",
       "chartDay": "{date}: {duration}, {count, plural, one {# session} other {# sessions}}",
-      "loadError": "Progress could not be loaded. Please try again.",
       "seeAll": "See all",
       "empty": "No focus logged yet. Complete a focus session to see it here."
     },
@@ -319,7 +315,9 @@
         "network": "Could not reach the server. Is it running?"
       },
       "showPassword": "Show password",
-      "hidePassword": "Hide password"
+      "hidePassword": "Hide password",
+      "welcomeBack": "Welcome back",
+      "accountCreated": "Account created"
     }
   },
   "signUp": {
@@ -372,5 +370,20 @@
       "theta": "Theta",
       "typing": "Keyboard"
     }
+  },
+  "apiErrors": {
+    "generic": "Something went wrong. Please try again.",
+    "unknown_error": "Something went wrong. Please try again.",
+    "internal_server_error": "The server had a problem. Please try again.",
+    "unauthorized": "Your session expired. Please sign in again.",
+    "invalid_body": "That request could not be read.",
+    "invalid_range": "That date range is not valid.",
+    "invalid_duration": "That session length is not valid.",
+    "invalid_dates": "Those session times are not valid.",
+    "invalid_category": "That category is not recognised.",
+    "network": "Could not reach the server. Check your connection.",
+    "invalid_email_or_password": "That email or password is not right.",
+    "user_already_exists": "An account with that email already exists.",
+    "password_too_short": "That password is too short."
   }
 }

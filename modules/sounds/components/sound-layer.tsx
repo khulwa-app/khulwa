@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import ReactHowler from "react-howler";
+import { Logger } from "@/lib/logger";
 import type { SoundDef } from "../catalog";
 
 const FADE_MS = 450;
@@ -64,7 +65,7 @@ export function SoundLayer({
       html5={def.html5}
       volume={target}
       onLoad={fadeIn}
-      onLoadError={(_id, err) => console.warn(`[sounds] failed to load ${def.src}`, err)}
+      onLoadError={(_id, err) => Logger.error(err, { scope: "sounds", src: def.src })}
     />
   );
 }

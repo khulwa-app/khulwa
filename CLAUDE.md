@@ -56,7 +56,11 @@ version has breaking API, convention, and file-structure changes.
 ## Architecture and layering
 
 - **Routes and server boundaries:** `app/` contains layouts, thin page entry points, and route handlers.
-- **Server implementation:** `lib/` contains database, schema, auth, email, environment, and server services.
+- **Server implementation:** `lib/` contains database, schema, auth, email, environment, AI server
+  actions, the logger, and server services. It is the only place `process.env` is read.
+- **Errors:** route handlers answer with `{ error: "<snake_case_code>" }` and that code **is** the
+  `apiErrors.*` translation key — there is no mapping layer. Every code needs copy in
+  `messages/en.json`; `tests/error-contract.test.ts` fails the build if one is missing.
 - **Domain UI:** `modules/<domain>/**` contains components and ephemeral domain behavior.
 - **Data access:** `services/<domain>/**` contains HTTP/query hooks and local persisted stores.
 - **Generated primitives:** `components/shadcn/**` holds the unforked shadcn base. Regenerate with the CLI;
@@ -103,7 +107,8 @@ in the authoritative plan; the
 
 1. Work stays inside its approved phase and preserves unrelated product behavior.
 2. The result follows the redesign plan and this derived reference.
-3. `yarn lint` and `npx tsc --noEmit` pass for implementation work.
+3. `yarn lint`, `yarn test`, and `npx tsc --noEmit` pass for implementation work. TypeScript runs in
+   `strict` mode — do not relax it to make a change compile.
 4. User-facing strings are added to `messages/en.json` through `next-intl`.
 5. Keyboard, reduced-motion, responsive, and contrast behavior is verified in proportion to the change.
 6. The phase review gate is recorded as approved before the next phase begins.

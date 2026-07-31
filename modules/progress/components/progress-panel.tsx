@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { AnchoredPanel, usePanels, Panel } from "@/modules/panels";
 import { Routes } from "@/constants/routes";
+import { apiErrorKey } from "@/services/http";
 import { useProgress, useStreak } from "@/services/progress";
 import { formatDuration } from "../utils";
 import { WeeklyBars } from "./weekly-bars";
@@ -21,6 +22,7 @@ function Metric({ value, label }: { value: string | number; label: string }) {
 export function ProgressPanel() {
   const t = useTranslations("khulwa.progress");
   const tCommon = useTranslations("common");
+  const tApi = useTranslations("apiErrors");
   const open = usePanels((s) => s.open === Panel.Progress);
   const close = usePanels((s) => s.close);
   const progress = useProgress("week");
@@ -52,7 +54,7 @@ export function ProgressPanel() {
         <p className="text-sm text-foreground-muted">{tCommon("loading")}</p>
       ) : isError || !data || !streakData ? (
         <p role="alert" className="text-sm text-destructive">
-          {t("loadError")}
+          {tApi(apiErrorKey(progress.error ?? streak.error))}
         </p>
       ) : (
         <div className="flex flex-col gap-5">

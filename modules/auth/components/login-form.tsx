@@ -7,11 +7,14 @@ import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Button } from "@/components/shadcn/button";
 import { Input } from "@/components/shadcn/input";
 import { signIn, signUp } from "@/services/auth";
+import { Logger } from "@/lib/logger";
+import { toast } from "@/lib/toast";
 
 type Mode = "signin" | "signup";
 
 export function LoginForm() {
   const t = useTranslations("login.form");
+  const tApi = useTranslations("apiErrors");
   const router = useRouter();
   const [mode, setMode] = useState<Mode>("signin");
   const [name, setName] = useState("");
@@ -28,7 +31,12 @@ export function LoginForm() {
 
   const onGoogle = async () => {
     setError(null);
-    await signIn.social({ provider: "google", callbackURL: "/app" });
+    try {
+      await signIn.social({ provider: "google", callbackURL: "/app" });
+    } catch (err) {
+      Logger.error(err, { scope: "signIn.social" });
+      setError(tApi("network"));
+    }
   };
 
   const onSubmit = async (e: FormEvent) => {
@@ -40,10 +48,20 @@ export function LoginForm() {
         mode === "signin"
           ? await signIn.email({ email, password })
           : await signUp.email({ email, password, name: name || email.split("@")[0] });
-      if (res.error) setError(t("errors.generic"));
-      else enter();
-    } catch {
-      setError(t("errors.network"));
+
+      if (!res.error) {
+        toast.success(t(mode === "signin" ? "welcomeBack" : "accountCreated"));
+        enter();
+        return;
+      }
+
+      // Better Auth returns a code rather than throwing; it maps onto the same apiErrors namespace
+      // the route handlers use, falling back to generic when it is one we have no copy for.
+      const code = res.error.code?.toLowerCase() ?? "generic";
+      setError(tApi.has(code) ? tApi(code) : t("errors.generic"));
+    } catch (err) {
+      Logger.error(err, { scope: mode === "signin" ? "signIn.email" : "signUp.email" });
+      setError(tApi("network"));
     } finally {
       setLoading(false);
     }

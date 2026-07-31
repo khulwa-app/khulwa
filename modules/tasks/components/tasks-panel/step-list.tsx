@@ -5,7 +5,7 @@ import { Loader2, Sparkles, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/shadcn/checkbox";
-import { splitTask } from "@/modules/ai";
+import { splitTask } from "@/lib/ai";
 import { useAddStep, useDeleteStep, useUpdateStep, type Task, type TaskStep } from "@/services/tasks";
 import { InlineText } from "./inline-text";
 

@@ -1,53 +1,57 @@
 # Deep Juniper implementation reference
 
-> **Status:** Approved target; phased migration in progress
+> **Status:** Migration complete; awaiting review sign-off
 > **Authority:** The
 > [UI/UX Audit and Redesign Plan](../../docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md) is the source of truth for
 > behavior, detailed specifications, sequencing, and acceptance criteria. This file is intentionally only a
 > concise implementation reference.
 
-## Current versus target
+## Where the migration landed
 
-| Area | Current migration state | Approved target |
-| --- | --- | --- |
-| Identity | Khulwa repository/project working identity; existing package name `focus-den` | Visible brand becomes Riwaq once; technical/package identifiers stay unchanged |
-| UI foundation | Chakra UI and theme recipes | Fresh pinned native shadcn base with Tailwind composition |
-| Availability | Tailwind, shadcn, and Lucide are not installed | Install and pin them in Phase 1 |
-| Typography | Nunito | Manrope Variable, weights 400–700, tabular timer/stat numerals |
-| Icons | Solar | Lucide only |
-| Theme | Legacy theme infrastructure and toggle | Dark-first/dark-only across the whole product; toggle hidden |
-| Color | Indigo/violet liquid-glass legacy | Deep Juniper + Quiet Amethyst |
-| Focus data | Category UI/API/aggregates remain | Category-free flow and Progress contract via non-destructive expand/contract |
-| Breaks | Standalone break takeover | Short and Long Break inside the Focus stage |
-| Shell | Oversized drawers and mixed anchors | Compact dock; anchored panels; Progress beneath the header streak badge |
+| Area | State |
+| --- | --- |
+| Identity | Visible brand is Riwaq. Technical identifiers keep their names: package `focus-den`, repository `khulwa`, auth cookie prefix `khulwa`, and the `khulwa` i18n namespace |
+| UI foundation | Native shadcn primitives in `components/shadcn/**` with Tailwind v4 composition. Chakra, Emotion, and the `theme/` recipe layer are removed |
+| Versions | Tailwind 4.3.3, `@tailwindcss/postcss` 4.3.3, `radix-ui` 1.6.7, `lucide-react` 1.28.0 — all pinned |
+| Typography | Manrope Variable as `--font-manrope`, mapped to Tailwind `font-sans`. Nunito is removed |
+| Icons | Lucide only. Solar is removed |
+| Theme | Dark-only. The toggle, `next-themes`, and the Appearance tab are gone |
+| Color | Deep Juniper + Quiet Amethyst semantic variables in `app/globals.css` |
+| Focus data | Category-free Progress contract. The category column, enum, and aggregate table are still stored on purpose — dropping them is a separate reviewed migration |
+| Breaks | Short and Long Break render inside the Focus stage |
+| Shell | Compact dock capsules, anchored panels, Progress beneath the header streak badge |
 
 Light and System are future work. They stay unavailable until a complete second semantic palette and every
 surface/state pass the same review gates.
 
 ## Token summary
 
+Nocturne — near-achromatic neutrals with a single sage accent.
+
 | Token role | Value |
 | --- | ---: |
-| Canvas | `#071713` |
-| Canvas elevated | `#0B211B` |
-| Surface | `#102A23` |
-| Surface elevated | `#17372E` |
-| Surface interactive | `#1C4438` |
-| Border | `#2D4D42` |
-| Primary text | `#F7F4ED` |
-| Secondary text | `#B9C6C0` |
-| Muted text | `#8FA39A` |
-| Primary action | `#6D28D9` |
-| Primary hover | `#7C3AED` |
-| Focus/accent | `#C4B5FD` |
-| Success | `#5FBF91` |
-| Warning | `#D5A45F` |
-| Danger | `#E46C76` |
+| Canvas | `#080B0A` |
+| Canvas elevated | `#101513` |
+| Horizon (gradient close) | `#121A16` |
+| Surface | `#101513` |
+| Surface elevated | `#1B2320` |
+| Surface interactive | `#232C28` |
+| Border | `#343C38` |
+| Border strong / field outline | `#56615B` |
+| Primary text | `#EDF1EE` |
+| Secondary text | `#C8D3CD` |
+| Muted text | `#8E9993` |
+| Primary action | `#7FA08D` |
+| Primary hover | `#90B19D` |
+| Focus ring | `#90B19D` |
+| Success | `#6BC49A` |
+| Warning | `#D6B071` |
+| Danger | `#D97A78` |
 
+- Sage is the only hue. It always carries **canvas-dark** text — white on `#7FA08D` is 2.65:1 and fails.
 - Every background/surface token must have an explicit foreground partner.
 - Use Manrope Variable for all public and application UI.
 - Use Lucide at 16px utility, 18px standard, and 20px rare prominent sizes.
-- Use 18–20px shared panel radii and smaller radii for nested controls.
 - Keep normal UI motion within 150–220ms and honor reduced motion.
 - Keep atmosphere static; no glowing borders, animated blur fields, or gradient buttons.
 
@@ -63,10 +67,92 @@ surface/state pass the same review gates.
   `modules/<domain>/**`.
 - Do not fork base primitives for page-level layout. Do not introduce DaisyUI.
 
+## Where the foundation lives
+
+| Concern | Location | Note |
+| --- | --- | --- |
+| Semantic variables and Tailwind theme | `app/globals.css` | `:root` holds raw values; `@theme inline` maps them to utilities |
+| PostCSS integration | `postcss.config.mjs` | `@tailwindcss/postcss` only |
+| shadcn configuration | `components.json` | `ui` alias points at `@/components/shadcn` so it cannot collide with the legacy Chakra set in `components/ui/**` |
+| shadcn primitives | `components/shadcn/**` | Generated by the CLI; keep them unforked |
+| `cn` helper | `lib/utils.ts` | `clsx` + `tailwind-merge` |
+| Fonts | `app/fonts.ts` | Manrope drives `font-sans`; Nunito stays only for legacy Chakra |
+| Foundation review surface | `app/foundations/page.tsx` | Phase 1 gate: palette, type scale, buttons, fields, controls, elevation |
+| Dock | `modules/dock/components/**` | `DockCapsule` (44px shell) + `DockButton` (36px visual in a 44px hit area) |
+| Panel shell | `modules/panels/components/anchored-panel.tsx` | Anchor, width, focus return, Escape, and enter/exit motion |
+| Exit-transition mounting | `modules/panels/hooks/use-presence.hook.ts` | `EXIT_MS` in the panel must stay in sync with `--duration-exit` |
+
+Panel anchors and widths, all set by the consumer rather than baked into the shell:
+
+| Panel | Anchor | Desktop width |
+| --- | --- | ---: |
+| Tasks | `tool` | 360px |
+| Notes | `tool` | 380px |
+| Sounds | `tool` | 420px |
+| Rhythm | `tool` | 360px |
+| Settings | `utility` | 480px |
+| Progress | `header` | 360px |
+
+Below `md` every panel becomes the same full-width sheet above the dock. Desktop panels are non-modal: no
+scrim, no focus trap, focus returns to the trigger only if it is still inside the panel when it closes.
+
+**Shape language — a pill is correct only when all three clauses hold.**
+
+1. **Content-sized, not stretched.** A stadium says "I am a discrete object sized by my own content."
+   Stretch it to fill its container and the shape contradicts the layout; the eye reads that as broken.
+2. **Single line of fixed height.** Anything that wraps, stacks, or grows with content is disqualified.
+3. **Can afford `padding-inline >= height / 2`.** A stadium sets `radius = height / 2`, and text closer
+   to the edge than the radius runs into the corner arc and loses ink. A 44px pill owes 22px of inline
+   padding. Controls that cannot spend it are not stadiums.
+
+Clause 3 is the same invariant behind every clipped-glyph bug in this codebase: **`padding-inline` must
+be at least the border radius on any control that renders text to its own edge.** Zero-padding inputs
+with a radius are the classic failure, and Tailwind's preflight zeroes padding on every control.
+
+Clause 1 is not expressible in CSS — `w-full`, `flex-1`, and `align-items: stretch` are not selectable —
+so the `@layer components` rule in `app/globals.css` pills `[data-slot="button"]` by default and a
+**stretched button must opt out explicitly with `rounded-xl`**. Inputs, tab lists, tab triggers, and menu
+items were removed from that rule: they are always stretched in this product, so pilling them by slot was
+wrong in every instance.
+
+| Shape | Applies to |
+| --- | --- |
+| Pill (`rounded-full`) | Icon-only controls, dock buttons and capsules, phase tabs, chips, badges, the streak badge, the floating timer, content-sized buttons, composer bars (padded to `pl-6`) |
+| `rounded-xl` (20px) | Panels, cards, note list items, textareas, the login card, stretched buttons |
+| `rounded-2xl` (26px) | Sound tiles — a square tile cannot be a pill |
+| `rounded-lg` (14px) | Stretched rows: quick-add, rhythm rows, command-palette rows, task rows |
+| `rounded-md` (12px) | Inline text editors, section triggers |
+| `0.375rem` | Checkboxes — a round checkbox reads as a radio |
+
+**List rows are flat and full-bleed.** Inside a panel, a row's hover or selected fill spans the full
+panel width (`-mx-4 px-4`) and carries no radius. A rounded fill sitting inside the padding reads as a
+stray card floating in the list and its corners fight the panel's own radius. "Doing now" is a square
+2px sage bar at the panel edge plus a flat tint, not a rounded slab.
+
+**Bare `border` defaults to the semantic border.** Tailwind's preflight sets `border: 0 solid` with no
+colour, so an uncoloured `border` utility inherits `currentColor` — which rendered a near-white outline
+on every dark popover, menu, and dialog. `app/globals.css` sets `border-color: var(--border)` in
+`@layer base` so the default is correct everywhere; utilities still override it.
+
+**Focus indicators and scroll containers.** `AnchoredPanel`'s body is a scroll container on both axes
+(per CSS Overflow 3, one `visible` axis alongside a non-`visible` one computes to `auto`). Outward-drawn
+`ring-*` and `outline-offset` are *ink overflow*: they never join the scrollable region, so they are
+clipped silently and cannot be scrolled into view. The body therefore carries `pt-1.5` — the panel
+focuses its first child on open, so without it the clipped state would be the default state. Any new
+scroll container needs the same block-start gutter.
+
+Two deliberate deviations from a stock shadcn install, both temporary:
+
+- **Tailwind preflight is not imported.** Chakra's preflight is still mounted and already supplies the
+  `box-sizing` / `border-width: 0` / `border-style: solid` reset the primitives depend on. Importing both
+  would double-reset and fight over layer order. Restore `@import "tailwindcss"` when Chakra is removed.
+- **`dark:` always applies** through `@custom-variant dark (&)`, because the product ships dark-only. Restore
+  the standard selector variant when a reviewed second palette exists; do not delete the `dark:` usages.
+
 ## Migration rules
 
 1. Phase 1 installs and pins Tailwind/PostCSS integration, the fresh shadcn base, Lucide, Manrope, and minimal
-   class utilities. The current repository must not be described as already having them.
+   class utilities.
 2. Chakra and Tailwind coexist temporarily. Untouched legacy surfaces keep Chakra while each approved feature
    slice moves completely to native shadcn plus Tailwind. Remove Chakra only after parity in the quality pass.
 3. Ship a coherent dark-only product. Hide/remove the theme toggle before migrated surfaces are user-visible;

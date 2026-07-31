@@ -1,7 +1,7 @@
 # Khulwa — repository guidance
 
-Khulwa is a calm focus and deep-work application: Pomodoro phases, ambient sounds, local tasks and notes,
-rhythm, and server-backed streak/progress tracking.
+Riwaq (repository name `khulwa`) is a calm focus and deep-work application: Pomodoro phases, ambient sounds,
+local tasks and notes, rhythm, and server-backed streak/progress tracking.
 
 It is one Next.js 16 application at the repository root. There is no `client/`, separate Express server,
 workspace configuration, `src/` directory, Apollo/GraphQL, Sentry, yup, Arabic locale, or RTL product mode.
@@ -19,7 +19,7 @@ workspace configuration, `src/` directory, Apollo/GraphQL, Sentry, yup, Arabic l
 Do not revive older indigo/violet liquid-glass, saffron/sage, Chakra recipe, Nunito, Solar, category, or
 standalone break-screen directions.
 
-## Stack and migration state
+## Stack
 
 | Aspect | Value |
 | --- | --- |
@@ -29,12 +29,12 @@ standalone break-screen directions.
 | Data | Drizzle ORM + Postgres for focus sessions, streak, and progress |
 | i18n | next-intl; English only; user-facing text in `messages/en.json` |
 | Audio / AI | react-howler; optional Gemini through `@google/genai` |
-| Approved UI | shadcn native primitives with Tailwind composition |
-| Approved type / icons | Manrope Variable; Lucide only |
+| UI | shadcn native primitives in `components/shadcn/**` with Tailwind v4 composition |
+| Type / icons | Manrope Variable; Lucide only |
 
-Chakra UI, its `theme/` recipes, Solar icons, and Nunito are legacy migration state. Do not add new usage.
-DaisyUI is not part of the product and must not be introduced. Remove legacy UI infrastructure only in the
-phase assigned by the redesign plan and only after behavior parity is confirmed.
+Chakra UI, Emotion, Solar icons, Nunito, and the `theme/` recipe layer were removed in the redesign's final
+phase. Do not reintroduce them. DaisyUI is not part of the product either. Styling lives in Tailwind
+utilities over the semantic variables in `app/globals.css` — there is no theme-object layer any more.
 
 ## Commands
 
@@ -42,6 +42,7 @@ phase assigned by the redesign plan and only after behavior parity is confirmed.
 yarn dev
 yarn build
 yarn lint
+yarn test
 npx tsc --noEmit
 yarn db:generate
 yarn db:migrate
@@ -58,7 +59,10 @@ version has breaking API, convention, and file-structure changes.
 - **Server implementation:** `lib/` contains database, schema, auth, email, environment, and server services.
 - **Domain UI:** `modules/<domain>/**` contains components and ephemeral domain behavior.
 - **Data access:** `services/<domain>/**` contains HTTP/query hooks and local persisted stores.
-- **Shared UI:** `components/ui/**` contains reusable primitives and product-wide compositions.
+- **Generated primitives:** `components/shadcn/**` holds the unforked shadcn base. Regenerate with the CLI;
+  do not hand-edit them to solve page layout.
+- **Shared UI:** `components/ui/**` contains product-wide compositions built on those primitives.
+- **Design tokens:** `app/globals.css` holds every semantic variable and the Tailwind theme mapping.
 - **Local persistence:** tasks and notes remain Zustand-persisted in localStorage.
 - **Server-backed state:** focus sessions, progress, and streaks flow through `app/api/**`.
 
@@ -73,7 +77,10 @@ Keep `app/**/page.tsx` thin. Prefer one component per file, single responsibilit
   stroke-weight switching.
 - Components: keep **shadcn native primitives** at their native sizes and geometry. Use **Tailwind
   composition** for product-level layout and styling. Do not fork primitives to solve page layout.
-- Framework exclusions: **no Chakra UI and no DaisyUI** in redesigned code.
+- Framework exclusions: **no Chakra UI and no DaisyUI**.
+- Brand: the visible product is **Riwaq**. Technical identifiers keep their existing names — the package is
+  `focus-den`, the repository is `khulwa`, the auth cookie prefix is `khulwa`, and the `khulwa` i18n
+  namespace is a key, not copy. Renaming any of those needs a separate decision.
 - Shell: use a **compact dock** and content-driven dock panels anchored near their dock trigger. Desktop dock
   panels are non-modal; mobile may use sheets. Progress is the explicit exception: it is not a dock-capsule
   panel, opens beneath the header streak badge on desktop/tablet, and uses a top or bottom sheet on mobile.

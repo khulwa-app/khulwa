@@ -12,7 +12,7 @@ legacy implementation details to remove through the phases below, not approved a
 
 ## 1. Executive decision
 
-Khulwa should use a **Deep Juniper + Quiet Amethyst** direction: a calm dark foundation with warm off-white type, controlled plum depth, and amethyst reserved for interaction and focus.
+Khulwa should use a **Nocturne** direction: a near-achromatic dark foundation with cool off-white type, depth carried entirely by luminance, and a single sage accent reserved for interaction and focus.
 
 The product should feel:
 
@@ -26,9 +26,9 @@ The redesign should retain the existing product logic and familiar dock-to-panel
 
 The target balance is:
 
-- **70%** deep juniper canvas.
-- **20%** opaque or nearly opaque juniper/plum surfaces.
-- **10%** amethyst interaction color.
+- **70%** neutral dark canvas.
+- **20%** opaque or nearly opaque neutral surfaces.
+- **10%** sage interaction color.
 
 ### 1.1 Naming decision
 
@@ -80,7 +80,7 @@ The source audit included:
 | Area | Current issue | Consequence | Required change |
 |---|---|---|---|
 | Semantic colors | Light-theme `fg` tokens are used inside dark translucent surfaces | Dark text appears on dark panels and controls become difficult to read | Create paired background/foreground semantic tokens for every surface |
-| Visual direction | Bright green mesh, dark glass panels, white cards, and older indigo documentation coexist | The app feels assembled from different systems | Establish one Deep Juniper source of truth |
+| Visual direction | Bright green mesh, dark glass panels, white cards, and older indigo documentation coexist | The app feels assembled from different systems | Establish one Nocturne source of truth |
 | Panel positioning | Panels behave like tall side drawers and feel detached from the dock trigger | Weak spatial relationship and excessive visual weight | Anchor compact panels directly above their dock cluster |
 | Panel sizing | Panels and Settings consume too much viewport area | The main focus area loses priority | Use content-driven floating panels with strict maximum dimensions |
 | Typography | Nunito at very heavy weights feels playful and choppy | Weakens the premium, professional tone | Use Manrope Variable with restrained weights and tabular numerals |
@@ -119,47 +119,78 @@ The current dimensions are individually plausible, but the combination of large 
 
 ### 4.1 Color palette
 
+**Amended July 31, 2026 — "Nocturne".** The original Quiet Amethyst accent was replaced after review: a
+saturated violet was the loudest thing on a calm field, and the surrounding greens had already drifted
+toward a more neutral direction. The palette is now a near-achromatic dark field carrying a single sage
+accent. The 70/20/10 balance and every rule below still hold; only the values changed.
+
 | Semantic role | Value | Use |
 |---|---:|---|
-| Canvas | `#071713` | Main application background |
-| Canvas elevated | `#0B211B` | Static gradient depth and page sections |
-| Surface | `#102A23` | Dock, panels, cards, fields |
-| Surface elevated | `#17372E` | Hover, selected neutral rows, nested surfaces |
-| Surface interactive | `#1C4438` | Quiet hover and pressed states |
-| Border | `#2D4D42` | Dividers and control outlines |
-| Primary text | `#F7F4ED` | Headings, timer, important values |
-| Secondary text | `#B9C6C0` | Body copy and control labels |
-| Muted text | `#8FA39A` | Metadata and tertiary information |
-| Primary action | `#6D28D9` | Primary buttons and active navigation |
-| Primary hover | `#7C3AED` | Hover for primary actions |
-| Focus/accent | `#C4B5FD` | Focus rings, quiet highlights, data accents |
-| Success | `#5FBF91` | Completion and positive state |
-| Warning | `#D5A45F` | Streak and caution |
-| Danger | `#E46C76` | Destructive actions and errors |
+| Canvas | `#080B0A` | Main application background |
+| Canvas elevated | `#101513` | Static gradient depth and page sections |
+| Horizon | `#121A16` | Closing stop of the environment gradient |
+| Surface | `#101513` | Dock, panels, cards, fields |
+| Surface elevated | `#1B2320` | Hover and nested surfaces |
+| Surface interactive | `#232C28` | Selected and pressed states |
+| Border | `#343C38` | Quiet dividers |
+| Border strong | `#56615B` | Control outlines, field boundaries, emphasis |
+| Primary text | `#EDF1EE` | Headings, timer, important values |
+| Secondary text | `#C8D3CD` | Body copy and control labels |
+| Muted text | `#8E9993` | Metadata and tertiary information |
+| Primary action | `#7FA08D` | Primary buttons and active navigation |
+| Primary hover | `#90B19D` | Hover for primary actions |
+| Focus ring | `#90B19D` | Focus rings and quiet highlights |
+| Success | `#6BC49A` | Completion and positive state |
+| Warning | `#D6B071` | Streak and caution |
+| Danger | `#D97A78` | Destructive actions and errors |
+
+Sage is the only hue in the system, and it always carries **dark** text: light text on `#7FA08D` is
+2.65:1 and fails AA outright. Because the field is otherwise neutral, status colours read as genuine
+exceptions — which is the point of spending the accent so sparingly.
 
 ### 4.2 Contrast validation
 
+Measured against the Nocturne values:
+
 | Combination | Contrast |
 |---|---:|
-| Primary text on Canvas | `16.76:1` |
-| Secondary text on Canvas | `10.43:1` |
-| Muted text on Canvas | `6.90:1` |
-| Primary text on Surface | `13.88:1` |
-| Secondary text on Surface | `8.64:1` |
-| Warm white on Primary action | `6.47:1` |
-| Canvas text on Focus/accent | `9.97:1` |
+| Primary text on Canvas | `17.33:1` |
+| Secondary text on Canvas | `12.85:1` |
+| Muted text on Canvas | `6.71:1` |
+| Muted text on Surface | `6.26:1` |
+| Canvas text on Primary action | `6.88:1` |
+| Focus ring on Canvas | `8.43:1` |
+| Success / Warning / Danger on Canvas | `9.40:1` / `9.70:1` / `6.59:1` |
+| Surface → Surface elevated | `1.15:1` |
+| Surface → Surface interactive | `1.28:1` |
+| Border strong on Surface | `2.86:1` |
 
-Primary text should be warm off-white, not pure white. Pure white is reserved for text on the amethyst primary action where it is needed for contrast.
+Primary text is a cool off-white. The primary action carries **canvas-dark** text, never white. The two
+elevation steps are deliberately subtle but stay above 1.1:1, so a panel reads as raised without needing
+an outline. `Border strong` doubles as the field boundary at 2.86:1 — just under the 3:1 guidance for
+non-text UI, which is acceptable only because fields also carry a fill and a placeholder.
 
 ### 4.3 Premium gradient
 
 The base environment should use one static, low-cost composition:
 
 ```css
-linear-gradient(135deg, #071713 0%, #0B211B 52%, #17162A 100%)
+linear-gradient(135deg, #080B0A 0%, #101513 52%, #121A16 100%)
 ```
 
-A single, very subtle amethyst radial field may be layered into artwork or the page background at approximately 12–16% opacity. It must not sit behind every panel or continuously animate.
+Layered over that base, still entirely static:
+
+1. **Fine grain** at ~140px tile, blended `soft-light`. A near-black gradient bands visibly on wide
+   displays; grain is what separates "flat dark" from a surface with material. Dropped under
+   `prefers-reduced-motion`, because high-frequency texture is what triggers visual discomfort.
+2. **Light slices** — a single `104deg` linear gradient with three soft warm-white bands at 1–2.8%.
+   This is the one decorative gesture in the system and it reads as raked light, not as decoration.
+3. **A sage pool** upper-left at 9% and **a cool pool** lower-right. The pools are the only place hue
+   touches the environment.
+
+Rules that still bind: total lift over the canvas stays under 3% so text contrast is untouched; the
+composition never introduces a hue outside sage; nothing animates; and no blur filter is used —
+everything is a gradient, so there is no repaint cost during a session.
 
 Rules:
 
@@ -172,12 +203,23 @@ Rules:
 
 ### 4.4 Surface treatment
 
-- Dock and panels: nearly opaque Deep Juniper, approximately `rgba(12, 32, 27, 0.94)`.
-- Border: 1px warm-white at 10–12% opacity or the semantic Border token.
+- Dock and panels: nearly opaque surface, `rgb(16 21 19 / 0.94)`.
+- Border: 1px light hairline at ~9% opacity or the semantic Border token.
 - Backdrop blur: **10–12px maximum**, only where background continuity adds value.
 - Shadow: one soft, dark shadow with a short spread; no colored glow.
-- Shared panel radius: **18–20px**.
-- Nested controls use smaller radii than their container.
+- Shared panel radius: **20px**.
+- **Shape language — pill direction, with three required clauses.** A stadium is correct only when the
+  control is (1) sized by its own content rather than stretched to fill, (2) a single line of fixed
+  height, and (3) able to afford `padding-inline >= height / 2`, because a stadium sets
+  `radius = height / 2` and text closer than the radius runs into the corner arc. Stretched rows,
+  stretched buttons, text fields, tab lists, and menu items are therefore never stadiums. Checkboxes
+  stay square-ish so they are not mistaken for radios.
+- **Padding invariant.** On any control that renders text to its own edge, `padding-inline` must be at
+  least the border radius. Tailwind's preflight zeroes padding on form controls, so a radius without
+  matching padding clips the leading or trailing glyph.
+- **Focus indicators are ink overflow.** Rings and outline offsets never join a scroll container's
+  scrollable region, so a focusable child flush against a scrollport edge loses part of its indicator
+  permanently. Every scroll container needs a gutter at least as large as its largest focus indicator.
 
 This produces depth through luminance and spacing instead of glow.
 
@@ -356,7 +398,7 @@ Goal: capture and choose the next task with the least possible friction.
 - Title: 14–15px with a single-line default.
 - Secondary ETA or subtask count is visually quiet.
 - Replace the line of action icons with one overflow menu.
-- “Doing now” uses a restrained amethyst tint or 2px left indicator.
+- “Doing now” uses a restrained sage tint or 2px left indicator.
 - Use Today, Later, and Done as collapsible sections.
 - Edit task details inline or in a compact secondary view.
 - Empty state is one line of guidance plus the quick-add action.
@@ -381,7 +423,7 @@ Goal: make selection, playback state, and volume understandable in one glance.
 - Three-column tile grid at full panel width; two columns when narrow.
 - Tile size approximately 84–92px.
 - Sound icon sits inside a 36px visual container.
-- Active sound uses a quiet amethyst tint and a clear playing indicator.
+- Active sound uses a quiet sage tint and a clear playing indicator.
 - Per-sound volume appears in a stable detail row or footer and must not reflow the grid.
 - Master volume stays in a sticky footer.
 - Playback state must be visible without relying on animation.
@@ -440,7 +482,7 @@ Theme:
 - Maximum width: approximately 520px.
 - Search field: 56px.
 - Maximum content height: 440–480px.
-- Selected row: amethyst at roughly 12% tint with a subtle border.
+- Selected row: sage at roughly 12–15% tint with a subtle border.
 - Avoid the current bright white selected slab.
 - Provide visible shortcut hints and strong selected-state contrast.
 - Command palette remains modal and may use a restrained scrim.
@@ -449,7 +491,7 @@ Theme:
 
 ### 9.1 Landing
 
-- Use the Deep Juniper static gradient at a slightly richer amplitude than the application canvas.
+- Use the Nocturne static gradient at a slightly richer amplitude than the application canvas.
 - Present one dominant CTA.
 - Keep a clear product preview or short feature story beneath the hero.
 - Reduce decorative color behind important text.
@@ -459,7 +501,7 @@ Theme:
 
 - Use a 400–440px elevated Surface card.
 - Provide persistent field labels, password visibility, inline error states, and helpful recovery links.
-- Primary action remains solid amethyst.
+- Primary action remains solid sage with dark text.
 - Subdue the environmental gradient behind the form.
 - Keep Login and Register as clearly related states without changing the overall frame.
 
@@ -599,7 +641,7 @@ Phase 0. The current rollout changes the application contract first and preserve
    `lucide-react`, Manrope through `next/font`, and the minimal class utilities used by the preset (including
    `clsx`, `tailwind-merge`, and `class-variance-authority` when emitted). Commit the generated baseline
    configuration and lockfile; do not claim these are already installed.
-2. Establish semantic CSS variables for Deep Juniper backgrounds/foregrounds, Quiet Amethyst interaction,
+2. Establish semantic CSS variables for Nocturne backgrounds/foregrounds, sage interaction,
    borders, focus, elevation, radii, and motion, then map Tailwind utilities to them.
 3. Keep Chakra and Tailwind temporarily coexisting: untouched legacy surfaces retain their existing provider
    and theme while each approved feature slice moves to native shadcn primitives plus Tailwind. Do not style
@@ -697,4 +739,4 @@ The redesign is ready when:
 
 ## 15. Reference principles
 
-The useful lesson from [Flocus](https://flocus.com/) is the separation between a dominant focus canvas and compact edge controls. The useful lesson from [Endel](https://endel.io/) is the clarity of current state and atmosphere around a single activity. Khulwa should apply these principles through its own Deep Juniper identity, task workflow, and quieter interaction model.
+The useful lesson from [Flocus](https://flocus.com/) is the separation between a dominant focus canvas and compact edge controls. The useful lesson from [Endel](https://endel.io/) is the clarity of current state and atmosphere around a single activity. Khulwa should apply these principles through its own Nocturne identity, task workflow, and quieter interaction model.

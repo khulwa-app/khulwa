@@ -120,14 +120,10 @@
        2. its content is a single line of fixed height;
        3. it can afford `padding-inline >= height / 2`, because a stadium sets radius = height / 2
           and any text closer than that runs into the corner arc and loses ink.
-     Clause 1 is not expressible in CSS — `w-full`, `flex-1`, and `align-items: stretch` are not
-     selectable — so a stretched control must opt OUT explicitly with `rounded-xl`. Icon buttons are
-     the one case that is content-sized by definition, so they are pilled here. */
-  [data-slot="button"] {
-    border-radius: calc(infinity * 1px);
-  }
-
-  /* Checkboxes stay square-ish on purpose: a round checkbox reads as a radio. */
+     Clause 1 is not expressible in CSS, so it cannot be enforced from this file — a component that
+     ships a `rounded-*` utility outranks anything declared here, because utilities are a later
+     layer than components. Button therefore owns its radius through a `shape` variant instead.
+     Checkboxes stay square-ish on purpose: a round checkbox reads as a radio. */
   [data-slot="checkbox"] {
     border-radius: 0.375rem;
   }

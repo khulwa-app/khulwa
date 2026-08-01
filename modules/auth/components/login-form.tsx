@@ -76,7 +76,7 @@ export function LoginForm() {
         </p>
       </div>
 
-      <Button variant="secondary" size="lg" onClick={onGoogle} className="h-11 w-full rounded-xl">
+      <Button variant="secondary" size="lg" shape="rounded" onClick={onGoogle} className="h-11 w-full">
         {t("continueWithGoogle")}
       </Button>
 
@@ -149,7 +149,7 @@ export function LoginForm() {
           </p>
         ) : null}
 
-        <Button type="submit" size="lg" disabled={loading} className="mt-1 h-11 w-full rounded-xl">
+        <Button type="submit" size="lg" shape="rounded" disabled={loading} className="mt-1 h-11 w-full">
           {loading ? <Loader2 className="animate-spin motion-reduce:animate-none" /> : null}
           {loading ? t("submitting") : mode === "signin" ? t("submit") : t("signupSubmit")}
         </Button>

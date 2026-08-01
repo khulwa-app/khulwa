@@ -106,7 +106,7 @@ export default function FoundationsPage() {
           </div>
         </Section>
 
-        <Section title="Buttons" hint="Native shadcn geometry; 44px hit areas are applied by product layout, not by forking.">
+        <Section title="Button variants" hint="Six variants, four text sizes, four icon sizes.">
           <div className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface p-6">
             <Button>
               <Sparkles />
@@ -126,6 +126,28 @@ export default function FoundationsPage() {
             </Button>
             <Button size="icon" variant="ghost" aria-label="Notifications">
               <Bell />
+            </Button>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface p-6">
+            <Button size="xs">Extra small</Button>
+            <Button size="sm">Small</Button>
+            <Button>Default</Button>
+            <Button size="lg">Large</Button>
+          </div>
+        </Section>
+
+        <Section
+          title="Button shape"
+          hint="Pill is the default because a button is content-sized. A button stretched to fill its container must opt out with shape=&quot;rounded&quot;."
+        >
+          <div className="flex flex-col gap-4 rounded-xl border border-border bg-surface p-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <Button>Content-sized · pill</Button>
+              <Button variant="secondary">Also pill</Button>
+            </div>
+            <Button shape="rounded" className="w-full justify-start">
+              Stretched to fill · shape=&quot;rounded&quot;
             </Button>
           </div>
         </Section>

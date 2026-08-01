@@ -109,16 +109,25 @@ Clause 3 is the same invariant behind every clipped-glyph bug in this codebase: 
 be at least the border radius on any control that renders text to its own edge.** Zero-padding inputs
 with a radius are the classic failure, and Tailwind's preflight zeroes padding on every control.
 
-Clause 1 is not expressible in CSS — `w-full`, `flex-1`, and `align-items: stretch` are not selectable —
-so the `@layer components` rule in `app/globals.css` pills `[data-slot="button"]` by default and a
-**stretched button must opt out explicitly with `rounded-xl`**. Inputs, tab lists, tab triggers, and menu
-items were removed from that rule: they are always stretched in this product, so pilling them by slot was
-wrong in every instance.
+Clause 1 is not expressible in CSS — `w-full`, `flex-1`, and `align-items: stretch` are not selectable.
+It also **cannot be enforced from a stylesheet at all**: utilities are a later layer than components, so
+a component shipping its own `rounded-*` outranks any rule in `@layer components`. An earlier attempt to
+pill `[data-slot="button"]` that way silently did nothing for months.
+
+**Button therefore owns its radius as a `shape` variant.** `shape="pill"` is the default because a
+button is content-sized by nature; a button stretched with `w-full` passes `shape="rounded"`. Radius
+appears in exactly one place in the cva — not in the base string, not in the size variants — so there is
+nothing for `tailwind-merge` to arbitrate and no per-instance `rounded-*` className anywhere.
+
+Inputs, tab lists, tab triggers, and menu items are never pilled: they are always stretched in this
+product, so a slot-wide rule was wrong in every instance.
 
 | Shape | Applies to |
 | --- | --- |
-| Pill (`rounded-full`) | Icon-only controls, dock buttons and capsules, phase tabs, chips, badges, the streak badge, the floating timer, content-sized buttons, composer bars (padded to `pl-6`) |
-| `rounded-xl` (20px) | Panels, cards, note list items, textareas, the login card, stretched buttons |
+| `shape="pill"` | Buttons by default — content-sized, single line |
+| `shape="rounded"` (14px) | Buttons stretched with `w-full`: the login submit, Google sign-in, "New note" |
+| Pill (`rounded-full`) | Icon-only controls, dock buttons and capsules, phase tabs, chips, badges, the streak badge, the floating timer, composer bars (padded to `pl-6`) |
+| `rounded-xl` (20px) | Panels, cards, note list items, textareas, the login card |
 | `rounded-2xl` (26px) | Sound tiles — a square tile cannot be a pill |
 | `rounded-lg` (14px) | Stretched rows: quick-add, rhythm rows, command-palette rows, task rows |
 | `rounded-md` (12px) | Inline text editors, section triggers |

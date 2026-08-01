@@ -34,7 +34,8 @@ export function NotesPanel() {
         <div className="flex flex-col gap-3">
           <Button
             variant="secondary"
-            className="w-full justify-start rounded-xl"
+            shape="rounded"
+            className="w-full justify-start"
             disabled={create.isPending}
             onClick={() => setSelectedId(create.mutate({}).id)}
           >

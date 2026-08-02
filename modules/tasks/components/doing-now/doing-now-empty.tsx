@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/shadcn/button";
+import { PlainField } from "@/components/ui/plain-field";
 import { estimateEta } from "@/lib/ai";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
@@ -40,7 +41,7 @@ export function DoingNowEmpty() {
       <div className="flex w-full items-center gap-3 rounded-full border border-hairline bg-surface-veil p-2 pl-6 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
         <span className="size-1.5 shrink-0 rounded-full bg-border" aria-hidden />
 
-        <input
+        <PlainField
           value={draft}
           placeholder={t("intentionPlaceholder")}
           aria-label={t("intentionPlaceholder")}
@@ -48,7 +49,7 @@ export function DoingNowEmpty() {
           onKeyDown={(event) => {
             if (event.key === "Enter") begin();
           }}
-          className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-foreground-muted"
+          className="text-sm"
         />
 
         <Button size="sm" onClick={begin}>

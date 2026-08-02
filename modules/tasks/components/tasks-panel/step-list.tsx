@@ -5,6 +5,7 @@ import { Loader2, Sparkles, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/shadcn/checkbox";
+import { PlainField } from "@/components/ui/plain-field";
 import { splitTask } from "@/lib/ai";
 import { useAddStep, useDeleteStep, useUpdateStep, type Task, type TaskStep } from "@/services/tasks";
 import { InlineText } from "./inline-text";
@@ -62,7 +63,7 @@ export function StepList({ task }: { task: Task }) {
       </ul>
 
       <div className="flex items-center gap-2">
-        <input
+        <PlainField
           value={draft}
           placeholder={t("addStep")}
           onChange={(event) => setDraft(event.target.value)}
@@ -70,7 +71,7 @@ export function StepList({ task }: { task: Task }) {
             if (event.key === "Enter") submit();
           }}
           aria-label={t("addStep")}
-          className="min-w-0 flex-1 rounded-md bg-transparent px-2 py-1.5 text-xs outline-none placeholder:text-foreground-muted focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring"
+          className="py-1.5 text-xs"
         />
 
         <button

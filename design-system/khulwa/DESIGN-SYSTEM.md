@@ -109,6 +109,15 @@ Clause 3 is the same invariant behind every clipped-glyph bug in this codebase: 
 be at least the border radius on any control that renders text to its own edge.** Zero-padding inputs
 with a radius are the classic failure, and Tailwind's preflight zeroes padding on every control.
 
+**Transparent text controls take this further: no surface, no radius.** A browser clips a field's
+native *selection highlight* to its border-radius, so on a control with an invisible surface the arc
+cuts into the glyphs rather than into padding. On a narrow field the radius clamps to half the box and
+the whole thing renders as a lozenge — a 24px ETA field at `rounded-md` had no straight edge left, and
+selecting its text hid the first digit. `components/ui/plain-field.tsx` is the primitive that encodes
+this; `tests/plain-field.test.ts` fails the build if a hand-rolled transparent input picks a radius back
+up. Note that a control which *gains* a real background (the notes editor fields) is a surface again and
+does take radius — plus the padding clause 3 demands.
+
 Clause 1 is not expressible in CSS — `w-full`, `flex-1`, and `align-items: stretch` are not selectable.
 It also **cannot be enforced from a stylesheet at all**: utilities are a later layer than components, so
 a component shipping its own `rounded-*` outranks any rule in `@layer components`. An earlier attempt to

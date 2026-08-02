@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { PlainField } from "@/components/ui/plain-field";
 
 interface InlineTextProps {
   value: string;
@@ -44,8 +45,10 @@ export function InlineText({ value, onCommit, label, className, inputMode = "tex
         type="button"
         aria-label={label}
         onClick={startEditing}
+        // Square to match PlainField below, so the focus ring keeps its shape across the
+        // display/edit swap instead of jumping from a lozenge to a rectangle.
         className={cn(
-          "min-w-0 flex-1 truncate rounded-md text-left focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring",
+          "min-w-0 flex-1 truncate rounded-none text-left focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring",
           className,
         )}
       >
@@ -55,7 +58,7 @@ export function InlineText({ value, onCommit, label, className, inputMode = "tex
   }
 
   return (
-    <input
+    <PlainField
       ref={inputRef}
       aria-label={label}
       inputMode={inputMode}
@@ -70,10 +73,7 @@ export function InlineText({ value, onCommit, label, className, inputMode = "tex
           setEditing(false);
         }
       }}
-      className={cn(
-        "min-w-0 flex-1 rounded-md bg-transparent outline-none focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring",
-        className,
-      )}
+      className={className}
     />
   );
 }

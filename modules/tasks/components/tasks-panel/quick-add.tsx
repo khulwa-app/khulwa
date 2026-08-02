@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { estimateEta } from "@/lib/ai";
+import { PlainField } from "@/components/ui/plain-field";
 import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
 
 export function QuickAdd() {
@@ -31,7 +32,7 @@ export function QuickAdd() {
 
   return (
     <div className="sticky top-0 z-1 flex h-11 shrink-0 items-center gap-2 rounded-lg border border-input bg-surface px-3 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
-      <input
+      <PlainField
         value={draft}
         placeholder={t("placeholder")}
         aria-label={t("addTask")}
@@ -39,7 +40,7 @@ export function QuickAdd() {
         onKeyDown={(event) => {
           if (event.key === "Enter") submit();
         }}
-        className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-foreground-muted"
+        className="text-sm"
       />
       <button
         type="button"

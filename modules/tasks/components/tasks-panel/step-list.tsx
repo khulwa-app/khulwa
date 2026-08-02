@@ -5,7 +5,7 @@ import { Loader2, Sparkles, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/shadcn/checkbox";
-import { PlainField } from "@/components/ui/plain-field";
+import { Input } from "@/components/shadcn/input";
 import { splitTask } from "@/lib/ai";
 import { useAddStep, useDeleteStep, useUpdateStep, type Task, type TaskStep } from "@/services/tasks";
 import { InlineText } from "./inline-text";
@@ -63,7 +63,8 @@ export function StepList({ task }: { task: Task }) {
       </ul>
 
       <div className="flex items-center gap-2">
-        <PlainField
+        <Input
+          variant="plain"
           value={draft}
           placeholder={t("addStep")}
           onChange={(event) => setDraft(event.target.value)}

@@ -109,14 +109,24 @@ Clause 3 is the same invariant behind every clipped-glyph bug in this codebase: 
 be at least the border radius on any control that renders text to its own edge.** Zero-padding inputs
 with a radius are the classic failure, and Tailwind's preflight zeroes padding on every control.
 
-**Transparent text controls take this further: no surface, no radius.** A browser clips a field's
-native *selection highlight* to its border-radius, so on a control with an invisible surface the arc
-cuts into the glyphs rather than into padding. On a narrow field the radius clamps to half the box and
-the whole thing renders as a lozenge — a 24px ETA field at `rounded-md` had no straight edge left, and
-selecting its text hid the first digit. `components/ui/plain-field.tsx` is the primitive that encodes
-this; `tests/plain-field.test.ts` fails the build if a hand-rolled transparent input picks a radius back
-up. Note that a control which *gains* a real background (the notes editor fields) is a surface again and
-does take radius — plus the padding clause 3 demands.
+**Fields are one component with a `variant`,** because the radius/padding pairing has to be decided
+per shape and a hand-rolled `<input>` opts out of that reasoning silently.
+
+| Variant | Shape | Use |
+| --- | --- | --- |
+| `outlined` (default) | `rounded-md` + `px-3` | A bordered field standing on its own — the login form |
+| `filled` | `rounded-lg` + `px-4` | The field *is* the writing area — the notes editor |
+| `plain` | `rounded-none`, no padding | The parent row owns border, background, and focus — quick-add, add-step, the Home composer, inline task title and ETA |
+
+The invariant every variant satisfies: **`padding-inline >= border-radius`.** A text selection is a
+*full-height* rectangle, so its ends are clipped by the corner arcs; if the radius exceeds the padding
+those arcs land over the glyphs instead of over empty space. On a narrow field the radius also clamps to
+half the box, leaving no straight edge at all — a 24px ETA field at `rounded-md` rendered its selection
+as a lozenge that swallowed the first digit. `plain` is the case that cannot spend any padding, which is
+exactly why it takes no radius.
+
+`tests/field-primitive.test.ts` enforces both halves: no raw `<input>`/`<textarea>` outside
+`components/shadcn/**`, and every variant's padding clears its radius.
 
 Clause 1 is not expressible in CSS — `w-full`, `flex-1`, and `align-items: stretch` are not selectable.
 It also **cannot be enforced from a stylesheet at all**: utilities are a later layer than components, so

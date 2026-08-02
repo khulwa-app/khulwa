@@ -152,17 +152,34 @@ export default function FoundationsPage() {
           </div>
         </Section>
 
-        <Section title="Fields" hint="Tab through to check the focus ring: 3px sage at 50%, plus a solid ring border.">
+        <Section
+          title="Field variants"
+          hint="One component. Each variant pairs its radius with padding that clears it, so a text selection never gets clipped into the glyphs."
+        >
           <div className="flex flex-col gap-4 rounded-xl border border-border bg-surface p-6">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium" htmlFor="foundations-input">
-                Task title
+                outlined — bordered, stands alone
               </label>
               <Input id="foundations-input" placeholder="Write the audit summary" />
             </div>
             <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium" htmlFor="foundations-filled">
+                filled — the field is the writing area
+              </label>
+              <Input id="foundations-filled" variant="filled" defaultValue="Select this text" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium" htmlFor="foundations-plain">
+                plain — the row owns the chrome, so the field takes no radius
+              </label>
+              <div className="flex h-11 items-center gap-2 rounded-lg border border-input px-3 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
+                <Input id="foundations-plain" variant="plain" defaultValue="Select this text" className="text-sm" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
               <label className="text-sm font-medium" htmlFor="foundations-textarea">
-                Note
+                Textarea — outlined and filled
               </label>
               <Textarea id="foundations-textarea" placeholder="Anything worth remembering after this session" />
             </div>

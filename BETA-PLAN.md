@@ -51,7 +51,7 @@ Never drive frequent UI toggles through URL navigation on a dynamic route — us
 4. i18n: every user-facing string added to `messages/en.json` (+ `ar.json`) via `useTranslations`, never hardcoded.
 5. New square/labelled controls follow the radius tiers and the squircle list (`app/globals.css`).
 
-**Schema is already live.** All tables exist (`lib/db/schema/`): `task`, `taskStep`,
+**Schema is already live.** All tables exist (`lib/db/schema/`): `task`,
 `focusSession`, `dailyCategoryTotal`, `streak`, `note`, + better-auth tables. **No new migrations
 needed for Phase 1** unless a card says so.
 
@@ -137,12 +137,11 @@ new `client/modules/progress/api.ts` (query/mutation hooks).
 refresh (it's in Postgres); localStorage no longer holds progress.
 
 ### P1.R — Recommended addition: Tasks & Notes persistence API — ✅ DONE (tasks client migrated; notes API ready, notes client lands with P2.4)
-> *Not literal note checkboxes, but mandatory-login + existing `task`/`taskStep`/`note` tables imply it.
+> *Not literal note checkboxes, but mandatory-login + existing `task`/`note` tables imply it.
 > Needed before the Phase 2 "simpler tasks panel" and "notes panel" are meaningfully done. Trim if you
 > want beta to stay localStorage for tasks.*
 **Endpoints.**
-- Tasks: `GET/POST /api/tasks`, `PATCH/DELETE /api/tasks/:id`, steps `POST /api/tasks/:id/steps`,
-  `PATCH/DELETE /api/steps/:id`, reorder via `position`.
+- Tasks: `GET/POST /api/tasks`, `PATCH/DELETE /api/tasks/:id`, reorder via `position`.
 - Notes: `GET/POST /api/notes`, `PATCH/DELETE /api/notes/:id`.
 **Files.** `server/src/routes/tasks.ts`, `server/src/routes/notes.ts`; client `client/modules/tasks/api.ts`,
 migrate `use-tasks-store.hook.ts` from `persist` localStorage to TanStack mutations (optimistic).
@@ -200,7 +199,7 @@ notes (title optional + content), autosave on blur/debounce via `PATCH /api/note
 **Goal.** Reduce visual/interaction complexity of the tasks panel (roadmap: "simpler tasks panel").
 **Files.** `client/modules/tasks/components/tasks-panel.tsx`, `task-list.tsx`, `tasks-row.tsx`, `quick-add.tsx`.
 **Approach.** Needs a design pass — define "simpler" with the user before building (fewer per-row actions /
-collapse steps / lighter hover cluster). Treat as: propose 1–2 layout options, then implement the chosen one.
+lighter hover cluster). Treat as: propose 1–2 layout options, then implement the chosen one.
 **Acceptance.** Agreed simplified layout shipped; existing task actions still reachable; both themes.
 
 ### P2.6 — Redesign Focus space (violet play btn, keep rounds + category logic) — ⏸ PARKED (design locked)
@@ -260,20 +259,12 @@ DevTools "Rendering → Paint flashing" that the orb doesn't trigger repaints. R
 
 ## HISTORICAL POST-BETA IDEAS
 
-### PB.1 — Companion chat with avatar (Gemini)
-**Goal.** Conversational companion using `@google/genai` (already a client dep) + `NoorOrb` as the avatar.
-**Files.** new `client/modules/companion/` chat UI; server: a streaming proxy route `POST /api/companion`
-(keep the API key server-side — do **not** call Gemini from the browser). Stream tokens back.
-**Acceptance.** Streaming chat with the orb avatar; key never exposed client-side; reduced-motion respected.
-
----
-
 ## Historical suggested execution order — do not execute
 
 1. **F1 → F2** (foundation) → 2. **P1.1 → P1.2 → P1.3 → P1.4** (tracking goes end-to-end) →
 3. **P1.R** (tasks/notes API, if keeping) → 4. **P2.3** (Settings: quick wins, theme+pomodoro) →
 5. **P2.1** (Progress page) → 6. **P2.4** (Notes panel) → 7. **P2.2** (dock cleanup) →
-8. **P2.6 / P2.5 / P2.7** (design-led, confirm direction first) → 9. **Phase 3** polish → 10. **PB.1**.
+8. **P2.6 / P2.5 / P2.7** (design-led, confirm direction first) → 9. **Phase 3** polish.
 
 > Cards marked "get a design direction first" (P2.5, P2.6, P2.7) should pause for a design decision before
 > building — don't let an agent invent the layout unsupervised.

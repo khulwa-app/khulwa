@@ -2,20 +2,52 @@
 
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import type { CreateTaskInput, Task, UpdateStepInput, UpdateTaskInput } from "./tasks.types";
+import type { CreateTaskInput, Priority, Task, UpdateTaskInput } from "./tasks.types";
 
 export const DEFAULT_ETA = 15;
 
 const uid = () => crypto.randomUUID();
+const PRIORITIES = new Set<Priority>(["low", "medium", "high"]);
+
+type PersistedTasksState = Partial<{ tasks: unknown[] }>;
+type LegacyTask = Partial<Task> & { steps?: unknown };
+
+const numberOr = (value: unknown, fallback: number) =>
+  typeof value === "number" && Number.isFinite(value) ? value : fallback;
+
+const normalizeTask = (value: unknown): Task | null => {
+  if (typeof value !== "object" || value === null) return null;
+  const task = value as LegacyTask;
+  if (typeof task.id !== "string" || typeof task.body !== "string") return null;
+
+  const priority = typeof task.priority === "string" && PRIORITIES.has(task.priority as Priority)
+    ? (task.priority as Priority)
+    : "medium";
+
+  return {
+    id: task.id,
+    body: task.body.trim(),
+    completed: Boolean(task.completed),
+    isDoingNow: Boolean(task.isDoingNow),
+    eta: numberOr(task.eta, DEFAULT_ETA),
+    priority,
+    today: typeof task.today === "boolean" ? task.today : true,
+    createdAt: numberOr(task.createdAt, Date.now()),
+    completedAt: typeof task.completedAt === "number" && Number.isFinite(task.completedAt) ? task.completedAt : null,
+  };
+};
+
+const migrateTasks = (persisted: unknown): Pick<TasksState, "tasks"> => {
+  const state = persisted as PersistedTasksState;
+  const tasks = Array.isArray(state.tasks) ? state.tasks.map(normalizeTask).filter((task): task is Task => Boolean(task)) : [];
+  return { tasks };
+};
 
 type TasksState = {
   tasks: Task[];
   addTask: (input: CreateTaskInput) => Task;
   updateTask: (id: string, patch: UpdateTaskInput) => void;
   deleteTask: (id: string) => void;
-  addStep: (taskId: string, body: string) => void;
-  updateStep: (stepId: string, patch: UpdateStepInput) => void;
-  deleteStep: (stepId: string) => void;
 };
 
 export const useTasksStore = create<TasksState>()(
@@ -32,7 +64,6 @@ export const useTasksStore = create<TasksState>()(
           eta: input.eta ?? DEFAULT_ETA,
           priority: input.priority ?? "medium",
           today: input.today ?? true,
-          steps: [],
           createdAt: Date.now(),
           completedAt: null,
         };
@@ -58,33 +89,12 @@ export const useTasksStore = create<TasksState>()(
         }),
 
       deleteTask: (id) => set((s) => ({ tasks: s.tasks.filter((t) => t.id !== id) })),
-
-      addStep: (taskId, body) =>
-        set((s) => ({
-          tasks: s.tasks.map((t) =>
-            t.id === taskId
-              ? { ...t, steps: [...t.steps, { id: uid(), body: body.trim(), completed: false }] }
-              : t,
-          ),
-        })),
-
-      updateStep: (stepId, patch) =>
-        set((s) => ({
-          tasks: s.tasks.map((t) => ({
-            ...t,
-            steps: t.steps.map((st) => (st.id === stepId ? { ...st, ...patch } : st)),
-          })),
-        })),
-
-      deleteStep: (stepId) =>
-        set((s) => ({
-          tasks: s.tasks.map((t) => ({ ...t, steps: t.steps.filter((st) => st.id !== stepId) })),
-        })),
     }),
     {
       name: "khulwa-tasks",
       storage: createJSONStorage(() => localStorage),
-      version: 4,
+      version: 5,
+      migrate: migrateTasks,
     },
   ),
 );

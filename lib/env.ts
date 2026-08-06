@@ -30,11 +30,6 @@ export const env = {
     apiKey: optional("RESEND_API_KEY"),
     from: required("EMAIL_FROM", "Riwaq <onboarding@resend.dev>"),
   },
-
-  /** Optional: the task ETA and split features degrade to null when it is absent. */
-  ai: {
-    geminiApiKey: optional("GEMINI_API_KEY"),
-  },
 } as const;
 
 export const isProd = env.nodeEnv === "production";

@@ -3,31 +3,19 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { estimateEta } from "@/lib/ai";
 import { Input } from "@/components/shadcn/input";
-import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
+import { useCreateTask } from "@/services/tasks";
 
 export function QuickAdd() {
   const t = useTranslations("tasks");
   const createTask = useCreateTask();
-  const updateTask = useUpdateTask();
   const [draft, setDraft] = useState("");
 
   const submit = () => {
     const body = draft.trim();
     if (!body) return;
     setDraft("");
-
-    createTask.mutate(
-      { body },
-      {
-        onSuccess: (task) => {
-          void estimateEta(body).then((eta) => {
-            if (eta !== null && task.eta === DEFAULT_ETA) updateTask.mutate({ id: task.id, patch: { eta } });
-          });
-        },
-      },
-    );
+    createTask.mutate({ body });
   };
 
   return (

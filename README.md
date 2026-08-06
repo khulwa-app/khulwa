@@ -39,7 +39,8 @@ Everything else stays close at hand without competing for attention.
 - **Ambient** centers the current soundscape and playback state.
 - **Tasks, Notes, Sounds, Rhythm, and Settings** open in compact panels anchored to the dock on desktop.
 - **Progress** summarizes focus minutes, sessions, trends, and streaks.
-- **AI task assist** can estimate duration or break a task into steps, but the core product works without AI.
+- **Tasks stay intentionally simple**: one task, completion, doing-now state, today/later grouping, and manual
+  estimated minutes. There are no subtasks or AI task-assist flows.
 
 Focus categories are being removed from the UI, session flow, API, stored records where migration permits,
 and statistics. Starting a focus session must not require a category.
@@ -118,7 +119,6 @@ Data boundaries:
 | Auth | Better Auth |
 | i18n | next-intl, English only |
 | Audio | Howler through react-howler |
-| AI | Gemini through `@google/genai`, optional |
 | Target UI | shadcn native primitives with Tailwind composition |
 | Target type/icons | Manrope Variable and Lucide |
 
@@ -127,8 +127,7 @@ product and visual truth for the completed migration.
 
 ## Local development
 
-Prerequisites: Node 22+, Yarn, and Postgres for server-backed features. Google OAuth, Resend, and
-`GEMINI_API_KEY` are optional.
+Prerequisites: Node 22+, Yarn, and Postgres for server-backed features. Google OAuth and Resend are optional.
 
 ### Required environment variables
 
@@ -141,8 +140,8 @@ development or the deployment platform's secret store. Never commit their values
 | `BETTER_AUTH_SECRET` | Private signing/encryption secret used by Better Auth |
 
 `BETTER_AUTH_URL` defaults to `http://localhost:3000`, and `EMAIL_FROM` defaults to
-`Khulwa <onboarding@resend.dev>`. Google credentials, `RESEND_API_KEY`, and `GEMINI_API_KEY` enable optional
-integrations and are not required for the base application to start.
+`Riwaq <onboarding@resend.dev>`. Google credentials and `RESEND_API_KEY` enable optional integrations and
+are not required for the base application to start.
 
 ```bash
 yarn install
@@ -180,6 +179,7 @@ This requires `ffmpeg`.
 ## Design documentation
 
 - [Authoritative UI/UX audit and redesign plan](docs/UI-UX-AUDIT-AND-REDESIGN-PLAN.md)
+- [Production launch blockers plan](docs/PRODUCTION-LAUNCH-BLOCKERS.md)
 - [Derived design-system implementation reference](design-system/khulwa/DESIGN-SYSTEM.md)
 
 ## License

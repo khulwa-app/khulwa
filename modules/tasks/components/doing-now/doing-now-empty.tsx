@@ -5,10 +5,9 @@ import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/shadcn/button";
 import { Input } from "@/components/shadcn/input";
-import { estimateEta } from "@/lib/ai";
 import { useSpace } from "@/modules/space";
 import { Space } from "@/modules/space/types";
-import { DEFAULT_ETA, useCreateTask, useUpdateTask } from "@/services/tasks";
+import { useCreateTask, useUpdateTask } from "@/services/tasks";
 
 export function DoingNowEmpty() {
   const t = useTranslations("home.doingNow");
@@ -26,9 +25,6 @@ export function DoingNowEmpty() {
         {
           onSuccess: (task) => {
             updateTask.mutate({ id: task.id, patch: { isDoingNow: true } });
-            void estimateEta(body).then((eta) => {
-              if (eta !== null && task.eta === DEFAULT_ETA) updateTask.mutate({ id: task.id, patch: { eta } });
-            });
           },
         },
       );

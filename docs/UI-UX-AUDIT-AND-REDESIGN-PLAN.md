@@ -396,7 +396,7 @@ Goal: capture and choose the next task with the least possible friction.
 - Task row height: approximately 48px.
 - Checkbox: 18px.
 - Title: 14–15px with a single-line default.
-- Secondary ETA or subtask count is visually quiet.
+- Secondary ETA is visually quiet.
 - Replace the line of action icons with one overflow menu.
 - “Doing now” uses a restrained sage tint or 2px left indicator.
 - Use Today, Later, and Done as collapsible sections.

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { CalendarPlus, ChevronRight, MoreHorizontal, Moon, Target, Trash2 } from "lucide-react";
+import { CalendarPlus, MoreHorizontal, Moon, Target, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/shadcn/checkbox";
@@ -13,16 +12,11 @@ import {
 } from "@/components/shadcn/dropdown-menu";
 import { useDeleteTask, useUpdateTask, type Task } from "@/services/tasks";
 import { InlineText } from "./inline-text";
-import { StepList } from "./step-list";
 
 export function TaskRow({ task }: { task: Task }) {
   const t = useTranslations("tasks");
   const updateTask = useUpdateTask();
   const deleteTask = useDeleteTask();
-  const [expanded, setExpanded] = useState(false);
-
-  const doneSteps = task.steps.filter((step) => step.completed).length;
-  const hasSteps = task.steps.length > 0;
 
   return (
     <li
@@ -51,19 +45,6 @@ export function TaskRow({ task }: { task: Task }) {
         />
 
         <div className="flex shrink-0 items-center gap-2 text-xs text-foreground-muted">
-          {hasSteps ? (
-            <button
-              type="button"
-              aria-expanded={expanded}
-              onClick={() => setExpanded((value) => !value)}
-              title={t("aria.expand")}
-              className="relative flex h-8 items-center gap-1 rounded-full tabular after:absolute after:-inset-y-1.5 after:-inset-x-1 after:content-[''] hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-            >
-              <ChevronRight className={cn("size-3 transition-transform motion-reduce:transition-none", expanded && "rotate-90")} />
-              {doneSteps}/{task.steps.length}
-            </button>
-          ) : null}
-
           <span className="tabular">
             <InlineText
               value={String(task.eta)}
@@ -100,10 +81,6 @@ export function TaskRow({ task }: { task: Task }) {
                 {task.today ? <Moon /> : <CalendarPlus />}
                 {task.today ? t("aria.defer") : t("aria.doToday")}
               </DropdownMenuItem>
-              <DropdownMenuItem onSelect={() => setExpanded(true)}>
-                <ChevronRight />
-                {t("addStep")}
-              </DropdownMenuItem>
               <DropdownMenuItem variant="destructive" onSelect={() => deleteTask.mutate(task.id)}>
                 <Trash2 />
                 {t("aria.delete")}
@@ -112,8 +89,6 @@ export function TaskRow({ task }: { task: Task }) {
           </DropdownMenu>
         </div>
       </div>
-
-      {expanded ? <StepList task={task} /> : null}
     </li>
   );
 }

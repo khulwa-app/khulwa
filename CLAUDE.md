@@ -28,7 +28,7 @@ standalone break-screen directions.
 | Auth | Better Auth; route handlers under `app/api/auth/**` |
 | Data | Drizzle ORM + Postgres for focus sessions, streak, and progress |
 | i18n | next-intl; English only; user-facing text in `messages/en.json` |
-| Audio / AI | react-howler; optional Gemini through `@google/genai` |
+| Audio | react-howler |
 | UI | shadcn native primitives in `components/shadcn/**` with Tailwind v4 composition |
 | Type / icons | Manrope Variable; Lucide only |
 
@@ -56,8 +56,8 @@ version has breaking API, convention, and file-structure changes.
 ## Architecture and layering
 
 - **Routes and server boundaries:** `app/` contains layouts, thin page entry points, and route handlers.
-- **Server implementation:** `lib/` contains database, schema, auth, email, environment, AI server
-  actions, the logger, and server services. It is the only place `process.env` is read.
+- **Server implementation:** `lib/` contains database, schema, auth, email, environment, the logger, and
+  server services. It is the only place `process.env` is read.
 - **Errors:** route handlers answer with `{ error: "<snake_case_code>" }` and that code **is** the
   `apiErrors.*` translation key — there is no mapping layer. Every code needs copy in
   `messages/en.json`; `tests/error-contract.test.ts` fails the build if one is missing.
@@ -88,6 +88,8 @@ Keep `app/**/page.tsx` thin. Prefer one component per file, single responsibilit
 - Shell: use a **compact dock** and content-driven dock panels anchored near their dock trigger. Desktop dock
   panels are non-modal; mobile may use sheets. Progress is the explicit exception: it is not a dock-capsule
   panel, opens beneath the header streak badge on desktop/tablet, and uses a top or bottom sheet on mobile.
+- Tasks: keep the task model intentionally flat. There are no subtasks, task-breakdown UI, or AI task-assist
+  flows.
 - Focus flow: remove category selection and category statistics. Focus must start without a category.
 - Break flow: Short Break and Long Break are integrated states of the Focus stage. Do not create a separate
   full-screen break takeover.

@@ -136,9 +136,6 @@
     "empty": "Nothing yet. What's the one thing today?",
     "later": "Later",
     "done": "Done",
-    "addStep": "Add a step",
-    "breakIntoSteps": "Break into steps",
-    "breaking": "Breaking down…",
     "minutesShort": "m",
     "aria": {
       "complete": "Mark as completed",
@@ -146,13 +143,8 @@
       "delete": "Delete task",
       "eta": "Estimated minutes",
       "editBody": "Edit task",
-      "expand": "Toggle steps",
       "defer": "Move to later",
       "doToday": "Do today",
-      "completeStep": "Mark step as completed",
-      "deleteStep": "Delete step",
-      "editStep": "Edit step",
-      "split": "Suggest steps",
       "more": "More task actions"
     }
   },

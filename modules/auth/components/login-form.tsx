@@ -3,9 +3,10 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader2, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/shadcn/button";
 import { Input } from "@/components/shadcn/input";
+import { cn } from "@/lib/utils";
 import { signIn, signUp } from "@/services/auth";
 import { Logger } from "@/lib/logger";
 import { toast } from "@/lib/toast";
@@ -23,6 +24,9 @@ export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
+
+  const isBusy = loading || googleLoading;
 
   const enter = () => {
     router.push("/app");
@@ -31,16 +35,20 @@ export function LoginForm() {
 
   const onGoogle = async () => {
     setError(null);
+    setGoogleLoading(true);
     try {
       await signIn.social({ provider: "google", callbackURL: "/app" });
     } catch (err) {
       Logger.error(err, { scope: "signIn.social" });
       setError(tApi("network"));
+    } finally {
+      setGoogleLoading(false);
     }
   };
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (isBusy) return;
     setError(null);
     setLoading(true);
     try {
@@ -68,42 +76,80 @@ export function LoginForm() {
   };
 
   return (
-    <div className="flex w-full flex-col gap-5">
-      <div className="flex flex-col gap-1 text-center">
-        <h1 className="text-xl font-semibold">{mode === "signin" ? t("title") : t("signupTitle")}</h1>
-        <p className="text-sm text-foreground-muted">
+    <div className="flex w-full flex-col gap-6">
+      <div className="flex flex-col gap-2 text-center">
+        <h2 className="text-2xl font-semibold tracking-[-0.03em]">
+          {mode === "signin" ? t("title") : t("signupTitle")}
+        </h2>
+        <p className="text-sm leading-6 text-foreground-muted">
           {mode === "signin" ? t("subtitle") : t("signupSubtitle")}
         </p>
       </div>
 
-      <Button variant="secondary" size="lg" shape="rounded" onClick={onGoogle} className="h-11 w-full">
+      <div className="grid grid-cols-2 rounded-full border border-hairline bg-canvas p-1">
+        {(["signin", "signup"] as const).map((option) => (
+          <button
+            key={option}
+            type="button"
+            onClick={() => {
+              setError(null);
+              setMode(option);
+            }}
+            className={cn(
+              "h-9 rounded-full text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+              mode === option ? "bg-primary text-primary-foreground" : "text-foreground-muted hover:text-foreground",
+            )}
+          >
+            {t(`switch.${option}`)}
+          </button>
+        ))}
+      </div>
+
+      <Button
+        variant="secondary"
+        size="lg"
+        shape="rounded"
+        onClick={onGoogle}
+        disabled={isBusy}
+        className="h-12 w-full border border-hairline bg-surface-elevated text-foreground hover:bg-surface-interactive"
+      >
+        {googleLoading ? (
+          <Loader2 className="animate-spin motion-reduce:animate-none" />
+        ) : (
+          <span className="flex size-5 items-center justify-center rounded-full bg-foreground text-xs font-bold text-background">
+            G
+          </span>
+        )}
         {t("continueWithGoogle")}
       </Button>
 
       <div className="flex items-center gap-3">
         <span className="h-px flex-1 bg-border" />
-        <span className="text-xs text-foreground-muted uppercase">{t("divider")}</span>
+        <span className="text-xs font-medium text-foreground-muted uppercase">{t("divider")}</span>
         <span className="h-px flex-1 bg-border" />
       </div>
 
-      <form onSubmit={onSubmit} className="flex flex-col gap-3">
+      <form onSubmit={onSubmit} className="flex flex-col gap-4" aria-busy={loading}>
         {mode === "signup" ? (
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="login-name" className="text-sm font-medium">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="login-name" className="text-sm font-semibold">
               {t("fields.name")}
             </label>
             <Input
               id="login-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              placeholder={t("placeholders.name")}
               autoComplete="name"
-              className="h-11"
+              required
+              variant="filled"
+              className="h-12 bg-surface-elevated"
             />
           </div>
         ) : null}
 
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="login-email" className="text-sm font-medium">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="login-email" className="text-sm font-semibold">
             {t("fields.email")}
           </label>
           <Input
@@ -111,14 +157,16 @@ export function LoginForm() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder={t("placeholders.email")}
             autoComplete="email"
             required
-            className="h-11"
+            variant="filled"
+            className="h-12 bg-surface-elevated"
           />
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="login-password" className="text-sm font-medium">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="login-password" className="text-sm font-semibold">
             {t("fields.password")}
           </label>
           <div className="relative">
@@ -129,14 +177,16 @@ export function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               autoComplete={mode === "signin" ? "current-password" : "new-password"}
               minLength={8}
+              placeholder={t("placeholders.password")}
               required
-              className="h-11 pr-11"
+              variant="filled"
+              className="h-12 bg-surface-elevated pr-12"
             />
             <button
               type="button"
               onClick={() => setShowPassword((value) => !value)}
               aria-label={t(showPassword ? "hidePassword" : "showPassword")}
-              className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-full text-foreground-muted transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              className="absolute inset-y-0 right-1 flex w-11 items-center justify-center rounded-full text-foreground-muted transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
             </button>
@@ -144,30 +194,24 @@ export function LoginForm() {
         </div>
 
         {error ? (
-          <p role="alert" className="text-sm text-destructive">
+          <p
+            role="alert"
+            className="rounded-2xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm leading-5 text-destructive"
+          >
             {error}
           </p>
         ) : null}
 
-        <Button type="submit" size="lg" shape="rounded" disabled={loading} className="mt-1 h-11 w-full">
+        <Button type="submit" size="lg" shape="rounded" disabled={isBusy} className="mt-1 h-12 w-full font-semibold">
           {loading ? <Loader2 className="animate-spin motion-reduce:animate-none" /> : null}
           {loading ? t("submitting") : mode === "signin" ? t("submit") : t("signupSubmit")}
         </Button>
       </form>
 
-      <p className="text-center text-sm text-foreground-muted">
-        {mode === "signin" ? `${t("noAccount")} ` : `${t("haveAccount")} `}
-        <button
-          type="button"
-          onClick={() => {
-            setError(null);
-            setMode(mode === "signin" ? "signup" : "signin");
-          }}
-          className="rounded-full text-foreground underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-        >
-          {mode === "signin" ? t("createOne") : t("submit")}
-        </button>
-      </p>
+      <div className="flex items-center justify-center gap-2 rounded-2xl border border-hairline bg-canvas/70 px-4 py-3 text-xs leading-5 text-foreground-muted">
+        <ShieldCheck className="size-4 text-primary" />
+        <span>{t("privateNote")}</span>
+      </div>
     </div>
   );
 }

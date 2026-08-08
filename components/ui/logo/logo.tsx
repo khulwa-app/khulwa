@@ -8,15 +8,26 @@ interface LogoProps {
   className?: string;
 }
 
-/**
- * Typographic wordmark set in the product typeface. The previous pictorial mark spelled the old
- * name, so it was retired with the brand rather than recoloured.
- */
+function QuietSignalMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 180 180" fill="none" aria-hidden="true" className={className}>
+      <rect x="45" y="78" width="10" height="24" rx="5" fill="currentColor" opacity="0.88" />
+      <rect x="65" y="62" width="10" height="56" rx="5" fill="currentColor" opacity="0.88" />
+      <rect x="85" y="46" width="10" height="88" rx="5" fill="currentColor" />
+      <rect x="105" y="62" width="10" height="56" rx="5" fill="currentColor" opacity="0.88" />
+      <rect x="125" y="78" width="10" height="24" rx="5" fill="currentColor" opacity="0.88" />
+    </svg>
+  );
+}
+
 export function Logo({ href = Routes.Home, className }: LogoProps) {
   const t = useTranslations("components.logo");
   const mark = (
-    <span className={cn("text-base font-semibold tracking-tight", className)}>
-      Riwaq<span className="text-primary">.</span>
+    <span className={cn("inline-flex items-center gap-2 text-base font-semibold tracking-tight", className)}>
+      <QuietSignalMark className="size-6 shrink-0 text-primary" />
+      <span>
+        Khulwa<span className="text-primary">.</span>
+      </span>
     </span>
   );
 

@@ -33,7 +33,7 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
       >
         <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: 0 }}>Something went wrong</h1>
         <p style={{ margin: 0, color: "#8e9993", fontSize: "0.875rem" }}>
-          Riwaq hit an unexpected error and could not start.
+          Khulwa hit an unexpected error and could not start.
         </p>
         {/* A full reload rather than a link: the router this sits above may itself be the thing
             that failed, so client navigation is not safe to rely on here. */}

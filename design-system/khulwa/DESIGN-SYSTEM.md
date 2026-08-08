@@ -10,7 +10,7 @@
 
 | Area | State |
 | --- | --- |
-| Identity | Visible brand is Riwaq. Technical identifiers keep their names: package `focus-den`, repository `khulwa`, auth cookie prefix `khulwa`, and the `khulwa` i18n namespace |
+| Identity | Visible brand is Khulwa with the Quiet Signal mark. Technical identifiers keep their names: package `focus-den`, repository `khulwa`, auth cookie prefix `khulwa`, and the `khulwa` i18n namespace |
 | UI foundation | Native shadcn primitives in `components/shadcn/**` with Tailwind v4 composition. Chakra, Emotion, and the `theme/` recipe layer are removed |
 | Versions | Tailwind 4.3.3, `@tailwindcss/postcss` 4.3.3, `radix-ui` 1.6.7, `lucide-react` 1.28.0 — all pinned |
 | Typography | Manrope Variable as `--font-manrope`, mapped to Tailwind `font-sans`. Nunito is removed |
@@ -190,9 +190,8 @@ Two deliberate deviations from a stock shadcn install, both temporary:
    Do not use `db:push` for this change.
 5. The left/right dock capsules never contain Progress. Desktop/tablet Progress opens beneath the header streak
    badge; mobile uses a top or bottom sheet.
-6. Keep Khulwa as the repository/project working identity. Change only the visible product brand to Riwaq in
-   the dedicated brand step; retain technical/package identifiers such as `focus-den` unless separately
-   approved.
+6. Keep Khulwa as the visible product brand and repository/project working identity. Retain
+   technical/package identifiers such as `focus-den` unless separately approved.
 7. Preserve product behavior unless the authoritative plan explicitly removes it. Break integration and
    category removal are approved behavior changes.
 
@@ -203,7 +202,7 @@ Two deliberate deviations from a stock shadcn install, both temporary:
 3. Compact dock and anchored-panel shell, including the separate Progress anchor.
 4. Each panel: hierarchy, states, keyboard behavior, and mobile treatment.
 5. Focus/break, Home, Ambient, and full Progress.
-6. Coordinated Riwaq brand migration, authentication, and landing.
+6. Coordinated Khulwa brand refresh, authentication, and landing.
 7. Responsive, accessibility, contrast/zoom, performance, rollback verification, and legacy cleanup.
 
 Use the

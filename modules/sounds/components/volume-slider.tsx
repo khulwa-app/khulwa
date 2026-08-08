@@ -9,19 +9,29 @@ interface VolumeSliderProps {
   label: string;
   disabled?: boolean;
   className?: string;
+  "data-volume-control"?: boolean;
 }
 
-export function VolumeSlider({ value, onChange, label, disabled, className }: VolumeSliderProps) {
+export function VolumeSlider({
+  value,
+  onChange,
+  label,
+  disabled,
+  className,
+  "data-volume-control": dataVolumeControl,
+}: VolumeSliderProps) {
   return (
-    <Slider
-      aria-label={label}
-      disabled={disabled}
-      min={0}
-      max={100}
-      step={5}
-      value={[Math.round(value * 100)]}
-      onValueChange={(next) => onChange(next[0] / 100)}
-      className={cn("flex-1", className)}
-    />
+    <div data-volume-control={dataVolumeControl || undefined} className={cn("flex-1", className)}>
+      <Slider
+        aria-label={label}
+        disabled={disabled}
+        min={0}
+        max={100}
+        step={5}
+        value={[Math.round(value * 100)]}
+        onValueChange={(next) => onChange(next[0] / 100)}
+        className="w-full"
+      />
+    </div>
   );
 }

@@ -68,10 +68,9 @@ The approved system is:
   as a top or bottom sheet on mobile; it is not a dock-capsule item.
 - **Integrated break phases**: Short Break and Long Break reuse the Focus stage.
 - **No focus categories** anywhere in the completed product.
-- **One visible-brand migration**: Khulwa remains the repository/project working identity; Riwaq is the
-  approved public product target and will replace the visible Khulwa brand once in a coordinated step.
-  Existing technical/package identifiers stay unchanged during visual migration, including the current
-  `package.json` name `focus-den`; the brand step does not approve their rename.
+- **Visible brand**: Khulwa is the public product brand and uses the Quiet Signal mark. Existing
+  technical/package identifiers stay unchanged, including the current `package.json` name `focus-den`; the
+  brand step does not approve their rename.
 
 The checked-in application still contains legacy Chakra UI, Solar icons, Nunito, category, and standalone
 break code while the redesign is in progress. Those dependencies and components describe migration state,
@@ -140,7 +139,7 @@ development or the deployment platform's secret store. Never commit their values
 | `BETTER_AUTH_SECRET` | Private signing/encryption secret used by Better Auth |
 
 `BETTER_AUTH_URL` defaults to `http://localhost:3000`, and `EMAIL_FROM` defaults to
-`Riwaq <onboarding@resend.dev>`. Google credentials and `RESEND_API_KEY` enable optional integrations and
+`Khulwa <onboarding@resend.dev>`. Google credentials and `RESEND_API_KEY` enable optional integrations and
 are not required for the base application to start.
 
 ```bash

@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Riwaq",
+    "appName": "Khulwa",
     "tagline": "A retreat for deep work",
     "loading": "Loading…"
   },
@@ -24,7 +24,7 @@
     "retry": "Try again",
     "notFoundTitle": "Page not found",
     "notFoundBody": "That page does not exist.",
-    "backHome": "Back to Riwaq",
+    "backHome": "Back to Khulwa",
     "sessionLost": "That session could not be saved."
   },
   "components": {
@@ -32,7 +32,7 @@
       "ariaLabel": "Pomodoro timer"
     },
     "logo": {
-      "ariaLabel": "Riwaq"
+      "ariaLabel": "Khulwa"
     },
     "badge": {
       "streak": "{count, plural, one {# day streak} other {# days streak}}",
@@ -43,8 +43,8 @@
   },
   "khulwa": {
     "metadata": {
-      "title": "Riwaq",
-      "description": "Riwaq — a retreat for deep work"
+      "title": "Khulwa",
+      "description": "Khulwa — a retreat for deep work"
     },
     "greeting": {
       "morning": "GOOD MORNING",
@@ -103,8 +103,8 @@
   },
   "home": {
     "metadata": {
-      "title": "Riwaq",
-      "description": "Riwaq — for deep work"
+      "title": "Khulwa",
+      "description": "Khulwa — for deep work"
     },
     "guest": "friend",
     "subtitle": "Pick one thing. Stay with it.",
@@ -257,7 +257,7 @@
     "hero": {
       "eyebrow": "Quiet by design",
       "headline": "A retreat for your deep work.",
-      "subcopy": "Named for the riwaq — the calm arcade around a courtyard, built for walking with one thought at a time.",
+      "subcopy": "A quiet focus space for choosing one thing, shaping your ambience, and staying with the work long enough for it to open.",
       "cta": "Start focusing"
     },
     "features": {
@@ -281,20 +281,55 @@
   },
   "login": {
     "metadata": {
-      "title": "Sign in · Riwaq",
+      "title": "Sign in · Khulwa",
       "description": "Enter your retreat"
+    },
+    "screen": {
+      "eyebrow": "Private focus space",
+      "kicker": "Khulwa for deep work",
+      "headline": "A calmer way to begin serious focus.",
+      "mobileHeadline": "Begin focused work with less noise.",
+      "body": "Keep your tasks, timer, ambient sound and progress in one quiet workspace designed to stay out of the way.",
+      "security": "Your account keeps sessions and progress synced privately across devices.",
+      "proof": {
+        "tasks": {
+          "title": "One task",
+          "body": "Choose the work that matters before the session starts."
+        },
+        "ambient": {
+          "title": "Quiet ambience",
+          "body": "Shape a calmer environment without visual clutter."
+        },
+        "progress": {
+          "title": "Gentle progress",
+          "body": "See rhythm and consistency without noisy gamification."
+        }
+      },
+      "preview": {
+        "title": "Today’s focus",
+        "badge": "Ready"
+      }
     },
     "form": {
       "title": "Welcome back",
-      "subtitle": "Sign in to continue your focus.",
+      "subtitle": "Sign in to return to your workspace.",
       "signupTitle": "Create your account",
-      "signupSubtitle": "One account for every session.",
+      "signupSubtitle": "Set up your private focus space.",
       "continueWithGoogle": "Continue with Google",
       "divider": "or",
+      "switch": {
+        "signin": "Sign in",
+        "signup": "Create account"
+      },
       "fields": {
         "name": "Name",
         "email": "Email",
         "password": "Password"
+      },
+      "placeholders": {
+        "name": "Your name",
+        "email": "you@example.com",
+        "password": "••••••••"
       },
       "submit": "Sign in",
       "submitting": "Please wait",
@@ -308,13 +343,14 @@
       },
       "showPassword": "Show password",
       "hidePassword": "Hide password",
+      "privateNote": "Built for a private, distraction-free focus ritual.",
       "welcomeBack": "Welcome back",
       "accountCreated": "Account created"
     }
   },
   "signUp": {
     "metadata": {
-      "title": "Sign up · Riwaq",
+      "title": "Sign up · Khulwa",
       "description": "Begin your retreat"
     },
     "form": {
@@ -332,7 +368,7 @@
   },
   "forgotPassword": {
     "metadata": {
-      "title": "Reset password · Riwaq",
+      "title": "Reset password · Khulwa",
       "description": "Restore access to your retreat"
     },
     "form": {

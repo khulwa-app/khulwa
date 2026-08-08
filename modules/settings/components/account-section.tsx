@@ -4,13 +4,13 @@ import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/shadcn/button";
-import { signOut, useSession } from "@/services/auth";
+import { useUser } from "@/components/providers";
+import { signOut } from "@/services/auth";
 
 export function AccountSection() {
   const t = useTranslations("settings.account");
   const router = useRouter();
-  const { data } = useSession();
-  const user = data?.user;
+  const user = useUser();
 
   const onSignOut = async () => {
     await signOut();

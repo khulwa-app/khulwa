@@ -1,4 +1,4 @@
-# Riwaq Production Launch Blockers
+# Khulwa Production Launch Blockers
 
 **Status:** Drafted after the AI/subtask removal pass
 **Date:** August 6, 2026

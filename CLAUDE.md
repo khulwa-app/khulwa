@@ -1,6 +1,6 @@
 # Khulwa — repository guidance
 
-Riwaq (repository name `khulwa`) is a calm focus and deep-work application: Pomodoro phases, ambient sounds,
+Khulwa is a calm focus and deep-work application: Pomodoro phases, ambient sounds,
 local tasks and notes, rhythm, and server-backed streak/progress tracking.
 
 It is one Next.js 16 application at the repository root. There is no `client/`, separate Express server,
@@ -82,9 +82,10 @@ Keep `app/**/page.tsx` thin. Prefer one component per file, single responsibilit
 - Components: keep **shadcn native primitives** at their native sizes and geometry. Use **Tailwind
   composition** for product-level layout and styling. Do not fork primitives to solve page layout.
 - Framework exclusions: **no Chakra UI and no DaisyUI**.
-- Brand: the visible product is **Riwaq**. Technical identifiers keep their existing names — the package is
-  `focus-den`, the repository is `khulwa`, the auth cookie prefix is `khulwa`, and the `khulwa` i18n
-  namespace is a key, not copy. Renaming any of those needs a separate decision.
+- Brand: the visible product is **Khulwa** with the selected **Quiet Signal** mark. Technical identifiers keep
+  their existing names — the package is `focus-den`, the repository is `khulwa`, the auth cookie prefix is
+  `khulwa`, and the `khulwa` i18n namespace is a key, not copy. Renaming any of those needs a separate
+  decision.
 - Shell: use a **compact dock** and content-driven dock panels anchored near their dock trigger. Desktop dock
   panels are non-modal; mobile may use sheets. Progress is the explicit exception: it is not a dock-capsule
   panel, opens beneath the header streak badge on desktop/tablet, and uses a top or bottom sheet on mobile.

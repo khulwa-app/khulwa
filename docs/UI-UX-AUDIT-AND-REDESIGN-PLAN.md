@@ -32,10 +32,11 @@ The target balance is:
 
 ### 1.1 Naming decision
 
-- **Khulwa** remains the repository/project working identity during the redesign.
-- **Riwaq** is the approved product brand target.
-- Migrate the user-facing brand once in a dedicated brand step covering product copy, metadata, authentication
-  and email copy, icons, logo assets, and other public surfaces.
+- **Khulwa** is the approved public product brand and repository/project working identity.
+- The selected brand mark is **Quiet Signal**: a symmetric, five-bar focus/sound signal with calm wordmark
+  scale.
+- Apply the brand once in a dedicated brand step covering product copy, metadata, authentication and email
+  copy, icons, logo assets, and other public surfaces.
 - Existing technical and package identifiers remain unchanged during the visual migration and do not need to
   match the working identity; for example, `package.json` currently uses `focus-den`.
 - Do not rename public pages or assets piecemeal. The dedicated brand phase covers visible brand only and does
@@ -596,9 +597,9 @@ Each phase should be reviewed before the next phase changes a larger surface.
 3. Migrate category behavior through the non-destructive expand/contract functional slice below.
 4. Confirm removal of the standalone break takeover as an explicit product decision.
 5. Reconcile README, development instructions, and the design-system document.
-6. Record Khulwa as the repository/project working identity and Riwaq as the visible product brand target;
-   preserve existing technical/package identifiers, including `focus-den`, and defer the coordinated public
-   rename to the dedicated brand step.
+6. Record Khulwa as the visible product brand and repository/project working identity; preserve existing
+   technical/package identifiers, including `focus-den`, and defer any technical rename to a separate
+   engineering decision.
 
 #### Category removal: expand/contract rollout
 
@@ -689,9 +690,9 @@ Implement and review one panel at a time:
 
 ### Phase 5 — Dedicated brand migration and entry pages
 
-1. Migrate the visible product brand from Khulwa to Riwaq once across copy, metadata, authentication/email
-   copy, logo/icon assets, and public surfaces. This step does not rename the repository or existing technical
-   and package identifiers such as `focus-den`; those require separate approval.
+1. Apply the Khulwa Quiet Signal brand once across copy, metadata, authentication/email copy, logo/icon
+   assets, and public surfaces. This step does not rename existing technical and package identifiers such as
+   `focus-den`; those require separate approval.
 2. Login and registration.
 3. Landing.
 
@@ -721,8 +722,8 @@ The redesign is ready when:
 - Progress opens beneath the header streak badge on desktop/tablet and as a mobile sheet, never from a dock
   capsule.
 - The initial redesign is dark-only and exposes no incomplete Light/System choice.
-- The user-facing brand changes from Khulwa to Riwaq in one dedicated step, not page by page; existing
-  technical/package identifiers remain unchanged unless separately approved.
+- The user-facing Khulwa brand and Quiet Signal mark are applied in one dedicated step, not page by page;
+  existing technical/package identifiers remain unchanged unless separately approved.
 - Tasks, Notes, Sounds, and Rhythm each have a clear primary job.
 - The active sound and active focus state are immediately visible.
 - The interface passes WCAG AA for normal text and interactive states.

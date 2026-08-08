@@ -28,7 +28,7 @@ export const env = {
 
   email: {
     apiKey: optional("RESEND_API_KEY"),
-    from: required("EMAIL_FROM", "Riwaq <onboarding@resend.dev>"),
+    from: required("EMAIL_FROM", "Khulwa <onboarding@resend.dev>"),
   },
 } as const;
 

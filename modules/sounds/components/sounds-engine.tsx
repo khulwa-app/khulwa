@@ -8,7 +8,6 @@ import { SoundLayer } from "./sound-layer";
 export function SoundsEngine() {
   const playing = useSounds((s) => s.playing);
   const volume = useSounds((s) => s.volume);
-  const master = useSounds((s) => s.master);
   const [mounted, setMounted] = useState<string[]>([]);
 
   const missing = Object.keys(playing).filter((id) => playing[id] && !mounted.includes(id));
@@ -21,7 +20,7 @@ export function SoundsEngine() {
           key={def.id}
           def={def}
           volume={volume[def.id] ?? 0.5}
-          master={master}
+          master={1}
           active={!!playing[def.id]}
           onFadedOut={() => setMounted((prev) => prev.filter((id) => id !== def.id))}
         />

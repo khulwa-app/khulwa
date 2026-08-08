@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/shadcn/dropdown-menu";
 import { useDeleteTask, useUpdateTask, type Task } from "@/services/tasks";
+import { EtaStepper } from "./eta-stepper";
 import { InlineText } from "./inline-text";
 
 export function TaskRow({ task }: { task: Task }) {
@@ -45,20 +46,12 @@ export function TaskRow({ task }: { task: Task }) {
         />
 
         <div className="flex shrink-0 items-center gap-2 text-xs text-foreground-muted">
-          <span className="tabular">
-            <InlineText
-              value={String(task.eta)}
-              label={t("aria.eta")}
-              inputMode="numeric"
-              className="w-6 text-right"
-              parse={(raw) => {
-                const parsed = Number.parseInt(raw, 10);
-                return Number.isNaN(parsed) ? null : String(Math.max(0, parsed));
-              }}
-              onCommit={(eta) => updateTask.mutate({ id: task.id, patch: { eta: Number(eta) } })}
-            />
-            {t("minutesShort")}
-          </span>
+          <EtaStepper
+            value={task.eta}
+            unit={t("minutesShort")}
+            label={t("aria.eta")}
+            onChange={(eta) => updateTask.mutate({ id: task.id, patch: { eta } })}
+          />
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

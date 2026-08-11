@@ -84,7 +84,7 @@ The source audit included:
 | Visual direction | Bright green mesh, dark glass panels, white cards, and older indigo documentation coexist | The app feels assembled from different systems | Establish one Nocturne source of truth |
 | Panel positioning | Panels behave like tall side drawers and feel detached from the dock trigger | Weak spatial relationship and excessive visual weight | Anchor compact panels directly above their dock cluster |
 | Panel sizing | Panels and Settings consume too much viewport area | The main focus area loses priority | Use content-driven floating panels with strict maximum dimensions |
-| Typography | Nunito at very heavy weights feels playful and choppy | Weakens the premium, professional tone | Use Manrope Variable with restrained weights and tabular numerals |
+| Typography | Nunito at very heavy weights feels playful and choppy | Weakens the premium, professional tone | Use Plus Jakarta Sans with restrained weights and tabular numerals |
 | Icon system | Solar Linear/Bold switching changes weight between states | Active and inactive controls do not feel like one system | Use Lucide only; communicate state with the button container |
 | Break flow | Break is a separate full-screen takeover | Breaks continuity and hides session context | Reuse the Focus stage with a break phase state |
 | Focus categories | Category selection is present in Focus and statistics structures | Adds a decision that is not essential to starting a session | Remove category from UI, state, API, and backend statistics |
@@ -228,12 +228,12 @@ This produces depth through luminance and spacing instead of glow.
 
 ### 5.1 Typography
 
-Use **Manrope Variable** for UI, marketing, and numerical displays.
+Use **Plus Jakarta Sans** for UI, marketing, and numerical displays.
 
 Reasons:
 
-- Rounded enough to feel approachable.
-- More controlled and professional than the current heavy Nunito treatment.
+- Rounded enough to feel softer and more app-native without becoming playful.
+- More controlled and professional than the current heavy Nunito treatment and the oversized Manrope pass.
 - Clear at compact control sizes.
 - Strong tabular numerals for the timer and statistics.
 
@@ -246,6 +246,9 @@ Weight rules:
 - Avoid `800` and `900` in the application shell.
 
 Timer numerals use `font-variant-numeric: tabular-nums`.
+Hero typography stays restrained: application-space display type should usually top out around `76–96px`
+at desktop browser sizes and remain comfortable at 125% zoom on a 1080p viewport. Tracking should stay no
+tighter than approximately `-0.045em` for app screens. Khulwa is an interface, not a poster system.
 
 ### 5.2 Icons
 
@@ -295,6 +298,9 @@ States:
 - Pressed: scale to `0.97` for 80–100ms.
 - Focus: 2px Focus/accent ring with 2px offset.
 - Tooltip delay: approximately 450ms.
+
+Primary in-app action buttons should be **44–48px** high. Reserve larger CTA geometry for marketing
+surfaces only; 64px in-app controls read as chunky at desktop zoom and dominate mobile screens.
 
 ### 6.2 Mobile
 
@@ -519,7 +525,7 @@ Theme:
 - Remove the category chip and category menu.
 - Show the selected task above the timer when available.
 - Timer size: approximately 96–112px desktop and 64–72px mobile.
-- Use Manrope 600 with tabular numerals.
+- Use Plus Jakarta Sans 500–600 with tabular numerals.
 - Phase selector remains compact and secondary.
 - Primary play/pause control: 56–64px.
 - Reset and skip controls retain 44px hit areas.
@@ -639,7 +645,7 @@ Phase 0. The current rollout changes the application contract first and preserve
 ### Phase 1 — Foundations
 
 1. Install and pin compatible Tailwind/PostCSS integration, a fresh native shadcn preset and base,
-   `lucide-react`, Manrope through `next/font`, and the minimal class utilities used by the preset (including
+   `lucide-react`, Plus Jakarta Sans through `next/font`, and the minimal class utilities used by the preset (including
    `clsx`, `tailwind-merge`, and `class-variance-authority` when emitted). Commit the generated baseline
    configuration and lockfile; do not claim these are already installed.
 2. Establish semantic CSS variables for Nocturne backgrounds/foregrounds, sage interaction,
@@ -647,7 +653,7 @@ Phase 0. The current rollout changes the application contract first and preserve
 3. Keep Chakra and Tailwind temporarily coexisting: untouched legacy surfaces retain their existing provider
    and theme while each approved feature slice moves to native shadcn primitives plus Tailwind. Do not style
    shadcn through Chakra or remove Chakra before parity.
-4. Apply Manrope Variable across each migrated surface and use tabular numerals for timer/statistics.
+4. Apply Plus Jakarta Sans across each migrated surface and use tabular numerals for timer/statistics.
 5. Standardize migrated surfaces on Lucide without mixing icon families inside a redesigned slice.
 6. Ship one dark palette across the entire product and remove/hide the theme toggle. Do not expose Light or
    System until a complete second palette is designed and verified.

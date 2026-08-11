@@ -29,7 +29,7 @@ import { TasksPanel } from "@/modules/tasks/components/tasks-panel";
 import SoundsPanel from "@/modules/sounds/sounds-panel";
 import { useSounds } from "@/modules/sounds";
 import { RhythmPanel } from "@/modules/rhythm";
-import { ProgressPanel } from "@/modules/progress";
+import { ProgressPanel, StreakBadge } from "@/modules/progress";
 import { SettingsPanel } from "@/modules/settings";
 import { NotesPanel } from "@/modules/notes";
 import { DockButton } from "./dock-button";
@@ -109,6 +109,7 @@ export function DockNav() {
           </DockCapsule>
 
           <DockCapsule role="toolbar" aria-label={tAria("controls")}>
+            <StreakBadge />
             <DockButton icon={Settings} {...panelProps(Panel.Settings, tChrome("settings"))} />
             <DockButton
               icon={isFullscreen ? Minimize : Maximize}
@@ -126,6 +127,7 @@ export function DockNav() {
           <DockButton icon={Moon} {...spaceProps(Space.Ambient, tDest("ambient"))} />
           <DockButton icon={House} {...spaceProps(Space.Home, tDest("home"))} />
           <DockButton icon={Target} {...spaceProps(Space.Focus, tDest("focus"))} />
+          <StreakBadge />
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

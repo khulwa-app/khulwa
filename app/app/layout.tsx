@@ -6,7 +6,6 @@ import { Routes } from "@/constants";
 import { QueryProvider, SessionProvider } from "@/components/providers";
 import { getServerSession } from "@/lib/api/auth";
 import { Navbar } from "@/components/ui/navbar";
-import { StreakBadge } from "@/modules/progress";
 import { CommandPalette } from "@/modules/command-palette";
 import { Dock } from "@/modules/dock";
 import { FloatingTimer } from "@/modules/pomodoro";
@@ -33,9 +32,7 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
     <QueryProvider>
       <SessionProvider user={{ id: user.id, name: user.name, email: user.email, image: user.image }}>
         <div className="relative min-h-dvh overflow-hidden">
-          <Navbar>
-            <StreakBadge />
-          </Navbar>
+          <Navbar />
           <Suspense fallback={null}>
             {children}
             <GlobalShortcuts />

@@ -58,7 +58,7 @@ export default function FoundationsPage() {
           <p className="text-xs font-semibold tracking-[0.18em] text-foreground-muted uppercase">Foundation</p>
           <h1 className="text-4xl font-bold tracking-tight">Nocturne</h1>
           <p className="max-w-xl text-sm text-foreground-secondary">
-            A near-achromatic dark field with a single sage accent. Manrope Variable, Lucide at 18px, and shadcn
+            A near-achromatic dark field with a single sage accent. Plus Jakarta Sans, Lucide at 18px, and shadcn
             primitives at native geometry.
           </p>
         </header>
@@ -91,7 +91,7 @@ export default function FoundationsPage() {
           </div>
         </Section>
 
-        <Section title="Typography" hint="Manrope Variable, 400–700. 800 and 900 stay out of the application shell.">
+        <Section title="Typography" hint="Plus Jakarta Sans, 400–700. 800 and 900 stay out of the application shell.">
           <div className="flex flex-col gap-4 rounded-xl border border-border bg-surface p-6">
             {TYPE_SAMPLES.map((sample) => (
               <div key={sample.label} className="flex flex-col gap-1">

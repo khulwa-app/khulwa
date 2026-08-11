@@ -28,22 +28,37 @@ export function HomeSpace() {
     <div className="relative flex min-h-full w-full flex-col overflow-x-hidden bg-canvas">
       <SpaceBackground />
 
-      <div className="relative z-1 flex flex-1 w-full flex-col items-center justify-center gap-10 px-6 py-16 md:py-20">
-        <div className="flex flex-col items-center gap-3 text-center">
-          <p className="text-sm text-foreground-secondary" suppressHydrationWarning>
-            {greeting}
+      <div className="relative z-1 flex flex-1 w-full flex-col items-center justify-center gap-8 px-5 pt-24 pb-30 md:px-8 md:py-18">
+        <section aria-label={greeting} className="flex w-full max-w-4xl flex-col items-center text-center">
+          <p
+            className="kh-space-kicker text-foreground-muted"
+            suppressHydrationWarning
+          >
+            {dateLine}
           </p>
 
-          <p className="tabular text-6xl leading-none font-semibold md:text-7xl" suppressHydrationWarning>
+          <h1
+            className="kh-space-hero mt-7 max-w-4xl text-foreground"
+            suppressHydrationWarning
+          >
+            {greeting}
+          </h1>
+
+          <p
+            className="kh-space-time mt-8 text-primary"
+            suppressHydrationWarning
+          >
             {time}
           </p>
 
-          <p className="text-xs text-foreground-muted" suppressHydrationWarning>
-            {dateLine}
+          <p className="mt-7 max-w-sm text-sm text-foreground-secondary">
+            {t("subtitle")}
           </p>
-        </div>
+        </section>
 
-        <DoingNowCard />
+        <div className="w-full max-w-lg">
+          <DoingNowCard />
+        </div>
       </div>
     </div>
   );

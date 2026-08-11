@@ -1,8 +1,8 @@
-import { Manrope, Nunito } from "next/font/google";
+import { Nunito, Plus_Jakarta_Sans } from "next/font/google";
 
-export const manrope = Manrope({
+export const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-plus-jakarta",
   display: "swap",
   preload: true,
 });
@@ -16,4 +16,4 @@ export const nunito = Nunito({
   preload: false,
 });
 
-export const fontVariables = `${manrope.variable} ${nunito.variable}`;
+export const fontVariables = `${plusJakartaSans.variable} ${nunito.variable}`;

@@ -34,7 +34,7 @@ export function DoingNowEmpty() {
 
   return (
     <div className="flex w-full max-w-lg flex-col items-center gap-2">
-      <div className="flex w-full items-center gap-3 rounded-full border border-hairline bg-surface-veil p-2 pl-6 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
+      <div className="flex w-full items-center gap-2 rounded-full border border-hairline bg-surface-veil p-1.5 pl-4 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50 sm:gap-3 sm:pl-5">
         <span className="size-1.5 shrink-0 rounded-full bg-border" aria-hidden />
 
         <Input
@@ -46,10 +46,10 @@ export function DoingNowEmpty() {
           onKeyDown={(event) => {
             if (event.key === "Enter") begin();
           }}
-          className="text-sm"
+          className="min-w-0 text-sm"
         />
 
-        <Button size="sm" onClick={begin}>
+        <Button size="sm" onClick={begin} className="h-9 px-3 text-xs sm:px-3.5 sm:text-sm">
           {t("enterFocus")}
           <ArrowRight />
         </Button>

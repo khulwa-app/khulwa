@@ -7,6 +7,8 @@ import { usePomodoroStore } from "./use-pomodoro-store.hook";
 type UsePomodoroReturn = {
   minutes: number;
   seconds: number;
+  totalSeconds: number;
+  progress: number;
   phase: PomodoroPhase;
   currentRound: number;
   totalRounds: number;
@@ -21,8 +23,6 @@ type UsePomodoroReturn = {
   skip: () => void;
   setPhase: (phase: PomodoroPhase) => void;
 };
-
-const MS_PER_MINUTE = 60_000;
 
 function phaseMinutes(options: PomodoroOptions, phase: PomodoroPhase): number {
   switch (phase) {
@@ -50,13 +50,17 @@ export function usePomodoro(): UsePomodoroReturn {
   const lastCompletedPhase = usePomodoroStore((s) => s.lastCompletedPhase);
 
   const totalSeconds = Math.ceil(timeLeftMs / 1000);
+  const phaseTotalSeconds = phaseMinutes(options, phase) * 60;
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  const hasStarted = timeLeftMs < phaseMinutes(options, phase) * MS_PER_MINUTE;
+  const hasStarted = timeLeftMs < phaseTotalSeconds * 1000;
+  const progress = phaseTotalSeconds > 0 ? Math.min(1, Math.max(0, 1 - timeLeftMs / (phaseTotalSeconds * 1000))) : 0;
 
   return {
     minutes,
     seconds,
+    totalSeconds: phaseTotalSeconds,
+    progress,
     phase,
     currentRound,
     totalRounds: options.rounds,

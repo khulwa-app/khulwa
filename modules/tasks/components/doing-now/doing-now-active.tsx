@@ -19,7 +19,7 @@ export function DoingNowActive({ task }: { task: Task }) {
   };
 
   return (
-    <div className="flex w-full max-w-lg items-center gap-3 rounded-full border border-hairline bg-surface-veil p-2 pl-6">
+    <div className="flex w-full max-w-lg items-center gap-2 rounded-full border border-hairline bg-surface-veil p-1.5 pl-4 sm:gap-3 sm:pl-5">
       <span className="size-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
 
       <span aria-live="polite" title={task.body} className="min-w-0 flex-1 truncate text-sm">
@@ -28,7 +28,7 @@ export function DoingNowActive({ task }: { task: Task }) {
 
       <span className="tabular shrink-0 text-xs text-foreground-muted">{t("etaShort", { eta: task.eta })}</span>
 
-      <Button size="sm" onClick={() => changeSpace(Space.Focus)}>
+      <Button size="sm" onClick={() => changeSpace(Space.Focus)} className="h-9 px-3 text-xs sm:px-3.5 sm:text-sm">
         {t("enterFocus")}
         <ArrowRight />
       </Button>
